@@ -55,6 +55,7 @@
         document.querySelector('.blog__slider').innerHTML = output
       })
   })
+  export const prerender = true;
 </script>
 
 <svelte:head>
@@ -98,7 +99,8 @@
             >.</noscript
           >
           <p class="success-message"/>
-          <form class="contactForm" name="contact" method="POST" data-netlify="true">
+          <form name="contact" method="POST" netlify netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact"/>
             <div class="input-container">
               <input type="text" id="name" name="name" required class="form-input" />
               <label for="name">Name:</label>
@@ -121,9 +123,8 @@
             <div>
               <button
                 class="bg-opacity-50 dark:bg-opacity-50 text-gray-800 bg-[#d1d5da] dark:bg-[#374151] dark:text-gray-200 text-opacity-50"
-                id="submitButton"
-                value="Submit"
-                type="submit">Submit</button
+                type="submit"
+                id="submitButton">Submit</button
               >
             </div>
           </form>
