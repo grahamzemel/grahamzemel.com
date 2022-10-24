@@ -100,7 +100,8 @@
               href="https://twitter.com/grahamzemel"
               style="text-decoration: underline;">Twitter</a>.</noscript>
           <p class="success-message"></p>
-          <form name="contact" method="POST" data-netlify="true">
+          <form name="contact" method="POST" netlify data-netlify-honeypot="bot-field">
+            <input type="hidden" name="contact" value="contact" />
             <div class="input-container">
               <input type="text" id="name" name="name" required class="form-input" />
               <label for="name">Name:</label>
