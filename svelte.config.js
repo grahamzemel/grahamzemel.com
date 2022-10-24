@@ -17,8 +17,10 @@ const config = {
     ]
   ],
   kit: {
-    adapter: adapter(),
-
+    adapter: adapter({
+      edge: false,
+      split: false
+    }),
     prerender: {
       entries: ['*', '/sitemap.xml', '/rss.xml']
     }
