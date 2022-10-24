@@ -100,7 +100,7 @@
               href="https://twitter.com/grahamzemel"
               style="text-decoration: underline;">Twitter</a>.</noscript>
           <p class="success-message"></p>
-          <form name="contact" method="POST" data-netlify="true" action="/contact">
+          <form name="contact" method="POST" data-netlify="true">
             <div class="input-container">
               <input type="text" id="name" name="name" required class="form-input" />
               <label for="name">Name:</label>
