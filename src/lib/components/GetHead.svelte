@@ -29,6 +29,7 @@
   let oldDesc
   let mainCat
   let sortedFUCL
+  console.log("LOCAL BUILD")
   if (!onProject && onCategory) {
     projectsLength = (pagedata.projects).length
     mainCat = `${pagedata.projects[0].category[0]}`
@@ -121,7 +122,6 @@
               icon={false}
               size="18"
               timeout="10000"
-              defaultText="Copy Link 🔗"
               copiedText="Copied!"
             />
           </div>
@@ -237,7 +237,6 @@
               icon={false}
               size="18"
               timeout="10000"
-              defaultText="Copy Link 🔗"
               copiedText="Copied!"
             />
           </div>
@@ -337,7 +336,6 @@
               icon={false}
               size="18"
               timeout="10000"
-              defaultText="Copy Link 🔗"
               copiedText="Copied!"
             />
           </div>
@@ -421,7 +419,6 @@
               icon={false}
               size="18"
               timeout="10000"
-              defaultText="Copy Link 🔗"
               copiedText="Copied!"
             />
           </div>
@@ -503,7 +500,7 @@
     <br />
 
     <ul
-      class="text-lg sm:text-[1rem] !p-2 !font-Inter !text-transparent !bg-clip-text !bg-gradient-to-b from-[#FFFFFF] to-[#000000] "
+      class="text-lg sm:text-[1rem] !p-2 !font-Inter !text-transparent !bg-clip-text !bg-gradient-to-b from-[#FFFFFF] to-[#000000] dark:from-[#000000] dark:to-[#FFFFFF]"
     >
     {#if pagedata.projects}
       {#each pagedata.projects as project}
