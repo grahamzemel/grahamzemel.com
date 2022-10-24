@@ -12,7 +12,9 @@
 
 ## Visit:
 [Graham Zemel (.com)](https://grahamzemel.com/)  
+
 [The Gray Area](https://grayarea.grahamzemel.com/) (Currently in development...)  
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b2705fa1-e58c-480d-9103-a96a7e63d5b5/deploy-status)](https://app.netlify.com/sites/grahamzemel/deploys)
 ## Contributions: 
 [Stack Overflow (as always)](https://stackoverflow.com/)  
