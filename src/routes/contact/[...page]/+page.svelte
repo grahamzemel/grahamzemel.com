@@ -121,8 +121,7 @@
               </small>
             </div>
             <div>
-              <button id="SubmitButton" type="submit"><ButtonLink href={`/`}>Submit</ButtonLink>
-              </button>
+              <button class="bg-opacity-50 dark:bg-opacity-50 text-gray-800 bg-[#d1d5da] dark:bg-[#374151] dark:text-gray-200 text-opacity-50" id="submitButton" type="submit">Submit</button>
             </div>
           </form>
         </div>
@@ -190,5 +189,12 @@
 .contact-content {
   display: flex;
   flex-wrap: wrap;
+}
+#submitButton{
+  display: flex;
+  justify-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border: solid gray 2px;
 }
 </style>
