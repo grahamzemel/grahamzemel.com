@@ -4,13 +4,6 @@
   import 'focus-visible'
   import { onMount } from 'svelte'
   onMount(async function () {
-    const emailForm = document.querySelector('.contactForm')
-    if (emailForm) {
-      emailForm.addEventListener('submit', e => {
-        e.preventDefault();
-        processForm(emailForm);
-      })
-    }
     const handleMessageCount = () => {
       var msg = document.getElementById('message').value
       var msgCount = document.getElementById('message-count')
@@ -105,10 +98,7 @@
             >.</noscript
           >
           <p class="success-message"/>
-          <form class="contactForm" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/">
-            <div class="input-container">
-              <input type="hidden" name="contactFormBot" value="contact" />
-            </div>
+          <form class="contactForm" name="contact" method="POST" data-netlify="true">
             <div class="input-container">
               <input type="text" id="name" name="name" required class="form-input" />
               <label for="name">Name:</label>
