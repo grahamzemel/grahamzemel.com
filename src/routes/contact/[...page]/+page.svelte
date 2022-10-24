@@ -2,22 +2,24 @@
   import '../../../app.css'
   import '../../../prism.css'
   import 'focus-visible'
-  import ButtonLink from '$lib/components/ButtonLink.svelte'
   import { onMount } from 'svelte'
   onMount(async function () {
-    const contactMessage = document.querySelector('.success-message');
-    if (window.location.search.includes('success')) {
-      contactMessage.innerHTML = "Thank you for your message, I'll get back to you as soon as I can &#128578;"
+    const emailForm = document.querySelector('.contactForm')
+    if (emailForm) {
+      emailForm.addEventListener('submit', e => {
+        e.preventDefault();
+        processForm(emailForm);
+      })
     }
     const handleMessageCount = () => {
-    var msg = document.getElementById("message").value;
-    var msgCount = document.getElementById("message-count")
-    var msgLength = msg.length;
-    const maxLength = 1000;
-    var charLeft = maxLength - msgLength;
-    msgCount.innerText = charLeft;
+      var msg = document.getElementById('message').value
+      var msgCount = document.getElementById('message-count')
+      var msgLength = msg.length
+      const maxLength = 1000
+      var charLeft = maxLength - msgLength
+      msgCount.innerText = charLeft
     }
-    message.addEventListener("input", handleMessageCount)
+    message.addEventListener('input', handleMessageCount)
     fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/the-gray-area')
       .then((res) => res.json())
 
@@ -60,7 +62,6 @@
         document.querySelector('.blog__slider').innerHTML = output
       })
   })
-  
 </script>
 
 <svelte:head>
@@ -91,17 +92,23 @@
       <div class="title-container scroll-in">
         <h2 class="section-title">Contact <span class="title-icon">&#128231;</span></h2>
         <p class="section-subtitle">
-          Talk with me about job opportunities, request my résumé, discuss hacking, or just say hi :)
+          Talk with me about job opportunities, request my résumé, discuss hacking, or just say hi
+          :)
         </p>
       </div>
       <div class="contact-content">
         <div class="form-container scroll-in">
-          <noscript>This form won't work without JavaScript but you can send me a message on <a
+          <noscript
+            >This form won't work without JavaScript but you can send me a message on <a
               href="https://twitter.com/grahamzemel"
-              style="text-decoration: underline;">Twitter</a>.</noscript>
-          <p class="success-message"></p>
-          <form name="contact" method="POST" netlify data-netlify-honeypot="bot-field">
-            <input type="hidden" name="contact" value="contact" />
+              style="text-decoration: underline;">Twitter</a
+            >.</noscript
+          >
+          <p class="success-message"/>
+          <form class="contactForm" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/">
+            <div class="input-container">
+              <input type="hidden" name="contactFormBot" value="contact" />
+            </div>
             <div class="input-container">
               <input type="text" id="name" name="name" required class="form-input" />
               <label for="name">Name:</label>
@@ -115,14 +122,19 @@
               <label for="subject">Subject (optional):</label>
             </div>
             <div class="input-container">
-              <textarea required maxlength="1000" id="message" name="message" class="form-input"></textarea>
-              <label for="message">Message:<br> </label>
+              <textarea required maxlength="1000" id="message" name="message" class="form-input" />
+              <label for="message">Message:<br /> </label>
               <small>
                 <span id="message-count">1000</span> characters
               </small>
             </div>
             <div>
-              <button class="bg-opacity-50 dark:bg-opacity-50 text-gray-800 bg-[#d1d5da] dark:bg-[#374151] dark:text-gray-200 text-opacity-50" id="submitButton" type="submit">Submit</button>
+              <button
+                class="bg-opacity-50 dark:bg-opacity-50 text-gray-800 bg-[#d1d5da] dark:bg-[#374151] dark:text-gray-200 text-opacity-50"
+                id="submitButton"
+                value="Submit"
+                type="submit">Submit</button
+              >
             </div>
           </form>
         </div>
@@ -130,72 +142,73 @@
     </div>
   </section>
 </div>
+
 <style>
-.form-container {
-  flex: 1 0 auto;
-  max-width: 600px;
-  width: 100%;
-  margin-right: 3rem;
-}
+  .form-container {
+    flex: 1 0 auto;
+    max-width: 600px;
+    width: 100%;
+    margin-right: 3rem;
+  }
 
-.input-container {
-  position: relative;
-  margin: 1.5rem 0;
-}
+  .input-container {
+    position: relative;
+    margin: 1.5rem 0;
+  }
 
-.input-container .form-input {
-  width: 100%;
-  box-sizing: border-box;
-  background: transparent;
-  border: 1px solid gray;
-  /* color: var(--text-color); */
-  transition: border 500ms;
-  padding: 1.5rem 1rem 0.5rem;
-  margin-top: 1rem;
-  font-size: 1.15rem;
-}
+  .input-container .form-input {
+    width: 100%;
+    box-sizing: border-box;
+    background: transparent;
+    border: 1px solid gray;
+    /* color: var(--text-color); */
+    transition: border 500ms;
+    padding: 1.5rem 1rem 0.5rem;
+    margin-top: 1rem;
+    font-size: 1.15rem;
+  }
 
-.input-container textarea {
-  height: 300px;
-  resize: none;
-  font: inherit;
-}
+  .input-container textarea {
+    height: 300px;
+    resize: none;
+    font: inherit;
+  }
 
-.input-container label {
-  display: block;
-  position: absolute;
-  width: 100%;
-  font-size: 1.15rem;
-  top: 15px;
-  padding: 0.25rem 1rem;
-  color: gray;
-  transform-origin: left;
-  user-select: none;
-  transition: all 500ms;
-}
+  .input-container label {
+    display: block;
+    position: absolute;
+    width: 100%;
+    font-size: 1.15rem;
+    top: 15px;
+    padding: 0.25rem 1rem;
+    color: gray;
+    transform-origin: left;
+    user-select: none;
+    transition: all 500ms;
+  }
 
-.input-container .form-input:hover,
-.input-container .form-input:focus {
-  outline: none;
-  border-color: gray;
-}
+  .input-container .form-input:hover,
+  .input-container .form-input:focus {
+    outline: none;
+    border-color: gray;
+  }
 
-.form-input:focus + label {
-  top: 1rem;
-  font-size: 0.75rem;
-  /* background-color: var(--shade-500); */
-  /* color: var(--background-color); */
-  user-select: auto;
-}
-.contact-content {
-  display: flex;
-  flex-wrap: wrap;
-}
-#submitButton{
-  display: flex;
-  justify-items: center;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  border: solid gray 2px;
-}
+  .form-input:focus + label {
+    top: 1rem;
+    font-size: 0.75rem;
+    /* background-color: var(--shade-500); */
+    /* color: var(--background-color); */
+    user-select: auto;
+  }
+  .contact-content {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  #submitButton {
+    display: flex;
+    justify-items: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border: solid gray 2px;
+  }
 </style>
