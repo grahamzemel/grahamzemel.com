@@ -1,0 +1,3 @@
+# https://grahamzemel.com/robots.html
+User-agent: *
+Disallow:

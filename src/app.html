@@ -1,12 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-		<meta name="viewport" content="width=device-width" />
-		%sveltekit.head%
-	</head>
-	<body>
-		<div>%sveltekit.body%</div>
-	</body>
+<!-- Hey! Feel free to utilize my code on your own site, just be sure to link me in the credits :) -GZ -->
+<html lang="en" class="dark">
+
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8N5KD4C19Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'G-8N5KD4C19Q');
+</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>
+    if (
+      ('prefersLight' in localStorage && Boolean(JSON.parse(localStorage.getItem('prefersLight'))) === false) ||
+      (!('prefersLight' in localStorage) &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      document.querySelector('html').classList.add('dark')
+    }
+    else {
+      document.querySelector('html').classList.remove('dark')
+    }
+  </script>
+  <link id="favicon" rel="icon" href="/favicon.png" type="image/png" />
+  %sveltekit.head%
+</head>
+
+<body class="relative transition-colors duration-100 bg-white dark:bg-black">
+  <div class="fixed inset-0 -z-50 bg-white dark:bg-black"></div>
+  <div class="z-0">%sveltekit.body%</div>
+
+  <!-- prettier-ignore -->
+  <script> </script>
+
+</body>
+
 </html>

@@ -1,43 +1,18 @@
-# create-svelte
+# Graham Zemel (.com) v1.0
+Created by [Graham Zemel](https://github.com/gzemel/)
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+## Basic Info
+-This is not the extent of my front-end design knowledge, I used a few newer libraries and this site was mostly an experiment.
+-It was a ton of fun to code, and I highly recommend learning a bit of front-end if you're mainly a back-end web dev or not even a web developer at all.
+-If anyone would like to contribute and re-code it better I'm open to suggestions, and encourage them. 
 
-## Creating a project
+**-Any developers are more than welcome to use the code from this repo in their own programs and apps, however the copyright in the sidebar must be included. Thanks!**
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
-  
-  
-  1: npm install (or pnpm install, etc)
-  2: git init && git add -A && git commit -m "Initial commit" (optional)
-  3: npm run dev -- --open
+## Visit:
+[grahamzemel.com](https://grahamzemel.com/)
+[The Gray Area](https://grayarea.grahamzemel.com/) (Currently in development...)  
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b2705fa1-e58c-480d-9103-a96a7e63d5b5/deploy-status)](https://app.netlify.com/sites/grahamzemel/deploys)
+## Contributions: 
+[Stack Overflow (as always)](https://stackoverflow.com/)
+[Matt Jennings](https://github.com/mattjennings/sveltekit-blog-template)
+[Rodney Johnson](https://github.com/rodneylab/svelte-social-icons)

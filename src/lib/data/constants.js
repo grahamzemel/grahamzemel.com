@@ -1,0 +1,5 @@
+const TIMING_DURATION = 360
+
+export {
+  TIMING_DURATION,
+}
