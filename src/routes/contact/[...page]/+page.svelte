@@ -1,3 +1,7 @@
+<script context="module">
+	export const prerender = true;
+</script>
+
 <script>
   import '../../../app.css'
   import '../../../prism.css'
@@ -55,7 +59,17 @@
         document.querySelector('.blog__slider').innerHTML = output
       })
   })
-  export const prerender = true;
+  const handleSubmit = (e) => {
+		e.preventDefault()
+		let myForm = document.getElementById('myform');
+		let formData = new FormData(myForm);
+		fetch('/', {
+			method: 'POST',
+			headers: { "Content-Type": "application/x-www-form-urlencoded" },
+			body: new URLSearchParams(formData).toString()
+		}).then(() => console.log('Form successfully submitted')).catch((error) =>
+			alert(error))
+	}
 </script>
 
 <svelte:head>
@@ -99,7 +113,7 @@
             >.</noscript
           >
           <p class="success-message"/>
-          <form name="contact" method="POST" netlify netlify-honeypot="bot-field">
+          <form name="contact" on:submit{handleSubmit} method="POST" netlify netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="contact"/>
             <div class="input-container">
               <input type="text" id="name" name="name" required class="form-input" />
