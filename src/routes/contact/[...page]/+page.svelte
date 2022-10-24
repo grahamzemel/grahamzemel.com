@@ -121,7 +121,7 @@
               </small>
             </div>
             <div>
-              <button id="SubmitButton" type="submit"><ButtonLink>Submit</ButtonLink>
+              <button id="SubmitButton" type="submit"><ButtonLink href={`/`}>Submit</ButtonLink>
               </button>
             </div>
           </form>
