@@ -54,7 +54,7 @@ a {
 @media only screen and (max-width: 625px) {
   .fancy span:before,
   .fancy span:after {
-    width: 12rem !important;
+    width: 10rem !important;
   }
 }
 
