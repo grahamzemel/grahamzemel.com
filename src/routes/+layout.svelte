@@ -34,12 +34,12 @@
   <div
     class="flex flex-col justify-around h-full !text-transparent bg-clip-text bg-[#ffffff] dark:bg-[#111111] !pt-[5rem] pb-[2rem] lg:pb-[4.5rem] sidenav"
   >
-    <div style="padding-left:.80rem;">
-      <a href="https://medium.com/the-gray-area/">
+    <div style="padding-left:.8rem;">
+      <a href="https://patreon.com/grahamzemel?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=creatorshare_creator">
         <img
-          src="/grayAreaCircle.png"
-          alt="The Gray Area Medium"
-          style="height:52.5px;width:52.5px;border-style:solid; border-color: #5a5a5a;padding:0px;border-width: 2px;border-radius:50%;"
+          src="/patreon.png"
+          alt="Patreon"
+          style="height:50px;width:50px;border-style:solid;"
         />
       </a>
     </div>
