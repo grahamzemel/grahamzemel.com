@@ -39,7 +39,7 @@
 
 <PageTransition refresh={true} span={true}>
   {#if !isSingleProject}
-    <div class="page-head lg:text-[1.25rem] text-[1rem]">
+    <div class="page-head lg:text-[1.25rem] text-[.85rem]">
       <div class="heading-wrapper" class:in={isWorking} class:no-motion={$prefersReducedMotion}>
         <span class="brace" aria-hidden="true">[</span>
         <h1>

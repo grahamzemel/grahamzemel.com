@@ -77,7 +77,7 @@
 </article>
 
 <div class="pt-12 flex justify-between">
-  <ButtonLink href={'/'}>
+  <ButtonLink size="small" href={'/'}>
     <slot slot="icon-start">
       <ArrowLeftIcon class="h-5 w-5" />
     </slot>
@@ -85,7 +85,7 @@
     <slot slot="icon-end" />
   </ButtonLink>
   {#if data.project.sourceCode}
-  <ButtonLink href={`${data.project.sourceCode}`}>
+  <ButtonLink size="small" href={`${data.project.sourceCode}`}>
     Source Code
   </ButtonLink>
   {/if}

@@ -18,17 +18,16 @@
 <div class="logoImg">
   <img src="../favicon.png" alt="Logo" />
 </div>
+
 <div
   class="flex flex-row justify-around w-full text-black dark:text-[#808080] !pl-[5rem] !pb-[3rem] text-[10px] lg:text-[15px] nav btn-nav"
 >
   <a class="p-[5px] lg:p-[10px]" target="_self" href="/"><span>About Me</span></a>
   <a class="p-[5px] lg:p-[10px]" target="_self" href="/projectlist"><span>Projects</span></a>
-  <a class="p-[5px] lg:p-[10px]" target="_self" href="https://grahamzemel.medium.com/"
-    ><span>Blog</span></a
-  >
+  <a class="p-[5px] lg:p-[10px]" target="_self" href="https://grahamzemel.medium.com/"><span>Blog</span></a>
   <a class="p-[5px] lg:p-[10px]" target="_self" href="/contact"><span>Contact</span></a>
 </div>
-
+<div class="mediumInvisible lg:absolute">
 <div
   class="flex flex-col justify-around h-full !text-transparent bg-clip-text bg-[#ffffff] dark:bg-[#111111] !pt-[5rem] pb-[2rem] lg:pb-[4.5rem] sidenav"
 >
@@ -71,9 +70,10 @@
     Graham Zemel 2022
   </p>
 </div>
+</div>
 <MyDateComponent bind:date />
 
-<div class="!mt-12 !ml-20">
+<div class="!mt-12 !ml-4 lg:!ml-20">
   <GetHead />
   <div class="absolute gzLogo"
     style="margin-bottom:2%;margin-top:3% !important;margin-left:5%; border-style:solid; border-color: #323232;border-width: 1px; padding:0.2em"
@@ -125,19 +125,19 @@
       overflow: visible;"
         >
           <p
-            class="lg:text-[1.25rem] text-[1rem] !font-Inter
+            class="lg:text-[1.25rem] text-[.85rem] !font-Inter
         !text-transparent bg-clip-text !bg-[#404040] !dark:bg-[#606060] !mr-1"
           >
             [
           </p>
           <p
-            class="lg:text-[1.2rem] text-[.95rem] !font-Inter
+            class="lg:text-[1.2rem] text-[.8rem] !font-Inter
         !text-transparent bg-clip-text !bg-[#7a7a7a] !dark:bg-[#7a7a7a]"
           >
             {date}
           </p>
           <p
-            class="lg:text-[1.25rem] text-[1rem] !font-Inter
+            class="lg:text-[1.25rem] text-[.85rem] !font-Inter
         !text-transparent bg-clip-text !bg-[#404040] !dark:bg-[#606060] !ml-1"
           >
             ]
