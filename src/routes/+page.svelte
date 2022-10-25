@@ -48,7 +48,7 @@
         document.querySelector('.blog__slider').innerHTML = output
       })
   })
-  
+
   const ogImage = `https://og-image.vercel.app/**${encodeURIComponent(
     name
   )}**?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fhyper-color-logo.svg`
@@ -75,7 +75,7 @@
   <meta name="twitter:image" content={ogImage} />
 </svelte:head>
 <!-- RIGHT COLUMN -->
-<div class="mediumInvisible lg:absolute" style="justify-content:right;text-align:right;top:0%;left:79.5%;">
+<div class="mediumInvisible lg:absolute" style="justify-content:right;text-align:right;top:1.5%;left:79.5%;">
   <section id="blog" class="blog">
     <div class="blog__header">
       <p class="blog__header1 text-[#4b5563] dark:text-white">New From</p>

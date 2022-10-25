@@ -69,7 +69,7 @@
   <title>Graham Zemel | {slug}</title>
 </svelte:head>
 
-<div class="mediumInvisible lg:absolute" style="justify-content:right;text-align: right;top:0%;left:79.5%;">
+<div class="mediumInvisible lg:absolute" style="justify-content:right;text-align:right;top:1.5%;left:79.5%;">
   <section id="blog" class="blog">
     <div class="blog__header">
       <p class="blog__header1 text-[#4b5563] dark:text-white">New From</p>
