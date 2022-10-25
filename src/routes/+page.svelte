@@ -2,7 +2,7 @@
   import '../app.css'
   import '../prism.css'
   import 'focus-visible'
-  import { name } from '$lib/info.js'
+  import { name, website } from '$lib/info.js'
   import { onMount } from 'svelte'
   onMount(async function () {
     fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/the-gray-area')
@@ -47,11 +47,30 @@
         document.querySelector('.blog__slider').innerHTML = output
       })
   })
+  const ogImage = new Image();
+  ogImage.src = "../static/favicon.png";
 
 </script>
 
 <svelte:head>
   <title>{name}</title>
+  <meta name="description" content="Hi! I'm Graham Zemel - A full-stack developer, cybersecurity programmer, and IT enthusiast." />
+  <meta name="author" content="Graham Zemel" />
+
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content={website} />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={name} />
+  <meta property="og:description" content="Hi! I'm Graham Zemel - A full-stack developer, cybersecurity programmer, and IT enthusiast." />
+  <meta property="og:image" content={ogImage} />
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="twitter:domain" content={website} />
+  <meta property="twitter:url" content={name} />
+  <meta name="twitter:title" content={name} />
+  <meta name="twitter:description" content="Hi! I'm Graham Zemel - A full-stack developer, cybersecurity programmer, and IT enthusiast."  />
+  <meta name="twitter:image" content={ogImage} />
 </svelte:head>
 <!-- RIGHT COLUMN -->
 <div class="mediumInvisible lg:absolute" style="justify-content:right;text-align:right;top:0%;left:79.5%;">
