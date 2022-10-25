@@ -5,6 +5,7 @@
   import { name, website } from '$lib/info.js'
   import { onMount } from 'svelte'
   onMount(async function () {
+    
     fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/the-gray-area')
       .then((res) => res.json())
 
@@ -47,9 +48,10 @@
         document.querySelector('.blog__slider').innerHTML = output
       })
   })
-  const ogImage = new Image();
-  ogImage.src = "../static/favicon.png";
-
+  
+  const ogImage = `https://og-image.vercel.app/**${encodeURIComponent(
+    name
+  )}**?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fhyper-color-logo.svg`
 </script>
 
 <svelte:head>
