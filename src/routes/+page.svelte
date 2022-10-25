@@ -54,7 +54,7 @@
   <title>{name}</title>
 </svelte:head>
 <!-- RIGHT COLUMN -->
-<div style="position: absolute;justify-content:right;text-align: right;top:0%;left:79.5%;">
+<div class="mediumInvisible lg:absolute" style="justify-content:right;text-align:right;top:0%;left:79.5%;">
   <section id="blog" class="blog">
     <div class="blog__header">
       <p class="blog__header1 text-[#4b5563] dark:text-white">New From</p>
@@ -72,8 +72,9 @@
     <ul class="blog__slider">Javascript Required</ul>
   </section>
 </div>
+
 <div class="flex flex-col">
-  <h2 class="flex text-lg sm:text-5xl items-baseline gap-4 !mb-2">About Me</h2>
+  <h2 class="flex text-3xl lg:text-4xl items-baseline gap-4 !mb-2">About Me</h2>
   <hr />
   <h2>
     Hi! I'm Graham Zemel - A full-stack developer, cybersecurity programmer, and IT enthusiast.

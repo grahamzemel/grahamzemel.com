@@ -93,7 +93,7 @@
 
 {#if onProject}
   <!-- Project -->
-  <div style="position: absolute;margin-bottom: 1%;margin-top:18%; margin-left:5.5%;">
+  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:18%; margin-left:5.5%;">
     <h2
       class="text-lg sm:text-3xl !font-Inter !text-transparent bg-clip-text bg-black dark:bg-white"
     >
@@ -137,7 +137,7 @@
     </ul>
   </div>
 
-  <div style="position: absolute;margin-bottom: 1%;margin-top:45%; margin-left:5.5%;">
+  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:45%; margin-left:5.5%;">
     <h2
       class="text-lg sm:text-3xl !font-Inter !text-transparent bg-clip-text bg-black dark:bg-white"
     >
@@ -182,7 +182,7 @@
     </ul>
   </div>
 
-  <div style="position:absolute;margin-bottom: 1%;margin-top:70%; margin-left:5.5%;">
+  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:70%; margin-left:5.5%;">
     <!-- now manipulate categories text to make look nice -->
     <h2
       class="text-lg sm:text-3xl !font-Inter !text-transparent bg-clip-text bg-black dark:bg-white text-black dark:text-white"
@@ -213,7 +213,7 @@
   </div>
 {:else if onCategory}
   <!-- CATEGORIES -->
-  <div style="position: absolute;margin-bottom: 1%;margin-top:18%; margin-left:5.5%;">
+  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:18%; margin-left:5.5%;">
     <h2
       class="text-lg sm:text-4xl !font-Inter !text-transparent bg-clip-text bg-black dark:bg-white"
     >
@@ -256,7 +256,7 @@
       </h5>
     </ul>
   </div>
-  <div style="position: absolute;margin-bottom: 1%;margin-top:45%; margin-left:5.5%;">
+  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:45%; margin-left:5.5%;">
     <h2
       class="text-lg sm:text-3xl !font-Inter !text-transparent bg-clip-text bg-black dark:bg-white"
     >
@@ -300,7 +300,7 @@
       </li>
     </ul>
   </div>
-  <div style="position: absolute;margin-bottom: 1%;margin-top:70%; margin-left:5.5%;">
+  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:70%; margin-left:5.5%;">
     <h2
       class="text-lg sm:text-3xl !font-Inter !text-transparent bg-clip-text bg-black dark:bg-white"
     >
@@ -318,7 +318,7 @@
   </div>
 {:else if contact}
   <!-- Contact -->
-  <div style="position: absolute;margin-bottom: 1%;margin-top:18%; margin-left:5.5%;">
+  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:18%; margin-left:5.5%;">
     <h2
       class="text-lg sm:text-4xl !font-Inter !text-transparent bg-clip-text bg-black dark:bg-white"
     >
@@ -361,7 +361,7 @@
       </h5>
     </ul>
   </div>
-  <div style="position: absolute;margin-bottom: 1%;margin-top:45%; margin-left:5.5%;">
+  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:45%; margin-left:5.5%;">
     <h2
       class="text-lg sm:text-4xl !font-Inter !text-transparent bg-clip-text bg-black dark:bg-white"
     >
@@ -407,7 +407,7 @@
   </div>
 {:else}
   <!-- HOMEPAGE -->
-  <div style="position: absolute;margin-bottom: 1%;margin-top:18%; margin-left:5.5%;">
+  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:18%; margin-left:5.5%;">
     <h2
       class="text-lg sm:text-4xl !font-Inter !text-transparent bg-clip-text bg-black dark:bg-white"
     >
@@ -450,7 +450,7 @@
       </h5>
     </ul>
   </div>
-  <div style="position: absolute;margin-bottom: 1%;margin-top:45%; margin-left:5.5%;">
+  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:45%; margin-left:5.5%;">
     <h2
       class="text-lg sm:text-4xl !font-Inter !text-transparent bg-clip-text bg-black dark:bg-white"
     >
@@ -494,7 +494,7 @@
       </li>
     </ul>
   </div>
-  <div style="position: absolute;margin-bottom: 1%;margin-top:70%; margin-left:5.5%;">
+  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:70%; margin-left:5.5%;">
     {#if pagedata.projects}
       <h2
         style="font-size: 1.7rem;line-height: 2.25rem;"

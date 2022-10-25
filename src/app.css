@@ -34,6 +34,30 @@ a {
   @apply rounded-sm;
   @apply focus;
 }
+@media only screen and (max-width: 1350px) {
+  .gzLogo{
+    display: none !important;
+  }
+  .mediumInvisible{
+    display: none !important;
+  }
+  .useWeb{
+    display: relative !important;
+  }
+}
+@media only screen and (max-width: 885px) {
+  .fancy span:before,
+  .fancy span:after {
+    width: 16rem !important;
+  }
+}
+@media only screen and (max-width: 625px) {
+  .fancy span:before,
+  .fancy span:after {
+    width: 12rem !important;
+  }
+}
+
 /* Scrollbar */
 html {
   overflow-x: hidden;
@@ -84,7 +108,7 @@ html {
   stroke: white;
 }
 .categoryHeader { 
-  @apply uppercase text-base font-bold text-5xl;
+  @apply uppercase text-base font-bold;
   color: inherit;
 }
 .category.catList{
@@ -161,7 +185,8 @@ html {
 }
 
 .subtitle {
-  margin: 0 0 1rem 0;
+  margin: 0 0 1rem 0; 
+  /* top right bottom left */
 }
 .fancy {
   line-height: 0.5;
@@ -178,8 +203,8 @@ html {
   height: 5px;
   border-bottom: 1px solid #5a5a5a;
   border-top: 1px solid #5a5a5a;
-  top: 0;
   width: 24rem;
+  top: 0;
 }
 .fancy span:before {
   right: 100%;
@@ -189,6 +214,8 @@ html {
   left: 100%;
   /* margin-left: 15px; */
 }
+
+
 .introBreak {
   background-color: #233044;
   justify-content: left;
@@ -255,10 +282,8 @@ li{
 }
 .nav a{
   text-decoration: none;
-  font-size: 15px;
   margin-top: 27.5px;
   display: block;
-
 }
 .sidenav {
   height: 100%;
@@ -303,10 +328,10 @@ span {
   /* z-index coz when we put bg to before and after this span text will not be visible */
   z-index: 3;
 }
+
 .btn-nav a{
   text-decoration: none;
   border: 2px solid;
-  padding: 10px;
   background-color: transparent !important;
   text-transform: uppercase;
   letter-spacing: 2px;

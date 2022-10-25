@@ -62,7 +62,7 @@
   <title>Graham Zemel | All Projects</title>
 </svelte:head>
 
-<div style="position: absolute;justify-content:right;text-align: right;top:0%;left:79.5%;">
+<div class="mediumInvisible lg:absolute" style="justify-content:right;text-align: right;top:0%;left:79.5%;">
   <section id="blog" class="blog">
     <div class="blog__header">
       <p class="blog__header1 text-[#4b5563] dark:text-white">New From</p>
@@ -83,7 +83,7 @@
 
 <div class="flex flex-col flex-grow">
   <!-- featured projects -->
-  <h2 class="flex items-baseline gap-4 !mb-2">Featured Projects</h2>
+  <h2 class="flex items-baseline text-3xl lg:text-4xl gap-4 !mb-2">Featured Projects</h2>
   <div class="grid gap-4 grid-cols-1 sm:grid-cols-1 row-end-3 !mt-4">
     {#each data.projects as project}
       {#if project.featured == true}

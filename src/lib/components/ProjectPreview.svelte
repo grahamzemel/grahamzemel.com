@@ -19,7 +19,7 @@
     <!-- !bg-gradient-to-b from-zinc-200 to-zinc-700 -->
     {#if !small}
       {#if project.featured}
-        <h1 class="!mt-0 !mb-1 !pb-2 featuredTitle">
+        <h1 class="!mt-0 !mb-1 !pb-2 text-1lg lg:text-3xl featuredTitle">
           <a target="_self" href={`/projects/${project.slug}`} data-sveltekit-prefetch
             >{project.title}</a
           >
@@ -32,7 +32,7 @@
         </h3>
       {/if}
     {:else if project.featured}
-      <h3 class="!mt-0 !mb-1 featuredTitle">
+      <h3 class="!mt-0 !mb-1 text-1lg lg:text-3xl featuredTitle">
         <a target="_self" href={`/projects/${project.slug}`} data-sveltekit-prefetch
           >{project.title}</a
         >

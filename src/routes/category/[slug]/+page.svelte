@@ -69,7 +69,7 @@
   <title>Graham Zemel | {slug}</title>
 </svelte:head>
 
-<div style="position: absolute;justify-content:right;text-align: right;top:0%;left:79.5%;">
+<div class="mediumInvisible lg:absolute" style="justify-content:right;text-align: right;top:0%;left:79.5%;">
   <section id="blog" class="blog">
     <div class="blog__header">
       <p class="blog__header1 text-[#4b5563] dark:text-white">New From</p>
@@ -88,7 +88,7 @@
   </section>
 </div>
 
-<div class="categoryHeader !mt-1"><span>{slug}</span></div>
+<div class="categoryHeader text-3xl lg:text-4xl !mt-1"><span>{slug}</span></div>
 <hr class="introBreak" />
 <div class="flex-grow divide-y divide-gray-300 dark:divide-gray-700">
     {#each data.projects as project}

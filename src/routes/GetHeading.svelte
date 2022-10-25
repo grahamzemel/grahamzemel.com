@@ -39,7 +39,7 @@
 
 <PageTransition refresh={true} span={true}>
   {#if !isSingleProject}
-    <div class="page-head">
+    <div class="page-head lg:text-[1.25rem] text-[1rem]">
       <div class="heading-wrapper" class:in={isWorking} class:no-motion={$prefersReducedMotion}>
         <span class="brace" aria-hidden="true">[</span>
         <h1>
@@ -76,8 +76,6 @@
     overflow: visible;
     position: relative;
     z-index: 0;
-    font-size: 1.125rem;
-    min-height: 1.75rem;
   }
   .page-head .heading-wrapper {
     display: flex;
@@ -89,7 +87,6 @@
   .page-head .heading-wrapper .brace {
     font-family: var(--heading-font);
     font-weight: normal;
-    font-size: 1.25em;
     color: #404040;
     margin: 0 0 0 0.4rem;
     z-index: 2;

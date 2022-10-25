@@ -84,13 +84,16 @@
 </div>
 
 <style lang="scss">
+  
   .grid-wrapper {
     height: 2.5rem;
     position: relative;
     contain: layout size style;
     justify-content: center;
+    justify-items: center;
+    text-align: center;
     top: .5rem;
-    left: 4%;
+    left: 5%;
   }
 
   .cell-grid {
@@ -98,8 +101,6 @@
     position: relative;
     z-index: 2;
     top: 0.5rem;
-    width: 25%;
-    
   }
   .cell-grid.inverted {
     top: 2.5rem;
@@ -109,12 +110,38 @@
     top: 0;
   }
   .cell-grid:before {
-    width: 50%;
     content: '';
     background: linear-gradient(60deg, hsla(var(--paperHSL), 0), hsla(var(--paperHSL), 0.5));
     height: 4rem;
     position: relative;
     top: -1rem;
     z-index: 2;
+  }
+  @media only screen and (max-width: 1350px) {
+    .cell-grid:before{
+      height: 2rem;
+      width: fit-content !important;
+    }
+    .grid-wrapper{
+      left: 15% !important;
+    }
+  }
+  @media only screen and (max-width: 885px) {
+    .cell-grid:before{
+      height: 2rem;
+      width: fit-content !important;
+    }
+    .grid-wrapper{
+      left: 22.5% !important;
+    }
+  }
+  @media only screen and (max-width: 625px) {
+    .cell-grid:before{
+      height: 2rem;
+      width: fit-content !important;
+    }
+    .grid-wrapper{
+      left: 25% !important;
+    }
   }
 </style>

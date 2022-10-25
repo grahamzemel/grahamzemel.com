@@ -4,7 +4,7 @@ import { name, website } from '$lib/info'
 export const prerender = true
 
 // update this to something more appropriate for your website
-const websiteDescription = `Graham Zemel. A Full-Stack Developer, Hacker, and Cryptocurrency Enthusiast From The East Coast.`
+const websiteDescription = `Graham Zemel. A Full-Stack Developer, Hacker, and Writer. `
 const projectsUrl = `${website}/projects`
 
 /**

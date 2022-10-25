@@ -75,7 +75,7 @@
 <svelte:head>
   <title>Graham Zemel | Contact Me</title>
 </svelte:head>
-<div style="position: absolute;justify-content:right;text-align: right;top:0%;left:79.5%;">
+<div class="mediumInvisible lg:absolute" style="justify-content:right;text-align: right;top:0%;left:79.5%;">
   <section id="blog" class="blog">
     <div class="blog__header">
       <p class="blog__header1 text-[#4b5563] dark:text-white">New From</p>
