@@ -93,7 +93,7 @@
       {/if}
     </div>
     {#if project.category}
-      <h5 class="category !mt-2 !mb-1">
+      <h5 class="category text-xs lg:text-lg !mt-2 !mb-1">
         {#each project.category as cat}
           <a target="_self" href={`/category/${String(cat).toLowerCase()}`}>{cat}</a>
         {/each}
@@ -133,12 +133,12 @@
       
       {#if project.sourceCode}
       <div class="flex">
-        <ButtonLink href={`${project.sourceCode}`}>Source Code</ButtonLink>
+        <ButtonLink size="small" href={`${project.sourceCode}`}>Source Code</ButtonLink>
       </div>
       {/if}
 
       <div class="flex">
-        <ButtonLink href={`/projects/${project.slug}`}>Read More</ButtonLink>
+        <ButtonLink size="small" href={`/projects/${project.slug}`}>Read More</ButtonLink>
       </div>
     </slot>
   </div>
