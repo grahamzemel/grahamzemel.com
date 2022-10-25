@@ -108,7 +108,7 @@
     <a
       class="after:bg-white dark:after:bg-black before:bg-white dark:before:bg-black"
       style="color:#5d5d5d;"
-      href="https://github.com/gzemel/grahamzemel.com"><span>github.com/gzemel</span></a
+      href="https://github.com/grahamzemel/grahamzemel.com"><span>github.com/grahamzemel</span></a
     >
     if you're interested. <br /><br /><br />
     I build websites using the following frameworks and tools:
@@ -140,7 +140,7 @@
     <a
       class="after:bg-white dark:after:bg-black before:bg-white dark:before:bg-black"
       style="color:#5d5d5d;"
-      href="https://github.com/gzemel/WebHeckScanner"><span> hacking scripts</span></a
+      href="https://github.com/grahamzemel/WebHeckScanner"><span> hacking scripts</span></a
     >
     to see if a website might have vulnerabilties. <br /><br />
     To learn more about what hacking really means and how to stay safe online, check out this post:

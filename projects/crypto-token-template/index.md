@@ -3,11 +3,11 @@ title: Crypto Token Template
 date: 2021-12-15
 time: 08:15
 category: Cryptocurrency Programming Solidity
-sourceCode: https://github.com/gzemel/CreateCryptoToken
+sourceCode: https://github.com/grahamzemel/CreateCryptoToken
 ---
 This project was created as a template for web3 developers to build custom cryptocurrencies on the ERC20 blockchain. 
 
-It was a really neat process to create my own cryptocurrency, and I really enjoyed it. I wanted to share the code with others in case they wanted to do something similar, and the instructions are inside of the [Github repo](https://github.com/gzemel/CreateCryptoToken) for those who would like to use it. 
+It was a really neat process to create my own cryptocurrency, and I really enjoyed it. I wanted to share the code with others in case they wanted to do something similar, and the instructions are inside of the [Github repo](https://github.com/grahamzemel/CreateCryptoToken) for those who would like to use it. 
 
 You can modify the code any way you want, and it may take a little bit of tinkering on the REMIX IDE website which is where everything will be deployed and created.
 

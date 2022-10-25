@@ -3,7 +3,7 @@ title: IDOR Automation
 date: 2022-10-20
 time: 08:10:30.000Z
 category: Programming Hacking Python
-sourceCode: https://github.com/gzemel/idorAutomation 
+sourceCode: https://github.com/grahamzemel/idorAutomation 
 ---
 This was a simple python script for parsing data from hacked sites. Check out some methods of hacking that I use which are published onto [my blog](https://medium.com/the-gray-area)!
 

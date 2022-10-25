@@ -51,7 +51,7 @@
     <a href="https://grahamzemel.medium.com/">
       <SocialIcons alt="Graham Zemel's Medium" network="medium" bgColor="#aaaaaa" />
     </a>
-    <a href="https://github.com/gzemel">
+    <a href="https://github.com/grahamzemel">
       <SocialIcons alt="Graham Zemel's Github" network="github" bgColor="#aaaaaa" />
     </a>
     <a href="https://twitter.com/grahamzemel">

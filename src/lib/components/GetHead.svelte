@@ -167,7 +167,7 @@
       </li>
       <li>
         <div class="flex justify-between">
-          <ButtonLink href={`https://github.com/gzemel/grahamzemel.com`}>Source Code</ButtonLink>
+          <ButtonLink href={`https://github.com/grahamzemel/grahamzemel.com`}>Source Code</ButtonLink>
           <hr />
         </div>
       </li>
@@ -286,7 +286,7 @@
       </li>
       <li>
         <div class="flex justify-between">
-          <ButtonLink href={`https://github.com/gzemel/grahamzemel.com`}>Source Code</ButtonLink>
+          <ButtonLink href={`https://github.com/grahamzemel/grahamzemel.com`}>Source Code</ButtonLink>
           <hr />
         </div>
       </li>
@@ -391,7 +391,7 @@
       </li>
       <li>
         <div class="flex justify-between">
-          <ButtonLink href={`https://github.com/gzemel/grahamzemel.com`}>Source Code</ButtonLink>
+          <ButtonLink href={`https://github.com/grahamzemel/grahamzemel.com`}>Source Code</ButtonLink>
           <hr />
         </div>
       </li>
@@ -480,7 +480,7 @@
       </li>
       <li>
         <div class="flex justify-between">
-          <ButtonLink href={`https://github.com/gzemel/grahamzemel.com`}>Source Code</ButtonLink>
+          <ButtonLink href={`https://github.com/grahamzemel/grahamzemel.com`}>Source Code</ButtonLink>
           <hr />
         </div>
       </li>

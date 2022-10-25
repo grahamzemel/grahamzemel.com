@@ -4,7 +4,7 @@ date: 2022-10-22
 time: 10:30:30.000Z
 category: Programming Web Internet
 featured: True
-sourceCode: https://github.com/gzemel/grahamzemel.com 
+sourceCode: https://github.com/grahamzemel/grahamzemel.com 
 ---
 The website you're on right now! I coded nearly all of it from scratch, using tools like [Svelte](https://svelte.dev/), [Tailwind](https://tailwindcss.com/), and [Mdsvex](https://mdsvex.pngwn.io/) for markdown files. 
 
@@ -17,6 +17,6 @@ This website took way too long to make, as I hadn't used some of these front-end
 
 It's not the way I wanted it to look for the most part and if I took more time I could have achieved a better feel, but I learned a lot and that's what matters to me.
 
-If you'd like to check out the repository, it's linked at the bottom of this project or [here](https://github.com/gzemel/grahamzemel.com).
+If you'd like to check out the repository, it's linked at the bottom of this project or [here](https://github.com/grahamzemel/grahamzemel.com).
 
 If you fork or modify the code, make sure to keep the copyright in the sidebar and I'd appreciate a reference in the contributions. 
