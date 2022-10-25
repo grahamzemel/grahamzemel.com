@@ -24,58 +24,62 @@
 >
   <a class="p-[5px] lg:p-[10px]" target="_self" href="/"><span>About Me</span></a>
   <a class="p-[5px] lg:p-[10px]" target="_self" href="/projectlist"><span>Projects</span></a>
-  <a class="p-[5px] lg:p-[10px]" target="_self" href="https://grahamzemel.medium.com/"><span>Blog</span></a>
+  <a class="p-[5px] lg:p-[10px]" target="_self" href="https://grahamzemel.medium.com/"
+    ><span>Blog</span></a
+  >
   <a class="p-[5px] lg:p-[10px]" target="_self" href="/contact"><span>Contact</span></a>
 </div>
+
 <div class="mediumInvisible lg:absolute">
-<div
-  class="flex flex-col justify-around h-full !text-transparent bg-clip-text bg-[#ffffff] dark:bg-[#111111] !pt-[5rem] pb-[2rem] lg:pb-[4.5rem] sidenav"
->
-  <div style="padding-left:.80rem;">
-    <a href="https://medium.com/the-gray-area/">
-      <img
-        src="/grayAreaCircle.png"
-        alt="The Gray Area Medium"
-        style="height:52.5px;width:52.5px;border-style:solid; border-color: #5a5a5a;padding:0px;border-width: 2px;border-radius:50%;"
-      />
-    </a>
-  </div>
-  <div style="padding-left:.8rem;">
-    <a href="https://medium.com/the-gray-area/newsletters/medium-the-gray-area">
-      <img alt="Subscribe To Mailing List" src="/mail.png" width="50px" height="50px" />
-    </a>
-  </div>
-  <a href="https://grahamzemel.medium.com/">
-    <SocialIcons alt="Graham Zemel's Medium" network="medium" bgColor="#aaaaaa" />
-  </a>
-  <a href="https://github.com/gzemel">
-    <SocialIcons alt="Graham Zemel's Github" network="github" bgColor="#aaaaaa" />
-  </a>
-  <a href="https://twitter.com/grahamzemel">
-    <SocialIcons alt="Graham Zemel's Twitter" network="twitter" bgColor="#aaaaaa" />
-  </a>
-  <h2>
-    <ThemeToggle />
-  </h2>
-  <p
-    style="padding-left:.8rem;"
-    class="absolute right-8 bottom-10 z-0 text-[#4b5563] dark:text-white"
+  <div
+    class="flex flex-col justify-around h-full !text-transparent bg-clip-text bg-[#ffffff] dark:bg-[#111111] !pt-[5rem] pb-[2rem] lg:pb-[4.5rem] sidenav"
   >
-    ©
-  </p>
-  <p class="pb-[2rem]" />
-  <p
-    class="absolute bottom-5 pb-[2.5rem] lg:pb-[4.5rem] z-10 flex justify-center items-center opacity-0 z-10 duration-300 hover:opacity-100 text-[#4b5563] dark:text-white"
-  >
-    Graham Zemel 2022
-  </p>
-</div>
+    <div style="padding-left:.80rem;">
+      <a href="https://medium.com/the-gray-area/">
+        <img
+          src="/grayAreaCircle.png"
+          alt="The Gray Area Medium"
+          style="height:52.5px;width:52.5px;border-style:solid; border-color: #5a5a5a;padding:0px;border-width: 2px;border-radius:50%;"
+        />
+      </a>
+    </div>
+    <div style="padding-left:.8rem;">
+      <a href="https://medium.com/the-gray-area/newsletters/medium-the-gray-area">
+        <img alt="Subscribe To Mailing List" src="/mail.png" width="50px" height="50px" />
+      </a>
+    </div>
+    <a href="https://grahamzemel.medium.com/">
+      <SocialIcons alt="Graham Zemel's Medium" network="medium" bgColor="#aaaaaa" />
+    </a>
+    <a href="https://github.com/gzemel">
+      <SocialIcons alt="Graham Zemel's Github" network="github" bgColor="#aaaaaa" />
+    </a>
+    <a href="https://twitter.com/grahamzemel">
+      <SocialIcons alt="Graham Zemel's Twitter" network="twitter" bgColor="#aaaaaa" />
+    </a>
+    <h2>
+      <ThemeToggle />
+    </h2>
+    <p
+      style="padding-left:.8rem;"
+      class="absolute right-8 bottom-10 z-0 text-[#4b5563] dark:text-white"
+    >
+      ©
+    </p>
+    <p class="pb-[2rem]" />
+    <p
+      class="absolute bottom-5 pb-[2.5rem] lg:pb-[4.5rem] z-10 flex justify-center items-center opacity-0 z-10 duration-300 hover:opacity-100 text-[#4b5563] dark:text-white"
+    >
+      Graham Zemel 2022
+    </p>
+  </div>
 </div>
 <MyDateComponent bind:date />
 
-<div class="!mt-12 !ml-4 lg:!ml-20">
+<div class="!mt-12 lg:!ml-20">
   <GetHead />
-  <div class="absolute gzLogo"
+  <div
+    class="absolute gzLogo"
     style="margin-bottom:2%;margin-top:3% !important;margin-left:5%; border-style:solid; border-color: #323232;border-width: 1px; padding:0.2em"
   >
     <div style="margin: 1%; border-style:solid; border-color: #5a5a5a;border-width: 1px;">
@@ -156,11 +160,15 @@
           />
         {/if}</span
       >
-      <p class="subtitle fancy"><span/></p>
+      <p class="subtitle fancy"><span /></p>
       <div id="gridDiv">
         <Grid refresh={path} />
       </div>
-      <p class="dark:text-white text-black justify-center text-center pt-[12px] useWeb lg:hidden mb-[2%] opacity-35">For best experience, use a computer!</p>
+      <p
+        class="dark:text-white text-black justify-center text-center pt-[12px] useWeb lg:hidden mb-[2%] opacity-35"
+      >
+        For best experience, use a computer!
+      </p>
       <main
         class="prose prose-slate prose-sm sm:prose sm:prose-slate sm:prose-lg sm:max-w-none dark:prose-invert flex flex-col w-full flex-grow py-4 px-4"
       >
