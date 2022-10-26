@@ -49,7 +49,7 @@
       })
   })
 
-  const ogImage = `https://grahamzemel.xyz/favicon.png`
+  const ogImage = `${website}favicon.png`
 </script>
 
 <svelte:head>
