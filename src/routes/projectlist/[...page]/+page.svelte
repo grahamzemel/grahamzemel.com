@@ -3,6 +3,7 @@
   import '../../../prism.css'
   import 'focus-visible'
   import { onMount } from 'svelte'
+  import { website } from '$lib/info'
 
   import ArrowLeftIcon from '$lib/components/ArrowLeftIcon.svelte'
   import ButtonLink from '$lib/components/ButtonLink.svelte'
@@ -56,13 +57,32 @@
         document.querySelector('.blog__slider').innerHTML = output
       })
   })
+  const ogImage = `${website}/favicon.png`
+  const url = `${website}/projectlist`
 </script>
 
 <svelte:head>
   <title>Graham Zemel | All Projects</title>
+  <meta name="description" content="View all projects from Graham Zemel" />
+  <meta name="author" content="Graham Zemel" />
+
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content={url} />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Graham Zemel: All Projects" />
+  <meta property="og:description" content="View all projects from Graham Zemel" />
+  <meta property="og:image" content={ogImage} />
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="twitter:domain" content={website} />
+  <meta property="twitter:url" content={url} />
+  <meta name="twitter:title" content="Graham Zemel: All Projects" />
+  <meta name="twitter:description" content="View all projects from Graham Zemel" />
+  <meta name="twitter:image" content={ogImage} />
 </svelte:head>
 
-<div class="mediumInvisible lg:absolute" style="justify-content:right;text-align: right;top:1.5%;left:79.5%;">
+<div class="mediumInvisible lg:absolute" style="justify-content:right;text-align: right;top:2%;left:79.5%;">
   <section id="blog" class="blog">
     <div class="blog__header">
       <p class="blog__header1 text-[#4b5563] dark:text-white">New From</p>

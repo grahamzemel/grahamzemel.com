@@ -2,7 +2,7 @@
   import '../app.css'
   import '../prism.css'
   import 'focus-visible'
-  import { name, website } from '$lib/info.js'
+  import { name, website } from '$lib/info'
   import { onMount } from 'svelte'
   onMount(async function () {
     
@@ -49,22 +49,20 @@
       })
   })
 
-  const ogImage = `${website}favicon.png`
+  const ogImage = `${website}/favicon.png`
 </script>
 
 <svelte:head>
-  <title>{name}</title>
+  <title>Graham Zemel</title>
   <meta name="description" content="Hi! I'm Graham Zemel - A full-stack developer, cybersecurity programmer, and IT enthusiast." />
   <meta name="author" content="Graham Zemel" />
 
-  <!-- Facebook Meta Tags -->
   <meta property="og:url" content={website} />
   <meta property="og:type" content="website" />
   <meta property="og:title" content={name} />
   <meta property="og:description" content="Hi! I'm Graham Zemel - A full-stack developer, cybersecurity programmer, and IT enthusiast." />
   <meta property="og:image" content={ogImage} />
 
-  <!-- Twitter Meta Tags -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="twitter:domain" content={website} />
   <meta property="twitter:url" content={name} />

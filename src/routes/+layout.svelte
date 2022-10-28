@@ -22,12 +22,13 @@
 <div
   class="flex flex-row justify-around w-full text-black dark:text-[#808080] !pl-[5rem] !pb-[3rem] text-[10px] lg:text-[15px] nav btn-nav"
 >
-  <a class="p-[5px] lg:p-[10px]" target="_self" href="/"><span>About Me</span></a>
-  <a class="p-[5px] lg:p-[10px]" target="_self" href="/projectlist"><span>Projects</span></a>
-  <a class="p-[5px] lg:p-[10px]" target="_self" href="https://grahamzemel.medium.com/"
+  
+<a href="/" class="p-[5px] lg:p-[10px]" target="_self"><span>About Me</span></a>
+  <a href="/projectlist" class="p-[5px] lg:p-[10px]" target="_self"><span>Projects</span></a>
+  <a href="https://grahamzemel.medium.com/" class="p-[5px] lg:p-[10px]" target="_self" 
     ><span>Blog</span></a
   >
-  <a class="p-[5px] lg:p-[10px]" target="_self" href="/contact"><span>Contact</span></a>
+  <a href="/contact" class="p-[5px] lg:p-[10px]" target="_self"><span>Contact</span></a>
 </div>
 
 <div class="mediumInvisible lg:absolute">
@@ -35,12 +36,10 @@
     class="flex flex-col justify-around h-full !text-transparent bg-clip-text bg-[#ffffff] dark:bg-[#111111] !pt-[5rem] pb-[2rem] lg:pb-[4.5rem] sidenav"
   >
     <div style="padding-left:.8rem;">
-      <a href="https://patreon.com/grahamzemel?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=creatorshare_creator">
-        <img
-          src="/patreon.png"
-          alt="Patreon"
-          style="height:50px;width:50px;border-style:solid;"
-        />
+      <a
+        href="https://patreon.com/grahamzemel?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=creatorshare_creator"
+      >
+        <img src="/patreon.png" alt="Patreon" style="height:50px;width:50px;border-style:solid;" />
       </a>
     </div>
     <div style="padding-left:.8rem;">
@@ -76,8 +75,11 @@
 </div>
 <MyDateComponent bind:date />
 
-<div class="!mt-12 lg:!ml-20">
+<div class="!justify-center ml-50% mr-50%">
   <GetHead />
+</div>
+
+<div class="!mt-12 lg:!ml-20">
   <div
     class="absolute gzLogo"
     style="margin-bottom:2%;margin-top:3% !important;margin-left:5%; border-style:solid; border-color: #323232;border-width: 1px; padding:0.2em"

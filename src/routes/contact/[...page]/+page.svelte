@@ -6,6 +6,7 @@
   import '../../../app.css'
   import '../../../prism.css'
   import 'focus-visible'
+  import { website } from '$lib/info'
   import { onMount } from 'svelte'
   onMount(async function () {
     const handleMessageCount = () => {
@@ -70,12 +71,31 @@
 		}).then(() => console.log('Form successfully submitted')).catch((error) =>
 			alert(error))
 	}
+  const ogImage = `${website}/favicon.png`
+  const url = `${website}/contact`
 </script>
 
 <svelte:head>
   <title>Graham Zemel | Contact Me</title>
+  <meta name="description" content="Contact Graham Zemel for his resume, questions, suggestions, or just to say hi :)" />
+  <meta name="author" content="Graham Zemel" />
+
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content={url} />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Contact Me" />
+  <meta property="og:description" content="Contact Graham Zemel for his resume, questions, suggestions, or just to say hi :)" />
+  <meta property="og:image" content={ogImage} />
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="twitter:domain" content={website} />
+  <meta property="twitter:url" content={url} />
+  <meta name="twitter:title" content="Contact Me" />
+  <meta name="twitter:description" content="Contact Graham Zemel for his resume, questions, suggestions, or just to say hi :)" />
+  <meta name="twitter:image" content={ogImage} />
 </svelte:head>
-<div class="mediumInvisible lg:absolute" style="justify-content:right;text-align:right;top:1.5%;left:79.5%;">
+<div class="mediumInvisible lg:absolute" style="justify-content:right;text-align:right;top:2%;left:79.5%;">
   <section id="blog" class="blog">
     <div class="blog__header">
       <p class="blog__header1 text-[#4b5563] dark:text-white">New From</p>

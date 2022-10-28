@@ -11,15 +11,12 @@
   export let data
   // generated open-graph image for sharing on social media.
   // see https://og-image.vercel.app/ for more options.
-  const ogImage = `https://og-image.vercel.app/**${encodeURIComponent(
-    data.project.title
-  )}**?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fhyper-color-logo.svg`
-
+  const ogImage = `${website}/favicon.png`
   const url = `${website}/${data.project.slug}`
 </script>
 
 <svelte:head>
-  <title>{data.project.title}</title>
+  <title>Graham Zemel | {data.project.title}</title>
   <meta name="description" content={data.project.preview.text} />
   <meta name="author" content="Graham Zemel" />
 

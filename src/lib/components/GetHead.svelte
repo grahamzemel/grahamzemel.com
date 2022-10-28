@@ -68,8 +68,8 @@
     oldTitle = "Top projects on " + website.split('/')[2] + "!"
     oldDesc = "The top projects on my website, sorted by category."
     recProjectList = []
-    for (let i = 0; i < pagedata.projects.length; i++) {
-      projectsLength = pagedata.projects.length
+    projectsLength = pagedata.projects.length
+    for (let i = 0; i < projectsLength; i++) {
       recProjectList.push(pagedata.projects[i])
     }
   } else if (!onCategory && !onProjectList && !onProject && contact) {
@@ -102,7 +102,7 @@
 
 {#if onProject}
   <!-- Project -->
-  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:18%; margin-left:5.5%;">
+  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:18%; margin-left:10%;">
     <h2
       class="text-lg sm:text-3xl !font-Inter !text-transparent bg-clip-text bg-black dark:bg-white"
     >
@@ -135,7 +135,7 @@
             text={webTitle}
             {url}
             hashtags="github,svelte"
-            via="username"
+            via="grahamzemel"
             related="other,users"
           /> <br />
           <Telegram class="share-button" text={webTitle} {url} /> <br />
@@ -146,7 +146,7 @@
     </ul>
   </div>
 
-  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:45%; margin-left:5.5%;">
+  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:45%; margin-left:10%;">
     <h2
       class="text-lg sm:text-3xl !font-Inter !text-transparent bg-clip-text bg-black dark:bg-white"
     >
@@ -191,7 +191,7 @@
     </ul>
   </div>
 
-  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:70%; margin-left:5.5%;">
+  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:70%; margin-left:10%;">
     <!-- now manipulate categories text to make look nice -->
     <h2
       class="text-lg sm:text-3xl !font-Inter !text-transparent bg-clip-text bg-black dark:bg-white text-black dark:text-white"
@@ -222,7 +222,7 @@
   </div>
 {:else if onCategory}
   <!-- CATEGORIES -->
-  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:18%; margin-left:5.5%;">
+  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:18%; margin-left:10%;">
     <h2
       class="text-lg sm:text-4xl !font-Inter !text-transparent bg-clip-text bg-black dark:bg-white"
     >
@@ -255,7 +255,7 @@
             text={webTitle}
             {url}
             hashtags="github,svelte"
-            via="username"
+            via="grahamzemel"
             related="other,users"
           /> <br />
           <Telegram class="share-button" text={webTitle} {url} /> <br />
@@ -265,7 +265,7 @@
       </h5>
     </ul>
   </div>
-  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:45%; margin-left:5.5%;">
+  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:45%; margin-left:10%;">
     <h2
       class="text-lg sm:text-3xl !font-Inter !text-transparent bg-clip-text bg-black dark:bg-white"
     >
@@ -309,7 +309,7 @@
       </li>
     </ul>
   </div>
-  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:70%; margin-left:5.5%;">
+  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:70%; margin-left:10%;">
     <h2
       class="text-lg sm:text-3xl !font-Inter !text-transparent bg-clip-text bg-black dark:bg-white"
     >
@@ -327,7 +327,7 @@
   </div>
 {:else if contact}
   <!-- Contact -->
-  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:18%; margin-left:5.5%;">
+  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:18%; margin-left:10%;">
     <h2
       class="text-lg sm:text-4xl !font-Inter !text-transparent bg-clip-text bg-black dark:bg-white"
     >
@@ -360,7 +360,7 @@
             text={webTitle}
             {url}
             hashtags="github,svelte"
-            via="username"
+            via="grahamzemel"
             related="other,users"
           /> <br />
           <Telegram class="share-button" text={webTitle} {url} /> <br />
@@ -370,7 +370,7 @@
       </h5>
     </ul>
   </div>
-  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:45%; margin-left:5.5%;">
+  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:45%; margin-left:10%;">
     <h2
       class="text-lg sm:text-4xl !font-Inter !text-transparent bg-clip-text bg-black dark:bg-white"
     >
@@ -416,7 +416,7 @@
   </div>
 {:else}
   <!-- HOMEPAGE -->
-  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:18%; margin-left:5.5%;">
+  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:18%; margin-left:10%;">
     <h2
       class="text-lg sm:text-4xl !font-Inter !text-transparent bg-clip-text bg-black dark:bg-white"
     >
@@ -446,10 +446,10 @@
           <Email subject={webTitle} body="{desc} {url}" /> <br />
           <Twitter
             class="share-button"
-            text={webTitle}
+            text="Check out this neat website!"
             {url}
             hashtags="github,svelte"
-            via="username"
+            via="grahamzemel"
             related="other,users"
           /> <br />
           <Telegram class="share-button" text={webTitle} {url} /> <br />
@@ -459,7 +459,7 @@
       </h5>
     </ul>
   </div>
-  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:45%; margin-left:5.5%;">
+  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:45%; margin-left:10%;">
     <h2
       class="text-lg sm:text-4xl !font-Inter !text-transparent bg-clip-text bg-black dark:bg-white"
     >
@@ -503,7 +503,7 @@
       </li>
     </ul>
   </div>
-  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:70%; margin-left:5.5%;">
+  <div class="mediumInvisible lg:absolute" style="margin-bottom: 1%;margin-top:70%; margin-left:10%;">
     {#if pagedata.projects}
       <h2
         style="font-size: 1.7rem;line-height: 2.25rem;"
