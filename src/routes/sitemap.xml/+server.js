@@ -34,7 +34,7 @@ export async function GET({ setHeaders }) {
       ${projects
         .map(
           (project) => `<url>
-            <loc>${projectsUrl}${project.slug}</loc>
+            <loc>${projectsUrl}/${project.slug}</loc>
             <lastmod
               >${
                 project.updated
@@ -46,7 +46,7 @@ export async function GET({ setHeaders }) {
             <priority>1.0</priority>
           </url>`,
           (category) => `<url>
-            <loc>${categoryUrl}${project.category.toLowerCase()}</loc>
+            <loc>${categoryUrl}/${project.category.toLowerCase()}</loc>
             <lastmod
               >${
                 project.updated

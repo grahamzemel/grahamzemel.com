@@ -7,10 +7,10 @@
 
   export let pagedata = $page.data
   const path = $page.url.pathname
-  export let onProject = `${website}${path}`.includes(`projects`)
-  export let onProjectList = `${website}${path}`.includes(`projectlist`)
-  export let onCategory = `${website}${path}`.includes(`category`)
-  export let contact = `${website}${path}`.includes(`contact`)
+  export let onProject = `${website}/${path}`.includes(`projects`)
+  export let onProjectList = `${website}/${path}`.includes(`projectlist`)
+  export let onCategory = `${website}/${path}`.includes(`category`)
+  export let contact = `${website}/${path}`.includes(`contact`)
 
   let projectsLength
   let recProjectList
@@ -22,8 +22,11 @@
   let mainCat
   let sortedFUCL
   if (!onProject && onCategory) {
+    oldUrl = `${website}${path}`
+    oldTitle = "Projects with the '" + path.split('/')[2] + "' tag" 
+    oldDesc = "Go to the " + path.split('/')[2] + " category page to view all projects in this category."
     projectsLength = pagedata.projects.length
-    mainCat = `${pagedata.projects[0].category[0]}`
+    mainCat = path.split('/')[2]
     //Used for categories && recent projects
     recProjectList = []
     recProjects = pagedata.projects
@@ -47,6 +50,9 @@
     })
     sortedFUCL = arr
   } else if (!onCategory && onProject && !onProjectList) {
+    oldUrl = `${website}${path}`
+    oldTitle = pagedata.project.title +  " on " + website.split('/')[2]
+    oldDesc = pagedata.project.preview.text
     recProjectList = []
     projectsLength = 1
     let arr = pagedata.project.category
@@ -56,22 +62,25 @@
       return b.length - a.length
     })
     projectCategory = arr
-    oldUrl = `${website}${pagedata.project.url}`
-    oldTitle = pagedata.project.title
-    oldDesc = pagedata.project.preview.text
     recProjectList.push(pagedata.project)
   } else if (!onCategory && onProjectList) {
+    oldUrl = `${website}${path}`
+    oldTitle = "Top projects on " + website.split('/')[2] + "!"
+    oldDesc = "The top projects on my website, sorted by category."
     recProjectList = []
     for (let i = 0; i < pagedata.projects.length; i++) {
       projectsLength = pagedata.projects.length
-      oldUrl = `${website}${pagedata.projects[i].url}`
-      oldTitle = pagedata.projects[i].title
-      oldDesc = pagedata.projects[i].preview.text
       recProjectList.push(pagedata.projects[i])
     }
   } else if (!onCategory && !onProjectList && !onProject && contact) {
+    oldUrl = `${website}${path}`
+    oldTitle = "Get in touch with me!"
+    oldDesc = "Contact me for any questions or inquiries using the links below!"
     // I'm not sure why this needs to be here. Just leave for now, otherwise it attempts to render pagedata.recentPosts (which is undefined) on the homepage
   } else {
+    oldUrl = `${website}${path}`
+    oldTitle = "About me, my projects, and more!"
+    oldDesc = "Graham Zemel. A Full-Stack Developer, Hacker, and Writer. View my projects, read my blog, and contact me on my website."
     projectsLength = pagedata.recentProjects.length
     recProjectList = []
     recProjects = pagedata.recentProjects
