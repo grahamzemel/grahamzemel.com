@@ -15,11 +15,6 @@
 
   let mobile = false
   onMount(() => {
-    mobile = window.innerWidth < 768
-
-    window.addEventListener('resize', () => {
-      mobile = window.innerWidth < 768
-    })
     fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/the-gray-area')
       .then((res) => res.json())
 
@@ -84,10 +79,8 @@
   <meta name="twitter:description" content="View all posts tagged '{slug}'" />
   <meta name="twitter:image" content={ogImage} />
 </svelte:head>
-<div
-  class="mediumInvisible lg:absolute"
-  style="justify-content:right;text-align:right;top:1.5%;left:79.5%;"
->
+
+<div class="mediumInvisible lg:absolute" style="top: 1.5% !important;left:79.5%;">
   <section id="blog" class="blog">
     <div class="blog__header">
       <p class="blog__header1 text-[#4b5563] dark:text-white">New From</p>

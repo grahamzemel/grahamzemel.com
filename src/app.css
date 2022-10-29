@@ -384,6 +384,7 @@ span {
   flex-direction: column;
   
 }
+
 .linkBtn a{
   text-decoration: none;
   border: 2px solid;
@@ -393,7 +394,6 @@ span {
   padding-left: .1rem;
   padding-right: .1rem;
 }
-
 
 .linkBtn a::before {
   content: "";
@@ -427,8 +427,6 @@ span {
 .linkBtn a:hover::after{
   transform: scaleX(0);
 }
-
-
 
 
 
@@ -474,6 +472,12 @@ ul {
   justify-content: center;
   justify-items: right;
   text-align: center;
+  opacity: 0.75;
+  transition: all 500ms;
+
+}
+.blog__post:hover{
+  opacity: 1;
 }
 .blog__topImg {
   max-width: 100%;
@@ -504,5 +508,71 @@ ul {
 }
 
 
+
+.form-container {
+  flex: 1 0 auto;
+  margin-right: 3rem;
+}
+
+.input-container {
+  position: relative;
+  margin: 1.5rem 0;
+}
+
+.input-container .form-input {
+  width: 100%;
+  box-sizing: border-box;
+  background: transparent;
+  border: 1px solid gray;
+  /* color: var(--text-color); */
+  transition: border 500ms;
+  padding: 1.5rem 1rem 0.5rem;
+  margin-top: 1rem;
+  font-size: 1.15rem;
+}
+
+.input-container textarea {
+  height: 300px;
+  resize: none;
+  font: inherit;
+}
+
+.input-container label {
+  display: block;
+  position: absolute;
+  width: 100%;
+  font-size: 1.15rem;
+  top: 15px;
+  padding: 0.25rem 1rem;
+  color: gray;
+  transform-origin: left;
+  user-select: none;
+  transition: all 500ms;
+}
+
+.input-container .form-input:hover,
+.input-container .form-input:focus {
+  outline: none;
+  border-color: gray;
+}
+
+.form-input:focus + label {
+  top: 1rem;
+  font-size: 0.75rem;
+  /* background-color: var(--shade-500); */
+  /* color: var(--background-color); */
+  user-select: auto;
+}
+.contact-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+#submitButton {
+  display: flex;
+  justify-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border: solid gray 2px;
+}
 @tailwind components;
 @tailwind utilities;

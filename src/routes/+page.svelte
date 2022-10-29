@@ -71,7 +71,7 @@
   <meta name="twitter:image" content={ogImage} />
 </svelte:head>
 <!-- RIGHT COLUMN -->
-<div class="mediumInvisible lg:absolute" style="justify-content:right;text-align:right;top:1.5%;left:79.5%;">
+<div class="mediumInvisible lg:absolute" style="top: 1.5% !important;left:79.5%;">
   <section id="blog" class="blog">
     <div class="blog__header">
       <p class="blog__header1 text-[#4b5563] dark:text-white">New From</p>
@@ -96,7 +96,7 @@
   <h2>
     Hi! I'm Graham Zemel - A full-stack developer, cybersecurity programmer, and IT enthusiast.
   </h2>
-  <h3 style="color:lightgray">
+  <h3 style="color:gray">
     I develop websites💻, code malware👾, and write about the latest and greatest in computer
     science📝.
   </h3>

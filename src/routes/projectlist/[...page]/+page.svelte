@@ -1,3 +1,7 @@
+<script context="module">
+  export const prerender = true
+</script>
+
 <script>
   import '../../../app.css'
   import '../../../prism.css'
@@ -82,7 +86,7 @@
   <meta name="twitter:image" content={ogImage} />
 </svelte:head>
 
-<div class="mediumInvisible lg:absolute" style="justify-content:right;text-align: right;top:2%;left:79.5%;">
+<div class="mediumInvisible lg:absolute" style="top: 1.725%;left:79.5%;">
   <section id="blog" class="blog">
     <div class="blog__header">
       <p class="blog__header1 text-[#4b5563] dark:text-white">New From</p>

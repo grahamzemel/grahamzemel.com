@@ -119,7 +119,7 @@
           <div
             id="shareButton"
             style="text-align:center !important; justify-content:center !important;"
-            class="!bg-[#494949] !dark:bg-[#565656] !text-[#494949] !dark:text-[#565656]"
+            class="!bg-[#494949] !dark:bg-[#565656] !text-[#494949] !dark:text-[#565656] share-button transition opacity-70 !duration-500 hover:opacity-100"
           >
             <SvelteCopyUrlButton
               size="20"
@@ -129,18 +129,18 @@
               timeout="9000"
             />
           </div>
-          <Email subject={webTitle} body="{desc} {url}" /> <br />
+          <Email class="share-button transition opacity-70 !duration-500 hover:opacity-100" subject={webTitle} body="{desc} {url}" /> <br />
           <Twitter
-            class="share-button"
+            class="share-button transition opacity-70 !duration-500 hover:opacity-100"
             text={webTitle}
             {url}
             hashtags="github,svelte"
             via="grahamzemel"
             related="other,users"
           /> <br />
-          <Telegram class="share-button" text={webTitle} {url} /> <br />
-          <Reddit class="share-button" {webTitle} {url} /> <br />
-          <Facebook class="share-button" quote={webTitle} {url} /> <br />
+          <Telegram class="share-button transition opacity-70 !duration-500 hover:opacity-100" text={webTitle} {url} /> <br />
+          <Reddit class="share-button transition opacity-70 !duration-500 hover:opacity-100" {webTitle} {url} /> <br />
+          <Facebook class="share-button transition opacity-70 !duration-500 hover:opacity-100" quote={webTitle} {url} /> <br />
         </div>
       </h5>
     </ul>
@@ -239,7 +239,7 @@
           <div
             id="shareButton"
             style="text-align:center !important; justify-content:center !important;"
-            class="!bg-[#494949] !dark:bg-[#565656] !text-[#494949] !dark:text-[#565656]"
+            class="!bg-[#494949] !dark:bg-[#565656] !text-[#494949] !dark:text-[#565656] share-button transition opacity-70 !duration-500 hover:opacity-100"
           >
             <SvelteCopyUrlButton
               size="20"
@@ -249,18 +249,18 @@
               timeout="9000"
             />
           </div>
-          <Email subject={webTitle} body="{desc} {url}" /> <br />
+          <Email class="share-button transition opacity-70 !duration-500 hover:opacity-100" subject={webTitle} body="{desc} {url}" /> <br />
           <Twitter
-            class="share-button"
+            class="share-button transition opacity-70 !duration-500 hover:opacity-100"
             text={webTitle}
             {url}
             hashtags="github,svelte"
             via="grahamzemel"
             related="other,users"
           /> <br />
-          <Telegram class="share-button" text={webTitle} {url} /> <br />
-          <Reddit class="share-button" {webTitle} {url} /> <br />
-          <Facebook class="share-button" quote={webTitle} {url} /> <br />
+          <Telegram class="share-button transition opacity-70 !duration-500 hover:opacity-100" text={webTitle} {url} /> <br />
+          <Reddit class="share-button transition opacity-70 !duration-500 hover:opacity-100" {webTitle} {url} /> <br />
+          <Facebook class="share-button transition opacity-70 !duration-500 hover:opacity-100" quote={webTitle} {url} /> <br />
         </div>
       </h5>
     </ul>
@@ -344,7 +344,7 @@
           <div
             id="shareButton"
             style="text-align:center !important; justify-content:center !important;"
-            class="!bg-[#494949] !dark:bg-[#565656] !text-[#494949] !dark:text-[#565656]"
+            class="!bg-[#494949] !dark:bg-[#565656] !text-[#494949] !dark:text-[#565656] share-button transition opacity-70 !duration-500 hover:opacity-100"
           >
             <SvelteCopyUrlButton
               size="20"
@@ -354,18 +354,18 @@
               timeout="9000"
             />
           </div>
-          <Email subject={webTitle} body="{desc} {url}" /> <br />
+          <Email class="share-button transition opacity-70 !duration-500 hover:opacity-100" subject={webTitle} body="{desc} {url}" /> <br />
           <Twitter
-            class="share-button"
+            class="share-button transition opacity-70 !duration-500 hover:opacity-100 transition opacity-70 !duration-500 hover:opacity-100"
             text={webTitle}
             {url}
             hashtags="github,svelte"
             via="grahamzemel"
             related="other,users"
           /> <br />
-          <Telegram class="share-button" text={webTitle} {url} /> <br />
-          <Reddit class="share-button" {webTitle} {url} /> <br />
-          <Facebook class="share-button" quote={webTitle} {url} /> <br />
+          <Telegram class="share-button transition opacity-70 !duration-500 hover:opacity-100 transition opacity-70 !duration-500 hover:opacity-100" text={webTitle} {url} /> <br />
+          <Reddit class="share-button transition opacity-70 !duration-500 hover:opacity-100 transition opacity-70 !duration-500 hover:opacity-100" {webTitle} {url} /> <br />
+          <Facebook class="share-button transition opacity-70 !duration-500 hover:opacity-100 transition opacity-70 !duration-500 hover:opacity-100" quote={webTitle} {url} /> <br />
         </div>
       </h5>
     </ul>
@@ -433,7 +433,7 @@
           <div
             id="shareButton"
             style="text-align:center !important; justify-content:center !important;"
-            class="!bg-[#494949] !dark:bg-[#565656] !text-[#494949] !dark:text-[#565656]"
+            class="!bg-[#494949] !dark:bg-[#565656] !text-[#494949] !dark:text-[#565656] transition opacity-70 duration-500 hover:opacity-100"
           >
             <SvelteCopyUrlButton
               size="20"
@@ -443,18 +443,18 @@
               timeout="9000"
             />
           </div>
-          <Email subject={webTitle} body="{desc} {url}" /> <br />
+          <Email class="transition opacity-70 !duration-500 hover:opacity-100" subject={webTitle} body="{desc} {url}" /> <br />
           <Twitter
-            class="share-button"
+            class="share-button transition opacity-70 !duration-500 hover:opacity-100 transition opacity-70 !duration-500 hover:opacity-100"
             text="Check out this neat website!"
             {url}
             hashtags="github,svelte"
             via="grahamzemel"
             related="other,users"
           /> <br />
-          <Telegram class="share-button" text={webTitle} {url} /> <br />
-          <Reddit class="share-button" {webTitle} {url} /> <br />
-          <Facebook class="share-button" quote={webTitle} {url} /> <br />
+          <Telegram class="share-button transition opacity-70 !duration-500 hover:opacity-100 transition opacity-70 !duration-500 hover:opacity-100" text={webTitle} {url} /> <br />
+          <Reddit class="share-button transition opacity-70 !duration-500 hover:opacity-100 transition opacity-70 !duration-500 hover:opacity-100" {webTitle} {url} /> <br />
+          <Facebook class="share-button transition opacity-70 !duration-500 hover:opacity-100 transition opacity-70 !duration-500 hover:opacity-100" quote={webTitle} {url} /> <br />
         </div>
       </h5>
     </ul>

@@ -1,5 +1,5 @@
 <script context="module">
-	export const prerender = true;
+  export const prerender = true
 </script>
 
 <script>
@@ -61,30 +61,37 @@
       })
   })
   const handleSubmit = (e) => {
-		e.preventDefault()
-		let myForm = document.getElementById('myform');
-		let formData = new FormData(myForm);
-		fetch('/', {
-			method: 'POST',
-			headers: { "Content-Type": "application/x-www-form-urlencoded" },
-			body: new URLSearchParams(formData).toString()
-		}).then(() => console.log('Form successfully submitted')).catch((error) =>
-			alert(error))
-	}
+    e.preventDefault()
+    let myForm = document.getElementById('myform')
+    let formData = new FormData(myForm)
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData).toString()
+    })
+      .then(() => console.log('Form successfully submitted'))
+      .catch((error) => alert(error))
+  }
   const ogImage = `${website}/favicon.png`
   const url = `${website}/contact`
 </script>
 
 <svelte:head>
   <title>Graham Zemel | Contact Me</title>
-  <meta name="description" content="Contact Graham Zemel for his resume, questions, suggestions, or just to say hi :)" />
+  <meta
+    name="description"
+    content="Contact Graham Zemel for his resume, questions, suggestions, or just to say hi :)"
+  />
   <meta name="author" content="Graham Zemel" />
 
   <!-- Facebook Meta Tags -->
   <meta property="og:url" content={url} />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Contact Me" />
-  <meta property="og:description" content="Contact Graham Zemel for his resume, questions, suggestions, or just to say hi :)" />
+  <meta
+    property="og:description"
+    content="Contact Graham Zemel for his resume, questions, suggestions, or just to say hi :)"
+  />
   <meta property="og:image" content={ogImage} />
 
   <!-- Twitter Meta Tags -->
@@ -92,10 +99,14 @@
   <meta property="twitter:domain" content={website} />
   <meta property="twitter:url" content={url} />
   <meta name="twitter:title" content="Contact Me" />
-  <meta name="twitter:description" content="Contact Graham Zemel for his resume, questions, suggestions, or just to say hi :)" />
+  <meta
+    name="twitter:description"
+    content="Contact Graham Zemel for his resume, questions, suggestions, or just to say hi :)"
+  />
   <meta name="twitter:image" content={ogImage} />
 </svelte:head>
-<div class="mediumInvisible lg:absolute" style="justify-content:right;text-align:right;top:2%;left:79.5%;">
+
+<div class="mediumInvisible lg:absolute" style="top:4%;left:79.5%;">
   <section id="blog" class="blog">
     <div class="blog__header">
       <p class="blog__header1 text-[#4b5563] dark:text-white">New From</p>
@@ -116,7 +127,6 @@
 
 <div class="flex flex-col flex-grow">
   <section id="contact">
-    <div class="container">
       <div class="title-container scroll-in">
         <h2 class="section-title">Contact <span class="title-icon">&#128231;</span></h2>
         <p class="section-subtitle">
@@ -132,9 +142,15 @@
               style="text-decoration: underline;">Twitter</a
             >.</noscript
           >
-          <p class="success-message"/>
-          <form name="contact" on:submit{handleSubmit} method="POST" netlify netlify-honeypot="bot-field">
-            <input type="hidden" name="form-name" value="contact"/>
+          <p class="success-message" />
+          <form
+            name="contact"
+            on:submit{handleSubmit}
+            method="POST"
+            netlify
+            netlify-honeypot="bot-field"
+          >
+            <input type="hidden" name="form-name" value="contact" />
             <div class="input-container">
               <input type="text" id="name" name="name" required class="form-input" />
               <label for="name">Name:</label>
@@ -162,78 +178,7 @@
               >
             </div>
           </form>
-        </div>
       </div>
     </div>
   </section>
 </div>
-
-<style>
-  .form-container {
-    flex: 1 0 auto;
-    max-width: 600px;
-    width: 100%;
-    margin-right: 3rem;
-  }
-
-  .input-container {
-    position: relative;
-    margin: 1.5rem 0;
-  }
-
-  .input-container .form-input {
-    width: 100%;
-    box-sizing: border-box;
-    background: transparent;
-    border: 1px solid gray;
-    /* color: var(--text-color); */
-    transition: border 500ms;
-    padding: 1.5rem 1rem 0.5rem;
-    margin-top: 1rem;
-    font-size: 1.15rem;
-  }
-
-  .input-container textarea {
-    height: 300px;
-    resize: none;
-    font: inherit;
-  }
-
-  .input-container label {
-    display: block;
-    position: absolute;
-    width: 100%;
-    font-size: 1.15rem;
-    top: 15px;
-    padding: 0.25rem 1rem;
-    color: gray;
-    transform-origin: left;
-    user-select: none;
-    transition: all 500ms;
-  }
-
-  .input-container .form-input:hover,
-  .input-container .form-input:focus {
-    outline: none;
-    border-color: gray;
-  }
-
-  .form-input:focus + label {
-    top: 1rem;
-    font-size: 0.75rem;
-    /* background-color: var(--shade-500); */
-    /* color: var(--background-color); */
-    user-select: auto;
-  }
-  .contact-content {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  #submitButton {
-    display: flex;
-    justify-items: center;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    border: solid gray 2px;
-  }
-</style>
