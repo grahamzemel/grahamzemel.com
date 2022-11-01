@@ -92,6 +92,10 @@ body{
 
 }
 
+h2, h3, h4 {
+  font-family: src('../static/Gobold.otf');
+}
+
 #changeTheme {
   background: #7788995d;
   overflow: hidden;
@@ -186,9 +190,12 @@ body{
 .font-Inter {
   font-family: 'Inter', 'sans-serif';
 }
+.font-GoBold {
+  src: url('../static/Gobold.otf');
+}
 
 .subtitle {
-  margin: 0 0 1rem 0; 
+  margin: .5rem 0 1rem 0; 
   /* top right bottom left */
 }
 .fancy {
@@ -196,27 +203,25 @@ body{
   text-align: center;
 }
 .fancy span {
-  display: inline-block;
+  display: flex;
   position: relative;  
+  justify-content: center;
 }
 .fancy span:before,
 .fancy span:after {
   content: "";
-  position: absolute;
   height: 5px;
   border-bottom: 1px solid #5a5a5a;
   border-top: 1px solid #5a5a5a;
-  width: 24rem;
+  width: 32rem;
   top: 0;
 }
-.fancy span:before {
-  right: 100%;
-  /* margin-right: 15px; */
+/* .fancy span:before {
+  right: 100% !important;
 }
 .fancy span:after {
-  left: 100%;
-  /* margin-left: 15px; */
-}
+  left: 100% !important;
+} */
 
 
 .introBreak {
@@ -382,7 +387,6 @@ span {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  
 }
 
 .linkBtn a{
@@ -437,50 +441,43 @@ a {
 ul {
   list-style: none !important;
 }
+
 .blog {
   display: flex;
   flex-direction: column;
-  justify-content: right;
-  align-items: right;
+  justify-content: center;
+  align-items: center;
 }
 .blog__header {
   text-align: center;
-  margin-bottom: 2.5% !important;
 }
 .blog__header1 {
-  margin-bottom: -7.5% !important; 
-  font-size: 1.1rem;
-  font-weight: 600;
+  margin-top: -5%;
+  font-size: 2rem;
+  font-weight: 250;
   letter-spacing: 0.2px;
   text-transform: uppercase;
 }
-.blog__header2 {
-  margin-top: -7.5% !important; 
-  font-size: 1.5rem;
-  font-weight: 400;
-  letter-spacing: 0.2px;
-}
 .blog__slider {
-  width: 18rem;
-  padding-right: 7.5%;
-  display: flex-start;
-  flex-direction: column;
-  justify-content: right;
-  justify-items: right;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-left: -2rem;
 }
 .blog__post {
   justify-content: center;
-  justify-items: right;
   text-align: center;
   opacity: 0.75;
   transition: all 500ms;
-
+  width: 35%;
 }
 .blog__post:hover{
   opacity: 1;
 }
 .blog__topImg {
   max-width: 100%;
+  height: 100px;
 }
 .blog__content {
   padding: .8rem;
@@ -491,11 +488,12 @@ ul {
 }
 .blog__title {
   margin-top: -5% !important;
-  font-size: 1.75rem !important;
+  font-size: 1.5rem !important;
 }
 .blog__intro {
   line-height: 1.5;
-  font-weight: 150;
+  font-size: 0.9rem;
+  font-weight: 125;
 }
 .blog__info {
   font-weight: 300;

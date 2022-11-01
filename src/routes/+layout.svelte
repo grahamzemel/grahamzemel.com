@@ -9,7 +9,6 @@
   import Grid from '$lib/components/Grid.svelte'
   import { page } from '$app/stores'
   import GetHeading from './GetHeading.svelte'
-  import GetHead from '$lib/components/GetHead.svelte'
   const path = $page.url.pathname
   import MyDateComponent from './date.svelte'
   let date
@@ -22,10 +21,9 @@
 <div
   class="flex flex-row justify-around w-full text-black dark:text-[#808080] !pl-[5rem] !pb-[3rem] text-[10px] lg:text-[15px] nav btn-nav"
 >
-  
-<a href="/" class="p-[5px] lg:p-[10px]" target="_self"><span>About Me</span></a>
+  <a href="/about" class="p-[5px] lg:p-[10px]" target="_self"><span>About Me</span></a>
   <a href="/projectlist" class="p-[5px] lg:p-[10px]" target="_self"><span>Projects</span></a>
-  <a href="https://grahamzemel.medium.com/" class="p-[5px] lg:p-[10px]" target="_self" 
+  <a href="https://grahamzemel.medium.com/" class="p-[5px] lg:p-[10px]" target="_self"
     ><span>Blog</span></a
   >
   <a href="/contact" class="p-[5px] lg:p-[10px]" target="_self"><span>Contact</span></a>
@@ -33,7 +31,7 @@
 
 <div class="mediumInvisible lg:absolute">
   <div
-    class="flex flex-col justify-around h-full !text-transparent bg-clip-text bg-[#ffffff] dark:bg-[#111111] !pt-[5rem] pb-[2rem] lg:pb-[4.5rem] sidenav"
+    class="flex flex-col justify-around h-full !text-transparent bg-clip-text bg-[#ffffff] dark:bg-[#111111] !pt-[5rem] !pb-[2rem] sidenav"
   >
     <div style="padding-left:.8rem;">
       <a
@@ -67,7 +65,7 @@
     </p>
     <p class="pb-[2rem]" />
     <p
-      class="absolute bottom-5 pb-[2.5rem] lg:pb-[4.5rem] z-10 flex justify-center items-center opacity-0 z-10 duration-300 hover:opacity-100 text-[#4b5563] dark:text-white"
+      class="absolute bottom-0 pb-[2rem] lg:pb-[4.5rem] z-10 flex justify-center items-center opacity-0 z-10 duration-300 hover:opacity-100 text-[#4b5563] dark:text-white"
     >
       Graham Zemel 2022
     </p>
@@ -75,35 +73,16 @@
 </div>
 <MyDateComponent bind:date />
 
-<div class="!justify-center ml-50% mr-50%">
-  <GetHead />
-</div>
 
-<div class="!mt-12 lg:!ml-20">
-  <div
-    class="absolute gzLogo"
-    style="margin-bottom:2%;margin-top:3% !important;margin-left:5%; border-style:solid; border-color: #323232;border-width: 1px; padding:0.2em"
-  >
-    <div style="margin: 1%; border-style:solid; border-color: #5a5a5a;border-width: 1px;">
-      <h2>
-        <a
-          class="!font-Inter
-        !text-transparent !text-[5rem] !p-8 bg-clip-text bg-gray-600 dark:bg-white"
-          href="https://grahamzemel.com/"
-        >
-          GZ
-        </a>
-      </h2>
-    </div>
-  </div>
+<div class="!mt-20 !ml-10">
 
   <div class="flex flex-col min-h-screen bg-[#fcfcfc] dark:bg-[#070707]">
-    <div class="mx-auto flex flex-col flex-grow w-full max-w-[50rem]">
+    <div class="mx-auto flex flex-col flex-grow w-full max-w-[65rem]">
       <!-- CENTER -->
       <div style="text-align: center; letter-spacing: .5em;margin-top: 1em;">
         <h2 class="pb-0.5">
           <a
-            class="lg:text-8xl md:text-6xl text-5xl font-GemunuLibre !bg-clip-text !text-transparent bg-[#606060] dark:bg-[#565656]"
+            class="lg:text-8xl md:text-6xl text-5xl font-GoBold !bg-clip-text !text-transparent bg-[#606060] dark:bg-[#565656]"
             target="_self"
             href="/">Graham Zemel</a
           >
@@ -162,7 +141,7 @@
           />
         {/if}</span
       >
-      <p class="subtitle fancy"><span /></p>
+      <p class="subtitle fancy"><span/></p>
       <div id="gridDiv">
         <Grid refresh={path} />
       </div>

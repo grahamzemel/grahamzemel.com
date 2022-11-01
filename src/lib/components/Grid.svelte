@@ -45,7 +45,7 @@
     if (gridWidth && gridWidth === newGridWidth) {
       return
     }
-    gridWidth = newGridWidth / 1.9
+    gridWidth = newGridWidth / 1.1
     thisPage == refresh ? (thisPage = String(Math.random())) : (thisPage = refresh)
     if (squareCount) {
       count = squareCount / 10
@@ -84,64 +84,36 @@
 </div>
 
 <style lang="scss">
-  
-  .grid-wrapper {
-    height: 2.5rem;
-    position: relative;
-    contain: layout size style;
-    justify-content: center;
-    justify-items: center;
-    text-align: center;
-    top: .5rem;
-    left: 5%;
-  }
+.grid-wrapper {
+	 height: 2.5rem;
+	 position: relative;
+	 contain: layout size style;
+  overflow: hidden;
+}
+ .cell-grid {
+	 height: 2.5rem;
+	 position: absolute;
+	 z-index: 2;
+	 top: 0.5rem;
+	 left: 2em;
 
-  .cell-grid {
-    height: 2.5rem;
-    position: relative;
-    z-index: 2;
-    top: 0.5rem;
-  }
-  .cell-grid.inverted {
-    top: 2.5rem;
-  }
-  .cell-grid.cell-grid.inverted:before {
-    --paperHSL: darkblue;
-    top: 0;
-  }
-  .cell-grid:before {
-    content: '';
-    background: linear-gradient(60deg, hsla(var(--paperHSL), 0), hsla(var(--paperHSL), 0.5));
-    height: 4rem;
-    position: relative;
-    top: -1rem;
-    z-index: 2;
-  }
-  @media only screen and (max-width: 1350px) {
-    .cell-grid:before{
-      height: 2rem;
-      width: fit-content !important;
-    }
-    .grid-wrapper{
-      left: 15% !important;
-    }
-  }
-  @media only screen and (max-width: 885px) {
-    .cell-grid:before{
-      height: 2rem;
-      width: fit-content !important;
-    }
-    .grid-wrapper{
-      left: 22.5% !important;
-    }
-  }
-  @media only screen and (max-width: 625px) {
-    .cell-grid:before{
-      height: 2rem;
-      width: fit-content !important;
-    }
-    .grid-wrapper{
-      left: 25% !important;
-    }
-  }
+}
+ .cell-grid.inverted {
+	 top: 2.5rem;
+}
+ .cell-grid.inverted:before {
+	 --paperHSL: var(--darkBlueHSL);
+	 top: 0;
+}
+ .cell-grid:before {
+	 width: 100%;
+	 content: '';
+	 background: linear-gradient(60deg, rgba(0, 0, 0, ), rgba(0, 0, 0, ));
+	 height: 4rem;
+	 position: absolute;
+	 top: -1rem;
+	 z-index: 2;
+	 max-width: 100vw;
+}
+  
 </style>

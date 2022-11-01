@@ -9,12 +9,14 @@
   const path = $page.url.pathname
 
   if (path === '/') {
-    title = `about me`
+    title = `home`
   } else if (path === '/projectlist') {
     title = `all projects`
   } else if (path === '/contact') {
     title = `contact me`
-  }else if (path.match('^\/projects\/(.*)$')) {
+  } else if (path === '/about') {
+    title = `about me`
+  } else if (path.match('^\/projects\/(.*)$')) {
     title = path
     title = title.split('/').join(' / ').replace(/-/g, ' ')
   } else if (path.match('^\/category\/(.*)$')) {

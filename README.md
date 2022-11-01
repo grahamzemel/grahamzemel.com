@@ -1,5 +1,5 @@
-# Graham Zemel (.com) v1.0
-### Created by [Graham Zemel](https://github.com/gzemel/)
+# Graham Zemel (.com) v1.1
+### Created by [Graham Zemel](https://github.com/grahamzemel/)
 
 ## Basic Info
 -This is not the extent of my front-end design knowledge, I used a few newer libraries and this site was mostly an experiment.  
@@ -20,3 +20,10 @@
 [Stack Overflow (as always)](https://stackoverflow.com/)  
 [Matt Jennings](https://github.com/mattjennings/sveltekit-blog-template)  
 [Rodney Johnson](https://github.com/rodneylab/svelte-social-icons)  
+
+## Recent Updates:
+Created actual homepage instead of defaulting to about me ✔️
+Changed font on header ✔️
+Moved medium articles to middle of homepage ✔️
+Moved page content down ✔️
+Changed fonts ✔️
