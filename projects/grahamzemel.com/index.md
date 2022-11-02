@@ -6,7 +6,7 @@ category: Programming Web Internet
 featured: True
 sourceCode: https://github.com/grahamzemel/grahamzemel.com 
 ---
-The website you're on right now! I coded nearly all of it from scratch, using tools like [Svelte](https://svelte.dev/), [Tailwind](https://tailwindcss.com/), and [Mdsvex](https://mdsvex.pngwn.io/) for markdown files. 
+This website! I coded nearly all of it from scratch, using tools like [Svelte](https://svelte.dev/), [Tailwind](https://tailwindcss.com/), and [Mdsvex](https://mdsvex.pngwn.io/) for markdown files. 
 
 It's domain (my name) is provided using [Hostinger (affiliate link)](https://hostinger.com?REFERRALCODE=1GRAHAM51).
 ![Hostinger](./hostinger.png)
