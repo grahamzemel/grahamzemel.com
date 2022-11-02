@@ -191,7 +191,7 @@ h2, h3, h4 {
   font-family: 'Inter', 'sans-serif';
 }
 .font-GoBold {
-  src: url('../static/Gobold.otf');
+  src: url('/Gobold.otf');
 }
 
 .subtitle {
