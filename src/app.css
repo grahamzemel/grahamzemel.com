@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap');
 
 @tailwind base;
 
@@ -34,7 +35,7 @@ a {
   @apply rounded-sm;
   @apply focus;
 }
-@media only screen and (max-width: 1350px) {
+@media only screen and (max-width: 1062px) {
   .gzLogo{
     display: none !important;
   }
@@ -45,13 +46,13 @@ a {
     display: relative !important;
   }
 }
-@media only screen and (max-width: 885px) {
+@media only screen and (max-width: 750px) {
   .fancy span:before,
   .fancy span:after {
     width: 16rem !important;
   }
 }
-@media only screen and (max-width: 625px) {
+@media only screen and (max-width: 750px) {
   .fancy span:before,
   .fancy span:after {
     width: 12rem !important;
@@ -70,7 +71,7 @@ body{
   overflow-x:hidden;
 }
 ::-webkit-scrollbar-track {
-  margin-top: 3.95rem;
+  margin-top: 4.10rem;
   border-top: 2px solid #1c1c1c;
 }
 
@@ -190,9 +191,7 @@ h2, h3, h4 {
 .font-Inter {
   font-family: 'Inter', 'sans-serif';
 }
-.font-GoBold {
-  src: url('/static/Gobold.otf');
-}
+
 
 .subtitle {
   margin: .5rem 0 1rem 0; 

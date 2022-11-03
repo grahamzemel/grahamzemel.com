@@ -33,14 +33,14 @@
   <div
     class="flex flex-col justify-around h-full !text-transparent bg-clip-text bg-[#ffffff] dark:bg-[#111111] !pt-[5rem] !pb-[2rem] sidenav"
   >
-    <div style="padding-left:.8rem;">
+    <div style="padding-left:1rem;">
       <a
-        href="https://patreon.com/grahamzemel?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=creatorshare_creator"
+        href="https://patreon.com/grahamzemel"
       >
         <img src="/patreon.png" alt="Patreon" style="height:50px;width:50px;border-style:solid;" />
       </a>
     </div>
-    <div style="padding-left:.8rem;">
+    <div style="padding-left:1rem;">
       <a href="https://medium.com/the-gray-area/newsletters/medium-the-gray-area">
         <img alt="Subscribe To Mailing List" src="/mail.png" width="50px" height="50px" />
       </a>
@@ -79,10 +79,10 @@
   <div class="flex flex-col min-h-screen bg-[#fcfcfc] dark:bg-[#070707]">
     <div class="mx-auto flex flex-col flex-grow w-full max-w-[65rem]">
       <!-- CENTER -->
-      <div style="text-align: center; letter-spacing: .5em;margin-top: 1em;">
+      <div style="text-align: center; letter-spacing: .5em;margin-top: 1em; font-family: 'Mukta', sans-serif !important;">
         <h2 class="pb-0.5">
           <a
-            class="lg:text-8xl md:text-6xl text-5xl font-GoBold !bg-clip-text !text-transparent bg-[#606060] dark:bg-[#565656]"
+            class="lg:text-8xl md:text-6xl text-5xl !bg-clip-text !text-transparent bg-[#606060] dark:bg-[#565656]"
             target="_self"
             href="/">Graham Zemel</a
           >
