@@ -21,9 +21,9 @@
 [Matt Jennings](https://github.com/mattjennings/sveltekit-blog-template)  
 [Rodney Johnson](https://github.com/rodneylab/svelte-social-icons)  
 
-## Recent Updates:
-Created actual homepage instead of defaulting to about me ✔️
-Changed font on header ✔️
-Moved medium articles to middle of homepage ✔️
-Moved page content down ✔️
-Changed fonts ✔️
+## Recent Updates:  
+Created actual homepage instead of defaulting to about me ✔️  
+Changed font on header ✔️  
+Moved medium articles to middle of homepage ✔️  
+Moved page content down ✔️  
+Changed fonts ✔️  
