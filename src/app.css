@@ -215,13 +215,6 @@ h2, h3, h4 {
   width: 32rem;
   top: 0;
 }
-/* .fancy span:before {
-  right: 100% !important;
-}
-.fancy span:after {
-  left: 100% !important;
-} */
-
 
 .introBreak {
   background-color: #233044;
@@ -237,7 +230,6 @@ h2, h3, h4 {
 }
 .bottomBorder {
   color: #606060;
-
   margin-top: 2rem;
   height: 1px;
 }
@@ -272,7 +264,6 @@ li{
   background: -moz-linear-gradient(top, #cedce7 0%, #345b6d 100%) !important;
   background: -webkit-linear-gradient(top, #cedce7 0%,#345b6d 100%) !important;
   background: linear-gradient(to bottom, #cedce7 0%,#345b6d 100%) !important;
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cedce7', endColorstr='#345b6d',GradientType=0 );
   background-clip: text !important;
   color: transparent !important;
 }
@@ -301,7 +292,6 @@ li{
   top: 0;
   left: 0;
   background-color: #111;
-
   padding-top: 20px;
   border-right: 2px solid #1c1c1c;
   overflow-x: visible;
@@ -339,12 +329,11 @@ span {
 .btn-nav a{
   text-decoration: none;
   border: 2px solid;
-  background-color: transparent !important;
+  background-color: transparent;
   text-transform: uppercase;
   letter-spacing: 2px;
   position: relative;
   display: inline-block;
-
 }
 
 .btn-nav a::before {
@@ -440,7 +429,9 @@ a {
 ul {
   list-style: none !important;
 }
-
+i{
+  font-size: 4rem;
+}
 .blog {
   display: flex;
   flex-direction: column;

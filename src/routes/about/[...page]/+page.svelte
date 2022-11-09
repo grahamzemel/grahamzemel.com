@@ -57,16 +57,17 @@
     if you're interested. <br /><br /><br />
     I build websites using the following frameworks and tools:
   </h5>
-  <h5 class="text-gray dark:text-white">
-    <p><i class="devicon-html5-plain colored" /> : HTML5</p>
-    <p><i class="devicon-javascript-plain colored" /> : Javascript</p>
-    <p><i class="devicon-css3-plain colored" /> : CSS3</p>
-    <p><i class="devicon-svelte-plain colored" /> : Svelte</p>
-    <p><i class="devicon-tailwindcss-plain colored" /> : Tailwild CSS</p>
-    <p><i class="devicon-npm-original-wordmark colored" /> : NPM</p>
-    <p><i class="devicon-nodejs-plain colored" /> : Node.JS</p>
-    <p><i class="devicon-wordpress-plain colored" /> : Wordpress</p>
-  </h5>
+  <br>
+  <div class="flex justify-between text-gray dark:text-white">
+    <i class="devicon-html5-plain colored" />
+    <i class="devicon-javascript-plain colored" />
+    <i class="devicon-css3-plain colored" />
+    <i class="devicon-svelte-plain colored" />
+    <i class="devicon-tailwindcss-plain colored" />
+    <i class="devicon-npm-original-wordmark colored" />
+    <i class="devicon-nodejs-plain colored" />
+    <i class="devicon-vscode-plain colored" />
+  </div>
 
   <h3>Cybersecurity</h3>
   <h5 class="linkBtn">
@@ -96,15 +97,15 @@
     > <br /><br /> <br />
     Here's a few tools I use relating to cybersecurity:
   </h5>
-  <h5 class="text-gray dark:text-white">
-    <p><i class="devicon-linux-plain" /> : Linux</p>
-    <p><i class="devicon-bash-plain colored" /> : Bash</p>
-    <p><i class="devicon-heroku-plain colored" /> : Heroku</p>
-    <p><i class="devicon-javascript-plain colored" /> : Javascript</p>
-    <p><i class="devicon-python-plain colored" /> : Python</p>
-    <p><i class="devicon-selenium-original colored" /> : Selenium</p>
-    <p><i class="devicon-vscode-plain colored" /> : Visual Studio Code</p>
-  </h5>
+  <br>
+  <div class="flex justify-between text-gray dark:text-white">
+    <i class="devicon-linux-plain" />
+    <i class="devicon-heroku-plain colored" />
+    <i class="devicon-javascript-plain colored" />
+    <i class="devicon-python-plain colored" />
+    <i class="devicon-selenium-original colored" />
+    <i class="devicon-vscode-plain colored" />
+  </div>
 
   <h3>Writing</h3>
   <h5 class="linkBtn">

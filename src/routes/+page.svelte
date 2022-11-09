@@ -78,6 +78,7 @@
         <p class="blog__header1 !size-20 text-[#606060] dark:text-[#606060]"><strong class="text-[#606060] dark:text-[#606060]">New</strong> from The Gray Area</p>
         <ul class="blog__slider">
           Javascript Required
+          <br>
         </ul>
         <ul class="blog__counter">
           <li class="blog__counterItem blog__counterItem-active"></li>
@@ -93,5 +94,16 @@
     I develop websites💻, code malware👾, and write about the latest and greatest in computer
     science📝.
   </h3>
-  <br />
+  <br>
+  <h3>
+    Here are some collections of articles I've published over the past few months:
+  </h3>
+  <br>
+  <a class="m-story" href="https://grahamzemel.medium.com/list/red-teaming-775c3a5cdef7">"Red Teaming", curated by Graham Zemel on Medium</a>
+  <hr>
+  <a class="m-story" href="https://grahamzemel.medium.com/list/programming-quests-1b84883c1162">"Programming Quests", curated by Graham Zemel on Medium</a>
+  <hr>
+  <a class="m-story" href="https://grahamzemel.medium.com/list/monetary-acquisitions-07f7a0f88a2f">"Monetary Acquisitions", curated by Graham Zemel on Medium</a>
+  <br>
+
 </div>

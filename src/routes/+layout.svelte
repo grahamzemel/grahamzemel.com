@@ -21,12 +21,50 @@
 <div
   class="flex flex-row justify-around w-full text-black dark:text-[#808080] !pl-[5rem] !pb-[3rem] text-[10px] lg:text-[15px] nav btn-nav"
 >
-  <a href="/about" class="p-[5px] lg:p-[10px]" target="_self"><span>About Me</span></a>
+<a href="/about" class="relative inline-flex items-center justify-center px-5 py-2 overflow-hidden font-bold text-[#707070] rounded-md !border-[1.5px] shadow-2xl group">
+  <span class="absolute inset-0 w-full h-full transition duration-500 ease-out opacity-0 bg-gradient-to-br from-slate-100 via-zinc-300 to-slate-100 dark:from-zinc-800 dark:via-gray-700 dark:to-zinc-800 group-hover:opacity-100"></span>
+  <span class="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-5 h-1/3"></span>
+  <span class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-5"></span>
+  <span class="absolute bottom-0 left-0 w-4 h-full bg-gradient-to-r from-white to-transparent opacity-5"></span>
+  <span class="absolute bottom-0 right-0 w-4 h-full bg-gradient-to-l from-white to-transparent opacity-5"></span>
+  <span class="absolute inset-0 w-full h-full border border-white rounded-md opacity-10"></span>
+  <span class="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-5"></span>
+  <span class="relative" target="_self">About Me</span>
+</a>
+<a href="/projectlist" class="relative inline-flex items-center justify-center px-5 py-2 overflow-hidden font-bold text-[#707070] rounded-md !border-[1.5px] shadow-2xl group">
+  <span class="absolute inset-0 w-full h-full transition duration-500 ease-out opacity-0 bg-gradient-to-br from-slate-100 via-zinc-300 to-slate-100 dark:from-zinc-800 dark:via-gray-700 dark:to-zinc-800 group-hover:opacity-100"></span>
+  <span class="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-5 h-1/3"></span>
+  <span class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-5"></span>
+  <span class="absolute bottom-0 left-0 w-4 h-full bg-gradient-to-r from-white to-transparent opacity-5"></span>
+  <span class="absolute bottom-0 right-0 w-4 h-full bg-gradient-to-l from-white to-transparent opacity-5"></span>
+  <span class="absolute inset-0 w-full h-full border border-white rounded-md opacity-10"></span>
+  <span class="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-5"></span>
+  <span class="relative" target="_self">Projects</span>
+</a>
+<a href="https://medium.com/the-gray-area" class="relative inline-flex items-center justify-center px-5 py-2 overflow-hidden font-bold text-[#707070] rounded-md !border-[1.5px] shadow-2xl group">
+  <span class="absolute inset-0 w-full h-full transition duration-500 ease-out opacity-0 bg-gradient-to-br from-slate-100 via-zinc-300 to-slate-100 dark:from-zinc-800 dark:via-gray-700 dark:to-zinc-800 group-hover:opacity-100"></span>
+  <span class="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-5 h-1/3"></span>
+  <span class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-5"></span>
+  <span class="absolute bottom-0 left-0 w-4 h-full bg-gradient-to-r from-white to-transparent opacity-5"></span>
+  <span class="absolute bottom-0 right-0 w-4 h-full bg-gradient-to-l from-white to-transparent opacity-5"></span>
+  <span class="absolute inset-0 w-full h-full border border-white rounded-md opacity-10"></span>
+  <span class="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-5"></span>
+  <span class="relative" target="_self">Publication</span>
+</a>
+<a href="/contact" class="relative inline-flex items-center justify-center px-5 py-2 overflow-hidden font-bold text-[#707070] rounded-md !border-[1.5px] shadow-2xl group">
+  <span class="absolute inset-0 w-full h-full transition duration-500 ease-out opacity-0 bg-gradient-to-br from-slate-100 via-zinc-300 to-slate-100 dark:from-zinc-800 dark:via-gray-700 dark:to-zinc-800 group-hover:opacity-100"></span>
+  <span class="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-5 h-1/3"></span>
+  <span class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-5"></span>
+  <span class="absolute bottom-0 left-0 w-4 h-full bg-gradient-to-r from-white to-transparent opacity-5"></span>
+  <span class="absolute bottom-0 right-0 w-4 h-full bg-gradient-to-l from-white to-transparent opacity-5"></span>
+  <span class="absolute inset-0 w-full h-full border border-white rounded-md opacity-10"></span>
+  <span class="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-5"></span>
+  <span class="relative" target="_self">Contact</span>
+</a>
+  <!-- <a href="/about" class="p-[5px] lg:p-[10px] bg-gradient-to-br from-gray-600 to-black-500" target="_self"><span>About Me</span></a>
   <a href="/projectlist" class="p-[5px] lg:p-[10px]" target="_self"><span>Projects</span></a>
-  <a href="https://grahamzemel.medium.com/" class="p-[5px] lg:p-[10px]" target="_self"
-    ><span>Blog</span></a
-  >
-  <a href="/contact" class="p-[5px] lg:p-[10px]" target="_self"><span>Contact</span></a>
+  <a href="https://grahamzemel.medium.com/" class="p-[5px] lg:p-[10px]" target="_self"><span>Blog</span></a>
+  <a href="/contact" class="p-[5px] lg:p-[10px]" target="_self"><span>Contact</span></a> -->
 </div>
 
 <div class="mediumInvisible lg:absolute">
