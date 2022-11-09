@@ -71,7 +71,6 @@
   <meta name="twitter:image" content={ogImage} />
 </svelte:head>
 
-
 <div class="flex flex-col">
   <div class="relative">
     <section id="blog" class="blog">
@@ -99,11 +98,11 @@
     Here are some collections of articles I've published over the past few months:
   </h3>
   <br>
-  <a class="m-story" href="https://grahamzemel.medium.com/list/red-teaming-775c3a5cdef7">"Red Teaming", curated by Graham Zemel on Medium</a>
+  <iframe title="Red Teaming" src="https://grahamzemel.medium.com/list/red-teaming-775c3a5cdef7">"Red Teaming", curated by Graham Zemel on Medium</iframe>
   <hr>
-  <a class="m-story" href="https://grahamzemel.medium.com/list/programming-quests-1b84883c1162">"Programming Quests", curated by Graham Zemel on Medium</a>
+  <iframe title="Programming Quests" src="https://grahamzemel.medium.com/list/programming-quests-1b84883c1162">"Programming Quests", curated by Graham Zemel on Medium</iframe>
   <hr>
-  <a class="m-story" href="https://grahamzemel.medium.com/list/monetary-acquisitions-07f7a0f88a2f">"Monetary Acquisitions", curated by Graham Zemel on Medium</a>
+  <iframe title="Monetary Acquisitions" src="https://grahamzemel.medium.com/list/monetary-acquisitions-07f7a0f88a2f">"Monetary Acquisitions", curated by Graham Zemel on Medium</iframe>
   <br>
 
 </div>

@@ -61,10 +61,6 @@
   <span class="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-5"></span>
   <span class="relative" target="_self">Contact</span>
 </a>
-  <!-- <a href="/about" class="p-[5px] lg:p-[10px] bg-gradient-to-br from-gray-600 to-black-500" target="_self"><span>About Me</span></a>
-  <a href="/projectlist" class="p-[5px] lg:p-[10px]" target="_self"><span>Projects</span></a>
-  <a href="https://grahamzemel.medium.com/" class="p-[5px] lg:p-[10px]" target="_self"><span>Blog</span></a>
-  <a href="/contact" class="p-[5px] lg:p-[10px]" target="_self"><span>Contact</span></a> -->
 </div>
 
 <div class="mediumInvisible lg:absolute">
