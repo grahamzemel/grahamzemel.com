@@ -2,8 +2,7 @@
 title: Hecker Bot
 date: 2022-05-15
 time: 02:20
-category: Programming Telegram Python
-featured: True
+category: Python Automation Cybersecurity
 liveDemo: https://t.me/heckerbot2022bot
 ---
 This telegram bot that I coded from scratch takes in numerous types of commands automates hacking processes that would otherwise take considerably longer. 

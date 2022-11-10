@@ -1,8 +1,8 @@
 ---
-title: Automated Twitter Bot
+title: Medium Twitter Bot
 date: 2022-11-10
 time: 01:35
-category: Python Telegram Programming
+category: Python Telegram Automation
 featured: True
 sourceCode: https://github.com/grahamzemel/MediumTwitterBot
 liveDemo: https://twitter.com/TGAonMedium

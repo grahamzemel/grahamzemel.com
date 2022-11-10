@@ -1,14 +1,13 @@
 ---
-title: Graham Zemel (.com)
-date: 2022-10-22
-time: 10:30:30.000Z
-category: Programming Web Internet
-sourceCode: https://github.com/grahamzemel/grahamzemel.com 
+title: Graham Zemel
+date: 2022-11-10
+time: 02:20
+category: Programming Website Development
+featured: true
+sourceCode: https://github.com/grahamzemel/grahamzemel.com
 liveDemo: https://grahamzemel.com
 ---
-This website! I coded nearly all of it from scratch, using tools like [Svelte](https://svelte.dev/), [Tailwind](https://tailwindcss.com/), and [Mdsvex](https://mdsvex.pngwn.io/) for markdown files. 
-
-It's domain (my name) is provided using [Hostinger (affiliate link)](https://hostinger.com?REFERRALCODE=1GRAHAM51).
+This website, that I coded from scratch using tools such as [Svelte](https://svelte.dev/), [Tailwind](https://tailwindcss.com/), and [Mdsvex](https://mdsvex.pngwn.io/) for markdown files. It's domain (my name) is provided using [Hostinger (affiliate link)](https://hostinger.com?REFERRALCODE=1GRAHAM51).
 
 This website took way too long to make, as I hadn't used some of these front-end libraries before and was still experimenting. 
 

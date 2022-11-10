@@ -2,7 +2,7 @@
 title: Hotplug Attacks
 date: 2022-03-03
 time: 02:20
-category: Programming Hacking Attack
+category: Programming Cybersecurity Attack
 sourceCode: https://github.com/grahamzemel/Hotplug_Attacks
 ---
 I created multiple scripts for physical pen-testing using my Bash Bunny, a hotplug attack tool.

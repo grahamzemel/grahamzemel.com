@@ -2,7 +2,7 @@
 title: Web Heck Scanner
 date: 2022-10-10
 time: 08:15
-category: Programming Hacking Bash Python
+category: Programming Automation Bash
 featured: True
 sourceCode: https://github.com/grahamzemel/WebHeckScanner
 ---
