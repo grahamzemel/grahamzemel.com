@@ -21,7 +21,13 @@ const config = {
 
     prerender: {
       entries: ['*', '/sitemap.xml', '/rss.xml']
-    }
+    },
+    csp: {
+      directives: {
+        'script-src': ['self'],
+        "style-src": ['self', 'unsafe-inline'],
+      },
+    },
   }
 }
 

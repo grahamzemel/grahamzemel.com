@@ -85,6 +85,11 @@
     Source Code
   </ButtonLink>
   {/if}
+  {#if data.project.liveDemo}
+  <ButtonLink size="small" href={`${data.project.liveDemo}`}>
+    View Live
+  </ButtonLink>
+  {/if}
 </div>
 
 <!-- next/previous projects -->

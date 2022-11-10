@@ -1,6 +1,7 @@
 <script>
   import { format, parseISO } from 'date-fns'
   import ButtonLink from './ButtonLink.svelte'
+  import InlineSVG from 'svelte-inline-svg'
   export let project
   export let small = false
 
@@ -15,8 +16,13 @@
 </script>
 
 <div class="flex flex-col">
+  {#if project.liveDemo}
+      <div class="absolute self-end rounded-md no-underline">
+        <a href={project.liveDemo} target="_blank">
+          <InlineSVG src="/external-link.svg" class="h-12 w-12" />
+      </div>
+  {/if}
   <div>
-    <!-- !bg-gradient-to-b from-zinc-200 to-zinc-700 -->
     {#if !small}
       {#if project.featured}
         <h1 class="!mt-0 !mb-1 !pb-2 text-1lg lg:text-3xl featuredTitle">
@@ -93,7 +99,7 @@
       {/if}
     </div>
     {#if project.category}
-      <h5 class="category text-xs lg:text-lg !mt-2 !mb-1">
+      <h5 class="category text-xs lg:text-lg !mt-2 !mb-1 ">
         {#each project.category as cat}
           <a target="_self" href={`/category/${String(cat).toLowerCase()}`}>{cat}</a>
         {/each}
@@ -128,17 +134,15 @@
   <div class="flex-[1_1_0%]">
     {@html project.preview.html}
   </div>
-  <div class="!flex !justify-between">
+  <div class="!flex flex-col sm:flex-row !justify-around items-center">
     <slot name="actions">
-      
       {#if project.sourceCode}
-      <div class="flex">
+      <div class="pb-4">
         <ButtonLink size="small" href={`${project.sourceCode}`}>Source Code</ButtonLink>
       </div>
       {/if}
-
-      <div class="flex">
-        <ButtonLink size="small" href={`/projects/${project.slug}`}>Read More</ButtonLink>
+      <div class="pb-4">
+        <ButtonLink size="small" href={`/projects/${project.slug}`}>{project.title}</ButtonLink>
       </div>
     </slot>
   </div>

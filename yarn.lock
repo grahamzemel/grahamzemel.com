@@ -2503,6 +2503,11 @@
   "resolved" "https://registry.npmjs.org/svelte-hmr/-/svelte-hmr-0.15.0.tgz"
   "version" "0.15.0"
 
+"svelte-inline-svg@^1.2.0":
+  "integrity" "sha512-mYyvz7uddfaj/yXB5zyAyYSPUyE7vdK8En7dGJjZf3XImdAfOuDxhNn5OFF84BQeJFVZ7T8/rJU33emiHKdLhQ=="
+  "resolved" "https://registry.npmjs.org/svelte-inline-svg/-/svelte-inline-svg-1.2.0.tgz"
+  "version" "1.2.0"
+
 "svelte-preprocess@^4.10.7":
   "integrity" "sha512-sNPBnqYD6FnmdBrUmBCaqS00RyCsCpj2BG58A1JBswNF7b0OKviwxqVrOL/CKyJrLSClrSeqQv5BXNg2RUbPOw=="
   "resolved" "https://registry.npmjs.org/svelte-preprocess/-/svelte-preprocess-4.10.7.tgz"

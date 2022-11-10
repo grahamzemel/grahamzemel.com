@@ -70,23 +70,7 @@ html {
 body{
   overflow-x:hidden;
 }
-/* Firefox */
-* {
-  scrollbar-width: auto;
-  scrollbar-color: #696969 #797979;
-}
 
-/* Chrome, Edge, and Safari
-*::-webkit-scrollbar {
-  width: 8px;
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: #696969;
-  border-radius: 0;
-  border: 2px none #797979;
-
-} */
 
 h2, h3, h4 {
   font-family: src('../static/Gobold.otf');

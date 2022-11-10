@@ -55,6 +55,7 @@
 		"parse-json": "^6.0.2",
 		"reading-time": "^1.5.0",
 		"reading-time-estimator": "^1.4.33",
-		"simplebar": "^5.3.9"
+		"simplebar": "^5.3.9",
+		"svelte-inline-svg": "^1.2.0"
 	}
 }

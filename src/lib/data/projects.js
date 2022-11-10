@@ -44,6 +44,8 @@ export const projects = Object.entries(import.meta.glob('/projects/**/*.md', { e
       category: finalCategory,
 
       sourceCode: project.metadata.sourceCode,
+
+      liveDemo: project.metadata.liveDemo,
     }
   })
   // sort by date
