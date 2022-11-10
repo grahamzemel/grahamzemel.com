@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@200&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 
@@ -45,8 +45,9 @@ a {
   .useWeb{
     display: relative !important;
   }
+  
 }
-@media only screen and (max-width: 750px) {
+/* @media only screen and (max-width: 750px) {
   .fancy span:before,
   .fancy span:after {
     width: 16rem !important;
@@ -58,40 +59,34 @@ a {
     width: 12rem !important;
   }
   
-}
+} */
 
 /* Scrollbar */
 html {
   overflow-x: hidden;
   margin-right: calc(-1 * (100vw - 100%));
   scroll-behavior: smooth !important;
-
 }
 body{
   overflow-x:hidden;
 }
-::-webkit-scrollbar-track {
-  margin-top: 4.10rem;
-  border-top: 2px solid #1c1c1c;
-}
-
 /* Firefox */
 * {
   scrollbar-width: auto;
   scrollbar-color: #696969 #797979;
 }
 
-/* Chrome, Edge, and Safari */
+/* Chrome, Edge, and Safari
 *::-webkit-scrollbar {
-  width: 16px;
+  width: 8px;
 }
 
 *::-webkit-scrollbar-thumb {
   background-color: #696969;
   border-radius: 0;
-  border: 3px none #797979;
+  border: 2px none #797979;
 
-}
+} */
 
 h2, h3, h4 {
   font-family: src('../static/Gobold.otf');
@@ -191,7 +186,9 @@ h2, h3, h4 {
 .font-Inter {
   font-family: 'Inter', 'sans-serif';
 }
-
+.font-Mukta {
+  font-family: 'Mukta', sans-serif;
+}
 
 .subtitle {
   margin: .5rem 0 1rem 0; 
@@ -429,38 +426,22 @@ a {
 ul {
   list-style: none !important;
 }
-i{
-  font-size: 4rem;
-}
 .blog {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.blog__header {
-  text-align: center;
-}
-.blog__header1 {
-  margin-top: -5%;
-  font-size: 2rem;
-  font-weight: 250;
-  letter-spacing: 0.2px;
-  text-transform: uppercase;
-}
 .blog__slider {
-  padding: 0;
+  padding: 2rem;
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  margin-left: -2rem;
 }
 .blog__post {
   justify-content: center;
   text-align: center;
   opacity: 0.75;
   transition: all 500ms;
-  width: 35%;
 }
 .blog__post:hover{
   opacity: 1;
@@ -561,6 +542,15 @@ i{
   padding-left: 1rem;
   padding-right: 1rem;
   border: solid gray 2px;
+}
+.title_header {
+  margin-top: -5%;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  text-align: center !important;
+  letter-spacing: 0.025em;
 }
 @tailwind components;
 @tailwind utilities;

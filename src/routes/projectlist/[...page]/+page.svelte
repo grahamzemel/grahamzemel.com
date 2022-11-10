@@ -45,8 +45,12 @@
 
 <div class="flex flex-col flex-grow">
   <!-- featured projects -->
-  <h2 class="flex items-baseline text-3xl lg:text-4xl gap-4 !mb-2">Featured Projects</h2>
-  <hr>
+  <p
+    class="flex justify-center items-baseline gap-4 !mb-2 title_header text-[#000000] dark:text-[#FFFFFF]"
+  >
+    Featured Projects
+  </p>
+  <hr />
   <div class="grid gap-4 grid-cols-1 sm:grid-cols-1 row-end-3 !mt-4">
     {#each data.projects as project}
       {#if project.featured == true}
@@ -58,7 +62,12 @@
   </div>
 
   <!-- recent projects -->
-  <h2 class="flex items-baseline gap-4 !mb-2">Projects</h2>
+  <p
+    class="flex justify-center items-baseline gap-4 !mb-2 title_header text-[#000000] dark:text-[#FFFFFF]"
+  >
+    All Projects
+  </p>
+  <hr />
   <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 row-end-3 !mt-4">
     {#each data.projects as project}
       <div class="flex p-4 border border-gray-300 dark:border-gray-700 rounded-lg">

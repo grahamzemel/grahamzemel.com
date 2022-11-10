@@ -26,10 +26,12 @@
 </svelte:head>
 
 <div class="flex flex-col">
-  <h2 class="flex text-3xl lg:text-4xl items-baseline gap-4 !mb-2">About Me</h2>
   <hr />
-  <h3>Web Development</h3>
-  <h5 class="linkBtn">
+  <p
+    class="flex justify-center items-baseline gap-4 !mb-2 title_header text-[#000000] dark:text-[#FFFFFF]"
+  >
+    Web Development
+  </p> <hr> <h5 class="linkBtn">
     I've done a fair amount of web dev, usually focusing on back-end aspects but I've been trying
     out a few front-end projects in my spare time. <br /> <br />
     In a few of my blog posts, I talk about SEO optimization and making
@@ -58,7 +60,7 @@
     I build websites using the following frameworks and tools:
   </h5>
   <br>
-  <div class="flex justify-between text-gray dark:text-white">
+  <div class="flex justify-between text-gray dark:text-white text-[2rem] lg:text-[4rem]">
     <i class="devicon-html5-plain colored" />
     <i class="devicon-javascript-plain colored" />
     <i class="devicon-css3-plain colored" />
@@ -68,15 +70,18 @@
     <i class="devicon-nodejs-plain colored" />
     <i class="devicon-vscode-plain colored" />
   </div>
-
-  <h3>Cybersecurity</h3>
-  <h5 class="linkBtn">
+<hr>
+  <p
+    class="flex justify-center items-baseline gap-4 !mb-2 title_header text-[#000000] dark:text-[#FFFFFF]"
+  >
+    Cybersecurity
+  </p> <hr> <h5 class="linkBtn">
     When I'm not blogging or developing web apps, I'm hacking. I don't know if I've experienced a
     feeling better than <a
       class="after:bg-white dark:after:bg-black before:bg-white dark:before:bg-black"
       style="color:#5d5d5d;"
       href="https://medium.com/the-gray-area/finding-p1-vulnerabilities-a-step-by-step-guide-b88521195204"
-      ><span> finding P1 bugs</span></a
+      ><span> finding P1 vulnerabilties</span></a
     >
     when you're bug hunting.<br /> <br />
     Hacking is awesome, whether it's surfing the dark web, building custom malware, or generating more
@@ -98,7 +103,7 @@
     Here's a few tools I use relating to cybersecurity:
   </h5>
   <br>
-  <div class="flex justify-between text-gray dark:text-white">
+  <div class="flex justify-between text-gray dark:text-white text-[2rem] lg:text-[4rem]">
     <i class="devicon-linux-plain" />
     <i class="devicon-heroku-plain colored" />
     <i class="devicon-javascript-plain colored" />
@@ -106,9 +111,12 @@
     <i class="devicon-selenium-original colored" />
     <i class="devicon-vscode-plain colored" />
   </div>
-
-  <h3>Writing</h3>
-  <h5 class="linkBtn">
+<hr>
+  <p
+    class="flex justify-center items-baseline gap-4 !mb-2 title_header text-[#000000] dark:text-[#FFFFFF]"
+  >
+    Writing
+  </p> <hr> <h5 class="linkBtn">
     I post just about everything on my blog, <a
       class="after:bg-white dark:after:bg-black before:bg-white dark:before:bg-black"
       style="color:#5d5d5d;"
@@ -124,6 +132,7 @@
     />
     I post new articles every day, and I've got a few different social media accounts where you might
     see them if you follow me. <br />
+    <div class="justify-between">
     Medium:
     <a
       class="after:bg-white dark:after:bg-black before:bg-white dark:before:bg-black"
@@ -136,7 +145,14 @@
       style="color:#5d5d5d;margin-bottom:1rem;"
       href="https://twitter.com/grahamzemel"><span>@grahamzemel</span></a
     ><br />
-    (More to come!) <br /> <br />
+    TGA's Twitter:
+    <a
+      class="after:bg-white dark:after:bg-black before:bg-white dark:before:bg-black"
+      style="color:#5d5d5d;margin-bottom:1rem;"
+      href="https://twitter.com/tgaonmedium"><span>@tgaonmedium</span></a
+    ><br />
+  </div>
+    <br /> <br />
     If you subscribe to get my posts via email using
     <a
       class="after:bg-white dark:after:bg-black before:bg-white dark:before:bg-black"

@@ -9,8 +9,7 @@
 
   /** @type {import('./$types').PageData} */
   export let data
-  // generated open-graph image for sharing on social media.
-  // see https://og-image.vercel.app/ for more options.
+
   const ogImage = `${website}/favicon.png`
   const url = `${website}/${data.project.slug}`
 </script>

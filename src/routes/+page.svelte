@@ -4,8 +4,10 @@
   import 'focus-visible'
   import { name, website } from '$lib/info'
   import { onMount } from 'svelte'
+  import ProjectPreview from '$lib/components/ProjectPreview.svelte'
+  /** @type {import('./$types').PageData} */
+  export let data
   onMount(async function () {
-    
     fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/the-gray-area')
       .then((res) => res.json())
 
@@ -40,8 +42,8 @@
                      <span class="blog__author">${item.author}</span>
                      <span class="blog__date">${shortenText(item.pubDate, 0, 10)}</span>
                   </div>
-                  <hr>
                </div>
+               <hr>
             <a/>
          </li>`
         })
@@ -54,55 +56,80 @@
 
 <svelte:head>
   <title>Graham Zemel</title>
-  <meta name="description" content="Hi! I'm Graham Zemel - A full-stack developer, cybersecurity programmer, and IT enthusiast." />
+  <meta
+    name="description"
+    content="Hi! I'm Graham Zemel - A full-stack developer, cybersecurity programmer, and IT enthusiast."
+  />
   <meta name="author" content="Graham Zemel" />
 
   <meta property="og:url" content={website} />
   <meta property="og:type" content="website" />
   <meta property="og:title" content={name} />
-  <meta property="og:description" content="Hi! I'm Graham Zemel - A full-stack developer, cybersecurity programmer, and IT enthusiast." />
+  <meta
+    property="og:description"
+    content="Hi! I'm Graham Zemel - A full-stack developer, cybersecurity programmer, and IT enthusiast."
+  />
   <meta property="og:image" content={ogImage} />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="twitter:domain" content={website} />
   <meta property="twitter:url" content={name} />
   <meta name="twitter:title" content={name} />
-  <meta name="twitter:description" content="Hi! I'm Graham Zemel - A full-stack developer, cybersecurity programmer, and IT enthusiast."  />
+  <meta
+    name="twitter:description"
+    content="Hi! I'm Graham Zemel - A full-stack developer, cybersecurity programmer, and IT enthusiast."
+  />
   <meta name="twitter:image" content={ogImage} />
 </svelte:head>
 
 <div class="flex flex-col">
+  <br /><br /><br /> <br />
+  <div class="flex justify-between text-center relative">
+    <h2 class="!mt-[-4rem]">
+      Hi! I'm Graham Zemel - A full-stack developer, cybersecurity programmer, and IT enthusiast.
+    </h2>
+<br>
+    <h3 style="color:gray">
+      I develop websites💻, code malware👾, and write about the latest and greatest in computer
+      science📝.
+    </h3>
+  </div>
+  <!-- featured projects -->
+  <p
+    class="flex justify-center items-baseline gap-4 !mb-2 title_header text-[#000000] dark:text-[#FFFFFF]"
+  >
+    Featured Projects
+  </p>
+  <hr />
+  <div class="grid gap-4 grid-cols-1 sm:grid-cols-1 row-end-3 !mt-4">
+    {#each data.featuredProjects as project}
+      {#if project.featured == true}
+        <div class="flex p-4 border-4 border-gray-300 dark:border-gray-500 rounded-lg">
+          <ProjectPreview {project} small />
+        </div>
+      {/if}
+    {/each}
+  </div>
+  <br /><br /><br />
   <div class="relative">
+    <div class="title_header">
+      <p class="text-[#000000] dark:text-[#FFFFFF]">
+        New from <a href="https://medium.com/the-gray-area"
+          ><strong class="!text-[#606060]">The Gray Area</strong></a
+        >
+      </p>
+    </div>
+    <hr />
     <section id="blog" class="blog">
-        <p class="blog__header1 !size-20 text-[#606060] dark:text-[#606060]"><strong class="text-[#606060] dark:text-[#606060]">New</strong> from The Gray Area</p>
-        <ul class="blog__slider">
-          Javascript Required
-          <br>
-        </ul>
-        <ul class="blog__counter">
-          <li class="blog__counterItem blog__counterItem-active"></li>
-          <li class="blog__counterItem"></li>
-          <li class="blog__counterItem"></li>
-        </ul>
+      <ul class="blog__slider flex-col w-50% lg:flex-row lg:w-35%">
+        Javascript Required
+        <br />
+      </ul>
+      <ul class="blog__counter">
+        <li class="blog__counterItem blog__counterItem-active" />
+        <li class="blog__counterItem" />
+        <li class="blog__counterItem" />
+      </ul>
     </section>
   </div>
-  <h2 class="!mt-[-4rem]">
-    Hi! I'm Graham Zemel - A full-stack developer, cybersecurity programmer, and IT enthusiast.
-  </h2>
-  <h3 style="color:gray">
-    I develop websites💻, code malware👾, and write about the latest and greatest in computer
-    science📝.
-  </h3>
-  <br>
-  <h3>
-    Here are some collections of articles I've published over the past few months:
-  </h3>
-  <br>
-  <iframe title="Red Teaming" src="https://grahamzemel.medium.com/list/red-teaming-775c3a5cdef7">"Red Teaming", curated by Graham Zemel on Medium</iframe>
-  <hr>
-  <iframe title="Programming Quests" src="https://grahamzemel.medium.com/list/programming-quests-1b84883c1162">"Programming Quests", curated by Graham Zemel on Medium</iframe>
-  <hr>
-  <iframe title="Monetary Acquisitions" src="https://grahamzemel.medium.com/list/monetary-acquisitions-07f7a0f88a2f">"Monetary Acquisitions", curated by Graham Zemel on Medium</iframe>
-  <br>
-
 </div>

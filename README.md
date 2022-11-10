@@ -4,7 +4,7 @@
 ## Basic Info
 -This is not the extent of my front-end design knowledge, I used a few newer libraries and this site was mostly an experiment.  
 
--It was a ton of fun to code, and I highly recommend learning a bit of front-end if you're mainly a back-end web dev or not even a web developer at all.  
+-It was a lot of fun to code, and I highly recommend learning a bit of front-end if you're mainly a back-end web dev or not even a web developer at all.  
 
 -If anyone would like to contribute and re-code it better I'm open to suggestions, and encourage them.   
 
@@ -22,8 +22,11 @@
 [Rodney Johnson](https://github.com/rodneylab/svelte-social-icons)  
 
 ## Recent Updates:  
-Created actual homepage instead of defaulting to about me ✔️  
-Changed font on header ✔️  
-Moved medium articles to middle of homepage ✔️  
-Moved page content down ✔️  
-Changed fonts ✔️  
+Modifying fonts for titles ✔️  
+Modifying spacing and afterward responsive design ✔️  
+Moved featured projects to front page ✔️  
+
+## TODO:
+Create 'view live' button for easy access to final products
+Revise sidebar for mobile devices (currently it just disappears)
+Revise product cards

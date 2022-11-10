@@ -2537,6 +2537,11 @@
     "dedent-js" "^1.0.1"
     "pascal-case" "^3.1.1"
 
+"sveltekit-embed@^0.0.8":
+  "integrity" "sha512-n7YRh3eZNBw33+aPE/vu99c5Qnu50KgYRvSCuM8SbtjDYHJo1PaTv3iZ7kO92WpaOzBXH6B4s1MIFOmigH0sPg=="
+  "resolved" "https://registry.npmjs.org/sveltekit-embed/-/sveltekit-embed-0.0.8.tgz"
+  "version" "0.0.8"
+
 "svgo@^2.7.0":
   "integrity" "sha512-+N/Q9kV1+F+UeWYoSiULYo4xYSDQlTgb+ayMobAXPwMnLvop7oxKMo9OzIrX5x3eS4L4f2UHhc9axXwY8DpChg=="
   "resolved" "https://registry.npmjs.org/svgo/-/svgo-2.8.0.tgz"

@@ -65,12 +65,14 @@
   <meta name="twitter:image" content={ogImage} />
 </svelte:head>
 
-<div class="flex flex-col flex-grow">
-  <h2 class="flex items-baseline text-3xl lg:text-4xl gap-4 !mb-2">
-    Contact <span class="title-icon">&#128231;</span>
-  </h2>
+<div class="flex flex-col justify-evenly">
+  <p
+    class="flex justify-center items-baseline gap-4 !mb-2 title_header text-[#000000] dark:text-[#FFFFFF]"
+  >
+    Contact
+  </p>
   <hr />
-  <section id="contact">
+  <section id="contact" class="justify-center">
     <div class="title-container scroll-in">
       <p class="section-subtitle">
         Talk with me about job opportunities, request my résumé, discuss hacking, or just say hi :)
@@ -114,7 +116,7 @@
           </div>
           <div>
             <button
-              class="bg-opacity-50 dark:bg-opacity-50 text-gray-800 bg-[#d1d5da] dark:bg-[#374151] dark:text-gray-200 text-opacity-50"
+              class="bg-opacity-50 dark:bg-opacity-50 text-gray-800 bg-[#606060] dark:bg-[#606060] dark:text-gray-200 px-8 text-opacity-50"
               type="submit"
               id="submitButton">Submit</button
             >
