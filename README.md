@@ -30,3 +30,4 @@ Moved featured projects to front page ✔️
 Create 'view live' button for easy access to final products
 Revise sidebar for mobile devices (currently it just disappears)
 Revise product cards
+Update dark mode grays
