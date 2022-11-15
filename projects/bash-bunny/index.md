@@ -5,7 +5,7 @@ time: 02:20
 category: Cybersecurity Attack Bash
 sourceCode: https://github.com/grahamzemel/Hotplug_Attacks
 ---
-<script>  
+<script>
 import Link from '$lib/components/Link.svelte'
 </script>
 <div class="linkBtn">

@@ -6,6 +6,7 @@ category: Cryptocurrency Programming Solidity
 sourceCode: https://github.com/grahamzemel/CreateCryptoToken
 ---
 <script>  
+// import Image from 'remix.png?w=672&h=448&webp'
 import Link from '$lib/components/Link.svelte'
 </script>
 <div class="linkBtn">
