@@ -24,13 +24,13 @@
 
 ## Recent Updates:  
 Modifying spacing and afterward responsive design ✔️  
-Create 'view live' button for easy access to final products ✔️
-Update dark mode grays ✔️
-Updated fancy links throughout site ✔️
+Create 'view live' button for easy access to final products ✔️  
+Update dark mode grays ✔️  
+Updated fancy links throughout site ✔️  
 
 ## TODO:
-Revise product cards
-Update icons in sidebar (& make mobile accessible)
-Create footer
-Create embedded content
-Revise writing and large portions of text (css-wise)
+Revise product cards  
+Update icons in sidebar (& make mobile accessible)  
+Create footer  
+Create embedded content  
+Revise writing and large portions of text (css-wise)  
