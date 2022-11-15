@@ -3,7 +3,6 @@
   import '../../../prism.css'
   import 'focus-visible'
   import { page } from '$app/stores'
-  import { onMount } from 'svelte'
   import { website } from '$lib/info'
 
   import ButtonLink from '$lib/components/ButtonLink.svelte'
@@ -37,16 +36,21 @@
   <meta name="twitter:image" content={ogImage} />
 </svelte:head>
 
-<div class="categoryHeader text-3xl lg:text-4xl !mt-1"><span>{slug}</span></div>
-<hr class="introBreak" />
-<div class="flex-grow divide-y divide-gray-300 dark:divide-gray-700">
-  {#each data.projects as project}
-    <div class="py-8 first:pt-0">
-      <ProjectPreview {project} />
-    </div>
-  {/each}
-  <br />
-</div>
+<hr />
+  <p
+    class="flex justify-center items-baseline gap-4 !mb-2 title_header text-[#000000] dark:text-[#FFFFFF]"
+  >
+    {slug}
+  </p> <hr>
+  <div class="grid gap-4 grid-cols-1 sm:grid-cols-1 row-end-3 !mt-4">
+    {#each data.projects as project}
+      <!-- {#if project.featured == true} (this comment took 2 hours of my life I'll never get back ffs)--> 
+        <div class="flex p-4 border-4 border-gray-300 dark:border-gray-500 rounded-lg">
+          <ProjectPreview {project} small />
+        </div>
+      <!-- {/if} -->
+    {/each}
+  </div>
 
 <div class="pt-12 flex justify-between">
   <ButtonLink href={`/`}>

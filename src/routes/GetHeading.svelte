@@ -124,7 +124,7 @@
   .page-head .heading-wrapper h1 .title-wrap {
      position: relative;
      z-index: 1;
-     background: #7a7a7a;
+     background: #8e8e8e;
      -webkit-text-fill-color: transparent;
      background-clip: text;
      font-family: var(--heading-font);

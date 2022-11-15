@@ -131,7 +131,7 @@
 11:00 pm	23:00
 12:00 midnight	24:00 -->
   </div>
-  <div class="flex-[1_1_0%]">
+  <div class="linkBtn flex-[1_1_0%]">
     {@html project.preview.html}
   </div>
   <div class="!flex flex-col sm:flex-row !justify-around items-center">

@@ -45,6 +45,7 @@
 
 <div class="flex flex-col flex-grow">
   <!-- featured projects -->
+  <hr/>
   <p
     class="flex justify-center items-baseline gap-4 !mb-2 title_header text-[#000000] dark:text-[#FFFFFF]"
   >
@@ -62,6 +63,7 @@
   </div>
 
   <!-- recent projects -->
+  <hr/>
   <p
     class="flex justify-center items-baseline gap-4 !mb-2 title_header text-[#000000] dark:text-[#FFFFFF]"
   >

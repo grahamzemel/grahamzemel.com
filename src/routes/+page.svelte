@@ -95,6 +95,7 @@
     </h3>
   </div>
   <!-- featured projects -->
+  <hr/>
   <p
     class="flex justify-center items-baseline gap-4 !mb-2 title_header text-[#000000] dark:text-[#FFFFFF]"
   >
@@ -110,7 +111,8 @@
       {/if}
     {/each}
   </div>
-  <br /><br /><br />
+  <br/> <br/>
+  <hr/>
   <div class="relative">
     <div class="title_header">
       <p class="text-[#000000] dark:text-[#FFFFFF]">

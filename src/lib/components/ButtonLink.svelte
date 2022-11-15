@@ -15,7 +15,7 @@
   target="_self"
     {...$$restProps}
     {href}
-    class={'block text-gray-800 dark:text-gray-200 rounded-md no-underline transition opacity-75 duration-500 hover:opacity-100' +
+    class={'block text-gray-800 dark:text-[#DCDCDC] rounded-md no-underline transition opacity-75 duration-500 hover:opacity-100' +
       className}
     class:small={size === 'small'}
     class:medium={size === 'medium'}

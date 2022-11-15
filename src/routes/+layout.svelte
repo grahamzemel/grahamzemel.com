@@ -162,14 +162,14 @@
     <ThemeToggle />
   </h2>
   <p
-    style="padding-left:.8rem;"
-    class="absolute right-8 bottom-10 z-0 text-[#4b5563] dark:text-white"
+    style="padding-left:1em;"
+    class="absolute !pl-[2.3rem] bottom-10 z-0 text-[#4b5563] dark:text-white"
   >
     ©
   </p>
   <p class="pb-[2rem]" />
   <p
-    class="absolute bottom-0 pb-[2rem] lg:pb-[4.5rem] z-10 flex justify-center items-center opacity-0 z-10 duration-300 hover:opacity-100 text-[#4b5563] dark:text-white"
+    class="absolute bottom-0 pb-[2rem] lg:pb-[4.5rem] z-10 flex justify-center items-center opacity-0 z-10 duration-300 hover:opacity-100 text-[#4b5563] dark:text-white !text-[10px] lg:text-[15px]"
   >
     Graham Zemel 2022
   </p>
@@ -183,7 +183,7 @@
       <div style="text-align: center; letter-spacing: .35em;margin-top: 1em;">
         <h2 class="pb-0.5 !font-Mukta">
           <a
-            class="lg:text-8xl md:text-6xl text-5xl !bg-clip-text !text-transparent bg-[#606060] dark:bg-[#565656]"
+            class="lg:text-8xl md:text-6xl text-5xl !bg-clip-text !text-transparent bg-[#606060] dark:bg-[#7a7a7a]"
             target="_self"
             href="/">Graham Zemel</a
           >
@@ -218,7 +218,7 @@
           </p>
           <p
             class="lg:text-[1.2rem] text-[.8rem] !font-Mukta
-        !text-transparent bg-clip-text !bg-[#7a7a7a] !dark:bg-[#7a7a7a]"
+        !text-transparent bg-clip-text bg-[#8e8e8e]"
           >
             {date}
           </p>

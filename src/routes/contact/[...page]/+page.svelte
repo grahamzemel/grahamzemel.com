@@ -66,6 +66,7 @@
 </svelte:head>
 
 <div class="flex flex-col justify-evenly">
+  <hr/>
   <p
     class="flex justify-center items-baseline gap-4 !mb-2 title_header text-[#000000] dark:text-[#FFFFFF]"
   >
