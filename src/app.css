@@ -429,10 +429,10 @@ ul {
 .blog__post:hover{
   opacity: 1;
 }
-.blog__topImg {
+/* .blog__topImg {
   max-width: 100%;
   height: 100px;
-}
+} */
 .blog__content {
   padding: .8rem;
 }

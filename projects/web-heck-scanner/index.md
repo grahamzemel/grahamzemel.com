@@ -15,7 +15,14 @@ A hacking tool built for the bug hunters, <Link href='https://github.com/grahamz
 
 This was one of my favorite tools to build, and I learned a bunch of Bash while creating it. It's got tools like sqlmap, Nuclei, Nikto, and much more.
 
-![webheckscanner](./webheckscanner.png)
+<img
+     alt="Web Heck Scanner"
+     loading="lazy"
+     decoding="async"
+     width="672"
+     height="448"
+     src="./webheckscanner.png"
+/>
 
 It seems to be pretty well liked, feel free to fork it and build your own version.
 

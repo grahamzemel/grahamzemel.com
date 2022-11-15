@@ -14,7 +14,14 @@ This was a simple Python script for parsing data from hacked sites. Check out so
 
 I post a bunch of my bug-bounty endeavors on my Medium blog, so if you want to learn about things like <Link href='https://medium.com/the-gray-area/p1-bug-bounties-multi-factor-authentication-bypass-ca040180ab3f'>MFA Bypass</Link> , <Link href='https://medium.com/the-gray-area/a-500-open-redirect-bounty-in-under-10-minutes-fbb1cce063e5'>Open-Redirect Exploitation</Link> , and <Link href='https://medium.com/the-gray-area/finding-p1-vulnerabilities-tools-resources-32bb2e7a52fb'>Finding P1 Bugs</Link> . 
 
-![idor](./idor.png)
+<img
+     alt="IDOR with Python"
+     loading="lazy"
+     decoding="async"
+     width="672"
+     height="448"
+     src="./idor.png"
+/>
 
 Utilizing a few of the tools I'd become familiar with, I ended up hacking a website for <Link href='https://medium.com/the-gray-area/1-000-p1-pii-disclosure-w-idor-cb344c55d52e'>PII disclosure with IDORs</Link> (Insecure Direct Object Reference), and was able to quickly exfiltrate data with this tool.
 

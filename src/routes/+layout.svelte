@@ -129,10 +129,10 @@
 <div
   class="lg:invisible flex flex-row justify-around w-full text-black dark:text-[#808080] !pl-[5rem] !pb-[3rem] text-[10px] lg:text-[15px] nav btn-nav"
 >
-  <a href="/about" class="!p-[2px] !border-[1px] rounded-md" target="_self"><img alt="About Me" width=35px height=35px src="/me.png"></a>
-  <a href="/projectlist" class="!p-[4px] !border-[1px] rounded-md" target="_self"><img alt="Portfolio" width=30px height=30px src="/portfolio.png"></a>
-  <a href="https://medium.com/the-gray-area" class="!p-[2px] !border-[1px] rounded-md" target="_self"><img alt="Publication" width=35px height=35px src="/grayArea.jpg"></a>
-  <a href="/contact" class="!p-[4px] !border-[1px] rounded-md" target="_self"><img alt="Contact Me" width=30px height=30px src="/contact.png"></a>
+  <a href="/about" class="!p-[2px] !border-[1px] rounded-md" target="_self"><img alt="About Me" width="35" height="35" src="/me.png"></a>
+  <a href="/projectlist" class="!p-[4px] !border-[1px] rounded-md" target="_self"><img alt="Portfolio" width="30" height="30" src="/portfolio.png"></a>
+  <a href="https://medium.com/the-gray-area" class="!p-[2px] !border-[1px] rounded-md" target="_self"><img alt="Publication" width="35" height="35" src="/grayArea.jpg"></a>
+  <a href="/contact" class="!p-[4px] !border-[1px] rounded-md" target="_self"><img alt="Contact Me" width="30" height="30" src="/contact.png"></a>
 
 </div>
 
@@ -141,12 +141,12 @@
 >
   <div style="padding-left:1rem;">
     <a href="https://patreon.com/grahamzemel">
-      <img src="/patreon.png" alt="Patreon" style="height:50px;width:50px;border-style:solid;" />
+      <img loading="lazy" decoding="async" width="50" height="50" alt="Patreon" style="border-style:solid;" src="/patreon.png" />
     </a>
   </div>
   <div style="padding-left:1rem;">
     <a href="https://medium.com/the-gray-area/newsletters/medium-the-gray-area">
-      <img alt="Subscribe To Mailing List" src="/mail.png" width="50px" height="50px" />
+      <img alt="Subscribe To Mailing List" width="50" height="50" loading="lazy" decoding="async" src="/mail.png"/>
     </a>
   </div>
   <a href="https://grahamzemel.medium.com/">

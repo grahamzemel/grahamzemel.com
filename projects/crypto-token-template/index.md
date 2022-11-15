@@ -15,7 +15,14 @@ It was a really neat process to create my own cryptocurrency, and I really enjoy
 
 You can modify the code any way you want, and it may take a little bit of tinkering on the REMIX IDE website which is where everything will be deployed and created.
 
-![remix](./remix.png)
+<img
+     alt="Crypto programming in Solidity with Remix"
+     loading="lazy"
+     decoding="async"
+     width="672"
+     height="448"
+     src="./remix.png"
+/>
 
 Once you create a token, you'll need to manually suggest/post it onto token listing websites. If you popularize it enough, you might start to see people investing and that sort of things and it's very cool to see something you created gain value like that. 
 

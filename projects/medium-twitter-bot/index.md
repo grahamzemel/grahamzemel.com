@@ -22,5 +22,13 @@ It was a bunch of fun to program, and I love automation bots because they give y
 
 Here's the Github <Link href='https://github.com/grahamzemel/MediumTwitterBot'>source code</Link> , and <Link href='https://medium.com/the-gray-area/creating-an-automated-twitter-bot-for-medium-100-lines-of-code-53e056e6b0de'>the Medium article</Link> I published on it. 
 
-![tgaonmedium](./tgaonmedium.png)
+<img
+     alt="The Gray Area on Medium Twitter"
+     loading="lazy"
+     decoding="async"
+     width="672"
+     height="448"
+     src="./tgaonmedium.png"
+/>
+
 </div>
