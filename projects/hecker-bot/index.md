@@ -18,5 +18,4 @@ The source code is really interesting to look at, however some of the services d
 
 I used a few different services for hosting and such, and it's one of my favorite projects. If you're into cybersecurity, I recommend purchasing access to the source code and seeing what you can add. 
 
-![heckerbot](./heckerbot.png)
 </div>
