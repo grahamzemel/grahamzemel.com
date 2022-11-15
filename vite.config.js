@@ -3,11 +3,16 @@ import { sveltekit } from '@sveltejs/kit/vite'
 import{ imagetools }from'vite-imagetools';
 
 export default defineConfig({
-  plugins: [imagetools({ force:true, optimizeAll:true, webp:true,
+  plugins: [imagetools({ force:true, optimizeAll:true,
     defaultDirectives: (url) => {
-    console.log(url.href + '&webp');
-       return new URLSearchParams(url.href + "&webp");
-   }}), sveltekit()],
+      return {
+        quality: 75,
+        format: 'webp',
+        width: 672,
+        height: 448,
+      }
+    }
+   }), sveltekit()],
   server: {
     fs: {
       allow: ['./']
