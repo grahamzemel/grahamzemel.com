@@ -150,13 +150,13 @@
     </a>
   </div>
   <a href="https://grahamzemel.medium.com/">
-    <SocialIcons alt="Graham Zemel's Medium" network="medium" bgColor="#aaaaaa" />
+    <SocialIcons network="medium" bgColor="#aaaaaa" />
   </a>
   <a href="https://github.com/grahamzemel">
-    <SocialIcons alt="Graham Zemel's Github" network="github" bgColor="#aaaaaa" />
+    <SocialIcons network="github" bgColor="#aaaaaa" />
   </a>
   <a href="https://twitter.com/grahamzemel">
-    <SocialIcons alt="Graham Zemel's Twitter" network="twitter" bgColor="#aaaaaa" />
+    <SocialIcons network="twitter" bgColor="#aaaaaa" />
   </a>
   <h2>
     <ThemeToggle />

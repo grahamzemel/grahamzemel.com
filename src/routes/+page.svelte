@@ -7,7 +7,7 @@
   import ProjectPreview from '$lib/components/ProjectPreview.svelte'
   /** @type {import('./$types').PageData} */
   export let data
-  onMount(async function () {
+  onMount(function () {
     fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/the-gray-area')
       .then((res) => res.json())
 
@@ -29,10 +29,11 @@
         // Put things in right spots of markup
         let output = ''
         posts.forEach((item) => {
+          console.log(`${item.thumbnail}`)
           output += `
          <li class="blog__post">
             <a href="${item.link}">
-               <img class="max-w-[100%] h-[100px]" alt="Featured Medium post image" loading="lazy" decoding="async" src="${item.thumbnail}"></img>
+               <img class="max-w-[100%] h-[100px]" alt="${item.title}" src="${item.thumbnail}"></img>
                <div class="blog__content">
                   <div class="blog_preview">
                      <h2 class="blog__title">${shortenText(item.title, 0, 60)}</h2>
