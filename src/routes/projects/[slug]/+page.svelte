@@ -3,7 +3,6 @@
   import { page } from '$app/stores'
   import ButtonLink from '$lib/components/ButtonLink.svelte'
   import { website } from '$lib/info'
-  import ToC from '$lib/components/ToC.svelte'
   import ProjectPreview from '$lib/components/ProjectPreview.svelte'
   import ArrowLeftIcon from '$lib/components/ArrowLeftIcon.svelte'
 
@@ -62,13 +61,13 @@
     <!-- render the project -->
     <svelte:component this={data.component} />
 
-    <!-- table of contents -->
+    <!-- table of contents
     <div class="hidden xl:block absolute not-prose left-[100%]" aria-label="Table of Contents">
       <div class="fixed z-10 px-4 py-2 ml-8 top-[4.5rem]">
-        <!-- ignore h1 tags as they should only be used for the project title, h5 is -->
+         ignore h1 tags as they should only be used for the project title, h5 is
         <ToC allowedHeadings={['h2', 'h3', 'h4', 'h5', 'h6']} />
       </div>
-    </div>
+    </div> -->
   </div>
 </article>
 

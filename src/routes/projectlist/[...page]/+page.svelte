@@ -6,7 +6,6 @@
   import '../../../app.css'
   import '../../../prism.css'
   import 'focus-visible'
-  import { onMount } from 'svelte'
   import { website } from '$lib/info'
 
   import ArrowLeftIcon from '$lib/components/ArrowLeftIcon.svelte'
@@ -45,11 +44,14 @@
 
 <div class="flex flex-col flex-grow">
   <!-- featured projects -->
-  <hr/>
+  <hr />
   <p
     class="flex justify-center items-baseline gap-4 !mb-2 title_header text-[#000000] dark:text-[#FFFFFF]"
   >
-    Featured Projects
+    <span
+      class="!text-transparent !bg-clip-text bg-gradient-to-b from-[#7ec3f8] to-[#043a54] text-[#7ec3f8] text-[2.4rem] font-bold"
+      >Featured</span
+    >Projects
   </p>
   <hr />
   <div class="grid gap-4 grid-cols-1 sm:grid-cols-1 row-end-3 !mt-4">
@@ -63,7 +65,7 @@
   </div>
 
   <!-- recent projects -->
-  <hr/>
+  <hr />
   <p
     class="flex justify-center items-baseline gap-4 !mb-2 title_header text-[#000000] dark:text-[#FFFFFF]"
   >

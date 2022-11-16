@@ -24,27 +24,24 @@
   <a
     href="/about"
     target="_self"
-    class="relative inline-flex items-center justify-center px-5 py-2 overflow-hidden font-bold text-[#707070] rounded-md !border-[1.5px] shadow-2xl group"
+    class="relative inline-flex items-center justify-center px-5 py-2 overflow-hidden font-bold text-[#707070] rounded-lg border-[1.5px] !border-[#666666] shadow-2xl group"
   >
     <span
-      class="absolute inset-0 w-full h-full transition duration-500 ease-out opacity-0 bg-gradient-to-br from-slate-100 via-zinc-300 to-slate-100 dark:from-zinc-800 dark:via-gray-700 dark:to-zinc-800 group-hover:opacity-100"
+      class="absolute inset-0 w-full h-full transition duration-1000 ease-out opacity-0 bg-gradient-to-br from-slate-100 via-zinc-300 to-slate-100 dark:from-zinc-800 dark:via-[#171717] dark:to-zinc-800 group-hover:opacity-[1]"
     />
     <span
-      class="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-5 h-1/3"
+      class="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-[0.12] h-1/3"
     />
     <span
-      class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-5"
+      class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-[0.12]"
     />
     <span
-      class="absolute bottom-0 left-0 w-4 h-full bg-gradient-to-r from-white to-transparent opacity-5"
+      class="absolute bottom-0 left-0 w-4 h-full bg-gradient-to-r from-white to-transparent opacity-[0.12]"
     />
     <span
-      class="absolute bottom-0 right-0 w-4 h-full bg-gradient-to-l from-white to-transparent opacity-5"
+      class="absolute bottom-0 right-0 w-4 h-full bg-gradient-to-l from-white to-transparent opacity-[0.12]"
     />
-    <span class="absolute inset-0 w-full h-full border border-white rounded-md opacity-10" />
-    <span
-      class="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-5"
-    />
+    <span class="absolute inset-0 w-full h-full border border-white rounded-md opacity-[0]" />
     <span class="relative">About Me</span>
   </a>
   <a
@@ -53,24 +50,21 @@
     class="relative inline-flex items-center justify-center px-5 py-2 overflow-hidden font-bold text-[#707070] rounded-md !border-[1.5px] shadow-2xl group"
   >
     <span
-      class="absolute inset-0 w-full h-full transition duration-500 ease-out opacity-0 bg-gradient-to-br from-slate-100 via-zinc-300 to-slate-100 dark:from-zinc-800 dark:via-gray-700 dark:to-zinc-800 group-hover:opacity-100"
+      class="absolute inset-0 w-full h-full transition duration-1000 ease-out opacity-0 bg-gradient-to-br from-slate-100 via-zinc-300 to-slate-100 dark:from-zinc-800 dark:via-[#171717] dark:to-zinc-800 group-hover:opacity-[1]"
     />
     <span
-      class="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-5 h-1/3"
+      class="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-[0.12] h-1/3"
     />
     <span
-      class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-5"
+      class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-[0.12]"
     />
     <span
-      class="absolute bottom-0 left-0 w-4 h-full bg-gradient-to-r from-white to-transparent opacity-5"
+      class="absolute bottom-0 left-0 w-4 h-full bg-gradient-to-r from-white to-transparent opacity-[0.12]"
     />
     <span
-      class="absolute bottom-0 right-0 w-4 h-full bg-gradient-to-l from-white to-transparent opacity-5"
+      class="absolute bottom-0 right-0 w-4 h-full bg-gradient-to-l from-white to-transparent opacity-[0.12]"
     />
-    <span class="absolute inset-0 w-full h-full border border-white rounded-md opacity-10" />
-    <span
-      class="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-5"
-    />
+    <span class="absolute inset-0 w-full h-full border border-white rounded-md opacity-[0]" />
     <span class="relative">Projects</span>
   </a>
   <a
@@ -79,24 +73,21 @@
     class="relative inline-flex items-center justify-center px-5 py-2 overflow-hidden font-bold text-[#707070] rounded-md !border-[1.5px] shadow-2xl group"
   >
     <span
-      class="absolute inset-0 w-full h-full transition duration-500 ease-out opacity-0 bg-gradient-to-br from-slate-100 via-zinc-300 to-slate-100 dark:from-zinc-800 dark:via-gray-700 dark:to-zinc-800 group-hover:opacity-100"
+      class="absolute inset-0 w-full h-full transition duration-1000 ease-out opacity-0 bg-gradient-to-br from-slate-100 via-zinc-300 to-slate-100 dark:from-zinc-800 dark:via-[#171717] dark:to-zinc-800 group-hover:opacity-[1]"
     />
     <span
-      class="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-5 h-1/3"
+      class="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-[0.12] h-1/3"
     />
     <span
-      class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-5"
+      class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-[0.12]"
     />
     <span
-      class="absolute bottom-0 left-0 w-4 h-full bg-gradient-to-r from-white to-transparent opacity-5"
+      class="absolute bottom-0 left-0 w-4 h-full bg-gradient-to-r from-white to-transparent opacity-[0.12]"
     />
     <span
-      class="absolute bottom-0 right-0 w-4 h-full bg-gradient-to-l from-white to-transparent opacity-5"
+      class="absolute bottom-0 right-0 w-4 h-full bg-gradient-to-l from-white to-transparent opacity-[0.12]"
     />
-    <span class="absolute inset-0 w-full h-full border border-white rounded-md opacity-10" />
-    <span
-      class="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-5"
-    />
+    <span class="absolute inset-0 w-full h-full border border-white rounded-md opacity-[0]" />
     <span class="relative">Publication</span>
   </a>
   <a
@@ -105,58 +96,73 @@
     class="relative inline-flex items-center justify-center px-5 py-2 overflow-hidden font-bold text-[#707070] rounded-md !border-[1.5px] shadow-2xl group"
   >
     <span
-      class="absolute inset-0 w-full h-full transition duration-500 ease-out opacity-0 bg-gradient-to-br from-slate-100 via-zinc-300 to-slate-100 dark:from-zinc-800 dark:via-gray-700 dark:to-zinc-800 group-hover:opacity-100"
+      class="absolute inset-0 w-full h-full transition duration-1000 ease-out opacity-0 bg-gradient-to-br from-slate-100 via-zinc-300 to-slate-100 dark:from-zinc-800 dark:via-[#171717] dark:to-zinc-800 group-hover:opacity-[1]"
     />
     <span
-      class="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-5 h-1/3"
+      class="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-[0.12] h-1/3"
     />
     <span
-      class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-5"
+      class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-[0.12]"
     />
     <span
-      class="absolute bottom-0 left-0 w-4 h-full bg-gradient-to-r from-white to-transparent opacity-5"
+      class="absolute bottom-0 left-0 w-4 h-full bg-gradient-to-r from-white to-transparent opacity-[0.12]"
     />
     <span
-      class="absolute bottom-0 right-0 w-4 h-full bg-gradient-to-l from-white to-transparent opacity-5"
+      class="absolute bottom-0 right-0 w-4 h-full bg-gradient-to-l from-white to-transparent opacity-[0.12]"
     />
-    <span class="absolute inset-0 w-full h-full border border-white rounded-md opacity-10" />
-    <span
-      class="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-5"
-    />
+    <span class="absolute inset-0 w-full h-full border border-white rounded-md opacity-[0]" />
     <span class="relative">Contact</span>
   </a>
 </div>
 <div
   class="lg:invisible flex flex-row justify-around w-full text-black dark:text-[#808080] !pl-[5rem] !pb-[3rem] text-[10px] lg:text-[15px] nav btn-nav"
 >
-  <a href="/about" class="!p-[2px] !border-[1px] rounded-md" target="_self"><img alt="About Me" width="35" height="35" src="/me.png"></a>
-  <a href="/projectlist" class="!p-[4px] !border-[1px] rounded-md" target="_self"><img alt="Portfolio" width="30" height="30" src="/portfolio.png"></a>
-  <a href="https://medium.com/the-gray-area" class="!p-[2px] !border-[1px] rounded-md" target="_self"><img alt="Publication" width="35" height="35" src="/grayArea.jpg"></a>
-  <a href="/contact" class="!p-[4px] !border-[1px] rounded-md" target="_self"><img alt="Contact Me" width="30" height="30" src="/contact.png"></a>
-
+  <a href="/about" class="!p-[2px] !border-[1px] rounded-md" target="_self"
+    ><img alt="About Me" width="35" height="35" src="/me.png" /></a
+  >
+  <a href="/projectlist" class="!p-[4px] !border-[1px] rounded-md" target="_self"
+    ><img alt="Portfolio" width="30" height="30" src="/portfolio.png" /></a
+  >
+  <a
+    href="https://medium.com/the-gray-area"
+    class="!p-[2px] !border-[1px] rounded-md"
+    target="_self"><img alt="Publication" width="35" height="35" src="/grayArea.jpg" /></a
+  >
+  <a href="/contact" class="!p-[4px] !border-[1px] rounded-md" target="_self"
+    ><img alt="Contact Me" width="30" height="30" src="/contact.png" /></a
+  >
 </div>
 
 <div
   class="mediumInvisible flex flex-col justify-around h-full !text-transparent bg-clip-text bg-[#ffffff] dark:bg-[#111111] !pt-[5rem] !pb-[2rem] sidenav"
 >
-  <div style="padding-left:1rem;">
-    <a href="https://patreon.com/grahamzemel">
-      <img loading="lazy" decoding="async" width="50" height="50" alt="Patreon" style="border-style:solid;" src="/patreon.png" />
+  <a href="https://grahamzemel.medium.com/" class="opacity-75 duration-500 hover:opacity-100">
+    <SocialIcons network="medium" fgColor="#ffffff" />
+  </a>
+  <a href="https://github.com/grahamzemel" class="opacity-75 duration-500 hover:opacity-100">
+    <SocialIcons network="github" fgColor="#ffffff" />
+  </a>
+  <div style="padding-left:1rem;padding-bottom:.5rem;">
+    <a href="https://patreon.com/grahamzemel" class="opacity-75 duration-500 hover:opacity-100">
+      <img
+        loading="lazy"
+        decoding="async"
+        width="50"
+        height="50"
+        alt="Patreon"
+        style="border-style:solid;"
+        src="/patreon.png"
+      />
     </a>
   </div>
-  <div style="padding-left:1rem;">
-    <a href="https://medium.com/the-gray-area/newsletters/medium-the-gray-area">
-      <img alt="Subscribe To Mailing List" width="50" height="50" loading="lazy" decoding="async" src="/mail.png"/>
-    </a>
-  </div>
-  <a href="https://grahamzemel.medium.com/">
-    <SocialIcons network="medium" bgColor="#aaaaaa" />
+  <a href="https://twitter.com/grahamzemel" class="opacity-75 duration-500 hover:opacity-100">
+    <SocialIcons network="twitter" fgColor="#ffffff" />
   </a>
-  <a href="https://github.com/grahamzemel">
-    <SocialIcons network="github" bgColor="#aaaaaa" />
-  </a>
-  <a href="https://twitter.com/grahamzemel">
-    <SocialIcons network="twitter" bgColor="#aaaaaa" />
+  <a
+    href="https://www.linkedin.com/in/grahamzemel"
+    class="opacity-75 duration-500 hover:opacity-100"
+  >
+    <SocialIcons network="linkedin" fgColor="#ffffff" />
   </a>
   <h2>
     <ThemeToggle />
@@ -169,7 +175,7 @@
   </p>
   <p class="pb-[2rem]" />
   <p
-    class="absolute bottom-0 pb-[2rem] lg:pb-[4.5rem] z-10 flex justify-center items-center opacity-0 z-10 duration-300 hover:opacity-100 text-[#4b5563] dark:text-white !text-[10px] lg:text-[15px]"
+    class="absolute bottom-0 pb-[2rem] lg:pb-[4.5rem] z-10 flex justify-center items-center opacity-0 z-10 duration-300 hover:opacity-[1] text-[#4b5563] dark:text-white !text-[10px] lg:text-[15px]"
   >
     Graham Zemel 2022
   </p>
@@ -177,7 +183,7 @@
 <MyDateComponent bind:date />
 
 <div class="!mt-20 lg:!ml-10">
-  <div class="flex flex-col min-h-screen bg-[#fcfcfc] dark:bg-[#070707]">
+  <div class="flex flex-col min-h-screen bg-[#fcfcfc] dark:bg-[#0d0d0d]">
     <div class="mx-auto flex flex-col flex-grow w-full max-w-[65rem]">
       <!-- CENTER -->
       <div style="text-align: center; letter-spacing: .35em;margin-top: 1em;">

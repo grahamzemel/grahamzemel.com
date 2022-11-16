@@ -40,10 +40,9 @@
     type="button"
     role="switch"
     aria-label="Toggle Dark Mode"
-    aria-checked={!prefersLight}
+    aria-checked={prefersLight}
     class="settings-toggle !rounded-2xl	!h-8 !w-8 sm:h-8 sm:w-8 sm:p-1 !z-10"
     class:dark={!prefersLight}
-    aria-pressed={!prefersLight}
     on:click={changeTheme}
     >
     <LightDarkIcon />

@@ -5,6 +5,7 @@
   import { name, website } from '$lib/info'
   import { onMount } from 'svelte'
   import ProjectPreview from '$lib/components/ProjectPreview.svelte'
+  import { GenericEmbed } from 'sveltekit-embed'
   /** @type {import('./$types').PageData} */
   export let data
   onMount(function () {
@@ -29,7 +30,6 @@
         // Put things in right spots of markup
         let output = ''
         posts.forEach((item) => {
-          console.log(`${item.thumbnail}`)
           output += `
          <li class="blog__post">
             <a href="${item.link}">
@@ -97,10 +97,8 @@
   </div>
   <!-- featured projects -->
   <hr/>
-  <p
-    class="flex justify-center items-baseline gap-4 !mb-2 title_header text-[#000000] dark:text-[#FFFFFF]"
-  >
-    Featured Projects
+  <p class="text-[#000000] dark:text-[#FFFFFF] title_header !mb-2">
+    <strong class="!text-transparent !bg-clip-text bg-gradient-to-b from-[#7ec3f8] to-[#043a54] text-[#7ec3f8] lg:text-[2.4rem] font-bold">Featured</strong> Projects
   </p>
   <hr />
   <div class="grid gap-4 grid-cols-1 sm:grid-cols-1 row-end-3 !mt-4">
@@ -129,7 +127,7 @@
         <br />
       </ul>
       <ul class="blog__counter">
-        <li class="blog__counterItem blog__counterItem-active" />
+        <li class="blog__counterItem" />
         <li class="blog__counterItem" />
         <li class="blog__counterItem" />
       </ul>

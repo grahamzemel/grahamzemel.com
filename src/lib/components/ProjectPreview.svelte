@@ -18,7 +18,7 @@
 <div class="flex flex-col">
   {#if project.liveDemo}
       <div class="absolute self-end rounded-md no-underline">
-        <a href={project.liveDemo} target="_blank">
+        <a href={project.liveDemo} alt={project.title} target="_blank">
           <InlineSVG src="/external-link.svg" class="h-12 w-12" />
       </div>
   {/if}
@@ -51,7 +51,7 @@
       </h3>
     {/if}
 
-    <div class="opacity-70">
+    <div>
       {#if (addTimezoneOffset(new Date()) - addArticleOffset(new Date(`${project.date}T${project.time}`))) / 86400000 >= 7}
         Uploaded <time
           >{format(addTimezoneOffset(new Date(parseISO(project.date))), 'MMM d, yyyy')}</time

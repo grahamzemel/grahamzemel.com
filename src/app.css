@@ -6,7 +6,10 @@
 
 @layer utilities {
   .focus {
-    @apply outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:focus-visible:ring-blue-300;
+    @apply outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-white dark:focus-visible:ring-black;
+  }
+  .linkBtn{
+    @apply text-[#505050] dark:text-[#bbbbbb]
   }
 }
 
@@ -47,25 +50,12 @@ a {
   }
   
 }
-/* @media only screen and (max-width: 750px) {
-  .fancy span:before,
-  .fancy span:after {
-    width: 16rem !important;
-  }
-}
-@media only screen and (max-width: 750px) {
-  .fancy span:before,
-  .fancy span:after {
-    width: 12rem !important;
-  }
-  
-} */
 
-/* Scrollbar */
 html {
   overflow-x: hidden;
   margin-right: calc(-1 * (100vw - 100%));
   scroll-behavior: smooth !important;
+  
 }
 body{
   overflow-x:hidden;
@@ -241,10 +231,10 @@ li{
   margin-top: 5px;
 }
 .featuredTitle{
-  background: #cedce7;
-  background: -moz-linear-gradient(top, #cedce7 0%, #345b6d 100%) !important;
-  background: -webkit-linear-gradient(top, #cedce7 0%,#345b6d 100%) !important;
-  background: linear-gradient(to bottom, #cedce7 0%,#345b6d 100%) !important;
+  background: #7ec3f8;
+  background: -moz-linear-gradient(top, #7ec3f8 0%, #075f87 100%) !important;
+  background: -webkit-linear-gradient(top, #7ec3f8 0%,#075f87 100%) !important;
+  background: linear-gradient(to bottom, #7ec3f8 0%,#075f87 100%) !important;
   background-clip: text !important;
   color: transparent !important;
 }
@@ -365,17 +355,17 @@ span {
   border: 2px solid;
   position: relative;
   display: inline-block;
-  padding: 0 !important;
+  /* padding: 0 !important; */
 }
 
 .linkBtn a::before {
   content: "";
   position: absolute;
-  top: 5px;
+  top: 4px;
   left: -2px;
   width: calc(100% + 6px);
   /*100% plus double the times left values*/
-  height: calc(100% - 10px);
+  height: calc(100% - 7.5px);
   transition: all 0.5s ease-in-out;
   transform: scaleY(1);
 }
@@ -524,12 +514,15 @@ ul {
 }
 .title_header {
   margin-top: -5%;
-  font-size: 2rem;
+  font-size: 2.3rem;
   font-weight: 600;
   letter-spacing: 0.4px;
   text-transform: uppercase;
   text-align: center !important;
   letter-spacing: 0.025em;
+}
+SocialIcons {
+  opacity: 1;
 }
 @tailwind components;
 @tailwind utilities;

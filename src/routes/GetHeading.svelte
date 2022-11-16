@@ -50,7 +50,7 @@
             <noscript>{title}</noscript>
           </div>
         </h1>
-        <span class="brace closing-brace bg-[#FFFFFF] dark:bg-[#070707]" aria-hidden="true">]</span>
+        <span class="brace closing-brace bg-[#FFFFFF] dark:bg-[#0d0d0d]" aria-hidden="true">]</span>
 
         <noscript>
           <!-- Just here to allow the heading to show when JS is disabled. -->

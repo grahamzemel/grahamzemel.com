@@ -23,14 +23,13 @@
 [Rodney Johnson](https://github.com/rodneylab/svelte-social-icons)  
 
 ## Recent Updates:  
-Modifying spacing and afterward responsive design ✔️  
-Create 'view live' button for easy access to final products ✔️  
-Update dark mode grays ✔️  
-Updated fancy links throughout site ✔️  
+Update icons in sidebar ✔️    
+Revise writing and large portions of text ✔️  
 
 ## TODO:
-Revise product cards  
-Update icons in sidebar (& make mobile accessible)  
-Create footer  
-Create embedded content  
-Revise writing and large portions of text (css-wise)  
+Revise product cards (make it shiny?)  
+Make sidebar mobile-accessable (idek)  
+Create embedded content (fix csf)  
+Construct template file for title navbar (easy)  
+  
+Add new project...

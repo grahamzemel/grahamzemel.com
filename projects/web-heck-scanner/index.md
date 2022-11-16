@@ -11,9 +11,9 @@ import Link from '$lib/components/Link.svelte'
 </script>
 <div class="linkBtn">
 
-A hacking tool built for the bug hunters, <Link href='https://github.com/grahamzemel/WebHeckScanner'>Web Heck Scanner</Link> is a compilation of 3 popular hacking tools and 5 components that hands you bugs on a silver platter. 
+A hacking tool <strong>built for the bug hunters</strong>, <Link href='https://github.com/grahamzemel/WebHeckScanner'>Web Heck Scanner</Link> is a compilation of 3 popular hacking tools and 5 components <strong>that hands you bugs on a silver platter</strong>. 
 
-This was one of my favorite tools to build, and I learned a bunch of Bash while creating it. It's got tools like sqlmap, Nuclei, Nikto, and much more.
+This was <strong>one of my favorite tools</strong> to build, and I learned a bunch of Bash while creating it. It's got tools like sqlmap, Nuclei, Nikto, and much more.
 
 <img
      alt="Web Heck Scanner"
