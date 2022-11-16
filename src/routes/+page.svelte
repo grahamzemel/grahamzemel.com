@@ -8,7 +8,9 @@
   import { GenericEmbed } from 'sveltekit-embed'
   /** @type {import('./$types').PageData} */
   export let data
-  onMount(function () {
+  let output = ''
+  let postOutput
+  onMount( async function () {
     fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/the-gray-area')
       .then((res) => res.json())
 
@@ -26,8 +28,6 @@
           return text.length > maxLength ? text.slice(startingPoint, maxLength) : text
         }
 
-        // Put things in right spots of markup
-        let output = ''
         posts.forEach((item) => {
           output += `
          <li class="blog__post">
@@ -44,13 +44,14 @@
                   </div>
                </div>
                <hr>
-            <a/>
+            </a>
          </li>`
         })
-        document.querySelector('.blog__slider').innerHTML = output
+        postOutput = document.querySelector('.blog__slider')
+        postOutput.innerHTML = output
+        // console.log(postOutput)
       })
   })
-
   const ogImage = `${website}/favicon.png`
 </script>
 
@@ -119,13 +120,11 @@
       </p>
     </div>
     <hr />
-    <section id="blog" class="blog">
+    <div id="blog" class="blog">
       <ul class="blog__slider flex-col w-50% lg:flex-row lg:w-35%">
-        Javascript Required
+        {postOutput}
         <br />
       </ul>
-      <ul class="blog__counter">
-      </ul>
-    </section>
+    </div>
   </div>
 </div>

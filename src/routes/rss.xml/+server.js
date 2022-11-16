@@ -4,7 +4,7 @@ import { name, website } from '$lib/info'
 export const prerender = true
 
 const websiteDescription = `Hi! I'm Graham Zemel - A full-stack developer, cybersecurity programmer, and IT enthusiast.`
-const projectsUrl = `${website}projects`
+const projectsUrl = `${website}/projects`
 
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
@@ -19,7 +19,7 @@ export async function GET({ setHeaders }) {
         <title>${name}</title>
         <link>${website}</link>
         <description>${websiteDescription}</description>
-        <atom:link href="${website}rss.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="${website}/rss.xml" rel="self" type="application/rss+xml" />
         ${projects
           .map(
             (project) =>
