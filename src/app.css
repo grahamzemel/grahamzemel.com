@@ -272,15 +272,6 @@ li{
   font-size: 25px;
   display: block;
 }
-.logoImg{
-  position: fixed;
-  top: 0%;
-  left: 0%;
-  height: 5rem;
-  width: 5rem;
-  z-index: 20;
-}
-
 
 
 

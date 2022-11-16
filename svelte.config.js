@@ -6,7 +6,6 @@ import adapter from '@sveltejs/adapter-auto'
 const config = {
   
   extensions: ['.svelte', ...mdsvexConfig.extensions],
-
   preprocess: [
     mdsvex(mdsvexConfig),
     [
@@ -21,7 +20,8 @@ const config = {
     prerender: {
       entries: ['*', '/sitemap.xml', '/rss.xml']
     },
-  }
+
+  },
 }
 
 export default config

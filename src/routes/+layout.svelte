@@ -15,8 +15,8 @@
   let date
 </script>
 
-<div class="logoImg pl-[.8rem] pt-[0.20rem]">
-  <a href="/" target="_self"><img src="../favicon.png" alt="Graham Zemel's Logo" /></a>
+<div class="fixed pl-[.8rem] pt-[0.20rem] top-0 left-0" style="z-index: 20;">
+  <a href="/" target="_self"><img width="60" height="60" src="../favicon.png" alt="Graham Zemel's Logo" /></a>
 </div>
 
 <div

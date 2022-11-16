@@ -32,7 +32,7 @@
           output += `
          <li class="blog__post">
             <a href="${item.link}">
-               <img class="max-w-[100%] h-[100px]" alt="${item.title}" src="${item.thumbnail}"></img>
+               <img width=100% height="100" alt="${item.title}" src="${item.thumbnail}"></img>
                <div class="blog__content">
                   <div class="blog_preview">
                      <h2 class="blog__title">${shortenText(item.title, 0, 60)}</h2>
@@ -49,7 +49,6 @@
         })
         postOutput = document.querySelector('.blog__slider')
         postOutput.innerHTML = output
-        // console.log(postOutput)
       })
   })
   const ogImage = `${website}/favicon.png`

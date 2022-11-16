@@ -29,6 +29,10 @@
       document.querySelector('html').classList.remove('dark')
     }
   </script>
+  <script>
+  //Add passive touchstart listener for webpage to improve scrolling performance
+  document.addEventListener('touchstart', onTouchStart, {passive: true});
+  </script>
   <link id="favicon" rel="icon" href="/favicon.png" type="image/png" />
   %sveltekit.head%
 </head>

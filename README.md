@@ -25,10 +25,13 @@
 ## Recent Updates:  
 Updated navIcons ✔️  /
 Construct template file for title navbar (easy) ✔️  
-Updated SEO heavily ✔️   
+Updated SEO even more ✔️   
 ## TODO:
 Revise product cards (make it shiny?)  
 Make sidebar mobile-accessable (idek)  
 Create embedded content (fix csf [security stuff])  
-  
+Animate navicons?  
+Cache Control (SEO)  
+Image optimization (SEO)  
+
 Add new project...
