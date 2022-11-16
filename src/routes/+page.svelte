@@ -61,8 +61,7 @@
     name="description"
     content="Hi! I'm Graham Zemel - A full-stack developer, cybersecurity programmer, and IT enthusiast."
   />
-  <meta name="author" content="Graham Zemel" />
-
+  <meta name="keywords" content="Graham Zemel, g-zem, grahamzemel, graham zemel blog, blog graham zemel, hacker graham zemel, graham zemel hacker, developer, programmer, cybersecurity, IT, full-stack" />
   <meta property="og:url" content={website} />
   <meta property="og:type" content="website" />
   <meta property="og:title" content={name} />

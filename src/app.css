@@ -38,7 +38,7 @@ a {
   @apply rounded-sm;
   @apply focus;
 }
-@media only screen and (max-width: 1062px) {
+@media only screen and (max-width: 1024px) {
   .gzLogo{
     display: none !important;
   }
