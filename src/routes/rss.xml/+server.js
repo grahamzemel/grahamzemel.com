@@ -3,7 +3,7 @@ import { name, website } from '$lib/info'
 
 export const prerender = true
 
-const websiteDescription = `Graham Zemel. A full stack developer, hacker, and writer.`
+const websiteDescription = `Hi! I'm Graham Zemel - A full-stack developer, cybersecurity programmer, and IT enthusiast.`
 const projectsUrl = `${website}projects`
 
 /**

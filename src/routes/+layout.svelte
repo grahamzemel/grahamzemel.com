@@ -8,6 +8,7 @@
   import ThemeToggle from './ThemeToggle.svelte'
   import Grid from '$lib/components/Grid.svelte'
   import { page } from '$app/stores'
+  import NavLink from '$lib/components/NavLink.svelte'
   import GetHeading from './GetHeading.svelte'
   const path = $page.url.pathname
   import MyDateComponent from './date.svelte'
@@ -19,100 +20,12 @@
 </div>
 
 <div
-  class="mediumInvisible flex flex-row justify-around w-full text-black dark:text-[#808080] !pl-[5rem] !pb-[3rem] text-[10px] lg:text-[15px] nav btn-nav"
+  class="mediumInvisible flex flex-row justify-around w-full !pl-[5rem] !pb-[3rem] nav btn-nav"
 >
-  <a
-    href="/about"
-    target="_self"
-    class="relative inline-flex items-center justify-center px-5 py-2 overflow-hidden font-bold text-[#707070] rounded-lg border-[1.5px] !border-[#666666] shadow-2xl group"
-  >
-    <span
-      class="absolute inset-0 w-full h-full transition duration-1000 ease-out opacity-0 bg-gradient-to-br from-slate-100 via-zinc-300 to-slate-100 dark:from-zinc-800 dark:via-[#171717] dark:to-zinc-800 group-hover:opacity-[1]"
-    />
-    <span
-      class="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-[0.12] h-1/3"
-    />
-    <span
-      class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-[0.12]"
-    />
-    <span
-      class="absolute bottom-0 left-0 w-4 h-full bg-gradient-to-r from-white to-transparent opacity-[0.12]"
-    />
-    <span
-      class="absolute bottom-0 right-0 w-4 h-full bg-gradient-to-l from-white to-transparent opacity-[0.12]"
-    />
-    <span class="absolute inset-0 w-full h-full border border-white rounded-md opacity-[0]" />
-    <span class="relative">About Me</span>
-  </a>
-  <a
-    href="/projectlist"
-    target="_self"
-    class="relative inline-flex items-center justify-center px-5 py-2 overflow-hidden font-bold text-[#707070] rounded-md !border-[1.5px] shadow-2xl group"
-  >
-    <span
-      class="absolute inset-0 w-full h-full transition duration-1000 ease-out opacity-0 bg-gradient-to-br from-slate-100 via-zinc-300 to-slate-100 dark:from-zinc-800 dark:via-[#171717] dark:to-zinc-800 group-hover:opacity-[1]"
-    />
-    <span
-      class="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-[0.12] h-1/3"
-    />
-    <span
-      class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-[0.12]"
-    />
-    <span
-      class="absolute bottom-0 left-0 w-4 h-full bg-gradient-to-r from-white to-transparent opacity-[0.12]"
-    />
-    <span
-      class="absolute bottom-0 right-0 w-4 h-full bg-gradient-to-l from-white to-transparent opacity-[0.12]"
-    />
-    <span class="absolute inset-0 w-full h-full border border-white rounded-md opacity-[0]" />
-    <span class="relative">Projects</span>
-  </a>
-  <a
-    href="https://medium.com/the-gray-area"
-    target="_self"
-    class="relative inline-flex items-center justify-center px-5 py-2 overflow-hidden font-bold text-[#707070] rounded-md !border-[1.5px] shadow-2xl group"
-  >
-    <span
-      class="absolute inset-0 w-full h-full transition duration-1000 ease-out opacity-0 bg-gradient-to-br from-slate-100 via-zinc-300 to-slate-100 dark:from-zinc-800 dark:via-[#171717] dark:to-zinc-800 group-hover:opacity-[1]"
-    />
-    <span
-      class="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-[0.12] h-1/3"
-    />
-    <span
-      class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-[0.12]"
-    />
-    <span
-      class="absolute bottom-0 left-0 w-4 h-full bg-gradient-to-r from-white to-transparent opacity-[0.12]"
-    />
-    <span
-      class="absolute bottom-0 right-0 w-4 h-full bg-gradient-to-l from-white to-transparent opacity-[0.12]"
-    />
-    <span class="absolute inset-0 w-full h-full border border-white rounded-md opacity-[0]" />
-    <span class="relative">Publication</span>
-  </a>
-  <a
-    href="/contact"
-    target="_self"
-    class="relative inline-flex items-center justify-center px-5 py-2 overflow-hidden font-bold text-[#707070] rounded-md !border-[1.5px] shadow-2xl group"
-  >
-    <span
-      class="absolute inset-0 w-full h-full transition duration-1000 ease-out opacity-0 bg-gradient-to-br from-slate-100 via-zinc-300 to-slate-100 dark:from-zinc-800 dark:via-[#171717] dark:to-zinc-800 group-hover:opacity-[1]"
-    />
-    <span
-      class="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-[0.12] h-1/3"
-    />
-    <span
-      class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-[0.12]"
-    />
-    <span
-      class="absolute bottom-0 left-0 w-4 h-full bg-gradient-to-r from-white to-transparent opacity-[0.12]"
-    />
-    <span
-      class="absolute bottom-0 right-0 w-4 h-full bg-gradient-to-l from-white to-transparent opacity-[0.12]"
-    />
-    <span class="absolute inset-0 w-full h-full border border-white rounded-md opacity-[0]" />
-    <span class="relative">Contact</span>
-  </a>
+  <NavLink href="/about" alt="Graham Zemel's About Me" src="/me.png">About Me</NavLink>
+  <NavLink href="/projectlist" alt="Graham Zemel's Portfolio" src="/portfolio.png">Projects</NavLink>
+  <NavLink href="https://medium.com/the-gray-area" outline=true alt="The Gray Area Publication" src="/grayArea.jpg">Publication</NavLink>
+  <NavLink href="/contact" alt="Contact Graham Zemel" src="/contact.png">Contact</NavLink>
 </div>
 <div
   class="lg:invisible flex flex-row justify-around w-full text-black dark:text-[#808080] !pl-[5rem] !pb-[3rem] text-[10px] lg:text-[15px] nav btn-nav"
@@ -136,14 +49,14 @@
 <div
   class="mediumInvisible flex flex-col justify-around h-full !text-transparent bg-clip-text bg-[#ffffff] dark:bg-[#111111] !pt-[5rem] !pb-[2rem] sidenav"
 >
-  <a href="https://grahamzemel.medium.com/" class="opacity-75 duration-500 hover:opacity-100">
+  <a href="https://blog.grahamzemel.com/" alt="Graham Zemel's Blog" class="opacity-75 duration-500 hover:opacity-100">
     <SocialIcons network="medium" fgColor="#ffffff" />
   </a>
-  <a href="https://github.com/grahamzemel" class="opacity-75 duration-500 hover:opacity-100">
+  <a href="https://github.com/grahamzemel" alt="Graham Zemel's Github Profile" class="opacity-75 duration-500 hover:opacity-100">
     <SocialIcons network="github" fgColor="#ffffff" />
   </a>
   <div style="padding-left:1rem;padding-bottom:.5rem;">
-    <a href="https://patreon.com/grahamzemel" class="opacity-75 duration-500 hover:opacity-100">
+    <a href="https://patreon.com/grahamzemel" alt="Graham Zemel's Patreon Page" class="opacity-75 duration-500 hover:opacity-100">
       <img
         loading="lazy"
         decoding="async"
@@ -155,12 +68,11 @@
       />
     </a>
   </div>
-  <a href="https://twitter.com/grahamzemel" class="opacity-75 duration-500 hover:opacity-100">
+  <a href="https://twitter.com/grahamzemel" alt="Graham Zemel's Twitter Profile" class="opacity-75 duration-500 hover:opacity-100">
     <SocialIcons network="twitter" fgColor="#ffffff" />
   </a>
   <a
-    href="https://www.linkedin.com/in/grahamzemel"
-    class="opacity-75 duration-500 hover:opacity-100"
+    href="https://www.linkedin.com/in/grahamzemel" alt="Graham Zemel's LinkedIn Profile" class="opacity-75 duration-500 hover:opacity-100" 
   >
     <SocialIcons network="linkedin" fgColor="#ffffff" />
   </a>

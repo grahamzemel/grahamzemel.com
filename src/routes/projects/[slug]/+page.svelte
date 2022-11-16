@@ -80,12 +80,12 @@
     <slot slot="icon-end" />
   </ButtonLink>
   {#if data.project.sourceCode}
-  <ButtonLink size="small" href={`${data.project.sourceCode}`}>
+  <ButtonLink size="small" alt={`${data.project.title}'s source code`}  href={`${data.project.sourceCode}`}>
     Source Code
   </ButtonLink>
   {/if}
   {#if data.project.liveDemo}
-  <ButtonLink size="small" href={`${data.project.liveDemo}`}>
+  <ButtonLink size="small" alt={`${data.project.title}'s live release`} href={data.project.liveDemo}>
     View Live
   </ButtonLink>
   {/if}

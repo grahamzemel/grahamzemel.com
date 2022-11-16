@@ -13,7 +13,6 @@
       .then((res) => res.json())
 
       .then((data) => {
-        // Filter for acctual posts. Comments don't have categories, therefore can filter for items with categories bigger than 0
         const res = data.items //This is an array with the content. No feed, no info about author etc..
         const posts = res.filter((item) => item.categories.length > 0).slice(0, 3) // That's the main trick* !
         // Functions to create a short text out of whole blog's content
@@ -126,9 +125,6 @@
         <br />
       </ul>
       <ul class="blog__counter">
-        <li class="blog__counterItem" />
-        <li class="blog__counterItem" />
-        <li class="blog__counterItem" />
       </ul>
     </section>
   </div>

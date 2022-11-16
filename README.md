@@ -1,4 +1,4 @@
-# Graham Zemel (.com) v1.1
+# Graham Zemel (.com) v1.2
 ### Created by [Graham Zemel](https://github.com/grahamzemel/)
 
 ## Basic Info
@@ -23,13 +23,12 @@
 [Rodney Johnson](https://github.com/rodneylab/svelte-social-icons)  
 
 ## Recent Updates:  
-Update icons in sidebar ✔️    
-Revise writing and large portions of text ✔️  
-
+Updated navIcons ✔️  /
+Construct template file for title navbar (easy) ✔️  
+Updated SEO heavily ✔️   
 ## TODO:
 Revise product cards (make it shiny?)  
 Make sidebar mobile-accessable (idek)  
-Create embedded content (fix csf)  
-Construct template file for title navbar (easy)  
+Create embedded content (fix csf [security stuff])  
   
 Add new project...

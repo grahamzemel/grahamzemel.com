@@ -1,6 +1,6 @@
 ---
 title: Graham Zemel (.com)
-date: 2022-11-10
+date: 2022-11-15
 time: 02:20
 category: Programming Internet Development
 featured: true

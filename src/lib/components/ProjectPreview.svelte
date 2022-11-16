@@ -51,7 +51,7 @@
       </h3>
     {/if}
 
-    <div>
+    <h4 class="!font-normal">
       {#if (addTimezoneOffset(new Date()) - addArticleOffset(new Date(`${project.date}T${project.time}`))) / 86400000 >= 7}
         Uploaded <time
           >{format(addTimezoneOffset(new Date(parseISO(project.date))), 'MMM d, yyyy')}</time
@@ -97,13 +97,13 @@
           {/if}
         {/if}
       {/if}
-    </div>
+    </h4>
     {#if project.category}
-      <h5 class="category text-xs lg:text-lg !mt-2 !mb-1 ">
+      <h4 class="category text-xs lg:text-lg !mt-2 !mb-1 ">
         {#each project.category as cat}
           <a target="_self" href={`/category/${String(cat).toLowerCase()}`}>{cat}</a>
         {/each}
-      </h5>
+      </h4>
     {/if}
     <!-- 12:00 midnight	00:00
 1:00 am	01:00
