@@ -6,14 +6,18 @@
   import { onMount } from 'svelte'
   import ProjectPreview from '$lib/components/ProjectPreview.svelte'
   import { GenericEmbed } from 'sveltekit-embed'
+    import it from 'date-fns/locale/it'
+    import { space } from 'svelte/internal'
   /** @type {import('./$types').PageData} */
   export let data
   let output = ''
   let postOutput
-  onMount( async function () {
+  onMount(async function () {
     fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/the-gray-area')
-      .then((res) => res.json())
 
+      .then((res) => res.json()).catch(error => {
+        console.log(error)
+      })
       .then((data) => {
         const res = data.items //This is an array with the content. No feed, no info about author etc..
         const posts = res.filter((item) => item.categories.length > 0).slice(0, 3) // That's the main trick* !
@@ -27,20 +31,31 @@
         function shortenText(text, startingPoint, maxLength) {
           return text.length > maxLength ? text.slice(startingPoint, maxLength) : text
         }
-
         posts.forEach((item) => {
+          let categories = item.categories
+          categories = categories.map((categories) => " " + categories.toUpperCase()).slice(0, 3)
+          const post = {
+            title: shortenText(item.title, 0, 60),
+            link: item.link,
+            thumbnail: item.thumbnail,
+            date: shortenText(item.pubDate, 0, 10),
+            creator: item.author,            
+            tags: categories,
+          }
+
+          // <p class="blog__intro">${post.categories}</p>
           output += `
          <li class="blog__post">
-            <a href="${item.link}">
-               <img width=100% height="100" alt="${item.title}" src="${item.thumbnail}"></img>
+            <a href="${post.link}">
+               <img width="75%" height="100" alt="${post.title}" src="${post.thumbnail}"></img>
                <div class="blog__content">
-                  <div class="blog_preview">
-                     <h2 class="blog__title">${shortenText(item.title, 0, 60)}</h2>
-                     <p class="blog__intro">${shortenText(toText(item.content), 0, 150) + '...'}</p>
+                <div class="blog_preview">
+                     <h2 class="blog__title">${post.title}</h2>
+                      <p class="blog__intro">${post.tags}</p>
                   </div>
                   <div class="blog__info">
-                     <span class="blog__author">${item.author}</span>
-                     <span class="blog__date">${shortenText(item.pubDate, 0, 10)}</span>
+                     <span class="blog__author">Written by ${post.creator}</span> </br>
+                     <span class="blog__date">Published on ${post.date}</span>
                   </div>
                </div>
                <hr>
@@ -50,7 +65,12 @@
         postOutput = document.querySelector('.blog__slider')
         postOutput.innerHTML = output
       })
+      .catch(error => {
+    console.error(error);
+    })
+      
   })
+ 
   const ogImage = `${website}/favicon.png`
 </script>
 
@@ -60,7 +80,10 @@
     name="description"
     content="Hi! I'm Graham Zemel - A full-stack developer, cybersecurity programmer, and IT enthusiast."
   />
-  <meta name="keywords" content="Graham Zemel, g-zem, grahamzemel, graham zemel blog, blog graham zemel, hacker graham zemel, graham zemel hacker, developer, programmer, cybersecurity, IT, full-stack" />
+  <meta
+    name="keywords"
+    content="Graham Zemel, g-zem, grahamzemel, graham zemel blog, blog graham zemel, hacker graham zemel, graham zemel hacker, developer, programmer, cybersecurity, IT, full-stack"
+  />
   <meta property="og:url" content={website} />
   <meta property="og:type" content="website" />
   <meta property="og:title" content={name} />
@@ -87,16 +110,19 @@
     <h2 class="!mt-[-4rem]">
       Hi! I'm Graham Zemel - A full-stack developer, cybersecurity programmer, and IT enthusiast.
     </h2>
-<br>
+    <br />
     <h3 style="color:gray">
       I develop websites💻, code malware👾, and write about the latest and greatest in computer
       science📝.
     </h3>
   </div>
   <!-- featured projects -->
-  <hr/>
+  <hr />
   <p class="text-[#000000] dark:text-[#FFFFFF] title_header !mb-2">
-    <strong class="!text-transparent !bg-clip-text bg-gradient-to-b from-[#7ec3f8] to-[#043a54] text-[#7ec3f8] lg:text-[2.4rem] font-bold">Featured</strong> Projects
+    <strong
+      class="!text-transparent !bg-clip-text bg-gradient-to-b from-[#7ec3f8] to-[#043a54] text-[#7ec3f8] lg:text-[2.4rem] font-bold"
+      >Featured</strong
+    > Projects
   </p>
   <hr />
   <div class="grid gap-4 grid-cols-1 sm:grid-cols-1 row-end-3 !mt-4">
@@ -108,8 +134,8 @@
       {/if}
     {/each}
   </div>
-  <br/> <br/>
-  <hr/>
+  <br /> <br />
+  <hr />
   <div class="relative">
     <div class="title_header">
       <p class="text-[#000000] dark:text-[#FFFFFF]">

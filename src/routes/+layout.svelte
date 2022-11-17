@@ -119,7 +119,7 @@
             class="flex !font-Mukta
         !text-transparent bg-clip-text !bg-[#FFFFFF] !dark:bg-[#000000]"
           >
-            <GetHeading title={path} />
+            <GetHeading />
           </p>
         </h2>
 
