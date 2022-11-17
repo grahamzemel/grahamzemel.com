@@ -71,7 +71,7 @@
   }
 </script>
 
-<svelte:window on:resize={setSquareCount}/>
+<svelte:window passive on:resize={setSquareCount}/>
 
 <div class="grid-wrapper">
   {#key thisPage}

@@ -18,7 +18,7 @@
 <div class="flex flex-col">
   {#if project.liveDemo}
       <div class="absolute self-end rounded-md no-underline">
-        <a href={project.liveDemo} alt={project.title} target="_blank">
+        <a href={project.liveDemo} aria-label={project.title} target="_blank">
           <InlineSVG src="/external-link.svg" class="h-12 w-12" />
       </div>
   {/if}
