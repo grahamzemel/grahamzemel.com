@@ -63,7 +63,11 @@
          </li>`
         })
         postOutput = document.querySelector('.blog__slider')
-        postOutput.innerHTML = output
+        if(output){
+          postOutput.innerHTML = output
+        } else {
+          postOutput.innerHTML = `<p class="blog__intro">Please wait, obtaining posts from <a href="https://medium.com/the-gray-area" aria-label="The Gray Area on Medium">The Gray Area</a></p>`
+        }
       })
       .catch(error => {
     console.error(error);
