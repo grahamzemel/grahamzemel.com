@@ -91,7 +91,6 @@
         <form
           name="contact"
           on:submit{handleSubmit}
-          passive
           method="POST"
           netlify
           netlify-honeypot="bot-field"

@@ -44,7 +44,6 @@
     class="settings-toggle !rounded-2xl	!h-8 !w-8 sm:h-8 sm:w-8 sm:p-1 !z-10"
     class:dark={!prefersLight}
     on:click={changeTheme}
-    passive
     >
     <LightDarkIcon />
 </button>
