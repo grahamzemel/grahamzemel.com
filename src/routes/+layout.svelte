@@ -49,14 +49,15 @@
 <div
   class="mediumInvisible flex flex-col justify-around h-full !text-transparent bg-clip-text bg-[#ffffff] dark:bg-[#111111] !pt-[5rem] !pb-[2rem] sidenav"
 >
-  <a href="https://blog.grahamzemel.com/" alt="Graham Zemel's Blog" class="opacity-75 duration-500 hover:opacity-100">
+  <!-- Aria label is for SEO purposes... -->
+  <a href="https://blog.grahamzemel.com/" aria-label="Graham Zemel's Blog" class="opacity-75 duration-500 hover:opacity-100">
     <SocialIcons network="medium" fgColor="#ffffff" />
   </a>
-  <a href="https://github.com/grahamzemel" alt="Graham Zemel's Github Profile" class="opacity-75 duration-500 hover:opacity-100">
+  <a href="https://github.com/grahamzemel" aria-label="Graham Zemel's Github Profile" class="opacity-75 duration-500 hover:opacity-100">
     <SocialIcons network="github" fgColor="#ffffff" />
   </a>
   <div style="padding-left:1rem;padding-bottom:.5rem;">
-    <a href="https://patreon.com/grahamzemel" alt="Graham Zemel's Patreon Page" class="opacity-75 duration-500 hover:opacity-100">
+    <a href="https://patreon.com/grahamzemel" aria-label="Graham Zemel's Patreon Page" class="opacity-75 duration-500 hover:opacity-100">
       <img
         loading="lazy"
         decoding="async"
@@ -68,11 +69,11 @@
       />
     </a>
   </div>
-  <a href="https://twitter.com/grahamzemel" alt="Graham Zemel's Twitter Profile" class="opacity-75 duration-500 hover:opacity-100">
+  <a href="https://twitter.com/grahamzemel" aria-label="Graham Zemel's Twitter Profile" class="opacity-75 duration-500 hover:opacity-100">
     <SocialIcons network="twitter" fgColor="#ffffff" />
   </a>
   <a
-    href="https://www.linkedin.com/in/grahamzemel" alt="Graham Zemel's LinkedIn Profile" class="opacity-75 duration-500 hover:opacity-100" 
+    href="https://www.linkedin.com/in/grahamzemel" aria-label="Graham Zemel's LinkedIn Profile" class="opacity-75 duration-500 hover:opacity-100" 
   >
     <SocialIcons network="linkedin" fgColor="#ffffff" />
   </a>

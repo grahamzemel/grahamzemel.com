@@ -641,6 +641,13 @@
   dependencies:
     "streamsearch" "^1.1.0"
 
+"cache@^3.0.0":
+  "integrity" "sha512-sNoM5jithfalxIceo/uFFm5bOlGjux2y8jEvjNb0F/cACWQaMmWuEPTLl6GzLHdFcNsbWBBdqkBd9NyefZ5UQQ=="
+  "resolved" "https://registry.npmjs.org/cache/-/cache-3.0.0.tgz"
+  "version" "3.0.0"
+  dependencies:
+    "ds" "^1.4.2"
+
 "cacheable-request@^2.1.1":
   "integrity" "sha512-vag0O2LKZ/najSoUwDbVlnlCFvhBE/7mGTY2B5FgCBDcRD+oVV1HYTOwM6JZfMg/hIcM6IwnTZ1uQQL5/X3xIQ=="
   "resolved" "https://registry.npmjs.org/cacheable-request/-/cacheable-request-2.1.4.tgz"
@@ -1227,6 +1234,11 @@
     "make-dir" "^1.2.0"
     "p-event" "^2.1.0"
     "pify" "^3.0.0"
+
+"ds@^1.4.2":
+  "integrity" "sha512-d5nMCjfod+srvE/1Bnt/u+L++6N8KJx3ZAi95AGp0g6RtfuGDNlGciWL/iiwKHsFVBVnA3/HEFUq5SW1NgTQ3Q=="
+  "resolved" "https://registry.npmjs.org/ds/-/ds-1.4.2.tgz"
+  "version" "1.4.2"
 
 "duplexer3@^0.1.4":
   "integrity" "sha512-1A8za6ws41LQgv9HrE/66jyC5yuSjQ3L/KOpFtoBilsAK2iA2wuS5rTt1OCzIvtS2V7nVmedsUU+DGRcjBmOYA=="
