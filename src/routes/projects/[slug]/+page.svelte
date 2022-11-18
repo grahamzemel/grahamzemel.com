@@ -34,7 +34,7 @@
   <meta name="twitter:image" content={ogImage} />
 </svelte:head>
 
-<article class="relative">
+<article class="relative ">
   <h1 class="!mt-4 !mb-1">
     <a class="!font-medium" href={$page.url.pathname}>
       {data.project.title}

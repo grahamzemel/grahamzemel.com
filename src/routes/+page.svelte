@@ -43,11 +43,10 @@
             tags: categories,
           }
 
-          // <p class="blog__intro">${post.categories}</p>
           output += `
          <li class="blog__post">
             <a href="${post.link}">
-               <img width="75%" height="100" alt="${post.title}" src="${post.thumbnail}"></img>
+               <img width="200px" height="100" alt="${post.title}" src="${post.thumbnail}"></img>
                <div class="blog__content">
                 <div class="blog_preview">
                      <h2 class="blog__title">${post.title}</h2>
@@ -58,7 +57,6 @@
                      <span class="blog__date">Published on ${post.date}</span>
                   </div>
                </div>
-               <hr>
             </a>
          </li>`
         })
@@ -150,7 +148,7 @@
     </div>
     <hr />
     <div id="blog" class="blog">
-      <ul class="blog__slider flex-col w-50% lg:flex-row lg:w-35%">
+      <ul class="blog__slider flex-col w-50% lg:flex-row lg:w-33% lg:border-2 lg:border-slate-700">
         {postOutput}
         <br />
       </ul>
