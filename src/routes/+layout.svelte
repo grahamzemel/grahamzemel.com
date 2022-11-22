@@ -17,7 +17,7 @@
 
 <div class="useWeb fixed text-black dark:text-[#808080] pl-[1rem] pt-[0.5rem] left-0 top-0 !z-30">
   <a href="/" target="_self"
-    ><img width="60" height="60" src="../favicon.png" alt="Graham Zemel's Logo" /></a
+    ><img width="60px" height="60px" src="../favicon.png" alt="Graham Zemel's Logo" /></a
   >
   
 </div>
@@ -52,18 +52,18 @@
   class="lg:invisible flex flex-row justify-around w-full text-black dark:text-[#808080] !pl-[5rem] !pb-[3rem] text-[10px] lg:text-[15px] nav btn-nav"
 >
   <a href="/about" class="!p-[2px] !border-[1px] rounded-md" target="_self"
-    ><img alt="About Me" width="35" height="35" src="/me.png" /></a
+    ><img alt="About Me" width="35px" height="35px" src="/me.png" /></a
   >
   <a href="/projectlist" class="!p-[4px] !border-[1px] rounded-md" target="_self"
-    ><img alt="Portfolio" width="30" height="30" src="/portfolio.png" /></a
+    ><img alt="Portfolio" width="30px" height="30px" src="/portfolio.png" /></a
   >
   <a
     href="https://medium.com/the-gray-area"
     class="!p-[2px] !border-[1px] rounded-md"
-    target="_self"><img alt="Publication" width="35" height="35" src="/grayArea.jpg" /></a
+    target="_self"><img alt="Publication" width="35px" height="35px" src="/grayArea.jpg" /></a
   >
   <a href="/contact" class="!p-[4px] !border-[1px] rounded-md" target="_self"
-    ><img alt="Contact Me" width="30" height="30" src="/contact.png" /></a
+    ><img alt="Contact Me" width="30px" height="30px" src="/contact.png" /></a
   >
 </div>
 
@@ -94,8 +94,8 @@
       <img
         loading="lazy"
         decoding="async"
-        width="50"
-        height="50"
+        width="50px"
+        height="50px"
         alt="Patreon"
         style="border-style:solid;"
         src="/patreon.png"
