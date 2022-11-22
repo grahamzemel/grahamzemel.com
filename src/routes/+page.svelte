@@ -45,7 +45,7 @@
           output += `
          <li class="blog__post">
             <a href="${post.link}">
-               <img style="width:200px;height:100px;" alt="${post.title}" src="${post.thumbnail}"></img>
+               <img width="200" height="100" alt="${post.title}" src="${post.thumbnail}"></img>
                <div class="blog__content">
                 <div class="blog_preview">
                      <h2 class="blog__title">${post.title}</h2>
