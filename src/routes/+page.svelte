@@ -5,9 +5,8 @@
   import { name, website } from '$lib/info'
   import { onMount } from 'svelte'
   import ProjectPreview from '$lib/components/ProjectPreview.svelte'
+  import Carousel from '$lib/components/Carousel.svelte'
   import { GenericEmbed } from 'sveltekit-embed'
-    import it from 'date-fns/locale/it'
-    import { space } from 'svelte/internal'
   /** @type {import('./$types').PageData} */
   export let data
   let output = ''
@@ -63,6 +62,7 @@
         postOutput = document.querySelector('.blog__slider')
         if(output){
           postOutput.innerHTML = output
+          // console.log("output")
         } else {
           postOutput.innerHTML = `<p class="blog__intro">Please wait, obtaining posts from <a href="https://medium.com/the-gray-area" aria-label="The Gray Area on Medium">The Gray Area</a></p>`
         }
@@ -155,3 +155,5 @@
     </div>
   </div>
 </div>
+<!-- <div class="flex blog__slider"><Carousel></Carousel></div> -->
+

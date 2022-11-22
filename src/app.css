@@ -38,7 +38,7 @@ a {
   @apply rounded-sm;
   @apply focus;
 }
-@media only screen and (max-width: 1024px) {
+@media screen and (max-width: 1024px) {
   .gzLogo{
     display: none !important;
   }
@@ -46,9 +46,15 @@ a {
     display: none !important;
   }
   .useWeb{
-    display: relative !important;
+    display: none !important;
   }
   
+}
+@media screen and (min-width: 1024px) {
+
+  .useMobile{
+    display: none !important;
+  }
 }
 
 html {
@@ -512,8 +518,15 @@ ul {
   text-align: center !important;
   letter-spacing: 0.025em;
 }
-SocialIcons {
-  opacity: 1;
+.dropdown:hover {
+  transition: all 0.5s ease-in-out;
+  transform: scaleY(1);
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+  background-color: transparent;
+  transition: all 0.5s ease-in-out;
+  transform: scaleY(1);
 }
 @tailwind components;
 @tailwind utilities;

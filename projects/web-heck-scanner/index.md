@@ -5,6 +5,7 @@ time: 08:15
 category: Programming Automation Bash
 featured: True
 sourceCode: https://github.com/grahamzemel/WebHeckScanner
+liveDemo: https://github.com/grahamzemel/WebHeckScanner
 ---
 <script>  
 import Link from '$lib/components/Link.svelte'

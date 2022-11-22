@@ -15,16 +15,37 @@
   let date
 </script>
 
-<div class="fixed pl-[.8rem] pt-[0.20rem] top-0 left-0" style="z-index: 20;">
-  <a href="/" target="_self"><img width="60" height="60" src="../favicon.png" alt="Graham Zemel's Logo" /></a>
+<div class="useWeb fixed text-black dark:text-[#808080] pl-[1rem] pt-[0.5rem] left-0 top-0 !z-30">
+  <a href="/" target="_self"
+    ><img width="60" height="60" src="../favicon.png" alt="Graham Zemel's Logo" /></a
+  >
+  
+</div>
+<div class="useMobile fixed text-black dark:text-[#808080] left-0 top-0 pt-[-0.5rem] !z-30">
+  <div class="dropdown absolute">
+    <button class="px-5 py-3 bg-[#404040] bg-transparent text-[#808080] rounded-lg" style="font-size: 2rem !important;">Ξ</button>
+    <ul class="dropdown-menu absolute hidden text-gray-700 pt-1">
+      <li class="rounded-t-lg bg-gray-200 hover:bg-gray-400 py-2 px-4 block">
+        <a href="#">One</a>
+      </li>
+      <li class="bg-gray-200 hover:bg-gray-400 py-2 px-4 block"><a href="#">Two</a></li>
+      <li class="rounded-b-lg bg-gray-200 hover:bg-gray-400 py-2 px-4 block">
+        <a href="#">Three is the magic number</a>
+      </li>
+    </ul>
+  </div>
 </div>
 
-<div
-  class="mediumInvisible flex flex-row justify-around w-full !pl-[5rem] !pb-[3rem] nav btn-nav"
->
+<div class="mediumInvisible flex flex-row justify-around w-full !pl-[5rem] !pb-[3rem] nav btn-nav">
   <NavLink href="/about" alt="Graham Zemel's About Me" src="/me.png">About Me</NavLink>
-  <NavLink href="/projectlist" alt="Graham Zemel's Portfolio" src="/portfolio.png">Projects</NavLink>
-  <NavLink href="https://medium.com/the-gray-area" outline=true alt="The Gray Area Publication" src="/grayArea.jpg">Publication</NavLink>
+  <NavLink href="/projectlist" alt="Graham Zemel's Portfolio" src="/portfolio.png">Projects</NavLink
+  >
+  <NavLink
+    href="https://medium.com/the-gray-area"
+    outline="true"
+    alt="The Gray Area Publication"
+    src="/grayArea.jpg">Publication</NavLink
+  >
   <NavLink href="/contact" alt="Contact Graham Zemel" src="/contact.png">Contact</NavLink>
 </div>
 <div
@@ -50,14 +71,26 @@
   class="mediumInvisible flex flex-col justify-around h-full !text-transparent bg-clip-text bg-[#ffffff] dark:bg-[#111111] !pt-[5rem] !pb-[2rem] sidenav"
 >
   <!-- Aria label is for SEO purposes... -->
-  <a href="https://blog.grahamzemel.com/" aria-label="Graham Zemel's Blog" class="opacity-75 duration-500 hover:opacity-100">
+  <a
+    href="https://blog.grahamzemel.com/"
+    aria-label="Graham Zemel's Blog"
+    class="opacity-75 duration-500 hover:opacity-100"
+  >
     <SocialIcons network="medium" fgColor="#ffffff" />
   </a>
-  <a href="https://github.com/grahamzemel" aria-label="Graham Zemel's Github Profile" class="opacity-75 duration-500 hover:opacity-100">
+  <a
+    href="https://github.com/grahamzemel"
+    aria-label="Graham Zemel's Github Profile"
+    class="opacity-75 duration-500 hover:opacity-100"
+  >
     <SocialIcons network="github" fgColor="#ffffff" />
   </a>
   <div style="padding-left:1rem;padding-bottom:.5rem;">
-    <a href="https://patreon.com/grahamzemel" aria-label="Graham Zemel's Patreon Page" class="opacity-75 duration-500 hover:opacity-100">
+    <a
+      href="https://patreon.com/grahamzemel"
+      aria-label="Graham Zemel's Patreon Page"
+      class="opacity-75 duration-500 hover:opacity-100"
+    >
       <img
         loading="lazy"
         decoding="async"
@@ -69,11 +102,17 @@
       />
     </a>
   </div>
-  <a href="https://twitter.com/grahamzemel" aria-label="Graham Zemel's Twitter Profile" class="opacity-75 duration-500 hover:opacity-100">
+  <a
+    href="https://twitter.com/grahamzemel"
+    aria-label="Graham Zemel's Twitter Profile"
+    class="opacity-75 duration-500 hover:opacity-100"
+  >
     <SocialIcons network="twitter" fgColor="#ffffff" />
   </a>
   <a
-    href="https://www.linkedin.com/in/grahamzemel" aria-label="Graham Zemel's LinkedIn Profile" class="opacity-75 duration-500 hover:opacity-100" 
+    href="https://www.linkedin.com/in/grahamzemel"
+    aria-label="Graham Zemel's LinkedIn Profile"
+    class="opacity-75 duration-500 hover:opacity-100"
   >
     <SocialIcons network="linkedin" fgColor="#ffffff" />
   </a>

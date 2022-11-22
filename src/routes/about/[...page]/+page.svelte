@@ -117,14 +117,14 @@
   </p>
   <hr />
   <h5 class="linkBtn">
-    I post just about everything on my blog,
+    I submit my best articles to my publication,
     <Link href={'https://medium.com/the-gray-area'}>
       <strong>The Gray Area</strong>
     </Link>
-    . <strong>Programming tips</strong>, <strong>cybersecurity software</strong>,
+    (200+ followers). <strong>Programming tips</strong>, <strong>cybersecurity software</strong>,
     <strong>bug bounties</strong>, you name it. <br /> <br />
 
-    I post new articles <strong>every day</strong>, and I've got a few different social media
+    I post new articles <strong>every day</strong> on <Link href={'https://blog.grahamzemel.com'}>my regular profile</Link> (800+ followers) though, and I've got a few different social media
     accounts where you might see them if you follow me. <br /> <br />
     <div class="justify-between">
       <!-- <hr class="introBreak"> -->
@@ -152,6 +152,11 @@
       this link
     </Link>
     , you'll be the first to know whenever I find something neat or publish a new article.
+
+    <br /><br />
+    <div class="iframely-embed"><div class="iframely-responsive" style="height: 140px; padding-bottom: 0;"><a href="https://www.patreon.com/grahamzemel" data-iframely-url="//iframely.net/hssXBcV">loading iframe...</a></div></div><script async src="//iframely.net/embed.js"></script>
+    <br>
+    If you'd like to really contribute to my writing (or my skillset as a developer), you can grab a tier on my <Link href={'https://www.patreon.com/grahamzemel'}>Patreon</Link> and get access to <strong>private newsletters</strong>, <strong>private source code</strong> for projects, and even <strong>personal contact info</strong>.
   </h5>
   <br />
 </div>
