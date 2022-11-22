@@ -17,7 +17,7 @@
 
 <div class="useWeb fixed text-black dark:text-[#808080] pl-[1rem] pt-[0.5rem] left-0 top-0 !z-30">
   <a href="/" target="_self"
-    ><img width="60" height="60" src="../favicon.png" alt="Graham Zemel's Logo" /></a
+    ><img width="60" height="60" src="/logo.webp" alt="Graham Zemel's Logo" /></a
   >
   
 </div>
@@ -60,7 +60,7 @@
   <a
     href="https://medium.com/the-gray-area"
     class="!p-[2px] !border-[1px] rounded-md"
-    target="_self"><img alt="Publication" width="35" height="35" src="/grayArea.jpg" /></a
+    target="_self"><img alt="Publication" width="35" height="35" src="/grayArea.webp" /></a
   >
   <a href="/contact" class="!p-[4px] !border-[1px] rounded-md" target="_self"
     ><img alt="Contact Me" width="30" height="30" src="/contact.png" /></a
@@ -98,7 +98,7 @@
         height="50"
         alt="Patreon"
         style="border-style:solid;"
-        src="/patreon.png"
+        src="/patreon.webp"
       />
     </a>
   </div>
