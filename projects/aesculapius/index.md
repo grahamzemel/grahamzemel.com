@@ -40,7 +40,6 @@ We also added the potential capabilities for getting directions to the three nea
      src="./example.png"
 />
 
-<div class="iframely-embed"><div class="iframely-responsive" style="height: 140px; padding-bottom: 0;"><a href="https://devpost.com/software/aesculapius" data-iframely-url="//iframely.net/4vr9OkA">loading iframe...</a></div></div><script async src="//iframely.net/embed.js"></script>
 <br/>
 If you'd like to see our project on the Devpost website where it won MetroHacks 2022 (375+ participants), check it out <Link href='https://devpost.com/software/aesculapius'><strong>here</strong></Link>.
 </div>

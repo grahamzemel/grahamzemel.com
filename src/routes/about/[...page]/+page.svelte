@@ -154,8 +154,6 @@
     , you'll be the first to know whenever I find something neat or publish a new article.
 
     <br /><br />
-    <div class="iframely-embed"><div class="iframely-responsive" style="height: 140px; padding-bottom: 0;"><a href="https://www.patreon.com/grahamzemel" data-iframely-url="//iframely.net/hssXBcV">loading iframe...</a></div></div><script async src="//iframely.net/embed.js"></script>
-    <br>
     If you'd like to really contribute to my writing (or my skillset as a developer), you can grab a tier on my <Link href={'https://www.patreon.com/grahamzemel'}>Patreon</Link> and get access to <strong>private newsletters</strong>, <strong>private source code</strong> for projects, and even <strong>personal contact info</strong>.
   </h5>
   <br />
