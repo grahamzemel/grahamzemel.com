@@ -17,7 +17,7 @@
 
 <div class="useWeb fixed text-black dark:text-[#808080] pl-[1rem] pt-[0.5rem] left-0 top-0 !z-30">
   <a href="/" target="_self"
-    ><img width="60" height="60" src="/logo.webp" alt="Graham Zemel's Logo" /></a
+    ><img style="width:60px;height:60px;" src="/logo.webp" alt="Graham Zemel's Logo" /></a
   >
   
 </div>
@@ -44,7 +44,7 @@
     href="https://medium.com/the-gray-area"
     outline="true"
     alt="The Gray Area Publication"
-    src="/grayArea.jpg">Publication</NavLink
+    src="/grayArea.webp">Publication</NavLink
   >
   <NavLink href="/contact" alt="Contact Graham Zemel" src="/contact.png">Contact</NavLink>
 </div>
@@ -60,7 +60,7 @@
   <a
     href="https://medium.com/the-gray-area"
     class="!p-[2px] !border-[1px] rounded-md"
-    target="_self"><img alt="Publication" width="35" height="35" src="/grayArea.webp" /></a
+    target="_self"><img style="width:35px;height:35px;" alt="Publication" src="/grayArea.webp" /></a
   >
   <a href="/contact" class="!p-[4px] !border-[1px] rounded-md" target="_self"
     ><img alt="Contact Me" width="30" height="30" src="/contact.png" /></a
@@ -92,13 +92,13 @@
       class="opacity-75 duration-500 hover:opacity-100"
     >
       <img
+        src="/patreon.webp"
         loading="lazy"
         decoding="async"
         width="50"
         height="50"
         alt="Patreon"
         style="border-style:solid;"
-        src="/patreon.webp"
       />
     </a>
   </div>
