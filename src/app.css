@@ -519,6 +519,16 @@ ul {
   letter-spacing: 0.025em;
 }
 .dropdown:hover {
+  transition: all .5s ease-in-out;
+  transform: scaleY(1);
+}
+.dropdown:after {
+  transition: all 0.5s ease-in-out;
+  transform: scaleY(1);
+}
+.dropdown:after .dropdown-menu {
+  display: block;
+  background-color: transparent;
   transition: all 0.5s ease-in-out;
   transform: scaleY(1);
 }
@@ -527,6 +537,9 @@ ul {
   background-color: transparent;
   transition: all 0.5s ease-in-out;
   transform: scaleY(1);
+}
+.dropdown-menu li{
+  @apply bg-[#cccccc] duration-300 hover:bg-[#dddddd];
 }
 @tailwind components;
 @tailwind utilities;
