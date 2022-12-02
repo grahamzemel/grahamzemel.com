@@ -13,138 +13,21 @@
   const path = $page.url.pathname
   import MyDateComponent from './date.svelte'
   let date
+
+	import Sidebar from '../lib/components/Sidebar.svelte'
+  import Hamburger from '../lib/components/Hamburger.svelte'
+	let sidebar = false
 </script>
 
-<div class="useWeb fixed text-black dark:text-[#808080] pl-[1rem] pt-[0.5rem] left-0 top-0 !z-30">
+<!-- web interface -->
+<div class="useWeb fixed text-[#404040] dark:text-[#808080] pl-[1.05rem] pt-[0.1rem] left-0 top-0 !z-50">
   <a href="/" target="_self"
     ><img style="width:60px;height:60px;" src="/logo.webp" alt="Graham Zemel's Logo" /></a
   >
 </div>
-<div class="useMobile fixed text-black dark:text-[#808080] left-0 top-0 !z-30">
-  <div class="dropdown absolute">
-    <button
-      class="px-8 py-2 bg-[#404040] bg-transparent text-[#808080] rounded-lg"
-      style="font-size: 2rem !important;">Ξ</button
-    >
-    <ul class="dropdown-menu absolute hidden text-[#404040] dark:text-white pt-4 !pl-[1rem]">
-      <div class="rounded-[.65rem] border-2 border-[#808080] dark:border-[#404040] justify-center text-center">
-        <!-- dark:bg-[#151515] duration-300 dark:hover:bg-[#f8f8f8] -->
-        <li 
-          class="rounded-t-lg py-2 px-4 block border-[#808080] dark:border-[#404040] border-b-2"
-        >
-          <a
-            href="https://blog.grahamzemel.com/"
-            aria-label="Graham Zemel's Blog"
-            class="opacity-75 duration-500 hover:opacity-100"
-          >
-            <SocialIcons network="medium" fgColor="#ffffff" />
-          </a>
-        </li>
-        <li
-          class="bg-[#151515] duration-300 hover:bg-[#303030] py-2 px-4 block border-[#808080] dark:border-[#404040] border-b-2"
-        >
-          <a
-            href="https://github.com/grahamzemel"
-            aria-label="Graham Zemel's Github Profile"
-            class="opacity-75 duration-500 hover:opacity-100"
-          >
-            <SocialIcons network="github" fgColor="#ffffff" />
-          </a>
-        </li>
-        <li
-          class="bg-[#151515] duration-300 hover:bg-[#303030] py-2 px-4 block border-[#808080] dark:border-[#404040] border-b-2"
-        >
-          <a
-            href="https://patreon.com/grahamzemel"
-            aria-label="Graham Zemel's Patreon Page"
-            class="opacity-75 duration-500 hover:opacity-100"
-          >
-            <img
-              src="/patreon.webp"
-              loading="lazy"
-              decoding="async"
-              width="50"
-              height="50"
-              alt="Patreon"
-              style="border-style:solid;"
-            />
-          </a>
-        </li>
-        <li
-          class="bg-[#151515] duration-300 hover:bg-[#303030] py-2 px-4 block border-[#808080] dark:border-[#404040] border-b-2"
-        >
-          <a
-            href="https://twitter.com/grahamzemel"
-            aria-label="Graham Zemel's Twitter Profile"
-            class="opacity-75 duration-500 hover:opacity-100"
-          >
-            <SocialIcons network="twitter" fgColor="#ffffff" />
-          </a>
-        </li>
-        <li
-          class="bg-[#151515] duration-300 hover:bg-[#303030] py-2 px-4 block border-[#808080] dark:border-[#404040] border-b-2"
-        >
-          <a
-            href="https://www.linkedin.com/in/grahamzemel"
-            aria-label="Graham Zemel's LinkedIn Profile"
-            class="opacity-75 duration-500 hover:opacity-100"
-          >
-            <SocialIcons network="linkedin" fgColor="#ffffff" />
-          </a>
-        </li>
-        <li class="rounded-b-lg bg-[#151515] duration-300 hover:bg-[#303030] px-4 pt-[.5rem] pb-[-1rem]">
-          <p
-            class="relative z-0"
-          >
-            ©
-          </p>
-          <!-- <p class="pt-[1rem]" /> -->
-          <p
-            class="relative z-10 flex justify-center items-center opacity-0 z-10 duration-300 hover:opacity-[1] text-[10px]"
-          >
-            Graham Zemel 2022
-          </p>
-        </li>
-      </div>
-    </ul>
-  </div>
-</div>
-
-<div class="mediumInvisible flex flex-row justify-around w-full !pl-[5rem] !pb-[3rem] nav btn-nav">
-  <NavLink href="/about" alt="Graham Zemel's About Me" src="/me.png">About Me</NavLink>
-  <NavLink href="/projectlist" alt="Graham Zemel's Portfolio" src="/portfolio.png">Projects</NavLink
-  >
-  <NavLink
-    href="https://medium.com/the-gray-area"
-    outline="true"
-    alt="The Gray Area Publication"
-    src="/grayArea.webp">Publication</NavLink
-  >
-  <NavLink href="/contact" alt="Contact Graham Zemel" src="/contact.png">Contact</NavLink>
-</div>
 <div
-  class="lg:invisible flex flex-row justify-around w-full text-black dark:text-[#808080] !pl-[5rem] !pb-[3rem] text-[10px] lg:text-[15px] nav btn-nav"
+  class="useWeb flex flex-col justify-around h-full !text-transparent bg-clip-text bg-[#ffffff] dark:bg-[#111111] !pt-[4rem] !pb-[2rem] shadow-lg sidenav"
 >
-  <a href="/about" class="!p-[2px] !border-[1px] rounded-md" target="_self"
-    ><img alt="About Me" width="35" height="35" src="/me.png" /></a
-  >
-  <a href="/projectlist" class="!p-[4px] !border-[1px] rounded-md" target="_self"
-    ><img alt="Portfolio" width="30" height="30" src="/portfolio.png" /></a
-  >
-  <a
-    href="https://medium.com/the-gray-area"
-    class="!p-[2px] !border-[1px] rounded-md"
-    target="_self"><img style="width:35px;height:35px;" alt="Publication" src="/grayArea.webp" /></a
-  >
-  <a href="/contact" class="!p-[4px] !border-[1px] rounded-md" target="_self"
-    ><img alt="Contact Me" width="30" height="30" src="/contact.png" /></a
-  >
-</div>
-
-<div
-  class="mediumInvisible flex flex-col justify-around h-full !text-transparent bg-clip-text bg-[#ffffff] dark:bg-[#111111] !pt-[5rem] !pb-[2rem] sidenav"
->
-  <!-- Aria label is for SEO purposes... -->
   <a
     href="https://blog.grahamzemel.com/"
     aria-label="Graham Zemel's Blog"
@@ -159,23 +42,13 @@
   >
     <SocialIcons network="github" fgColor="#ffffff" />
   </a>
-  <div style="padding-left:1rem;padding-bottom:.5rem;">
-    <a
-      href="https://patreon.com/grahamzemel"
-      aria-label="Graham Zemel's Patreon Page"
-      class="opacity-75 duration-500 hover:opacity-100"
-    >
-      <img
-        src="/patreon.webp"
-        loading="lazy"
-        decoding="async"
-        width="50"
-        height="50"
-        alt="Patreon"
-        style="border-style:solid;"
-      />
-    </a>
-  </div>
+  <a
+    href="https://store.grahamzemel.com"
+    aria-label="Graham Zemel's Gumroad Store"
+    class="opacity-75 duration-500 hover:opacity-100"
+  >
+  <SocialIcons network="itch.io" bgColor="#808080" fgColor="#ffffff" />
+</a>
   <a
     href="https://twitter.com/grahamzemel"
     aria-label="Graham Zemel's Twitter Profile"
@@ -194,8 +67,7 @@
     <ThemeToggle />
   </h2>
   <p
-    style="padding-left:1em;"
-    class="absolute !pl-[2.3rem] bottom-10 z-0 text-[#4b5563] dark:text-white"
+    class="absolute !pl-[2.7rem] bottom-10 z-0 text-[#4b5563] dark:text-white"
   >
     ©
   </p>
@@ -206,6 +78,55 @@
     Graham Zemel 2022
   </p>
 </div>
+
+<!-- mobile interface -->
+<div class="useMobile fixed text-[#404040] dark:text-[#808080] pl-[2rem] pt-[1.25rem] left-0 top-0 !z-50">
+  <Hamburger bind:open={sidebar}/>
+</div>
+<div
+  class="useMobile flex flex-col justify-around h-full !text-transparent bg-clip-text bg-[#ffffff] dark:bg-[#111111] !pt-[5rem] !pb-[2rem] sidenav"
+>
+  <Sidebar bind:sidebar/>
+</div>
+
+<!-- Basic navigation top bar -->
+<div class="fixed text-black dark:text-[#808080] !z-30">
+  <div
+    class="useWeb flex flex-row justify-around w-full !pl-[5rem] !pb-[3rem] nav btn-nav"
+  >
+    <NavLink href="/about" alt="Graham Zemel's About Me" src="/me.png">About Me</NavLink>
+    <NavLink href="/projectlist" alt="Graham Zemel's Portfolio" src="/portfolio.png"
+      >Projects</NavLink
+    >
+    <NavLink
+      href="https://medium.com/the-gray-area"
+      outline="true"
+      alt="The Gray Area Publication"
+      src="/grayArea.webp">Publication</NavLink
+    >
+    <NavLink href="/contact" alt="Contact Graham Zemel" src="/contact.png">Contact</NavLink>
+  </div>
+  <div
+    class="lg:invisible flex flex-row justify-around w-full text-black dark:text-[#808080] !pl-[8rem] !pb-[3rem] text-[10px] lg:text-[15px] nav btn-nav"
+  >
+    <a href="/about" class="!p-[2px] !border-[1px] rounded-md" target="_self"
+      ><img alt="About Me" width="35" height="35" src="/me.png" /></a
+    >
+    <a href="/projectlist" class="!p-[4px] !border-[1px] rounded-md" target="_self"
+      ><img alt="Portfolio" width="30" height="30" src="/portfolio.png" /></a
+    >
+    <a
+      href="https://medium.com/the-gray-area"
+      class="!p-[2px] !border-[1px] rounded-md"
+      target="_self"
+      ><img style="width:35px;height:35px;" alt="Publication" src="/grayArea.webp" /></a
+    >
+    <a href="/contact" class="!p-[4px] !border-[1px] rounded-md" target="_self"
+      ><img alt="Contact Me" width="30" height="30" src="/contact.png" /></a
+    >
+  </div>
+</div>
+
 <MyDateComponent bind:date />
 
 <div class="!mt-20 lg:!ml-10">

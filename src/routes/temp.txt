@@ -1,0 +1,87 @@
+<div class="dropdown absolute">
+    <button
+      class="px-8 py-2 bg-[#404040] bg-transparent text-[#808080] rounded-lg"
+      style="font-size: 2rem !important;">Ξ</button
+    >
+    <ul id="dropdown-menu" class="dropdown-menu absolute hidden text-[#404040] dark:text-white pt-4 !pl-[1rem]">
+      <div class="rounded-[.65rem] border-2 border-[#808080] dark:border-[#404040] justify-center text-center">
+        <!-- dark:bg-[#151515] duration-300 dark:hover:bg-[#f8f8f8] -->
+        <li 
+          class="rounded-t-lg py-2 px-4 block border-[#808080] dark:border-[#404040] border-b-2"
+        >
+          <a
+            href="https://blog.grahamzemel.com/"
+            aria-label="Graham Zemel's Blog"
+            class="opacity-75 duration-500 hover:opacity-100"
+          >
+            <SocialIcons network="medium" fgColor="#ffffff" />
+          </a>
+        </li>
+        <li
+          class="bg-[#151515] duration-300 hover:bg-[#303030] py-2 px-4 block border-[#808080] dark:border-[#404040] border-b-2"
+        >
+          <a
+            href="https://github.com/grahamzemel"
+            aria-label="Graham Zemel's Github Profile"
+            class="opacity-75 duration-500 hover:opacity-100"
+          >
+            <SocialIcons network="github" fgColor="#ffffff" />
+          </a>
+        </li>
+        <li
+          class="bg-[#151515] duration-300 hover:bg-[#303030] py-2 px-4 block border-[#808080] dark:border-[#404040] border-b-2"
+        >
+          <a
+            href="https://patreon.com/grahamzemel"
+            aria-label="Graham Zemel's Patreon Page"
+            class="opacity-75 duration-500 hover:opacity-100"
+          >
+            <img
+              src="/patreon.webp"
+              loading="lazy"
+              decoding="async"
+              width="50"
+              height="50"
+              alt="Patreon"
+              style="border-style:solid;"
+            />
+          </a>
+        </li>
+        <li
+          class="bg-[#151515] duration-300 hover:bg-[#303030] py-2 px-4 block border-[#808080] dark:border-[#404040] border-b-2"
+        >
+          <a
+            href="https://twitter.com/grahamzemel"
+            aria-label="Graham Zemel's Twitter Profile"
+            class="opacity-75 duration-500 hover:opacity-100"
+          >
+            <SocialIcons network="twitter" fgColor="#ffffff" />
+          </a>
+        </li>
+        <li
+          class="bg-[#151515] duration-300 hover:bg-[#303030] py-2 px-4 block border-[#808080] dark:border-[#404040] border-b-2"
+        >
+          <a
+            href="https://www.linkedin.com/in/grahamzemel"
+            aria-label="Graham Zemel's LinkedIn Profile"
+            class="opacity-75 duration-500 hover:opacity-100"
+          >
+            <SocialIcons network="linkedin" fgColor="#ffffff" />
+          </a>
+        </li>
+        <li class="rounded-b-lg bg-[#151515] duration-300 hover:bg-[#303030] px-4 pt-[.5rem] pb-[-1rem]">
+          <p
+            class="relative z-0"
+          >
+            ©
+          </p>
+          <!-- <p class="pt-[1rem]" /> -->
+          <p
+            class="relative z-10 flex justify-center items-center opacity-0 z-10 duration-300 hover:opacity-[1] text-[10px]"
+          >
+            Graham Zemel 2022
+          </p>
+        </li>
+      </div>
+    </ul>
+  </div>

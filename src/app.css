@@ -262,7 +262,7 @@ li{
 }
 .sidenav {
   height: 100%;
-  width: 80px;
+  width: 90px;
   text-align: center;
   position: fixed;
   z-index: 20;
@@ -270,7 +270,6 @@ li{
   left: 0;
   background-color: #111;
   padding-top: 20px;
-  border-right: 2px solid #1c1c1c;
   overflow-x: visible;
 }
 .sidenav a {
@@ -286,6 +285,7 @@ li{
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  /* padding-left: rem !important; */
 }
 
 span {
@@ -518,11 +518,11 @@ ul {
   text-align: center !important;
   letter-spacing: 0.025em;
 }
-.dropdown:hover {
+/* .dropdown:hover {
   transition: all .5s ease-in-out;
   transform: scaleY(1);
-}
-.dropdown:after {
+} */
+/* .dropdown:after {
   transition: all 0.5s ease-in-out;
   transform: scaleY(1);
 }
@@ -531,15 +531,15 @@ ul {
   background-color: transparent;
   transition: all 0.5s ease-in-out;
   transform: scaleY(1);
-}
-.dropdown:hover .dropdown-menu {
+} */
+/* .dropdown:hover .dropdown-menu {
   display: block;
   background-color: transparent;
   transition: all 0.5s ease-in-out;
   transform: scaleY(1);
-}
-.dropdown-menu li{
+} */
+/* .dropdown-menu li{
   @apply bg-[#cccccc] duration-300 hover:bg-[#dddddd];
-}
+} */
 @tailwind components;
 @tailwind utilities;
