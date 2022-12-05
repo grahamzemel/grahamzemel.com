@@ -124,7 +124,7 @@
     (200+ followers). <strong>Programming tips</strong>, <strong>cybersecurity software</strong>,
     <strong>bug bounties</strong>, you name it. <br /> <br />
 
-    I post new articles <strong>every day</strong> on <Link href={'https://blog.grahamzemel.com'}>my regular profile</Link> (800+ followers) though, and I've got a few different social media
+    I post new articles <strong>every day</strong> on <Link href={'https://blog.grahamzemel.com'}>my regular profile</Link> (1000+ followers) though, and I've got a few different social media
     accounts where you might see them if you follow me. <br /> <br />
     <div class="justify-between">
       <!-- <hr class="introBreak"> -->
@@ -154,7 +154,7 @@
     , you'll be the first to know whenever I find something neat or publish a new article.
 
     <br /><br />
-    If you'd like to really contribute to my writing (or my skillset as a developer), you can grab a tier on my <Link href={'https://www.patreon.com/grahamzemel'}>Patreon</Link> and get access to <strong>private newsletters</strong>, <strong>private source code</strong> for projects, and even <strong>personal contact info</strong>.
+    If you'd like to really contribute to my writing (or my skillset as a developer), you can grab a tier on my <Link href={'https://www.patreon.com/grahamzemel'}>Patreon</Link> and get access to private newsletters, private source code for projects, and even personal contact info.
   </h5>
   <br />
 </div>

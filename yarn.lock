@@ -115,10 +115,10 @@
   "resolved" "https://registry.npmjs.org/@polka/url/-/url-1.0.0-next.21.tgz"
   "version" "1.0.0-next.21"
 
-"@rodneylab/svelte-social-icons@^0.0.23":
-  "integrity" "sha512-PxJHa3rYs3UNC+hyg0ZI69y2ZLvdEbvZjsKOQcLeYki9dHfr4/a1zJnWvJcXM9TcT2xR4AIeS4R2aHlxvWgtIw=="
-  "resolved" "https://registry.npmjs.org/@rodneylab/svelte-social-icons/-/svelte-social-icons-0.0.23.tgz"
-  "version" "0.0.23"
+"@rodneylab/svelte-social-icons@^0.0.24":
+  "integrity" "sha512-Q7sQxMx5XaRjWMs8XLRevqKvnC3ghRFBPDA6Eg+54EN1WN3UiTWb4Qe64hwibvabUMrv/J2fr2FAN0Nr4+Qhhg=="
+  "resolved" "https://registry.npmjs.org/@rodneylab/svelte-social-icons/-/svelte-social-icons-0.0.24.tgz"
+  "version" "0.0.24"
 
 "@rollup/pluginutils@^4.2.1":
   "integrity" "sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ=="
@@ -1014,9 +1014,9 @@
     "ms" "2.1.2"
 
 "decode-uri-component@^0.2.0":
-  "integrity" "sha512-hjf+xovcEn31w/EUYdTXQh/8smFL/dzYjohQGEIgjyNavaJfBY2p5F527Bo1VPATxv0VYTUC2bOcXvqFwk78Og=="
-  "resolved" "https://registry.npmjs.org/decode-uri-component/-/decode-uri-component-0.2.0.tgz"
-  "version" "0.2.0"
+  "integrity" "sha512-FqUYQ+8o158GyGTrMFJms9qh3CqTKvAqgqsTnkLI8sKu0028orqBhxNMFkFen0zGyg6epACD32pjVk58ngIErQ=="
+  "resolved" "https://registry.npmjs.org/decode-uri-component/-/decode-uri-component-0.2.2.tgz"
+  "version" "0.2.2"
 
 "decompress-response@^3.2.0":
   "integrity" "sha512-BzRPQuY1ip+qDonAOz42gRm/pg9F768C+npV/4JOsxRC2sq+Rlk+Q4ZCAsOhnIaMrgarILY+RMUIvMmmX1qAEA=="

@@ -4,14 +4,21 @@
   export let sidebar = false;
 </script>
 
-<aside class="absolute w-full h-full top-0 bg-[#fcfcfc] dark:bg-[#151515] shadow-lg !pt-[5rem] !pb-[2rem] sidenav" class:sidebar>
-    <div class="flex flex-col justify-between items-center">
+
+<aside class="absolute w-[90%] h-full top-0 bg-[#fcfcfc] dark:bg-[#151515] shadow-lg !pt-[5rem] sidenav" class:sidebar>
+  <div class="absolute h-full top-0 left-20 pl-[1rem] bg-gradient-to-r dark:from-[#151515] dark:to-[#0d0d0d]"></div>
+  <div class="flex flex-col justify-between items-center">
     <a
     href="https://blog.grahamzemel.com/"
     aria-label="Graham Zemel's Blog"
     class="opacity-75 duration-500 hover:opacity-100 pt-[10%] pb-[20%]"
   >
-    <SocialIcons network="medium" fgColor="#ffffff" />
+  <!-- Implement better buttons -->
+  <!-- <button class="pushable">
+    <span class="front"> -->
+    <SocialIcons network="medium" fgColor="#ffffff"  />
+    <!-- </span>
+    </button> -->
   </a>
   <a
     href="https://github.com/grahamzemel"
@@ -66,4 +73,23 @@
 	.sidebar {
 		left: 0
 	}
+  .pushable {
+    background: rgb(110, 110, 110);
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    outline-offset: 4px;
+  }
+  .front {
+    display: block;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    background: #333332;
+    color: white;
+    transform: translateY(-6px);
+  }
+
+  .pushable:active .front {
+    transform: translateY(-2px);
+  }
 </style>

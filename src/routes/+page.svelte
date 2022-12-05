@@ -80,7 +80,7 @@
   <title>Graham Zemel</title>
   <meta
     name="description"
-    content="Hi! I'm Graham Zemel - A full-stack developer, cybersecurity programmer, and IT enthusiast."
+    content="Hi! I'm Graham Zemel - A full-stack developer, ethical hacker, and IT enthusiast."
   />
   <meta
     name="keywords"

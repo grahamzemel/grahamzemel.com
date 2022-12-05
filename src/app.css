@@ -48,10 +48,8 @@ a {
   .useWeb{
     display: none !important;
   }
-  
 }
 @media screen and (min-width: 1024px) {
-
   .useMobile{
     display: none !important;
   }
@@ -66,7 +64,6 @@ html {
 body{
   overflow-x:hidden;
 }
-
 
 h2, h3, h4 {
   font-family: src('../static/Gobold.otf');

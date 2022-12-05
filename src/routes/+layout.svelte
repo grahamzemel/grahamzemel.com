@@ -26,8 +26,10 @@
   >
 </div>
 <div
-  class="useWeb flex flex-col justify-around h-full !text-transparent bg-clip-text bg-[#ffffff] dark:bg-[#111111] !pt-[4rem] !pb-[2rem] shadow-lg sidenav"
+  class="useWeb flex flex-col justify-around h-full bg-[#ffffff] dark:bg-[#151515] !pt-[4rem] !pb-[2rem] shadow-lg sidenav"
 >
+  <!-- transition -->
+  <div class="absolute h-full left-24 pl-[1rem] bg-gradient-to-r dark:from-[#151515] dark:to-[#0d0d0d]"></div>
   <a
     href="https://blog.grahamzemel.com/"
     aria-label="Graham Zemel's Blog"
@@ -80,7 +82,7 @@
 </div>
 
 <!-- mobile interface -->
-<div class="useMobile fixed text-[#404040] dark:text-[#808080] pl-[2rem] pt-[1.25rem] left-0 top-0 !z-50">
+<div class="useMobile fixed text-[#404040] dark:text-[#808080] pl-[1.75rem] pt-[1.25rem] left-0 top-0 !z-50">
   <Hamburger bind:open={sidebar}/>
 </div>
 <div
