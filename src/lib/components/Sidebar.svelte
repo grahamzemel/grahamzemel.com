@@ -73,7 +73,7 @@
 	.sidebar {
 		left: 0
 	}
-  .pushable {
+  /* .pushable {
     background: rgb(110, 110, 110);
     border-radius: 12px;
     border: none;
@@ -91,5 +91,5 @@
 
   .pushable:active .front {
     transform: translateY(-2px);
-  }
+  } */
 </style>

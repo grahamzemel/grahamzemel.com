@@ -55,12 +55,14 @@
 		"focus-visible": "^5.2.0",
 		"heroicons-svelte": "^0.0.1",
 		"just-debounce": "^1.1.0",
+		"locomotive-scroll": "^4.1.4",
 		"node-html-parser": "^5.2.0",
 		"parse-json": "^6.0.2",
 		"reading-time": "^1.5.0",
 		"reading-time-estimator": "^1.4.33",
 		"simplebar": "^5.3.9",
 		"svelte-inline-svg": "^1.2.0",
+		"svelte-locomotive-scroll": "^0.0.5",
 		"vite-imagetools": "^4.0.11"
 	}
 }

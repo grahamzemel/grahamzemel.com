@@ -5,8 +5,9 @@
   import { name, website } from '$lib/info'
   import { onMount } from 'svelte'
   import ProjectPreview from '$lib/components/ProjectPreview.svelte'
-  import Carousel from '$lib/components/Carousel.svelte'
-  import { GenericEmbed } from 'sveltekit-embed'
+  // import Carousel from '$lib/components/Carousel.svelte'
+  // import { GenericEmbed } from 'sveltekit-embed'
+
   /** @type {import('./$types').PageData} */
   export let data
   let output = ''
@@ -72,7 +73,7 @@
     })
       
   })
- 
+  
   const ogImage = `${website}/favicon.png`
 </script>
 
