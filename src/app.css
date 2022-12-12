@@ -293,10 +293,10 @@ span {
 
 .btn-nav a{
   text-decoration: none;
-  border: 2px solid;
   background-color: transparent;
   text-transform: uppercase;
   letter-spacing: 2px;
+  font-size: 1.2rem;
   position: relative;
   display: inline-block;
 }
