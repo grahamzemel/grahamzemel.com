@@ -27,6 +27,6 @@ This was <strong>one of my favorite tools</strong> to build, and I learned a bun
 
 It seems to be pretty well liked, feel free to fork it and build your own version.
 
-Read up on what it does and how it's helped me as a bug bounty hunter <Link href='https://medium.com/the-gray-area/finding-p1-vulnerabilities-tools-resources-32bb2e7a52fb'>here</Link> .
+Read up on it's functionalities and obtain even more resources <Link href='https://medium.com/the-gray-area/finding-p1-vulnerabilities-tools-resources-32bb2e7a52fb'>here</Link> !
 
 </div>
