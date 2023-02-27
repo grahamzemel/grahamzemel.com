@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <!-- Hey! Feel free to utilize my code on your own site, just be sure to link me in the credits :) -GZ -->
 <html lang="en" class="dark">
-
 <head>
   <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
   <script src="https://gumroad.com/js/gumroad-embed.js"></script>
@@ -11,7 +10,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-8N5KD4C19Q');
   </script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
@@ -30,15 +28,83 @@
     }
   </script>
   <link id="favicon" rel="icon" href="/favicon.png" type="image/png" />
+  <!-- <style>
+    #loader {
+      position: fixed;
+      height: 100vh;
+      width: 100vw;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      background-color: #404040;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 72px;
+      color: #fcfcfc;
+      text-align: center;
+    }
+    
+    #name {
+      animation: fade 1s linear infinite;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    
+    @keyframes fade {
+      0% {
+        opacity: 0;
+        transform: translateX(-100%);
+      }
+      50% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+    }
+    
+  </style> -->
   %sveltekit.head%
 </head>
 
 <body class="relative transition-colors duration-100 bg-[#fcfcfc] dark:bg-[#0d0d0d]">
+  <div id="loader">
+    <h1 id="name">Your Name</h1>
+  </div>
+  <div id="content">
   <div class="fixed inset-0 -z-50 bg-[#fcfcfc] dark:bg-[#0d0d0d]"></div>
-  <div class="z-0">%sveltekit.body%</div>
-
+    <div class="z-0">%sveltekit.body%</div>
+  </div>
   <!-- prettier-ignore -->
-  <script> </script>
+  <!-- <script> 
+    var loader;
+    function fadeNow(opacity) {
+      if (opacity <= 0) {
+        displayContent();
+      } else {
+        loader.style.opacity = opacity;
+        window.setTimeout(function() {
+          fadeNow(opacity - 0.05);
+        }, 50);
+      }
+    }
+    
+    function displayContent() {
+      loader.style.display = 'none';
+      document.getElementById('content').style.display = 'block';
+    }
+    
+    document.addEventListener("DOMContentLoaded", function() {
+      loader = document.getElementById('loader');
+      window.setTimeout(function() {
+        fadeNow(1);
+      },
+    );
+    });
+  </script> -->
 </body>
 
 </html>

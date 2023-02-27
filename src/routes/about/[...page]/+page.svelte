@@ -121,10 +121,10 @@
     <Link href={'https://medium.com/the-gray-area'}>
       <strong>The Gray Area</strong>
     </Link>
-    (200+ followers). <strong>Programming tips</strong>, <strong>cybersecurity software</strong>,
+    (600+ followers). <strong>Programming tips</strong>, <strong>cybersecurity software</strong>,
     <strong>bug bounties</strong>, you name it. <br /> <br />
 
-    I post new articles <strong>every day</strong> on <Link href={'https://blog.grahamzemel.com'}>my regular profile</Link> (1000+ followers) though, and I've got a few different social media
+    I post new articles <strong>every day</strong> on <Link href={'https://blog.grahamzemel.com'}>my regular profile</Link> (2000+ followers) though, and I've got a few different social media
     accounts where you might see them if you follow me. <br /> <br />
     <div class="justify-between">
       <!-- <hr class="introBreak"> -->
