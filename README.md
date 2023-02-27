@@ -28,10 +28,8 @@ Construct template file for title navbar (easy) ✔️
 Updated SEO even more  
 Cache Control (SEO) ✔️   
 Image optimization (SEO) ✔️   
+Make sidebar mobile-accessable ✔️   
 ## TODO:
 Revise product cards (make it shiny?)  
-Make sidebar mobile-accessable (idek)  
-Create embedded content (fix csf [security stuff])  
-Animate navicons?  
 Splash animation for dark / light theme  
 Add new project...
