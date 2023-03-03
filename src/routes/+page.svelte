@@ -75,6 +75,38 @@
   })
   
   const ogImage = `${website}/favicon.png`
+
+  let visible = false;
+  let nextVisible = false;
+	function typewriter(node, { speed = 1 }) {
+		const valid = (
+			node.childNodes.length === 1 &&
+			node.childNodes[0].nodeType === Node.TEXT_NODE
+		);
+
+		if (!valid) {
+			throw new Error(`This transition only works on elements with a single text node child`);
+		}
+
+		const text = node.textContent;
+		const duration = text.length / (speed * 0.025);
+
+		return {
+			duration,
+			tick: t => {
+				const i = Math.trunc(text.length * t);
+				node.textContent = text.slice(0, i);
+			}
+		};
+	}
+  // after loading the page, wait 1 second and then run the typewriter
+  setTimeout(() => {
+    visible = true;
+  }, 1000);
+  // once visible is true, the typewriter will run. Once the typewriter is done, it will wait 2 seconds and then run the typewriter again for the second time with a different variable
+  setTimeout(() => {
+    nextVisible = true;
+  }, 5000);
 </script>
 
 <svelte:head>
@@ -110,17 +142,26 @@
 <div class="flex flex-col">
   <br /><br /><br /> <br />
   <div class="flex justify-between text-center relative">
-    <h2 class="!mt-[-4rem]">
-      Hi! I'm Graham Zemel - A full-stack developer, cybersecurity programmer, and IT enthusiast.
-    </h2>
-    <br />
-    <h3 style="color:gray">
-      I develop websites💻, code malware👾, and write about the latest and greatest in computer
-      science📝.
-    </h3>
+    <div style="width: 60%;">
+      {#if visible}
+        <h2 transition:typewriter class="!mt-[-4rem]">
+          Hi! I'm Graham Zemel - A full-stack developer, cybersecurity programmer, and IT enthusiast.
+        </h2>
+      {/if}
+    </div>
+    
+    <div style="width: 40%;">
+      {#if nextVisible}
+        <h3 transition:typewriter style="color:gray;">
+          I develop websites, code malware, and write about the latest and greatest in computer
+          science!
+        </h3>
+      {/if}
+    </div>
+
   </div>
+  <hr/>
   <!-- featured projects -->
-  <hr />
   <p class="text-[#000000] dark:text-[#FFFFFF] title_header !mb-2">
     <strong
       class="!text-transparent !bg-clip-text bg-gradient-to-b from-[#7ec3f8] to-[#043a54] text-[#7ec3f8] lg:text-[2.4rem] font-bold"
@@ -156,5 +197,4 @@
     </div>
   </div>
 </div>
-<!-- <div class="flex blog__slider"><Carousel></Carousel></div> -->
 

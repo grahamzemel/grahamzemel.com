@@ -6,7 +6,7 @@
 
 
 <aside class="absolute w-[90%] h-full top-0 bg-[#fcfcfc] dark:bg-[#151515] shadow-lg !pt-[5rem] sidenav" class:sidebar>
-  <div class="absolute h-full top-0 left-20 pl-[1rem] bg-gradient-to-r dark:from-[#151515] dark:to-[#0d0d0d]"></div>
+  <div class="absolute h-full top-0 left-20 pl-[.75rem] bg-gradient-to-r dark:from-[#151515] dark:to-[#0d0d0d]"></div>
   <div class="flex flex-col justify-between items-center">
     <a
     href="https://blog.grahamzemel.com/"
