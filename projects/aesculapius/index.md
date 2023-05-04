@@ -3,7 +3,6 @@ title: Aesculapius
 date: 2022-11-21
 time: 02:20
 category: Programming Development Hackathon
-featured: True
 sourceCode: https://github.com/grahamzemel/Aesculapius-FrontEnd
 liveDemo: https://aesculapius.tech
 ---
