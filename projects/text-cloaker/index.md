@@ -1,7 +1,7 @@
 ---
 title: Text Cloaker
 date: 2023-05-04
-time: 0:34
+time: 05:24
 category: Programming Internet AI
 featured: true
 liveDemo: https://chrome.google.com/webstore/detail/textcloaker/kkijlllkhpclojhcgmdnjcddlmfccgcc
