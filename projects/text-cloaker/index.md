@@ -5,7 +5,6 @@ time: 05:24
 category: Programming Internet AI
 featured: true
 liveDemo: https://text-cloaker.com
-sourceCode: https://github.com/grahamzemel/TextCloaker
 ---
 <script>  
 import Link from '$lib/components/Link.svelte'
