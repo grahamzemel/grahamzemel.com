@@ -6,6 +6,7 @@ category: Programming Internet AI
 featured: true
 liveDemo: https://text-cloaker.com
 ---
+
 <script>  
 import Link from '$lib/components/Link.svelte'
 </script>
@@ -15,13 +16,26 @@ A website to cloak your AI-generated text from those nosy detectors! 100% effect
 
 This is a neat project I made that inserts specific characters into text with Google Docs APIs with a very specific algorithm, altering the data it so that AI detectors will not parse the document properly. As a result, any AI detector will identify the document as being written <strong>entirely by a human</strong>, as tested on <strong>ZeroGPT</strong>, <strong>CopyLeaks</strong>, and many more.
 
+<div style="display: flex; justify-content: center;">
+      <div class="video-container">
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/9D6mXNf4fWI"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+
 <img
      alt="TextCloaker Google Extension"
      loading="lazy"
      decoding="async"
      width="672"
      height="448"
-     src="./txtcloaker.png"
+     src="./textcloaker.png"
 />
 
 </div>

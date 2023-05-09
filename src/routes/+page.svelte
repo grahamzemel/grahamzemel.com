@@ -161,7 +161,6 @@
 
   </div>
   <hr/>
-  <!-- featured projects -->
   <p class="text-[#000000] dark:text-[#FFFFFF] title_header !mb-2">
     <strong
       class="!text-transparent !bg-clip-text bg-gradient-to-b from-[#7ec3f8] to-[#043a54] text-[#7ec3f8] lg:text-[2.4rem] font-bold"
@@ -179,6 +178,28 @@
     {/each}
   </div>
   <br /> <br />
+  <hr>
+  <div class="relative">
+    <div class="title_header">
+      <p class="text-[#000000] dark:text-[#FFFFFF]">
+        Latest <a style="color: #ff0000;" href="https://www.youtube.com/channel/UCClonmlmbXDX3Mg8bd7Dh9w">Youtube</a> Upload
+      </p>
+    </div>
+    <hr />
+    <div style="display: flex; justify-content: center;">
+      <div class="video-container">
+        <iframe
+          width="800"
+          height="450"
+          src="https://www.youtube.com/embed/9D6mXNf4fWI?autoplay=1"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+    
+  </div>
   <hr />
   <div class="relative">
     <div class="title_header">
