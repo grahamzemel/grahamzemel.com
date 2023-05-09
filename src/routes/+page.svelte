@@ -182,13 +182,14 @@
   <div class="relative">
     <div class="title_header">
       <p class="text-[#000000] dark:text-[#FFFFFF]">
-        Latest <a style="color: #ff0000;" href="https://www.youtube.com/channel/UCClonmlmbXDX3Mg8bd7Dh9w">Youtube</a> Upload
+        Latest <a style="color: #ff0000;" href="https://www.youtube.com/channel/UCClonmlmbXDX3Mg8bd7Dh9w?sub_confirmation=1">Youtube</a> Upload
       </p>
     </div>
     <hr />
     <div style="display: flex; justify-content: center;">
       <div class="video-container">
         <iframe
+          title="Graham Zemel's Youtube Channel"
           width="800"
           height="450"
           src="https://www.youtube.com/embed/9D6mXNf4fWI?autoplay=1"
