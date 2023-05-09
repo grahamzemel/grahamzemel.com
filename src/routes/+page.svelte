@@ -180,6 +180,7 @@
   <br /> <br />
   <hr>
   <div class="relative">
+    <!-- make this dynamic so it fetches each new vid -->
     <div class="title_header">
       <p class="text-[#000000] dark:text-[#FFFFFF]">
         Latest <a style="color: #ff0000;" href="https://www.youtube.com/channel/UCClonmlmbXDX3Mg8bd7Dh9w?sub_confirmation=1">Youtube</a> Upload

@@ -63,11 +63,11 @@
     <SocialIcons network="twitter" fgColor="#ffffff" />
   </a>
   <a
-    href="https://www.linkedin.com/in/grahamzemel"
-    aria-label="Graham Zemel's LinkedIn Profile"
+    href="https://www.youtube.com/channel/UCClonmlmbXDX3Mg8bd7Dh9w?sub_confirmation=1"
+    aria-label="Graham Zemel's Youtube Profile"
     class="opacity-75 duration-500 hover:opacity-100"
   >
-    <SocialIcons network="linkedin" fgColor="#ffffff" />
+    <SocialIcons network="youtube" fgColor="#ffffff" />
   </a>
   <h2>
     <ThemeToggle />
