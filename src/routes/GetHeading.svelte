@@ -10,7 +10,7 @@
 
   if (path === '/') {
     title = `home`
-  } else if (path === '/projectlist') {
+  } else if (path.match('^\/projectlist(.*)$')) {
     title = `all projects`
   } else if (path === '/contact') {
     title = `contact me`

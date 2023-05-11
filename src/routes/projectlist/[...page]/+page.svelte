@@ -81,7 +81,7 @@
   <!-- pagination -->
   <div class="flex visible items-center justify-between pt-8 opacity-70">
     {#if !isFirstPage}
-      <ButtonLink raised={false} href={`/page/${data.page - 1}`}>
+      <ButtonLink raised={true} href={`/projectlist/${data.page - 1}`}>
         <slot slot="icon-start">
           <ArrowLeftIcon class="h-5 w-5" />
         </slot>
@@ -93,7 +93,7 @@
     {/if}
 
     {#if hasNextPage}
-      <ButtonLink raised={false} href={`/page/${data.page + 1}`}>Next</ButtonLink>
+      <ButtonLink raised={true} href={`/projectlist/${data.page + 1}`}>Next</ButtonLink>
     {/if}
   </div>
 </div>
