@@ -34,27 +34,17 @@
   </p>
   <hr />
   <h5 class="linkBtn">
-    I've done a fair amount of web dev, usually focusing on back-end aspects but I've been trying
-    out a few front-end projects in my spare time. <br /> <br />
-    In a few of my blog posts, I talk about <strong>SEO optimization</strong> and making
+    I have extensive experience in web development, primarily focusing on <strong>back-end aspects</strong>. However, I've recently been exploring front-end projects in my spare time as well. <br /> <br />
+    In some of my blog posts, I delve into topics like <strong>SEO optimization</strong> and provide step-by-step guidance on creating
     <Link
       href={'https://medium.com/the-gray-area/creating-a-personal-portfolio-website-an-in-depth-guide-for-beginners-7155a785bfb3'}
     >
       your own portfolio website
     </Link>
-    step-by-step.
-    <strong
-      >If you're new to programming, want to show off some achievements, or just need another thing
-      to add to your resume, that article is a great place to start</strong
-    >.<br /><br />
-    This website and a new project I'm working on in relation to
-    <Link href={'https://medium.com/the-gray-area'}>The Gray Area</Link>
-    have been my latest projects involving <strong>front-end development</strong>.<br /> <br /> This
-    website was a trial run of using some new front-end libraries, and I've got the source code up
-    at
-    <Link href={'https://github.com/grahamzemel/grahamzemel.com'}>github.com/grahamzemel</Link>
-    if you're interested. <br /><br /><br />
-    I build websites using the following frameworks and tools:
+    step-by-step. Whether you're new to programming, looking to showcase your achievements, or simply aiming to enhance your resume, the resources from that article are an <strong>excellent</strong> starting point.<br /><br />
+    
+    My latest projects in front-end development involve this website and a new endeavor associated with <Link href={'https://medium.com/the-gray-area'}>The Gray Area</Link> . This website was a trial run utilizing <strong>cutting-edge</strong> front-end libraries. If you're interested, you can find the source code on <Link href={'https://github.com/grahamzemel/grahamzemel.com'}>github.com/grahamzemel</Link> .
+    <br /><br /><br />
   </h5>
   <br />
   <div class="flex justify-between text-gray dark:text-white text-[2rem] lg:text-[4rem]">
@@ -76,28 +66,21 @@
   </p>
   <hr />
   <h5 class="linkBtn">
-    When I'm not blogging or developing web apps, I'm hacking.
-    <Link
-      href={'https://medium.com/the-gray-area/finding-p1-vulnerabilities-a-step-by-step-guide-b88521195204'}
-    >
-      Finding P1 vulnerabilties
-    </Link>
-    is a phenomenal feeling when you're bug hunting for hours, days, sometimes weeks at a time.<br
-    /> <br />
-    Hacking is awesome, whether it's <strong>surfing the dark web</strong>, building
-    <strong>custom malware</strong>, or just generating some more income through
-    <strong>bug bounties</strong>. I've learned a ton about securing your data online and making it
-    harder for black-hat hackers (the bad ones) to hack you, and I've even programmed website
-    <Link href={'https://github.com/grahamzemel/WebHeckScanner'}>hacking scripts</Link>
-    to <strong>automatically</strong> pen-test websites for vulnerabilties. <br /><br />
-    To learn more about what hacking really means and how to stay safe online, check out
-    <Link
-      href={'https://grahamzemel.medium.com/taking-control-of-turgistans-government-through-hacking-63da20fbcfca'}
-    >
-      Creating 'The Hacker'
-    </Link>.
+    When I'm not writing blog posts or developing web applications, I enjoy delving into <strong>cybersecurity</strong>. There's an exhilarating feeling that comes with <Link
+    href={'https://medium.com/the-gray-area/finding-p1-vulnerabilities-a-step-by-step-guide-b88521195204'}
+  >
+    discovering P1 vulnerabilties
+  </Link> after hours, days, or even weeks of bug hunting.
+    
+    <br/> <br />
+    Hacking is an <strong>incredible pursuit</strong>, whether it involves exploring the depths of the  <strong>dark web</strong>, developing <strong>custom malware</strong>, or <strong>bug hunting</strong> on government websites. Through my experiences, I've gained <strong>extensive</strong> knowledge about safeguarding online data and making it more challenging for black-hat hackers (the malicious ones) to <strong>compromise your security</strong>. I've even programmed website <Link href={'https://github.com/grahamzemel/WebHeckScanner'}>hacking scripts</Link> to automatically perform <strong>penetration tests</strong> and identify <strong>vulnerabilities</strong>.
+    To gain a deeper understanding of what hacking truly entails and to learn how to enhance your online safety, I invite you to read my <Link
+    href={'https://grahamzemel.medium.com/taking-control-of-turgistans-government-through-hacking-63da20fbcfca'}
+  >
+    somewhat satirical article
+  </Link> on the topic.
+
     <br /><br /> <br />
-    Here's a few tools I use relating to cybersecurity:
   </h5>
   <br />
   <div class="flex justify-between text-gray dark:text-white text-[2rem] lg:text-[4rem]">
@@ -117,17 +100,13 @@
   </p>
   <hr />
   <h5 class="linkBtn">
-    I submit my best articles to my publication,
-    <Link href={'https://medium.com/the-gray-area'}>
+    I share my best articles through my <strong>publication</strong>, <Link href={'https://medium.com/the-gray-area'}>
       <strong>The Gray Area</strong>
-    </Link>
-    (600+ followers). <strong>Programming tips</strong>, <strong>cybersecurity software</strong>,
-    <strong>bug bounties</strong>, you name it. <br /> <br />
+    </Link>, with over <strong>half a million readers</strong>. These articles cover a range of topics, including <strong>programming tips</strong>, <strong>cybersecurity software</strong>, and <strong>bug bounties</strong>.
 
-    I post new articles <strong>every day</strong> on <Link href={'https://blog.grahamzemel.com'}>my regular profile</Link> (2000+ followers) though, and I've got a few different social media
-    accounts where you might see them if you follow me. <br /> <br />
+    Additionally, I publish new articles on a <strong>daily basis</strong> through my <Link href={'https://blog.grahamzemel.com'}>personal profile</Link>, with around 3000 followers. You can find my work on various social media platforms if you choose to follow me.
+    <br><br>
     <div class="justify-between">
-      <!-- <hr class="introBreak"> -->
       Medium:
       <Link href={'https://blog.grahamzemel.com'}>
         <strong>@grahamzemel</strong>
@@ -147,14 +126,10 @@
       <br />
     </div>
     <br />
-    If you <strong>subscribe to get my posts via email</strong> using
-    <Link href={'https://medium.com/the-gray-area/newsletters/medium-the-gray-area'}>
-      this link
-    </Link>
-    , you'll be the first to know whenever I find something neat or publish a new article.
+   
 
     <br /><br />
-    If you'd like to really contribute to my writing (or my skillset as a developer), you can grab a tier on my <Link href={'https://www.patreon.com/grahamzemel'}>Patreon</Link> and get access to private newsletters, private source code for projects, and even personal contact info.
+    If you're interested in making a substantial contribution to my writing or furthering my skills as a developer, you can become a patron on my <Link href={'https://www.patreon.com/grahamzemel'}>Patreon</Link>. By doing so, you'll gain access to private newsletters, exclusive source code for projects, and my personal contact information.
   </h5>
   <br />
 </div>
