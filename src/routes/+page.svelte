@@ -164,7 +164,7 @@
   <p class="text-[#000000] dark:text-[#FFFFFF] title_header !mb-2">
     <strong
       class="!text-transparent !bg-clip-text bg-gradient-to-b from-[#7ec3f8] to-[#043a54] text-[#7ec3f8] lg:text-[2.4rem] font-bold"
-      >Featured</strong
+      ><a style="color: #488fbe;" href="https://grahamzemel.com/projectlist">Featured</a></strong
     > Projects
   </p>
   <hr />
