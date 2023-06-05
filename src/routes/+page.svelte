@@ -5,6 +5,7 @@
   import { name, website } from '$lib/info'
   import { onMount } from 'svelte'
   import ProjectPreview from '$lib/components/ProjectPreview.svelte'
+  import NavLink from '$lib/components/NavLink.svelte'
   // import Carousel from '$lib/components/Carousel.svelte'
   // import { GenericEmbed } from 'sveltekit-embed'
 
@@ -164,7 +165,7 @@
   <p class="text-[#000000] dark:text-[#FFFFFF] title_header !mb-2">
     <strong
       class="!text-transparent !bg-clip-text bg-gradient-to-b from-[#7ec3f8] to-[#043a54] text-[#7ec3f8] lg:text-[2.4rem] font-bold"
-      ><a style="color: #488fbe;" href="https://grahamzemel.com/projectlist">Featured</a></strong
+      ><a style="color: #488fbe;" href="/projectlist">Featured</a></strong
     > Projects
   </p>
   <hr />
