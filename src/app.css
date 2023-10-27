@@ -13,6 +13,105 @@
   }
 }
 
+.bg-base { background-color: #333; }
+.text-base { color: #333; }
+.bg-accent { background-color: #FF5733; }
+.text-accent { color: #FF5733; }
+
+.transition {
+  transition: all 0.3s ease;
+}
+.hover-effect:hover {
+  background-color: #ccc;
+}
+/* Define a basic grid layout */
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+/* Typography */
+.heading {
+  font-family: 'Arial', sans-serif;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Layout */
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+/* Padding & Margin */
+.p-4 {
+  padding: 1rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+/* Background & Text Color */
+.bg-base {
+  background-color: #333;
+}
+
+.text-base {
+  color: #333;
+}
+
+.bg-accent {
+  background-color: #FF5733;
+}
+
+.text-accent {
+  color: #FF5733;
+}
+
+.heading-minimal {
+  font-family: 'Arial', sans-serif;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+/* Minimalistic Layout */
+.center-content {
+  display: flex;
+  justify-content: center;
+}
+
+/* Minimalistic Margin */
+.margin-top {
+  margin-top: 16px;
+}
+
+.shiny-tile {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform .2s ease-in-out, box-shadow .2s ease-in-out;
+}
+
+.shiny-tile:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+.minimal-text {
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  margin: 8px 0;
+}
+
 .prose img {
   @apply rounded-md shadow-md dark:shadow-gray-900;
 }
@@ -63,10 +162,14 @@ html {
 }
 body{
   overflow-x:hidden;
+  /* font-family: 'Arial', sans-serif; */
 }
 
-h2, h3, h4 {
+/* h2, h3, h4 {
   font-family: src('../static/Gobold.otf');
+} */
+body, h1, h2, h3, p {
+  font-family: 'Arial', sans-serif;
 }
 
 #changeTheme {
@@ -154,7 +257,7 @@ h2, h3, h4 {
   @apply text-gray-400;
 }
 
-.font-GemunuLibre {
+/* .font-GemunuLibre {
   font-family: 'Gemunu Libre', 'sans-serif';
 }
 .font-Prompt {
@@ -165,7 +268,7 @@ h2, h3, h4 {
 }
 .font-Mukta {
   font-family: 'Mukta', sans-serif;
-}
+} */
 
 .subtitle {
   margin: .5rem 0 1rem 0; 
@@ -439,7 +542,11 @@ ul {
   font-size: 0.85rem;
 }
 
-
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
 
 .form-container {
   flex: 1 0 auto;

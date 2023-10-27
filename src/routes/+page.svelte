@@ -143,7 +143,7 @@
 <div class="flex flex-col">
   <br /><br /><br /> <br />
   <div class="flex justify-between text-center relative">
-    <div style="width: 60%;">
+    <div style="width: 100%;">
       {#if visible}
         <h2 transition:typewriter class="!mt-[-4rem]">
           Hi! I'm Graham Zemel - A full-stack developer, cybersecurity programmer, and IT enthusiast.
@@ -151,14 +151,14 @@
       {/if}
     </div>
     
-    <div style="width: 40%;">
+    <!-- <div style="width: 40%;">
       {#if nextVisible}
         <h3 transition:typewriter style="color:gray;">
           I develop websites, code malware, and write about the latest and greatest in computer
           science!
         </h3>
       {/if}
-    </div>
+    </div> -->
 
   </div>
   <hr/>

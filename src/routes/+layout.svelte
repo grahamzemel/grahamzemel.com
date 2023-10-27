@@ -27,11 +27,11 @@
     ><img style="width:60px;height:60px;" src="/logo.webp" alt="Graham Zemel's Logo" /></a
   >
 </div>
-<div
+<!-- <div
   class="useWeb flex flex-col justify-around h-full bg-[#ffffff] dark:bg-[#151515] !pt-[4rem] !pb-[2rem] shadow-lg sidenav"
->
-  <!-- transition -->
-  <div
+> -->
+  <!-- PUT ON BOTTOM -->
+  <!-- <div
     class="absolute h-full left-24 pl-[1rem] bg-gradient-to-r dark:from-[#151515] dark:to-[#0d0d0d]"
   />
   <a
@@ -79,10 +79,10 @@
   >
     Graham Zemel 2022
   </p>
-</div>
+</div> -->
 
 <!-- mobile interface -->
-<div
+<!-- <div
   class="useMobile fixed text-[#404040] dark:text-[#808080] pl-[1.75rem] pt-[1.25rem] left-0 top-0 !z-50"
 >
   <Hamburger bind:open={sidebar} />
@@ -91,7 +91,7 @@
   class="useMobile flex flex-col justify-around h-full !text-transparent bg-clip-text bg-[#ffffff] dark:bg-[#111111] !pt-[5rem] !pb-[2rem] sidenav"
 >
   <Sidebar bind:sidebar />
-</div>
+</div> -->
 
 <!-- Basic navigation top bar -->
 <div class="fixed text-black dark:text-[#808080] !z-30">
