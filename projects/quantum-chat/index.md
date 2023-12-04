@@ -4,7 +4,7 @@ date: 2023-12-04
 time: 05:24
 category: Programming Quantum AI
 featured: true
-liveDemo: https://timely-cascaron-5a6155.netlify.app
+liveDemo: https://quantum-chat.netlify.app
 ---
 
 <script>  
@@ -22,7 +22,7 @@ This was my first project utilizing quantum cryptography (and my first quantum c
 - <strong>Automated Key Expiry</strong>: If no users delete the chat room (key) after one month, it will self destruct and invalidate the key permanently for all users, deleting all messages and data permanently. This is to ensure that no one can ever access the key or messages after the chat room has been abandoned.
 - <strong>QKD Basic Information</strong>: The chat room includes a "How It Works" section to describe QKD and the BB84 protocol, as well as a "Why Use QKD?" section to explain the benefits of using QKD over traditional encryption methods. It includes a video on the No-Cloning Theorem, which is the basis for QKD and quantum cryptography in general, as well as a lengthy beginner-level explanation of the QKD code used in the chat room's encryption process.
 
-Access it here: <Link href='https://timely-cascaron-5a6155.netlify.app'>QuantumChat</Link> !
+Access it here: <Link href='https://quantum-chat.netlify.app'>QuantumChat</Link> !
 
 <img
      alt="QuantumChat"
