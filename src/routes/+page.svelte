@@ -77,6 +77,19 @@
   
   const ogImage = `${website}/favicon.png`
 
+  const normalizeCategory = (value) => String(value).toLowerCase()
+  const hasCategory = (project, category) =>
+    project.category?.some((cat) => normalizeCategory(cat) === category)
+
+  $: allProjects = data.allProjects ?? []
+  $: cybersecurityProjects = allProjects.filter((project) => hasCategory(project, 'cybersecurity'))
+  $: programmingProjects = allProjects.filter(
+    (project) => !hasCategory(project, 'cybersecurity') && hasCategory(project, 'programming')
+  )
+  $: miscProjects = allProjects.filter(
+    (project) => !hasCategory(project, 'cybersecurity') && !hasCategory(project, 'programming')
+  )
+
   let visible = false;
   let nextVisible = false;
 	function typewriter(node, { speed = 1 }) {
@@ -162,21 +175,21 @@
 
   </div>
   <hr/>
-  <p class="text-[#000000] dark:text-[#FFFFFF] title_header !mb-2">
-    <strong
-      class="!text-transparent !bg-clip-text bg-gradient-to-b from-[#7ec3f8] to-[#043a54] text-[#7ec3f8] lg:text-[2.4rem] font-bold"
-      ><a style="color: #488fbe;" href="/projectlist">Featured</a></strong
-    > Projects
-  </p>
-  <hr />
-  <div class="grid gap-4 grid-cols-1 sm:grid-cols-1 row-end-3 !mt-4">
-    {#each data.featuredProjects as project}
-      {#if project.featured == true}
-        <div class="flex p-4 border-4 border-gray-300 dark:border-gray-500 rounded-lg">
-          <ProjectPreview {project} small />
-        </div>
-      {/if}
-    {/each}
+  <div class="relative">
+    <div class="title_header">
+      <p class="text-[#000000] dark:text-[#FFFFFF]">
+        New from <a href="https://medium.com/the-gray-area"
+          ><strong class="!text-[#606060]">The Gray Area</strong></a
+        >
+      </p>
+    </div>
+    <hr />
+    <div id="blog" class="blog">
+      <ul class="blog__slider flex-col w-50% lg:flex-row lg:w-33% lg:border-2 lg:border-slate-700">
+        {postOutput}
+        <br />
+      </ul>
+    </div>
   </div>
   <br /> <br />
   <hr>
@@ -201,24 +214,69 @@
         ></iframe>
       </div>
     </div>
-    
   </div>
   <hr />
   <div class="relative">
-    <div class="title_header">
-      <p class="text-[#000000] dark:text-[#FFFFFF]">
-        New from <a href="https://medium.com/the-gray-area"
-          ><strong class="!text-[#606060]">The Gray Area</strong></a
-        >
-      </p>
-    </div>
+    <p class="text-[#000000] dark:text-[#FFFFFF] title_header !mb-2">
+      My Work
+    </p>
     <hr />
-    <div id="blog" class="blog">
-      <ul class="blog__slider flex-col w-50% lg:flex-row lg:w-33% lg:border-2 lg:border-slate-700">
-        {postOutput}
-        <br />
-      </ul>
+    <div class="grid gap-8 grid-cols-1 lg:grid-cols-[2fr,1fr] !mt-4">
+      <div class="flex flex-col gap-6 text-left">
+        <div>
+          <h3 class="text-lg lg:text-xl font-semibold text-[#000000] dark:text-[#FFFFFF]">
+            Programming Projects
+          </h3>
+          <ul class="linkBtn list-disc pl-5">
+            {#each programmingProjects as project}
+              <li>
+                <a href={`/projects/${project.slug}`}>{project.title}</a>
+              </li>
+            {/each}
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg lg:text-xl font-semibold text-[#000000] dark:text-[#FFFFFF]">
+            Cybersecurity Projects
+          </h3>
+          <ul class="linkBtn list-disc pl-5">
+            {#each cybersecurityProjects as project}
+              <li>
+                <a href={`/projects/${project.slug}`}>{project.title}</a>
+              </li>
+            {/each}
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg lg:text-xl font-semibold text-[#000000] dark:text-[#FFFFFF]">
+            Misc Projects
+          </h3>
+          <ul class="linkBtn list-disc pl-5">
+            {#each miscProjects as project}
+              <li>
+                <a href={`/projects/${project.slug}`}>{project.title}</a>
+              </li>
+            {/each}
+          </ul>
+        </div>
+      </div>
+      <div>
+        <p class="text-[#000000] dark:text-[#FFFFFF] title_header !mb-2">
+          <strong
+            class="!text-transparent !bg-clip-text bg-gradient-to-b from-[#7ec3f8] to-[#043a54] text-[#7ec3f8] lg:text-[2.4rem] font-bold"
+            ><a style="color: #488fbe;" href="/projectlist">Featured</a></strong
+          > Projects
+        </p>
+        <div class="grid gap-4 grid-cols-1 sm:grid-cols-1 row-end-3 !mt-4">
+          {#each data.featuredProjects as project}
+            {#if project.featured == true}
+              <div class="flex p-4 border-4 border-gray-300 dark:border-gray-500 rounded-lg">
+                <ProjectPreview {project} small />
+              </div>
+            {/if}
+          {/each}
+        </div>
+      </div>
     </div>
   </div>
 </div>
-

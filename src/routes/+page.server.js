@@ -4,6 +4,7 @@ import { projects } from '$lib/data/projects'
 export async function load() {
   return {
     // eslint-disable-next-line no-unused-vars
-    featuredProjects : projects.filter((project) => project.featured == true)
+    featuredProjects : projects.filter((project) => project.featured == true),
+    allProjects: projects
   }
 }
