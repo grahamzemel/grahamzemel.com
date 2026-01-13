@@ -176,47 +176,6 @@
   </div>
   <hr/>
   <div class="relative">
-    <div class="title_header">
-      <p class="text-[#000000] dark:text-[#FFFFFF]">
-        New from <a href="https://medium.com/the-gray-area"
-          ><strong class="!text-[#606060]">The Gray Area</strong></a
-        >
-      </p>
-    </div>
-    <hr />
-    <div id="blog" class="blog">
-      <ul class="blog__slider flex-col w-50% lg:flex-row lg:w-33% lg:border-2 lg:border-slate-700">
-        {postOutput}
-        <br />
-      </ul>
-    </div>
-  </div>
-  <br /> <br />
-  <hr>
-  <div class="relative">
-    <!-- make this dynamic so it fetches each new vid -->
-    <div class="title_header">
-      <p class="text-[#000000] dark:text-[#FFFFFF]">
-        Latest <a style="color: #ff0000;" href="https://www.youtube.com/channel/UCClonmlmbXDX3Mg8bd7Dh9w?sub_confirmation=1">Youtube</a> Upload
-      </p>
-    </div>
-    <hr />
-    <div style="display: flex; justify-content: center;">
-      <div class="video-container">
-        <iframe
-          title="Graham Zemel's Youtube Channel"
-          width="800"
-          height="450"
-          src="https://www.youtube.com/embed/9D6mXNf4fWI?autoplay=1"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-      </div>
-    </div>
-  </div>
-  <hr />
-  <div class="relative">
     <p class="text-[#000000] dark:text-[#FFFFFF] title_header !mb-2">
       My Work
     </p>
@@ -279,4 +238,47 @@
       </div>
     </div>
   </div>
+  <br /> <br />
+  <hr>
+  <div class="relative">
+    <div class="title_header">
+      <p class="text-[#000000] dark:text-[#FFFFFF]">
+        New from <a href="https://medium.com/the-gray-area"
+          ><strong class="!text-[#606060]">The Gray Area</strong></a
+        >
+      </p>
+    </div>
+    <hr />
+    <div id="blog" class="blog">
+      <ul class="blog__slider flex-col w-50% lg:flex-row lg:w-33% lg:border-2 lg:border-slate-700">
+        {postOutput}
+        <br />
+      </ul>
+    </div>
+  </div>
+  <br /> <br />
+  <hr>
+  <div class="relative">
+    <!-- make this dynamic so it fetches each new vid -->
+    <div class="title_header">
+      <p class="text-[#000000] dark:text-[#FFFFFF]">
+        Latest <a style="color: #ff0000;" href="https://www.youtube.com/channel/UCClonmlmbXDX3Mg8bd7Dh9w?sub_confirmation=1">Youtube</a> Upload
+      </p>
+    </div>
+    <hr />
+    <div style="display: flex; justify-content: center;">
+      <div class="video-container">
+        <iframe
+          title="Graham Zemel's Youtube Channel"
+          width="800"
+          height="450"
+          src="https://www.youtube.com/embed/9D6mXNf4fWI?autoplay=1"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+  <hr />
 </div>
