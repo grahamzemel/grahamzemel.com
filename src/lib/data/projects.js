@@ -49,7 +49,10 @@ export const projects = Object.entries(import.meta.glob('/projects/**/*.md', { e
     }
   })
   // sort by date
-  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  .sort(
+    (a, b) =>
+      new Date(b.order ?? b.date).getTime() - new Date(a.order ?? a.date).getTime()
+  )
   // add references to the next/previous project
   .map((project, index, allProjects) => ({
     ...project,

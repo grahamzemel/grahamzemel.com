@@ -11,7 +11,7 @@ import Link from '$lib/components/Link.svelte'
 </script>
 <div class="linkBtn">
 
-The <strong>winning project 👑</strong> for the healthcare track in the <Link href='https://metrohacks-2022.devpost.com/'>MetroHacks 2022</Link> hackathon. A 24 hour project based on furthering healthcare accessibility. Web app made from <strong>Svelte</strong>, <strong>Tailwind</strong>, <strong>TypeScript</strong>, and utilizing a <strong>custom AI bot</strong> using <Link href='https://cohere.ai/'>Co:here</Link> natural language processing. 
+The winning project for the healthcare track in the MetroHacks 2022 hackathon. A 24 hour project based on furthering healthcare accessibility made with Svelte, Tailwind, Typescript, and a custom Co:here AI chat bot. Web app made from <strong>Svelte</strong>, <strong>Tailwind</strong>, <strong>TypeScript</strong>, and utilizing a <strong>custom AI bot</strong> using <Link href='https://cohere.ai/'>Co:here</Link> natural language processing. 
 
 Aesculapius, the Greco-Roman god of medicine, was the name of our healthcare centered project for obvious reasons. The Rod of Aesculapius can be seen below, but make note that it is <strong>NOT</strong> the Caduceus. That's Herme's (Greek god of messengers/travel) rod. 
 

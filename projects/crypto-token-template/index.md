@@ -10,7 +10,7 @@ import Link from '$lib/components/Link.svelte'
 </script>
 <div class="linkBtn">
 
-This project was created as a template for web3 developers to build <strong>custom cryptocurrencies</strong> on the ERC20 blockchain. 
+This project was created as a template for web3 developers to build custom cryptocurrencies on the ERC20 blockchain. 
 
 It was a really neat process to create my own cryptocurrency, and I really enjoyed it. I wanted to share the code with others in case they wanted to do something similar, and the instructions are inside of the <Link href='https://github.com/grahamzemel/CreateCryptoToken'>Github repo</Link> for those who would like to use it. 
 

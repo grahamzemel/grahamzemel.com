@@ -10,7 +10,7 @@ import Link from '$lib/components/Link.svelte'
 </script>
 <div class="linkBtn">
 
-This telegram bot that I coded from scratch <strong>automates hacking processes</strong> for bug hunting and general cybersecurity purposes. 
+This telegram bot that I coded from scratch automates hacking processes for bug hunting and general cybersecurity purposes. 
 
 Right now, it's main functionality is obtaining the address and owners of a house with <strong>just a last name and town</strong>. 
 

@@ -10,7 +10,7 @@ import Link from '$lib/components/Link.svelte'
 </script>
 <div class="linkBtn">
 
-I created multiple scripts for physical pen-testing using my <strong>Bash Bunny</strong>, a hotplug attack tool. The bash bunny is  <strong>one of the most powerful physical attack vectors I've ever used</strong>, running quick payloads and utilizing tons of futuristic-type capabilities. 
+I created multiple scripts for physical pen-testing using my Bash Bunny, a hotplug attack tool. The bash bunny is one of the most powerful physical attack vectors I've ever used, running quick payloads and utilizing tons of futuristic-type capabilities. 
 
 Things like bluetooth low energy (<strong>BLE</strong>) allow it to execute payloads upon a <strong>proximity trigger</strong>, and it even has multiple payload switches for modifications on the go. 
 

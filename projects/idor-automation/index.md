@@ -10,7 +10,7 @@ import Link from '$lib/components/Link.svelte'
 </script>
 <div class="linkBtn">
 
-This was a simple Python script for <strong>parsing data from hacked sites</strong>. Check out some hacking write-ups for vulnerabilities like IDORs, XSS, Broken Access Control, and more on <Link href='https://medium.com/the-gray-area'><strong>The Gray Area</strong></Link> !
+This was a simple Python script for parsing data from hacked sites. Check out some hacking write-ups for vulnerabilities like IDORs, XSS, Broken Access Control, and more on The Gray Area!
 
 I post a bunch of my bug-bounty endeavors on my <strong>Medium blog</strong>, so if you want to learn about things like <Link href='https://medium.com/the-gray-area/p1-bug-bounties-multi-factor-authentication-bypass-ca040180ab3f'>MFA Bypass</Link> , <Link href='https://medium.com/the-gray-area/a-500-open-redirect-bounty-in-under-10-minutes-fbb1cce063e5'>Open-Redirect Exploitation</Link> , and <Link href='https://medium.com/the-gray-area/finding-p1-vulnerabilities-tools-resources-32bb2e7a52fb'>Finding P1 Bugs</Link> . 
 

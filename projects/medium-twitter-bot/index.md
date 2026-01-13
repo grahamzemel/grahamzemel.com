@@ -11,7 +11,7 @@ import Link from '$lib/components/Link.svelte'
 </script>
 <div class="linkBtn">
 
-A quick and fun <strong>automation bot</strong> that posts each new article from my publication, <Link href='https://medium.com/the-gray-area'>The Gray Area</Link> , onto Twitter. It requires <strong>no user interaction</strong> on my part, all I have to do is publish the article. 
+A quick and fun automation bot that posts each new article from my publication, The Gray Area, onto Twitter. It requires no user interaction at all, all I have to do is publish an article. 
 
 It utilizes Medium's <strong>RSS feed</strong>, as it doesn't have an official API. The RSS feed updates often enough that I can pull it every so often, check if the data is modified, and if it is, post the new article that was appended to the RSS feed.  
 
