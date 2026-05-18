@@ -36,6 +36,36 @@
       demoLink: "https://fratdoor.com",
     },
     {
+      title: "offline-sync-engine",
+      description: `
+       A tiny NPM library I built for FratDoor — an offline-first mutation queue + idempotent server primitives that keep check-in scanners running through venue WiFi blackouts. ~900 lines, zero deps, exactly-once delivery via ULID idempotency keys + IndexedDB persistence.
+      `,
+      image: "/offline-sync-engine.png",
+      tags: ["Library", "Web"],
+      repoLink: "https://github.com/grahamzemel/offline-sync-engine",
+      demoLink: "https://grahamzemel.github.io/offline-sync-engine/",
+    },
+    {
+      title: "Apartment Availability Tracker",
+      description: `
+       A lightweight GitHub Actions project I built to scrape my potential apartment building's listings for 2-bedroom units, rate them by floor plan and Flatirons view, and email me a summary every 24 hours so I can pounce when a good one opens.
+      `,
+      image: "/spark-tracker.png",
+      tags: ["Automation", "Internet"],
+      repoLink: "https://github.com/grahamzemel/spark-tracker",
+      demoLink: null,
+    },
+    {
+      title: "Gingersnaps Photography",
+      description: `
+       A personal photography portfolio I designed and built for a friend (Nick Lathrop). Custom Instagram post acquisition script bypassing API restrictions to keep the portfolio fresh automatically.
+      `,
+      image: "/gingersnaps.jpg",
+      tags: ["Web", "Internet", "Website"],
+      repoLink: "https://github.com/grahamzemel/gingersnaps",
+      demoLink: "https://nicksphotography.netlify.app/",
+    },
+    {
       title: "CU EventHub",
       description: `
        Centralized event registration and safety workflow hub for IFC on the Hill chapters.

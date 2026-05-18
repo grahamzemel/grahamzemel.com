@@ -24,6 +24,7 @@
     achievements: string[];
     stats?: { label: string; value: string }[];
     companion?: { label: string; href: string };
+    companions?: { label: string; href: string }[];
   };
 
   const indexedDbIcon = `
@@ -73,12 +74,13 @@
       highlights: [
         "Card scanning + ID validation for high-volume check-ins",
         "Real-time attendance, capacity tracking, and guest list controls",
-        "Offline-first sync for network-interrupted environments",
+        "Offline-first sync for network-interrupted environments — powered by offline-sync-engine, a library I open-sourced after realizing nothing off-the-shelf handled exactly-once delivery on flaky venue WiFi",
         "Silent alarm with SMS notifications to administrators",
       ],
       achievements: [
         "Reduced Firestore reads by 70–80% via caching",
         "Optimistic UI updates with conflict resolution",
+        "Published offline-sync-engine to NPM — IndexedDB mutation queue + idempotent server primitives in ~900 lines, zero runtime deps",
         "Analytics dashboard for attendance and guest list trends",
       ],
       stats: [
@@ -91,6 +93,12 @@
         label: "Companion product: CU EventHub (party registration + oversight)",
         href: "https://cueventhub.netlify.app/",
       },
+      companions: [
+        {
+          label: "Companion library: offline-sync-engine on NPM (try the live demo)",
+          href: "https://grahamzemel.github.io/offline-sync-engine/",
+        },
+      ],
     },
     {
       title: "TextCloaker",
@@ -117,7 +125,6 @@
         "Chrome extension integrated with Google Docs",
         "Explored in The Gray Area (May 2023)",
         "Featured in AI tool directories and reviews",
-        "750+ cloaks processed in production",
         "Active development with expanded obfuscation planned",
       ],
       stats: [
@@ -324,6 +331,21 @@
                 {project.companion.label}
               </a>
             </p>
+          {/if}
+
+          {#if project.companions}
+            {#each project.companions as companion}
+              <p class="mt-2 text-gray-300">
+                <a
+                  class="link-highlight"
+                  href={companion.href}
+                  target="_blank"
+                  rel="noopener noreferer"
+                >
+                  {companion.label}
+                </a>
+              </p>
+            {/each}
           {/if}
         </div>
       </article>

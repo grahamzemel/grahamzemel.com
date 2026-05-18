@@ -21,6 +21,34 @@
       featured: true,
     },
     {
+      title: "offline-sync-engine",
+      description:
+        "Keeps your check-in scanner working when the venue's WiFi dies. A tiny offline-first mutation queue + idempotent server primitives I built for FratDoor and open-sourced — ~900 lines, zero runtime deps, on NPM. ULID idempotency keys + IndexedDB persistence give exactly-once delivery even through ack-loss, browser refreshes, and server restarts. Optional SSE-based realtime + catch-up replay (same pattern as Linear's sync engine) lets multiple scanners coordinate at the door.",
+      image: "/offline-sync-engine.png",
+      tags: ["Library", "Web"],
+      repoLink: "https://github.com/grahamzemel/offline-sync-engine",
+      demoLink: "https://grahamzemel.github.io/offline-sync-engine/",
+      featured: true,
+    },
+    {
+      title: "Apartment Availability Tracker",
+      description:
+        "A lightweight GitHub Actions cron scraping my potential apartment building's listings every 24 hours, rating 2BR units by floor plan and Flatirons view, and emailing me a summary so I can move fast when a good one opens.",
+      image: "/spark-tracker.png",
+      tags: ["Automation", "Internet"],
+      repoLink: "https://github.com/grahamzemel/spark-tracker",
+      demoLink: null,
+    },
+    {
+      title: "Gingersnaps Photography",
+      description:
+        "Personal photography portfolio I designed and built for Nick Lathrop. Custom Instagram post acquisition script bypassing API restrictions so the gallery stays fresh automatically.",
+      image: "/gingersnaps.jpg",
+      tags: ["Web", "Internet"],
+      repoLink: "https://github.com/grahamzemel/gingersnaps",
+      demoLink: "https://nicksphotography.netlify.app/",
+    },
+    {
       title: "CU EventHub",
       description:
         "Centralized event registration and safety workflow hub for IFC chapters.",
@@ -164,33 +192,6 @@
       tags: ["Python"],
       repoLink: "https://github.com/grahamzemel/DiscreteMath",
       demoLink: null,
-    },
-    {
-      title: "GPU Prices",
-      description:
-        "Live GPU pricing table with filters and sorting by type and price.",
-      image: "/gpuprices.png",
-      tags: ["Web", "Internet", "Automation"],
-      repoLink: null,
-      demoLink: "https://gpuprices.xyz",
-    },
-    {
-      title: "Macbook Prices",
-      description:
-        "Up-to-date Macbook pricing with filters and model comparisons.",
-      image: "/macbookprices.png",
-      tags: ["Web", "Internet", "Automation"],
-      repoLink: null,
-      demoLink: "https://macbookprices.xyz",
-    },
-    {
-      title: "Laptop Prices",
-      description:
-        "Live laptop pricing table with filters and sorting options.",
-      image: "/laptopprices.png",
-      tags: ["Web", "Internet", "Automation"],
-      repoLink: null,
-      demoLink: "https://laptopprices.xyz",
     },
   ];
 
@@ -362,36 +363,38 @@
           <img src={project.image} alt={project.title} loading="lazy" />
         </div>
         <div class="project-body">
-          <div>
+          <div class="project-text">
             <h3 class="project-title">{project.title}</h3>
             <p class="project-desc">{project.description}</p>
           </div>
-          <div class="project-tags">
-            {#each project.tags as tag}
-              <span class="tag {getTagClass(tag)}">{tag}</span>
-            {/each}
-          </div>
-          <div class="project-links">
-            {#if project.demoLink}
-              <a
-                class="project-link"
-                href={project.demoLink}
-                target="_blank"
-                rel="noopener noreferer"
-              >
-                Website: {getDomain(project.demoLink)}
-              </a>
-            {/if}
-            {#if project.repoLink}
-              <a
-                class="project-link"
-                href={project.repoLink}
-                target="_blank"
-                rel="noopener noreferer"
-              >
-                Repo
-              </a>
-            {/if}
+          <div class="project-bottom">
+            <div class="project-tags">
+              {#each project.tags as tag}
+                <span class="tag {getTagClass(tag)}">{tag}</span>
+              {/each}
+            </div>
+            <div class="project-links">
+              {#if project.demoLink}
+                <a
+                  class="project-link"
+                  href={project.demoLink}
+                  target="_blank"
+                  rel="noopener noreferer"
+                >
+                  Website: {getDomain(project.demoLink)}
+                </a>
+              {/if}
+              {#if project.repoLink}
+                <a
+                  class="project-link"
+                  href={project.repoLink}
+                  target="_blank"
+                  rel="noopener noreferer"
+                >
+                  Repo
+                </a>
+              {/if}
+            </div>
           </div>
         </div>
       </article>
@@ -496,7 +499,7 @@
 
   .project-media {
     @apply w-full;
-    height: 42%;
+    height: 38%;
   }
 
   .project-media img {
@@ -504,7 +507,23 @@
   }
 
   .project-body {
-    @apply flex flex-col justify-between gap-3 p-5 h-full;
+    @apply flex flex-col gap-3 p-5 h-full min-h-0;
+  }
+
+  .project-text {
+    @apply relative;
+    flex: 1 1 0;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .project-text::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 1.75rem;
+    background: linear-gradient(to bottom, rgba(7, 10, 13, 0), rgba(7, 10, 13, 0.92));
+    pointer-events: none;
   }
 
   .project-title {
@@ -514,9 +533,15 @@
   .project-desc {
     @apply mt-2 text-sm text-gray-300;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 7;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    line-height: 1.45;
+  }
+
+  .project-bottom {
+    @apply flex flex-col gap-3;
+    flex-shrink: 0;
   }
 
   .project-tags {
