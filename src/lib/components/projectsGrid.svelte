@@ -21,7 +21,7 @@
       featured: true,
     },
     {
-      title: "offline-sync-engine",
+      title: "NPM Library: Offline Sync Engine",
       description:
         "Keeps your check-in scanner working when the venue's WiFi dies. A tiny offline-first mutation queue + idempotent server primitives I built for FratDoor and open-sourced — ~900 lines, zero runtime deps, on NPM. ULID idempotency keys + IndexedDB persistence give exactly-once delivery even through ack-loss, browser refreshes, and server restarts. Optional SSE-based realtime + catch-up replay (same pattern as Linear's sync engine) lets multiple scanners coordinate at the door.",
       image: "/offline-sync-engine.png",

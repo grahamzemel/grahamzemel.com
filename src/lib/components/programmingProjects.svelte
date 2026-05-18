@@ -36,7 +36,7 @@
       demoLink: "https://fratdoor.com",
     },
     {
-      title: "offline-sync-engine",
+      title: "NPM Library: Offline Sync Engine",
       description: `
        A tiny NPM library I built for FratDoor — an offline-first mutation queue + idempotent server primitives that keep check-in scanners running through venue WiFi blackouts. ~900 lines, zero deps, exactly-once delivery via ULID idempotency keys + IndexedDB persistence.
       `,
