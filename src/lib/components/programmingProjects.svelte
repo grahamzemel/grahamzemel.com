@@ -56,9 +56,9 @@
       demoLink: null,
     },
     {
-      title: "Gingersnaps Photography",
+      title: "Nick Lathrop Photography",
       description: `
-       A personal photography portfolio I designed and built for a friend (Nick Lathrop). Custom Instagram post acquisition script bypassing API restrictions to keep the portfolio fresh automatically.
+       Portfolio I designed and built for Nick Lathrop, a senior-portrait + sideline shooter in Golden, CO. Astro + Svelte islands, Playwright stealth scraper bypassing the Instagram API to keep the gallery fresh on a 24-hour GitHub Actions cron.
       `,
       image: "/gingersnaps.jpg",
       tags: ["Web", "Internet", "Website"],

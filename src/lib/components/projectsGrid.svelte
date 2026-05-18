@@ -3,7 +3,7 @@
     {
       title: "FratDoor",
       description:
-        "Comprehensive check-in + event management platform for IFC on the Hill at CU Boulder.",
+        "The check-in operating system I built and deployed as Director of Technology for IFC on the Hill at CU Boulder. 42 chapters use it for ID/QR scanning, blacklist enforcement, ticketing, capacity gates, and live attendance analytics — backed by my own offline-first sync layer that keeps scanners working through venue WiFi blackouts. 150,000+ swipes processed across 300+ events.",
       image: "/fratdoor.png",
       tags: ["Web", "Internet", "IFC"],
       repoLink: null,
@@ -13,7 +13,7 @@
     {
       title: "Text Cloaker",
       description:
-        "Cloak AI-generated text to reduce detector flags while keeping meaning intact.",
+        "AI text protection tool I started after watching students and writers get falsely flagged by brittle AI detectors. Rewrites AI-generated text just enough to clear detection without changing meaning — running as a Chrome extension that hooks into Google Docs, or via the web app for one-off cloaks. 7,000+ users across 40+ countries have cloaked over 3.3 million characters with it.",
       image: "/textcloakerss.png",
       tags: ["AI", "Web", "Internet"],
       repoLink: null,
@@ -33,16 +33,16 @@
     {
       title: "Apartment Availability Tracker",
       description:
-        "A lightweight GitHub Actions cron scraping my potential apartment building's listings every 24 hours, rating 2BR units by floor plan and Flatirons view, and emailing me a summary so I can move fast when a good one opens.",
+        "A lightweight GitHub Actions cron I built while apartment hunting in Boulder. Every 24 hours it scrapes my target building's listings, scores each 2BR unit by floor plan + Flatirons view, and emails me a diff summary so I can pounce the day a good unit opens. Runs free on Actions minutes — beats refreshing the page 50 times a day.",
       image: "/spark-tracker.png",
       tags: ["Automation", "Internet"],
       repoLink: "https://github.com/grahamzemel/spark-tracker",
       demoLink: null,
     },
     {
-      title: "Gingersnaps Photography",
+      title: "Nick Lathrop Photography",
       description:
-        "Personal photography portfolio I designed and built for Nick Lathrop. Custom Instagram post acquisition script bypassing API restrictions so the gallery stays fresh automatically.",
+        "Photography portfolio I designed and built for Nick Lathrop, a senior-portrait and sideline shooter based in Golden, CO. Astro 5 + Svelte islands + Tailwind v4, with GSAP ScrollTrigger smoothness and a PhotoSwipe lightbox. A Playwright stealth scraper running on a 24-hour GitHub Actions cron pulls fresh Instagram posts (bypassing API restrictions), pushes full-res images to Cloudflare R2, and triggers a Netlify rebuild — so the portfolio updates itself whenever Nick shoots.",
       image: "/gingersnaps.jpg",
       tags: ["Web", "Internet"],
       repoLink: "https://github.com/grahamzemel/gingersnaps",
@@ -51,7 +51,7 @@
     {
       title: "CU EventHub",
       description:
-        "Centralized event registration and safety workflow hub for IFC chapters.",
+        "Centralized event registration and safety workflow hub I built for IFC on the Hill chapters at CU Boulder. Chapters submit parties, surface emergency contacts, coordinate with risk managers, and standardize event compliance — all from a single dashboard that pairs with FratDoor at the door itself.",
       image: "/ifc-eventhub.png",
       tags: ["Web", "Internet", "IFC"],
       repoLink: null,
@@ -60,7 +60,7 @@
     {
       title: "Student Living Advocacy Group",
       description:
-        "Reporting hub for off-campus housing experiences on the Hill in Boulder.",
+        "Reporting hub I built so off-campus students on the Hill in Boulder can document housing problems — predatory leases, maintenance neglect, neighbor disputes — and feed them into a structured advocacy pipeline for IFC and local stakeholders.",
       image: "/slag.png",
       tags: ["Web", "Internet", "IFC"],
       repoLink: null,
@@ -69,7 +69,7 @@
     {
       title: "The Vault Collection",
       description:
-        "Unity + C# mobile collection (Flappy Bird, Stacker, Pong, Brick Breaker). My breakthrough App Store release with payments + ads integration.",
+        "Unity + C# mobile collection bundling Flappy Bird, Stacker, Pong, and Brick Breaker into a single App Store release — my first commercial mobile product, complete with in-app payments and rewarded ads. The project that taught me the full ship-to-store pipeline end to end.",
       image: "/vaultcollection.png",
       tags: ["App", "Game"],
       repoLink: null,
@@ -78,7 +78,7 @@
     {
       title: "Graham Zemel (.com)",
       description:
-        "Version 4.0 of my personal website built with SvelteKit and TailwindCSS.",
+        "Version 4.0 of my personal site, hand-built in SvelteKit + Tailwind. Doubles as my front-end playground — every iteration ships some new pattern I want to try (parallax scrolls, glassmorphic cards, observer-driven animations) without breaking the SEO and performance gains from prior versions. Source is on GitHub if you want to poke around.",
       image: "/grahamzemel.com.png",
       tags: ["Internet"],
       repoLink: "https://github.com/grahamzemel/grahamzemel.com",
@@ -87,7 +87,7 @@
     {
       title: "Game Bank",
       description:
-        "Play a variety of popular games online with friends or solo. In development.",
+        "Online arcade I'm building with a friend — a single hub where friends drop in to play classic browser games together or solo. Live preview is up; still iterating on the lobby + matchmaking layer.",
       image: "/gamebank.png",
       tags: ["Game", "Web"],
       repoLink: "https://github.com/grahamzemel/gamebank",
@@ -96,7 +96,7 @@
     {
       title: "QuantumChat",
       description:
-        "Quantum chat room using quantum key distribution to encrypt traffic.",
+        "Experimental chat room that wires the BB84 quantum-key-distribution protocol up to a live messaging UI. Two browsers negotiate a shared key over a simulated quantum channel, detect eavesdropping via QBER, and symmetric-encrypt every message — basically QKD as a teaching toy you can play with in your browser.",
       image: "/quantumss.png",
       tags: ["Quantum", "AI"],
       repoLink: null,
@@ -105,7 +105,7 @@
     {
       title: "Powerschool GPA Calculator",
       description:
-        "Chrome extension to calculate weighted/unweighted GPAs in PowerSchool.",
+        "Chrome extension I built in high school that auto-calculates weighted and unweighted GPAs directly inside the PowerSchool gradebook — no scraping, no logins, just a clean overlay on top of the page. Still pulling installs from the Chrome Web Store years later.",
       image: "/powerschoolss.png",
       tags: ["Internet", "Extension"],
       repoLink:
@@ -116,7 +116,7 @@
     {
       title: "Medium Twitter Bot",
       description:
-        "Automation bot that posts new Gray Area articles to Twitter.",
+        "Automation that watches @TGAonMedium's Medium feed and posts each new Gray Area article to Twitter the moment it goes live. Runs on Heroku off the Medium RSS feed + the Twitter API — zero manual work between drafting and audience.",
       image: "/tgaonmediumss.png",
       tags: ["Python", "Telegram"],
       repoLink: "https://github.com/grahamzemel/MediumTwitterBot",
@@ -125,7 +125,7 @@
     {
       title: "Web Heck Scanner",
       description:
-        "Bug-hunting toolkit combining common scanners and workflows.",
+        "Bash-driven recon and vulnerability scanning toolkit that wires together Nikto, Nuclei, SQLMap, gau/gauplus, anew, httpx, and waybackurls behind a single command. My opening move in bug-hunting engagements: pick a target, run one script, walk away with a structured set of leads.",
       image: "/webheckscannerss.png",
       tags: ["Shell", "Internet", "Bash"],
       repoLink: "https://github.com/grahamzemel/WebHeckScanner",
@@ -134,7 +134,7 @@
     {
       title: "Hecker Bot",
       description:
-        "Telegram bot that automates hacking processes for bug hunting.",
+        "Telegram bot I built as a front-end for my bug-bounty workflow — DM it a target and it kicks off recon, subdomain enumeration, vulnerability scans, and reporting steps that I'd otherwise chain by hand in the terminal.",
       image: "/heckerbotss.jpg",
       tags: ["Automation", "Telegram"],
       repoLink: null,
@@ -143,7 +143,7 @@
     {
       title: "Bash Bunny",
       description:
-        "Hotplug attack scripts for physical pen-testing with Bash Bunny.",
+        "Hotplug attack payloads I wrote for the Hak5 Bash Bunny — the small USB device that emulates HID, ethernet, and storage to drop into a locked machine in seconds. Covers credential grabs, network reconnaissance, and quick-touch persistence checks during physical pen tests.",
       image: "/bashbunnyss.png",
       tags: ["Automation", "Bash"],
       repoLink: "https://github.com/grahamzemel/Hotplug_Attacks",
@@ -152,7 +152,7 @@
     {
       title: "IDOR Automation",
       description:
-        "Python scripts for parsing data from hacked sites and IDOR testing.",
+        "Python scripts I wrote during a P1 bug-bounty engagement to enumerate IDOR (Insecure Direct Object Reference) endpoints — base64-encoding then URL-encoding values to bypass weak access controls. The full disclosure write-up lives on my Medium.",
       image: "/idorss.png",
       tags: ["Python", "Automation"],
       repoLink: "https://github.com/grahamzemel/idorAutomation",
@@ -161,7 +161,7 @@
     {
       title: "Aesculapius",
       description:
-        "MetroHacks 2022 healthcare track winner built with Svelte + Tailwind.",
+        "Healthcare-accessibility chatbot that won the MetroHacks 2022 healthcare track. Built in 24 hours with Svelte + Tailwind + TypeScript on the front-end and a Python + Cohere-powered intent classifier on the back-end, plus Twilio for emergency SMS escalation. The bot interprets free-text health questions and returns mapped/graphed information — or routes the user to emergency services when intent warrants it.",
       image: "/aesculapiusss.png",
       tags: ["Web", "Hackathon"],
       repoLink: "https://github.com/grahamzemel/Aesculapius-FrontEnd",
@@ -170,7 +170,7 @@
     {
       title: "Template Project",
       description:
-        "Starter template with Svelte/Bulma frontend and Python backend.",
+        "Reusable starter template I cut from my actual project boilerplate — Svelte + Bulma on the front, Python on the back. Saves me roughly an hour of yak-shaving every time I start a new prototype.",
       image: "/templateprojss.png",
       tags: ["Web", "Internet"],
       repoLink: "https://github.com/grahamzemel/TemplateProj",
@@ -179,7 +179,7 @@
     {
       title: "Crypto Token Template",
       description:
-        "ERC20 token template for web3 developers.",
+        "Beginner-friendly template for spinning up your own ERC-20 token in REMIX. Ships three Solidity contracts at escalating complexity, deploy scripts using web3.js + ethers.js, and Solidity unit tests — meant as a learning scaffold (and absolutely not a rug-pull starter kit, despite what the dropdown might suggest).",
       image: "/cryptoss.png",
       tags: ["Internet", "Crypto"],
       repoLink: "https://github.com/grahamzemel/CreateCryptoToken",
@@ -187,7 +187,8 @@
     },
     {
       title: "Discrete Mathematics",
-      description: "Notes and resources from my discrete math class.",
+      description:
+        "Working notes, code, and Python explorations from my Discrete Math class at CU Boulder. Set theory, graph algorithms, combinatorics, and a handful of fractal visualizations that ended up being the most fun part of the semester.",
       image: "/fractalsss.png",
       tags: ["Python"],
       repoLink: "https://github.com/grahamzemel/DiscreteMath",
@@ -364,8 +365,10 @@
         </div>
         <div class="project-body">
           <div class="project-text">
-            <h3 class="project-title">{project.title}</h3>
-            <p class="project-desc">{project.description}</p>
+            <div class="project-text-inner">
+              <h3 class="project-title">{project.title}</h3>
+              <p class="project-desc">{project.description}</p>
+            </div>
           </div>
           <div class="project-bottom">
             <div class="project-tags">
@@ -517,12 +520,36 @@
     overflow: hidden;
   }
 
+  .project-text-inner {
+    position: absolute;
+    inset: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-right: 0.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(148, 163, 184, 0.3) transparent;
+  }
+
+  .project-text-inner::-webkit-scrollbar {
+    width: 6px;
+  }
+  .project-text-inner::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .project-text-inner::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.25);
+    border-radius: 3px;
+  }
+  .project-text-inner::-webkit-scrollbar-thumb:hover {
+    background: rgba(148, 163, 184, 0.5);
+  }
+
   .project-text::after {
     content: "";
     position: absolute;
     inset: auto 0 0 0;
-    height: 1.75rem;
-    background: linear-gradient(to bottom, rgba(7, 10, 13, 0), rgba(7, 10, 13, 0.92));
+    height: 1.5rem;
+    background: linear-gradient(to bottom, rgba(7, 10, 13, 0), rgba(7, 10, 13, 0.95));
     pointer-events: none;
   }
 
@@ -532,11 +559,8 @@
 
   .project-desc {
     @apply mt-2 text-sm text-gray-300;
-    display: -webkit-box;
-    -webkit-line-clamp: 7;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    line-height: 1.45;
+    line-height: 1.5;
+    padding-bottom: 0.5rem;
   }
 
   .project-bottom {

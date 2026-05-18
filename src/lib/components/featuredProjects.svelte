@@ -39,7 +39,7 @@
     {
       title: "FratDoor",
       description:
-        "A comprehensive check-in and event management platform built and deployed as Director of Technology for IFC on the Hill at CU Boulder, adopted by 42 fraternities to replace manual door workflows with ID/QR check-in, blacklist enforcement, ticketing, and live analytics.",
+        "FratDoor is the check-in operating system I built and deployed as Director of Technology for IFC on the Hill at CU Boulder. What started as a smarter replacement for printed door lists grew into a full event-ops platform: 42 chapters running ID/QR scanning, blacklist enforcement, ticketing, capacity gates, and live attendance analytics. Most of the hard engineering went into reliability — keeping scanners working through venue WiFi blackouts (which became its own open-source library), deduplicating swipes when two doors race, and squeezing Firestore reads down 70–80% via aggressive client-side caching. It's processed 150,000+ swipes across 300+ events and become the de facto door system on the Hill.",
       image: "/fratdoor.png",
       demoLink: "https://fratdoor.com",
       repoLink: null,
@@ -103,7 +103,7 @@
     {
       title: "TextCloaker",
       description:
-        "Worried about being falsely accused for AI‑generated content? Cloak your text to make sure it’s shown as 100% human‑generated. I built TextCloaker after seeing students and creators flagged by brittle detectors and wanted a fast, accessible way to protect legitimate work.",
+        "TextCloaker is the AI text protection tool I started after watching students and writers get falsely flagged by brittle AI detectors. It rewrites AI-generated text just enough to clear common detection without changing meaning or breaking the prose — running locally as a Chrome extension that hooks straight into Google Docs, or via the web app for one-off cloaks. Under the hood: a paraphrase + synonym pipeline tuned to keep readability high, an AI Check mode that flags risky passages before submission, and a free tier so creators on a budget can still protect legitimate work. 7,000+ users across 40+ countries have cloaked over 3.3 million characters with it to date.",
       image: "/textcloakerss.png",
       demoLink: "https://text-cloaker.com",
       repoLink: null,
