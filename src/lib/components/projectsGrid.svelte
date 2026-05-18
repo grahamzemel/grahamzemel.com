@@ -365,10 +365,8 @@
         </div>
         <div class="project-body">
           <div class="project-text">
-            <div class="project-text-inner">
-              <h3 class="project-title">{project.title}</h3>
-              <p class="project-desc">{project.description}</p>
-            </div>
+            <h3 class="project-title">{project.title}</h3>
+            <p class="project-desc">{project.description}</p>
           </div>
           <div class="project-bottom">
             <div class="project-tags">
@@ -514,43 +512,47 @@
   }
 
   .project-text {
-    @apply relative;
     flex: 1 1 0;
     min-height: 0;
-    overflow: hidden;
-  }
-
-  .project-text-inner {
-    position: absolute;
-    inset: 0;
     overflow-y: auto;
     overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
     padding-right: 0.5rem;
+    /* Fade the top + bottom edges of the visible scroll area so the text
+       gracefully bleeds into the card background instead of hard-cutting.
+       Because mask-image applies to the element's visible rectangle (not
+       the scrolling content), the fades stay pinned to the edges as the
+       user scrolls inside. */
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0,
+      black 0.75rem,
+      black calc(100% - 1.25rem),
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0,
+      black 0.75rem,
+      black calc(100% - 1.25rem),
+      transparent 100%
+    );
     scrollbar-width: thin;
     scrollbar-color: rgba(148, 163, 184, 0.3) transparent;
   }
 
-  .project-text-inner::-webkit-scrollbar {
+  .project-text::-webkit-scrollbar {
     width: 6px;
   }
-  .project-text-inner::-webkit-scrollbar-track {
+  .project-text::-webkit-scrollbar-track {
     background: transparent;
   }
-  .project-text-inner::-webkit-scrollbar-thumb {
+  .project-text::-webkit-scrollbar-thumb {
     background: rgba(148, 163, 184, 0.25);
     border-radius: 3px;
   }
-  .project-text-inner::-webkit-scrollbar-thumb:hover {
+  .project-text::-webkit-scrollbar-thumb:hover {
     background: rgba(148, 163, 184, 0.5);
-  }
-
-  .project-text::after {
-    content: "";
-    position: absolute;
-    inset: auto 0 0 0;
-    height: 1.5rem;
-    background: linear-gradient(to bottom, rgba(7, 10, 13, 0), rgba(7, 10, 13, 0.95));
-    pointer-events: none;
   }
 
   .project-title {
