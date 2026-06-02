@@ -190,10 +190,10 @@
   });
   const form = document.getElementById("leadForm");
   if (form) {
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const note = document.getElementById("formNote");
-      if (form.website2.value) return;
+      if (form.website2.value) return;   // honeypot — silently ignore bots
       const name = form.name.value.trim(), email = form.email.value.trim();
       if (!name || !/.+@.+\..+/.test(email)) {
         note.textContent = "Please add your name and a valid email."; note.style.color = "var(--accent-deep)"; return;
@@ -204,8 +204,30 @@
         note.style.color = "var(--accent-deep)"; return;
       }
       const btn = form.querySelector("button[type=submit]");
-      btn.innerHTML = "Sent — talk soon ✓"; btn.style.pointerEvents = "none";
-      note.textContent = "Thanks " + name.split(" ")[0] + " — I'll reply within a day."; note.style.color = "var(--accent-deep)";
+      const pkg = (form.package && form.package.value.trim()) || "";
+      const phone = (form.phone && form.phone.value.trim()) || "";
+      const original = btn.innerHTML;
+      btn.innerHTML = "Sending…"; btn.style.pointerEvents = "none";
+      try {
+        // Forward to the site's shared contact endpoint (Web3Forms → me@grahamzemel.com)
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name, email,
+            projectType: "SEO" + (pkg ? " — " + pkg : ""),
+            message: (phone ? "Phone: " + phone + "\n\n" : "") + form.message.value.trim(),
+            honey: form.website2.value,
+          }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.ok) throw new Error(data.error || "send failed");
+        btn.innerHTML = "Sent — talk soon ✓";
+        note.textContent = "Thanks " + name.split(" ")[0] + " — I'll reply within a day."; note.style.color = "var(--accent-deep)";
+      } catch (err) {
+        btn.innerHTML = original; btn.style.pointerEvents = "";
+        note.textContent = "Couldn't send — email me directly at me@grahamzemel.com."; note.style.color = "var(--accent-deep)";
+      }
     });
   }
 

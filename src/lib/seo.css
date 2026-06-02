@@ -167,6 +167,7 @@ html.lenis, html.lenis body { height: auto; }
   border: 1px solid var(--line-2); border-radius: 9px; font-family: var(--mono);
   font-size: 0.66rem; background: var(--bg); }
 .seo-page .brand .mark b { color: var(--accent-deep); }
+.seo-page .nav .brand__name { position: relative; top: 1.5px; }
 .seo-page .brand__tag { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--accent-deep); border: 1px solid var(--accent); border-radius: 999px; padding: 0.18em 0.5em; margin-left: 0.15rem; }
 .seo-page .nav__links { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
@@ -259,7 +260,7 @@ html.lenis, html.lenis body { height: auto; }
    HOW IT WORKS — 3 simple steps (tilt cards)
    ============================================================ */
 .seo-page .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.1rem; }
-.seo-page .tilt { perspective: 1000px; }
+.seo-page .tilt { perspective: 1000px; position: relative; }
 .seo-page .scard { position: relative; padding: 1.9rem 1.7rem 2rem; border-radius: 18px;
   border: 1px solid var(--line); background: var(--panel);
   transform-style: preserve-3d; transition: border-color .4s, box-shadow .4s, transform .1s linear;
@@ -276,7 +277,7 @@ html.lenis, html.lenis body { height: auto; }
 .seo-page .price-head h2 { margin-top: 0.9rem; }
 .seo-page .price-head .lead { margin-top: 1rem; }
 .seo-page .price-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.3rem; align-items: stretch; }
-.seo-page .plan { position: relative; padding: 2.2rem 1.9rem; border-radius: 22px;
+.seo-page .plan { position: relative; overflow: hidden; padding: 2.2rem 1.9rem; border-radius: 22px;
   border: 1px solid var(--line); background: #fff; display: flex; flex-direction: column;
   box-shadow: 0 1px 2px rgba(14,17,22,0.04); transition: transform .4s cubic-bezier(.2,.7,.2,1), box-shadow .4s, border-color .4s; }
 .seo-page .plan:hover { transform: translateY(-6px); box-shadow: 0 34px 74px -42px rgba(14,17,22,0.42); border-color: var(--line-2); }
@@ -476,16 +477,25 @@ html.lenis, html.lenis body { height: auto; }
 .seo-page .confp { position: absolute; top: 0; left: 0; width: 9px; height: 9px; border-radius: 2px; will-change: transform, opacity; }
 
 @media (max-width: 900px) {
-  .seo-page .climb__inner { grid-template-columns: 1fr; gap: 1.8rem; }
-  .seo-page .climb__headline { min-height: 0; margin-bottom: 1rem; }
-  .seo-page .climb__slot { min-height: 0; }
+  /* Mobile climb: Google SERP window on top (right below the nav), the headline
+     + tip/HUD right below it, so scrubbing the pinned scene changes the text
+     live as you scroll. Fills the viewport so both stay in view during the pin. */
+  .seo-page .climb { min-height: 100svh; align-items: flex-start; padding: 5.25rem 0 2.5rem; }
+  .seo-page .climb__inner { grid-template-columns: 1fr; gap: 1.3rem; }
+  .seo-page .climb__right { order: -1; }        /* SERP window first */
+  .seo-page .climb__rail { order: 0; }
+  .seo-page .climb__headline { min-height: clamp(118px, 4.4em, 200px); margin: 0.3rem 0 0.85rem;
+    font-size: clamp(1.85rem, 7.4vw, 2.9rem); }
+  .seo-page .climb__slot { min-height: 0; margin-top: 0; }
   .seo-page .climb__tip, .seo-page .climb__hud { position: relative; inset: auto; max-width: none; }
   .seo-page .climb__hud { display: none; }
   .seo-page .climb__hud.show { display: grid; }
   .seo-page .climb__tip { display: flex; }
   .seo-page .climb__tip.hide { display: none; }
+  .seo-page .climb__trust { gap: 0.85rem 1.1rem; margin-top: 1rem; }
+  .seo-page .climb__cta { margin-top: 1.1rem; display: flex; flex-wrap: wrap; gap: 0.6rem; }
   .seo-page .feat__ic--dir::before { content: "\2193"; }
-  .seo-page .serpwin__body { height: min(44vh, 320px); }
+  .seo-page .serpwin__body { height: min(38vh, 300px); }
   .seo-page .incoming { top: auto; bottom: 0.9rem; }
 }
 

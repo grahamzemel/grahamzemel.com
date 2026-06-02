@@ -63,7 +63,7 @@
 
 <!-- NAV -->
 <header class="nav" id="nav">
-  <a href="#top" class="brand"><span class="mark"><b>GZ</b></span><span>Graham Zemel</span></a>
+  <a href="https://grahamzemel.com" class="brand"><span class="mark"><b>GZ</b></span><span class="brand__name">Graham Zemel: Search Engine Optimization</span></a>
   <nav class="nav__links">
     <a href="#top">How it works</a>
     <a href="#pricing">Pricing</a>
@@ -189,8 +189,7 @@
           <a href="#contact" class="btn" data-pkg="Starter — $300/mo">Choose Starter</a>
         </div></div>
 
-        <div class="tilt reveal"><div class="plan featured" data-tilt>
-          <span class="plan__tag">Most popular</span>
+        <div class="tilt reveal"><span class="plan__tag">Most popular</span><div class="plan featured" data-tilt>
           <div class="plan__top">
             <span class="plan__name">Growth</span>
             <p class="plan__tagline">Outrank your competitors.</p>

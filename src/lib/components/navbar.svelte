@@ -2,13 +2,14 @@
   import { onMount, onDestroy } from "svelte";
   import ContactModal from "./modals/contactModal.svelte";
 
-  type LinkItem = { id: string; label: string };
+  type LinkItem = { id: string; label: string; href?: string };
 
   const links: LinkItem[] = [
     { id: "about", label: "About" },
     { id: "projects", label: "Projects" },
     { id: "resume", label: "Resume" },
     { id: "blog", label: "Blog" },
+    { id: "seo", label: "SEO", href: "/seo" },
   ];
 
   let menuOpen = false;
@@ -109,7 +110,7 @@
       <nav class="nav-links" aria-label="Primary">
         {#each links as link}
           <a
-            href={`#${link.id}`}
+            href={link.href ?? `#${link.id}`}
             class="nav-link"
             class:active={activeId === link.id}
             aria-current={activeId === link.id ? "page" : undefined}
@@ -157,7 +158,7 @@
       <nav class="mobile-menu" aria-label="Primary mobile">
         {#each links as link}
           <a
-            href={`#${link.id}`}
+            href={link.href ?? `#${link.id}`}
             class="mobile-link"
             class:active={activeId === link.id}
             aria-current={activeId === link.id ? "page" : undefined}
