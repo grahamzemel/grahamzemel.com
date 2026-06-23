@@ -63,7 +63,7 @@
 
 <!-- NAV -->
 <header class="nav" id="nav">
-  <a href="https://grahamzemel.com" class="brand"><span class="mark"><b>GZ</b></span><span class="brand__name">Graham Zemel: Search Engine Optimization</span></a>
+  <a href="https://grahamzemel.com" class="brand"><span class="mark"><b>GZ</b></span><span class="brand__name">Graham&nbsp;Zemel<span class="brand__suffix">: Search Engine Optimization</span></span></a>
   <nav class="nav__links">
     <a href="#top">How it works</a>
     <a href="#pricing">Pricing</a>

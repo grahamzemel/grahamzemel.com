@@ -12,11 +12,11 @@
   </h1>
 
   <p class="hero-meta custom-fade-in anim-delay-600">
-    <span>FULL-STACK ENGINEER</span>
-    <span class="hero-sep" aria-hidden="true">·</span>
-    <span>AI &amp; SECURITY</span>
-    <span class="hero-sep" aria-hidden="true">·</span>
-    <span>CS @ CU BOULDER</span>
+    <span class="role role--lead">FULL-STACK ENGINEER</span>
+    <span class="role-group">
+      <span class="role">AI &amp; SECURITY</span>
+      <span class="role">CS @ CU BOULDER</span>
+    </span>
   </p>
 
   <p class="hero-blurb custom-fade-in anim-delay-700">
@@ -24,6 +24,30 @@
     <em>TextCloaker</em> (AI text cloaking, 7,000+ users), and writing daily for
     <em>The Gray Area</em>.
   </p>
+
+  <!-- Mobile-only shortcuts: jump straight to the good stuff instead of
+       scrolling the whole page. Desktop has the navbar for this. -->
+  <nav class="hero-quicklinks custom-fade-in anim-delay-800" aria-label="Jump to a section">
+    <a class="ql-chip" href="#about">About</a>
+    <a class="ql-chip" href="#resume">Resume</a>
+    <a class="ql-chip" href="#projects">Projects</a>
+    <a class="ql-chip" href="#get-in-touch">Contact</a>
+  </nav>
+
+  <!-- Mobile-only: core social links as a single row right below the quicklinks.
+       Resume + contact-card live in the nav bar already, so they're omitted here.
+       Desktop renders these in the fixed rotated sidebar (socials.svelte). -->
+  <div class="hero-socials custom-fade-in anim-delay-900" aria-label="Social links">
+    <a class="hero-social" href="https://www.linkedin.com/in/grahamzemel/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+      <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg>
+    </a>
+    <a class="hero-social" href="https://www.instagram.com/grahamzemel/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+      <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg>
+    </a>
+    <a class="hero-social" href="https://github.com/grahamzemel" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" /></svg>
+    </a>
+  </div>
 
   <a class="hero-scroll custom-fade-in anim-delay-900" href="#about" aria-label="Scroll to About">
     <span class="hero-scroll-text">Scroll</span>
@@ -121,24 +145,50 @@
 
   /* ---------- Meta row (titles, uppercase mono) ---------- */
   .hero-meta {
-    margin: 1.25rem 0 0;
+    margin: 1.05rem 0 0;
+    /* Two tiers on mobile: the headline role on its own line, specializations
+       dimmer beneath it. Avoids a wrapped middot dangling at a line edge and
+       gives a clearer read of the primary role. */
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.4rem 0.625rem;
+    flex-direction: column;
+    gap: 0.4rem;
     font-family: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, monospace;
     font-size: 0.75rem;
     font-weight: 500;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.14em;
     color: oklch(0.82 0.008 250);
-    line-height: 1.3;
+    line-height: 1.4;
+  }
+  .role { white-space: nowrap; }
+  .role--lead { color: oklch(0.92 0.008 250); }
+  .role-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.2rem 0.5rem;
+    color: oklch(0.7 0.008 250);
+  }
+  /* Separator rides with the preceding role so it never orphans on a wrap. */
+  .role-group .role:not(:last-child)::after {
+    content: "·";
+    margin-left: 0.5rem;
+    color: oklch(0.5 0.01 250);
   }
   @media (min-width: 768px) {
-    .hero-meta { font-size: 0.8125rem; gap: 0.5rem 0.875rem; }
-  }
-
-  .hero-sep {
-    color: oklch(0.45 0.01 250);
+    /* Desktop has room for a single inline line: lead · AI & Security · CS. */
+    .hero-meta {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0 0.5rem;
+      font-size: 0.8125rem;
+      letter-spacing: 0.16em;
+    }
+    .role--lead::after {
+      content: "·";
+      margin-left: 0.5rem;
+      color: oklch(0.5 0.01 250);
+    }
   }
 
   /* ---------- Bio blurb ---------- */
@@ -174,14 +224,115 @@
   .anim-delay-400 { animation-delay: 400ms; }
   .anim-delay-600 { animation-delay: 600ms; }
   .anim-delay-700 { animation-delay: 750ms; }
+  .anim-delay-800 { animation-delay: 850ms; }
   .anim-delay-900 { animation-delay: 950ms; }
+
+  /* ---------- Mobile quick-links (hidden on desktop — navbar covers it) ---------- */
+  .hero-quicklinks {
+    display: none;
+  }
+  @media (max-width: 767px) {
+    .hero-quicklinks {
+      /* One cohesive segmented control: a single rounded bar with hairline
+         dividers between four equal segments, instead of separate pills. */
+      display: flex;
+      margin-top: 1.75rem;
+      width: 100%;
+      max-width: 20rem;
+      border-radius: 9999px;
+      border: 1px solid oklch(0.34 0.012 250);
+      background: oklch(0.12 0.012 250 / 0.72);
+      backdrop-filter: blur(10px) saturate(1.2);
+      -webkit-backdrop-filter: blur(10px) saturate(1.2);
+      overflow: hidden;
+    }
+  }
+  .ql-chip {
+    flex: 1 1 0;
+    min-width: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, monospace;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: oklch(0.86 0.008 250);
+    padding: 0.7rem 0.35rem;
+    text-decoration: none;
+    transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1),
+      background 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  /* Hairline divider between segments (1px structural rule, not an accent). */
+  .ql-chip + .ql-chip {
+    border-left: 1px solid oklch(0.30 0.012 250);
+  }
+  .ql-chip:hover,
+  .ql-chip:active {
+    color: oklch(0.985 0.004 250);
+    background: oklch(0.18 0.03 160 / 0.6);
+  }
+
+  /* ---------- Mobile social grid (3×2, below quicklinks) ---------- */
+  .hero-socials {
+    display: none;
+  }
+  @media (max-width: 767px) {
+    .hero-socials {
+      /* Single ghost-glyph row (not a second grid of bordered circles) so the
+         segmented nav bar above stays the clear primary action. A tight
+         left-aligned cluster; the negative margin pulls the first glyph back
+         in line with the text column (the 44px hit area insets it otherwise). */
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 1.2rem;
+      margin-left: -0.7rem;
+    }
+  }
+  .hero-social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* Generous 44px hit area for touch, but no container chrome at rest. */
+    height: 2.75rem;
+    width: 2.75rem;
+    border-radius: 9999px;
+    border: 1px solid transparent;
+    background: transparent;
+    /* Soft shadow keeps the bare glyph legible over the busy fractal. */
+    color: oklch(0.82 0.01 250);
+    filter: drop-shadow(0 1px 4px oklch(0 0 0 / 0.55));
+    transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 200ms cubic-bezier(0.16, 1, 0.3, 1),
+      background 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .hero-social:hover,
+  .hero-social:active {
+    /* Tinted circle surfaces only on interaction. */
+    color: oklch(0.985 0.004 250);
+    border-color: oklch(0.78 0.18 145 / 0.45);
+    background: oklch(0.16 0.03 160 / 0.7);
+  }
+  .hero-social svg {
+    height: 1.3rem;
+    width: 1.3rem;
+  }
 
   /* ---------- Scroll indicator (absolute, viewport-centered bottom) ---------- */
   .hero-scroll {
     position: absolute;
-    left: 50%;
+    /* Center via auto margins, NOT transform: translateX(-50%). The
+       `.custom-fade-in` animation ends on `transform: translateY(0)` with
+       fill-mode:both, which would clobber a centering transform and shove the
+       indicator off-center by half its width. Auto margins are immune. */
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    width: fit-content;
     bottom: 1.75rem;
-    transform: translateX(-50%);
     display: inline-flex;
     flex-direction: column;
     align-items: center;

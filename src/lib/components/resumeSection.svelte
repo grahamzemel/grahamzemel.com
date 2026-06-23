@@ -337,13 +337,17 @@
     color: oklch(0.95 0.06 165);
   }
 
-  /* ---------- Bottom row: bullets/links left half, LinkedIn embed centered in right half ---------- */
+  /* ---------- Bottom row: bullets/links, then the LinkedIn embed ----------
+     This used to be a 2-column grid (links | badge). LinkedIn's badge is a
+     flaky third-party embed that often fails to render, which left the right
+     column empty and made the whole block look shoved to the left. Stack it
+     instead: the bullets/links span the full width and read as centered, and
+     the badge (when it loads) sits centered below — graceful either way. */
   .resume-bottom {
     margin-top: auto;
     padding-top: 2rem;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    align-items: center;
+    display: flex;
+    flex-direction: column;
     gap: 1.5rem;
   }
   .resume-bottom-text {
@@ -358,11 +362,6 @@
   .resume-bottom-text .resume-links {
     @apply mt-0;
   }
-  @media (max-width: 720px) {
-    .resume-bottom {
-      grid-template-columns: 1fr;
-    }
-  }
 
   /* ---------- LinkedIn embed wrapper ---------- */
   .linkedin-card {
@@ -370,6 +369,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  /* When the badge fails to render it collapses to nothing — no empty gap. */
+  .linkedin-card:empty {
+    display: none;
   }
   /* Hide the fallback "Graham Zemel" anchor that LinkedIn leaves in the
      badge container alongside the rendered iframe. */
@@ -403,8 +406,19 @@
   }
 
   @media (max-width: 640px) {
+    /* Keep the stats as a compact 2×2 on phones — a single stacked column made
+       four giant full-width blocks that ate the screen. */
     .resume-stat-grid {
-      @apply grid-cols-1;
+      @apply mt-6 grid-cols-2 gap-2.5;
+    }
+    .resume-stat {
+      @apply px-3 py-3;
+    }
+    .resume-stat-value {
+      @apply text-xl;
+    }
+    .resume-stat-label {
+      @apply mt-0.5 text-xs;
     }
 
     .resume-lead {

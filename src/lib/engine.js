@@ -36,9 +36,13 @@
   }
 
   /* ---------------- Lenis ---------------- */
+  const isMobile = window.matchMedia("(max-width: 900px)").matches;
   let lenis = null;
   function initLenis() {
-    if (reduce || typeof Lenis === "undefined") return;
+    // Skip Lenis on mobile/touch: Lenis + ScrollTrigger pin is unreliable on
+    // touch (the pinned scene won't scrub). Native scrolling drives ScrollTrigger
+    // directly on mobile, which is the well-supported path.
+    if (reduce || isTouch || isMobile || typeof Lenis === "undefined") return;
     lenis = new Lenis({
       duration: 0.9,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -120,6 +124,8 @@
   function initGsap() {
     if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
     gsap.registerPlugin(ScrollTrigger);
+    // Don't refresh/jump pins when the mobile URL bar shows/hides.
+    ScrollTrigger.config({ ignoreMobileResize: true });
 
     // the growth curve draws itself + climbs as you scroll the whole page
     const line = document.querySelector(".depth__chart-line");

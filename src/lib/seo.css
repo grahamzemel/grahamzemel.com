@@ -364,8 +364,12 @@ html.lenis, html.lenis body { height: auto; }
 .seo-page .climb__inner { width: min(100% - 2.5rem, var(--maxw)); margin-inline: auto;
   display: grid; grid-template-columns: 1fr 1fr; gap: 2.6rem; align-items: center; }
 
-.seo-page .climb__rail { position: relative; z-index: 3; }
-.seo-page .climb__right { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 0.85rem; }
+/* min-width:0 lets these grid items shrink to their track instead of being
+   forced as wide as their content. Without it the SERP window's intrinsic
+   width (Google wordmark + search pill + icons) blows the single-column grid
+   out past the viewport when a query is typed in — pushing everything right. */
+.seo-page .climb__rail { position: relative; z-index: 3; min-width: 0; }
+.seo-page .climb__right { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 0.85rem; min-width: 0; }
 
 /* LEFT headline that edits itself as you scroll */
 .seo-page .climb__headline { position: relative; margin: 0.9rem 0 1.4rem;
@@ -480,11 +484,22 @@ html.lenis, html.lenis body { height: auto; }
   /* Mobile climb: Google SERP window on top (right below the nav), the headline
      + tip/HUD right below it, so scrubbing the pinned scene changes the text
      live as you scroll. Fills the viewport so both stay in view during the pin. */
-  .seo-page .climb { min-height: 100svh; align-items: flex-start; padding: 5.25rem 0 2.5rem; }
-  .seo-page .climb__inner { grid-template-columns: 1fr; gap: 1.3rem; }
+  /* When ScrollTrigger pins this scene it wraps it in a pin-spacer, and on touch
+     it pins via TRANSFORM — that spacer can latch onto a stale, too-wide width,
+     clipping the SERP window + headline off the right edge. Cap against the
+     VIEWPORT (100vw, not 100% — 100% would resolve against the wide spacer) and
+     size the inner column against the viewport too, so the scene can never
+     exceed the screen no matter how it's pinned. */
+  .seo-page .climb { min-height: 100svh; align-items: flex-start; padding: 5.25rem 0 2.5rem;
+    max-width: 100vw; overflow-x: clip; }
+  .seo-page .climb__inner { grid-template-columns: 1fr; gap: 1.3rem;
+    width: min(100vw - 2.5rem, var(--maxw)); max-width: 100vw; }
   .seo-page .climb__right { order: -1; }        /* SERP window first */
   .seo-page .climb__rail { order: 0; }
-  .seo-page .climb__headline { min-height: clamp(118px, 4.4em, 200px); margin: 0.3rem 0 0.85rem;
+  /* Eyebrow is redundant on mobile and just eats vertical space — drop it so
+     the headline + RANK TRACKER sit higher. */
+  .seo-page .climb__rail .eyebrow { display: none; }
+  .seo-page .climb__headline { min-height: clamp(92px, 3.3em, 150px); margin: 0.1rem 0 0.6rem;
     font-size: clamp(1.85rem, 7.4vw, 2.9rem); }
   .seo-page .climb__slot { min-height: 0; margin-top: 0; }
   .seo-page .climb__tip, .seo-page .climb__hud { position: relative; inset: auto; max-width: none; }
@@ -537,6 +552,29 @@ html.lenis, html.lenis body { height: auto; }
   .seo-page .hero__cta { width: 100%; }
   .seo-page .hero__cta .btn { flex: 1; justify-content: center; }
 }
+
+/* ---------- mobile nav: compact brand + CTA ---------- */
+@media (max-width: 640px) {
+  .seo-page .nav { padding: 0.65rem 0.9rem; }
+  .seo-page .brand { font-size: 0.92rem; gap: 0.5rem; }
+  .seo-page .brand .mark { width: 30px; height: 30px; border-radius: 8px; }
+  .seo-page .brand__suffix { display: none; }
+  .seo-page .nav__right { gap: 0.55rem; }
+  .seo-page .nav__cta { padding: 0.62em 0.95em; font-size: 0.64rem; letter-spacing: 0.06em; }
+  .seo-page .nav__cta .arrow { display: none; }
+}
+
+/* ---------- mobile spacing + sizing polish ---------- */
+@media (max-width: 540px) {
+  .seo-page .searches { padding: 2.5rem 0 1rem; }
+  .seo-page .searches__label { padding: 0 1.25rem; font-size: 0.66rem; }
+  .seo-page .qpill { height: 40px; font-size: 0.88rem; padding: 0 1rem 0 0.9rem; }
+  .seo-page .plan { padding: 1.8rem 1.4rem; }
+  .seo-page .price-head { margin-bottom: 2.2rem; }
+  .seo-page .foot__in { flex-direction: column; gap: 0.6rem; text-align: center; }
+  .seo-page .climb { padding-top: 4.75rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .seo-page * { animation-duration: .001ms !important; animation-iteration-count: 1 !important; }
   .seo-page .reveal, .seo-page .reveal.in { opacity: 1; transform: none; transition: none; }

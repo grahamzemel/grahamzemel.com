@@ -276,8 +276,10 @@
     render(0);
     tiltWindow();
     if (reduce || typeof ScrollTrigger === "undefined") { render(1); return; }
+    // Shorter scrub on mobile so the whole climb completes in a comfortable swipe.
+    const mobile = window.matchMedia("(max-width: 900px)").matches;
     ScrollTrigger.create({
-      trigger: "#climb", start: "top top", end: "+=1800",
+      trigger: "#climb", start: "top top", end: mobile ? "+=1100" : "+=1800",
       pin: true, scrub: 1, anticipatePin: 1, invalidateOnRefresh: true,
       onUpdate: (self) => render(self.progress),
     });

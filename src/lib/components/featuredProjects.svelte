@@ -4,6 +4,11 @@
   let hasChanged = false;
   let hasObserverSupport = true;
 
+  // Per-card expand state for the mobile "details" toggle. (Native <details>
+  // can't be reliably force-opened on desktop because Chrome hides its content
+  // via the ::details-content pseudo, so we drive it ourselves.)
+  let expanded: Record<number, boolean> = {};
+
   type StackItem = {
     label: string;
     slug?: string;
@@ -15,6 +20,8 @@
   type FeaturedProject = {
     title: string;
     description: string;
+    // Tight, mobile-first blurb — the full `description` only shows on desktop.
+    short: string;
     image: string;
     demoLink: string | null;
     repoLink: string | null;
@@ -40,6 +47,8 @@
       title: "FratDoor",
       description:
         "FratDoor is the check-in operating system I built and deployed as Director of Technology for IFC on the Hill at CU Boulder. What started as a smarter replacement for printed door lists grew into a full event-ops platform: 42 chapters running ID/QR scanning, blacklist enforcement, ticketing, capacity gates, and live attendance analytics. Most of the hard engineering went into reliability — keeping scanners working through venue WiFi blackouts (which became its own open-source library), deduplicating swipes when two doors race, and squeezing Firestore reads down 70–80% via aggressive client-side caching. It's processed 150,000+ swipes across 300+ events and become the de facto door system on the Hill.",
+      short:
+        "The door system 42 frats actually run on — ID/QR scanning, ticketing, and live capacity that keeps working even when the venue WiFi dies (I open-sourced that part). 150,000+ swipes across 300+ events.",
       image: "/fratdoor.png",
       demoLink: "https://fratdoor.com",
       repoLink: null,
@@ -103,7 +112,9 @@
     {
       title: "TextCloaker",
       description:
-        "TextCloaker is the AI text protection tool I started after watching students and writers get falsely flagged by brittle AI detectors. It rewrites AI-generated text just enough to clear common detection without changing meaning or breaking the prose — running locally as a Chrome extension that hooks straight into Google Docs, or via the web app for one-off cloaks. Under the hood: a paraphrase + synonym pipeline tuned to keep readability high, an AI Check mode that flags risky passages before submission, and a free tier so creators on a budget can still protect legitimate work. 7,000+ users across 40+ countries have cloaked over 3.3 million characters with it to date.",
+        "TextCloaker is the AI text protection tool I started after watching students and writers get falsely flagged by brittle AI detectors. It makes AI-generated text read as human to detectors like GPTZero, Turnitin, and Originality.ai — without changing a single character a person can see. Instead of paraphrasing, a proprietary multi-layer cloaking engine alters only what the detectors parse, so the visible text stays word-for-word identical. Pick a cloak strength (Light, Regular, or Deep), batch-upload whole .docx essays, or run it from the Chrome extension while you write. 7,000+ users worldwide lean on it, with typical detection dropping from ~94% to ~2%.",
+      short:
+        "Makes AI-written text undetectable while leaving it word-for-word identical — no rewording, no paraphrasing. Pick a cloak strength and it sails past GPTZero, Turnitin, and Originality.ai. 7,000+ users worldwide.",
       image: "/textcloakerss.png",
       demoLink: "https://text-cloaker.com",
       repoLink: null,
@@ -116,16 +127,18 @@
         { label: "Vite", slug: "vite", bg: "#646cff" },
       ],
       highlights: [
-        "Cloak, Un‑Cloak, and AI Check workflows",
-        "Paraphrase + Synonym tools for quick rewrites",
-        "Keeps output readable with minimal visible changes",
-        "Chrome extension workflow for Google Docs",
+        "Light, Regular, and Deep Cloak strength settings",
+        "Zero visible changes — text stays word-for-word identical, no rewording or paraphrasing",
+        "Batch .txt / .docx upload — cloak a whole essay in one click",
+        "Cloak history keeps your last 15 cloaks on hand",
+        "Chrome extension for one-click cloaking while you write",
       ],
       achievements: [
-        "Chrome extension integrated with Google Docs",
-        "Explored in The Gray Area (May 2023)",
-        "Featured in AI tool directories and reviews",
-        "Active development with expanded obfuscation planned",
+        "Proprietary multi-layer cloaking engine that leaves the visible text untouched",
+        "Beats GPTZero, Turnitin, and Originality.ai — typical detection drops from ~94% to ~2%",
+        "Developer API with a published OpenAPI spec for programmatic cloaking",
+        "Chrome extension on the Web Store, synced to user accounts",
+        "7,000+ users worldwide on a Stripe-billed free + Premium model",
       ],
       stats: [
         { label: "Users", value: "7,000+" },
@@ -205,7 +218,7 @@
   </h1>
 
   <div class="featured-grid mt-10">
-    {#each projects as project}
+    {#each projects as project, i}
       <article class="featured-card">
         <div class="featured-media">
           <img
@@ -219,7 +232,8 @@
           <div class="featured-head">
             <div>
               <h3 class="text-2xl font-semibold">{project.title}</h3>
-              <p class="mt-2 text-gray-300">{project.description}</p>
+              <p class="mt-2 text-gray-300 desc-short">{project.short}</p>
+              <p class="mt-2 text-gray-300 desc-full">{project.description}</p>
             </div>
             <div class="tag-row mt-4">
               {#each project.tags as tag}
@@ -277,76 +291,94 @@
             </div>
           {/if}
 
-          <div class="section-block mt-6">
-            <h4 class="section-title">Tech Stack</h4>
-            <div class="stack-grid">
-              {#each project.stack as item}
-                <div class="stack-item" aria-label={item.label}>
-                  {#if item.iconSvg}
-                    <div class="stack-icon stack-icon--svg" style={`background:${item.bg}`}>
-                      {@html item.iconSvg}
+          <div class="card-more">
+            <button
+              class="card-more__summary"
+              class:is-open={expanded[i]}
+              type="button"
+              aria-expanded={expanded[i] ? "true" : "false"}
+              on:click={() => (expanded[i] = !expanded[i])}
+            >
+              <span class="card-more__label">
+                {expanded[i] ? "Hide details" : "Tech stack, features & achievements"}
+              </span>
+              <svg class="card-more__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            <div class="card-more__inner" class:is-open={expanded[i]}>
+              <div class="section-block mt-6">
+                <h4 class="section-title">Tech Stack</h4>
+                <div class="stack-grid">
+                  {#each project.stack as item}
+                    <div class="stack-item" aria-label={item.label}>
+                      {#if item.iconSvg}
+                        <div class="stack-icon stack-icon--svg" style={`background:${item.bg}`}>
+                          {@html item.iconSvg}
+                        </div>
+                      {:else}
+                        <div class="stack-icon" style={`background:${item.bg}`}>
+                          <img
+                            src={item.iconUrl ??
+                              `https://cdn.simpleicons.org/${item.slug}/ffffff?viewbox=auto&size=48`}
+                            alt={`${item.label} logo`}
+                            loading="lazy"
+                          />
+                        </div>
+                      {/if}
+                      <span class="stack-label">{item.label}</span>
                     </div>
-                  {:else}
-                    <div class="stack-icon" style={`background:${item.bg}`}>
-                      <img
-                        src={item.iconUrl ??
-                          `https://cdn.simpleicons.org/${item.slug}/ffffff?viewbox=auto&size=48`}
-                        alt={`${item.label} logo`}
-                        loading="lazy"
-                      />
-                    </div>
-                  {/if}
-                  <span class="stack-label">{item.label}</span>
+                  {/each}
                 </div>
-              {/each}
+              </div>
+
+              <div class="section-block mt-6 lg-hide">
+                <h4 class="section-title">Core Features</h4>
+                <ul class="feature-list">
+                  {#each project.highlights as item}
+                    <li>{item}</li>
+                  {/each}
+                </ul>
+              </div>
+
+              <div class="section-block mt-6 lg-hide">
+                <h4 class="section-title">Technical Achievements</h4>
+                <ul class="feature-list">
+                  {#each project.achievements as item}
+                    <li>{item}</li>
+                  {/each}
+                </ul>
+              </div>
+
+              {#if project.companion}
+                <p class="mt-6 text-gray-300">
+                  <a
+                    class="link-highlight"
+                    href={project.companion.href}
+                    target="_blank"
+                    rel="noopener noreferer"
+                  >
+                    {project.companion.label}
+                  </a>
+                </p>
+              {/if}
+
+              {#if project.companions}
+                {#each project.companions as companion}
+                  <p class="mt-2 text-gray-300">
+                    <a
+                      class="link-highlight"
+                      href={companion.href}
+                      target="_blank"
+                      rel="noopener noreferer"
+                    >
+                      {companion.label}
+                    </a>
+                  </p>
+                {/each}
+              {/if}
             </div>
           </div>
-
-          <div class="section-block mt-6">
-            <h4 class="section-title">Core Features</h4>
-            <ul class="feature-list">
-              {#each project.highlights as item}
-                <li>{item}</li>
-              {/each}
-            </ul>
-          </div>
-
-          <div class="section-block mt-6">
-            <h4 class="section-title">Technical Achievements</h4>
-            <ul class="feature-list">
-              {#each project.achievements as item}
-                <li>{item}</li>
-              {/each}
-            </ul>
-          </div>
-
-          {#if project.companion}
-            <p class="mt-6 text-gray-300">
-              <a
-                class="link-highlight"
-                href={project.companion.href}
-                target="_blank"
-                rel="noopener noreferer"
-              >
-                {project.companion.label}
-              </a>
-            </p>
-          {/if}
-
-          {#if project.companions}
-            {#each project.companions as companion}
-              <p class="mt-2 text-gray-300">
-                <a
-                  class="link-highlight"
-                  href={companion.href}
-                  target="_blank"
-                  rel="noopener noreferer"
-                >
-                  {companion.label}
-                </a>
-              </p>
-            {/each}
-          {/if}
         </div>
       </article>
     {/each}
@@ -374,7 +406,79 @@
   }
 
   .featured-body {
-    @apply p-6 flex flex-col;
+    @apply p-5 sm:p-6 flex flex-col;
+  }
+
+  /* Description swap: the tight `short` blurb carries small screens; the full
+     write-up only appears once the cards go side-by-side on desktop. */
+  .desc-full {
+    display: none;
+  }
+  @media (min-width: 1024px) {
+    .desc-short {
+      display: none;
+    }
+    .desc-full {
+      display: block;
+    }
+    /* Core Features / Technical Achievements are wall-of-text on desktop, where
+       the card is already expanded — drop them. They stay on mobile, tucked
+       behind the details toggle for anyone who wants the deep dive. */
+    .lg-hide {
+      display: none !important;
+    }
+  }
+
+  /* ---------- Collapsible deep sections (mobile) ----------
+     On phones/tablets the card defaults to a compact summary (image, blurb,
+     stats, CTA) with a toggle. On desktop (lg+, where cards sit side-by-side)
+     the toggle is hidden and everything is shown expanded as before. */
+  .card-more {
+    @apply mt-6;
+  }
+  .card-more__summary {
+    @apply w-full flex items-center justify-between gap-3 rounded-xl border border-slate-800 bg-[#0b0f14] px-4 py-3 cursor-pointer select-none;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: oklch(0.8 0.008 250);
+    transition: border-color 200ms, color 200ms, background 200ms;
+  }
+  .card-more__summary:hover {
+    @apply border-accent-300 text-accent-200;
+  }
+  .card-more__summary.is-open {
+    @apply border-accent-300/60 text-accent-200;
+  }
+  .card-more__chev {
+    height: 1.1rem;
+    width: 1.1rem;
+    flex: none;
+    transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .card-more__summary.is-open .card-more__chev {
+    transform: rotate(180deg);
+  }
+  /* Collapsed by default (mobile); revealed when toggled. */
+  .card-more__inner {
+    display: none;
+  }
+  .card-more__inner.is-open {
+    display: block;
+  }
+
+  @media (min-width: 1024px) {
+    .card-more {
+      @apply mt-0;
+    }
+    /* On desktop the cards sit side-by-side — always expanded, no toggle. */
+    .card-more__summary {
+      display: none;
+    }
+    .card-more__inner {
+      display: block !important;
+    }
   }
 
   .tag-row {

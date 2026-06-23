@@ -71,38 +71,6 @@
 
   <div class="current-grid mt-10">
     <article class="focus-card">
-      <h3 class="text-2xl font-semibold">IFC on the Hill</h3>
-      <p class="mt-3 text-gray-300 leading-relaxed">
-        As Director of Technology, I built
-        <a
-          class="link-highlight"
-          href="https://cueventhub.netlify.app/"
-          target="_blank"
-          rel="noopener noreferer"
-        >
-          CU EventHub
-        </a>
-        from the ground up to standardize event registration and safety
-        workflows, and I also built the
-        <a
-          class="link-highlight"
-          href="https://hillneighborhoodslag.netlify.app/"
-          target="_blank"
-          rel="noopener noreferer"
-        >
-          Student Living Advocacy Group (SLAG)
-        </a>
-        platform to make housing issues easier to document, aggregate, and act
-        on.
-      </p>
-      <ul class="mt-4 list-disc ml-5 text-gray-300 space-y-1">
-        <li>Structured event submissions and notifications</li>
-        <li>Emergency contact visibility and compliance support</li>
-        <li>Neighborhood-focused reporting and advocacy</li>
-      </ul>
-    </article>
-
-    <article class="focus-card">
       <h3 class="text-2xl font-semibold">Startup Founder</h3>
       <p class="mt-3 text-gray-300 leading-relaxed">
         I’m rolling out
@@ -133,9 +101,42 @@
         >
           TextCloaker
         </a>,
-        a web app that cloaks AI-generated text to reduce AI-detector flags while
-        keeping it readable.
+        a web app that cloaks AI-generated text to reduce AI-detector flags
+        <strong class="font-semibold text-gray-100">without ever changing the
+        text</strong>.
       </p>
+    </article>
+
+    <article class="focus-card">
+      <h3 class="text-2xl font-semibold">IFC on the Hill</h3>
+      <p class="mt-3 text-gray-300 leading-relaxed">
+        As Director of Technology, I built
+        <a
+          class="link-highlight"
+          href="https://cueventhub.netlify.app/"
+          target="_blank"
+          rel="noopener noreferer"
+        >
+          CU EventHub
+        </a>
+        from the ground up to standardize event registration and safety
+        workflows, and I also built the
+        <a
+          class="link-highlight"
+          href="https://hillneighborhoodslag.netlify.app/"
+          target="_blank"
+          rel="noopener noreferer"
+        >
+          Student Living Advocacy Group (SLAG)
+        </a>
+        platform to make housing issues easier to document, aggregate, and act
+        on.
+      </p>
+      <ul class="mt-4 list-disc ml-5 text-gray-300 space-y-1">
+        <li>Structured event submissions and notifications</li>
+        <li>Emergency contact visibility and compliance support</li>
+        <li>Neighborhood-focused reporting and advocacy</li>
+      </ul>
     </article>
   </div>
 
@@ -165,10 +166,21 @@
     <article class="focus-card">
       <h3 class="text-2xl font-semibold">Web Development</h3>
       <p class="mt-3 text-gray-300 leading-relaxed">
-        I have extensive experience in web development, primarily focusing on
-        back-end systems. Recently I’ve been exploring front-end work and
-        experimenting with modern UI frameworks. I also publish SEO tips and
-        step-by-step portfolio guides on
+        Backend-first, and increasingly hands-on with modern front-end
+        frameworks. Above all I build <em>utility-focused</em>: every project
+        solves a concrete problem, and when an existing tool falls short I build
+        the missing piece myself. For FratDoor’s offline sync, that meant a
+        custom ULID-based idempotency layer I wrote into an
+        <a
+          class="link-highlight"
+          href="https://github.com/grahamzemel/offline-sync-engine"
+          target="_blank"
+          rel="noopener noreferer"
+        >
+          NPM library</a><span class="hidden md:inline">, because Firestore’s own
+        offline and ID handling didn’t behave the same across platforms and I
+        needed guaranteed exactly-once writes everywhere</span>. I also publish
+        SEO and portfolio guides on
         <a
           class="link-highlight"
           href="https://thegrayarea.tech"
@@ -176,9 +188,7 @@
           rel="noopener noreferer"
         >
           The Gray Area
-        </a>.
-        This site was a trial run with
-        cutting-edge front-end tools — the source is on
+        </a>, and this site itself was a front-end trial run, with its source on
         <a
           class="link-highlight"
           href="https://github.com/grahamzemel"
@@ -186,34 +196,46 @@
           rel="noopener noreferer"
         >
           GitHub
-        </a>
-        if you want to explore.
+        </a>.
       </p>
     </article>
 
     <article class="focus-card">
       <h3 class="text-2xl font-semibold">Cybersecurity</h3>
       <p class="mt-3 text-gray-300 leading-relaxed">
-        When I’m not writing or building web apps, I dive into cybersecurity.
-        There’s nothing like discovering a P1 vulnerability after days of bug
-        hunting. I’ve built scripts that automate penetration tests and surface
-        vulnerabilities faster. For a deeper take, read my satirical piece on
+        Offense and defense. I hunt bug bounties and build my own
         <a
           class="link-highlight"
-          href="https://thegrayarea.tech/finding-p1-vulnerabilities-a-step-by-step-guide-b88521195204"
+          href="https://github.com/grahamzemel/WebHeckScanner"
           target="_blank"
           rel="noopener noreferer"
         >
-          hacking
-        </a>
-        and online safety.
+          recon-and-scan tooling</a>
+        to surface vulnerabilities fast. On the build side, I’ve secured
+        150,000+ real check-ins on
+        <a
+          class="link-highlight"
+          href="https://fratdoor.com"
+          target="_blank"
+          rel="noopener noreferer"
+        >
+          FratDoor</a>
+        behind passes that can’t be screenshotted, shared, or replayed, and I
+        pen-test
+        my own products before they ship. <span class="hidden md:inline">Sensitive
+        keys and data never leave the server, every action is logged so it can’t
+        be quietly rewritten, and forged requests are rejected at the backend
+        rather than just hidden in the UI.</span>
       </p>
     </article>
 
-    <article class="focus-card">
-      <h3 class="text-2xl font-semibold">Writing</h3>
-      <p class="mt-3 text-gray-300 leading-relaxed">
-        I publish my best work through
+  </div>
+
+  <div class="writing-section mt-6">
+    <div class="writing-header">
+      <h3 class="text-2xl font-semibold">Papers & Writing</h3>
+      <p class="mt-2 text-gray-300 leading-relaxed">
+        Writing is how I think out loud. I founded and run
         <a
           class="link-highlight"
           href="https://thegrayarea.tech"
@@ -221,27 +243,12 @@
           rel="noopener noreferer"
         >
           The Gray Area
-        </a>
-        with over half a million readers, and share daily articles on my personal
-        profile. I stay active across platforms for readers who want more.
-      </p>
-    </article>
-  </div>
-
-  <div class="writing-section mt-6">
-    <div class="writing-header">
-      <h3 class="text-2xl font-semibold">Papers & Writing</h3>
-      <p class="mt-2 text-gray-300">
-        My papers and long-form writing live on
-        <a
-          class="link-highlight"
-          href="https://thegrayarea.tech"
-          target="_blank"
-          rel="noopener noreferer"
-        >
-          thegrayarea.tech
-        </a>
-        alongside daily posts and curated publications.
+        </a>, a tech publication now read by more than 2,000,000 people across
+        30+ contributors, where I publish security research, vulnerability
+        disclosures, deep-dive tutorials, and essays on the craft of shipping
+        software. <span class="hidden md:inline">My own pieces have reached over
+        half a million readers, and I still publish something new most days, from
+        P1 write-ups to step-by-step build logs.</span>
       </p>
     </div>
     <div class="writing-grid">
@@ -252,7 +259,7 @@
         rel="noopener noreferer"
       >
         <span class="link-title">The Gray Area</span>
-        <span class="link-subtitle">Publications, papers, and essays</span>
+        <span class="link-subtitle">Security research, papers &amp; essays · 2M+ readers</span>
       </a>
       <a
         class="link-card"
@@ -261,25 +268,7 @@
         rel="noopener noreferer"
       >
         <span class="link-title">Medium</span>
-        <span class="link-subtitle">@grahamzemel</span>
-      </a>
-      <a
-        class="link-card"
-        href="https://twitter.com/grahamzemel"
-        target="_blank"
-        rel="noopener noreferer"
-      >
-        <span class="link-title">Twitter</span>
-        <span class="link-subtitle">@grahamzemel</span>
-      </a>
-      <a
-        class="link-card"
-        href="https://twitter.com/tgaonmedium"
-        target="_blank"
-        rel="noopener noreferer"
-      >
-        <span class="link-title">TGA Twitter</span>
-        <span class="link-subtitle">@tgaonmedium</span>
+        <span class="link-subtitle">@grahamzemel · daily posts &amp; disclosures</span>
       </a>
     </div>
   </div>
@@ -326,7 +315,7 @@
   }
 
   .focus-grid {
-    @apply grid grid-cols-1 lg:grid-cols-3 gap-6;
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-6;
   }
 
   .focus-card {

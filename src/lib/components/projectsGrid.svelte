@@ -13,7 +13,7 @@
     {
       title: "Text Cloaker",
       description:
-        "AI text protection tool I started after watching students and writers get falsely flagged by brittle AI detectors. Rewrites AI-generated text just enough to clear detection without changing meaning — running as a Chrome extension that hooks into Google Docs, or via the web app for one-off cloaks. 7,000+ users across 40+ countries have cloaked over 3.3 million characters with it.",
+        "AI text protection tool I started after watching students and writers get falsely flagged by brittle AI detectors. Makes AI-generated text undetectable while leaving it word-for-word identical — no rewording, no paraphrasing — so it reads as human to GPTZero, Turnitin, and Originality.ai. Pick a cloak strength, batch-upload essays, or run it from the Chrome extension. 7,000+ users worldwide.",
       image: "/textcloakerss.png",
       tags: ["AI", "Web", "Internet"],
       repoLink: null,
@@ -206,6 +206,12 @@
   let query = "";
   let activeTag: string | null = null;
   let sortMode = "featured";
+  // Mobile only: start collapsed to the strongest few projects (and the
+  // search/sort/tag controls tucked away) so the section isn't an endless
+  // wall of cards. Desktop ignores both — CSS reveals everything at lg+.
+  let showAll = false;
+  let filtersOpen = false;
+  const MOBILE_PREVIEW_COUNT = 6;
 
   const getDomain = (url: string) => {
     try {
@@ -295,7 +301,7 @@
   });
 </script>
 
-  <div class="project-filter">
+  <div class="project-filter" class:filters-open={filtersOpen}>
     <div class="filter-bar">
       <input
         class="filter-input"
@@ -307,7 +313,17 @@
         <span class="filter-count">{sortedProjects.length}</span>
         <span class="filter-label">projects</span>
       </div>
-      <label class="filter-select">
+      <!-- Mobile-only: collapse sort + clear + the whole tag cloud behind one tap. -->
+      <button
+        class="filter-toggle"
+        type="button"
+        aria-expanded={filtersOpen ? "true" : "false"}
+        on:click={() => (filtersOpen = !filtersOpen)}
+      >
+        {filtersOpen ? "Hide filters" : "Filters & sort"}
+        {#if activeTag || query}<span class="filter-toggle__dot" aria-hidden="true" />{/if}
+      </button>
+      <label class="filter-select filter-advanced">
         <span>Sort</span>
         <select bind:value={sortMode}>
           <option value="featured">Featured first</option>
@@ -316,18 +332,18 @@
           <option value="tags">Most tags</option>
         </select>
       </label>
-      <button class="filter-reset" type="button" on:click={() => (query = "")}>
+      <button class="filter-reset filter-advanced" type="button" on:click={() => (query = "")}>
         Clear Search
       </button>
       <button
-        class="filter-reset"
+        class="filter-reset filter-advanced"
         type="button"
         on:click={() => (activeTag = null)}
       >
         Clear Tag
       </button>
     </div>
-  <div class="tag-row">
+  <div class="tag-row filter-advanced">
     <button
       class="tag-chip {activeTag === null ? 'tag-chip--active' : ''}"
       type="button"
@@ -352,7 +368,7 @@
 {#if sortedProjects.length === 0}
   <p class="mt-8 text-gray-400">No projects match this filter.</p>
 {:else}
-  <div class="projects-grid mt-8">
+  <div class="projects-grid mt-8" class:is-collapsed={!showAll}>
     {#each sortedProjects as project, index}
       <article
         class="project-card {index < 3 ? 'project-card--emphasis' : ''}"
@@ -401,6 +417,14 @@
       </article>
     {/each}
   </div>
+
+  {#if sortedProjects.length > MOBILE_PREVIEW_COUNT}
+    <button class="show-all" type="button" on:click={() => (showAll = !showAll)}>
+      {showAll
+        ? "Show fewer"
+        : `Show all ${sortedProjects.length} projects`}
+    </button>
+  {/if}
 {/if}
 
 <style lang="postcss">
@@ -439,12 +463,37 @@
     @apply border-accent-300 text-accent-200;
   }
 
+  /* The "Filters & sort" disclosure exists only on mobile; desktop shows the
+     full bar inline. */
+  .filter-toggle {
+    @apply hidden items-center justify-center gap-2 rounded-xl border border-slate-800 bg-[#0b0f14] px-4 text-xs uppercase tracking-widest text-gray-300 transition-colors;
+    height: 3.25rem;
+  }
+  .filter-toggle:hover {
+    @apply border-accent-300 text-accent-200;
+  }
+  .filter-toggle__dot {
+    @apply h-1.5 w-1.5 rounded-full bg-accent-300;
+  }
+
   @media (min-width: 1024px) {
     .project-filter {
       position: static;
       padding: 0;
       backdrop-filter: none;
       background: transparent;
+    }
+  }
+
+  /* ---------- Mobile: collapse the filter controls behind one tap ---------- */
+  @media (max-width: 767px) {
+    .filter-toggle {
+      @apply flex;
+    }
+    /* Search + count + the toggle stay; sort, clear buttons, and the tag cloud
+       hide until the user opens filters. */
+    .project-filter:not(.filters-open) .filter-advanced {
+      display: none;
     }
   }
 
@@ -481,26 +530,26 @@
     @apply grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6;
   }
 
+  /* Natural-height cards with a line-clamped blurb. The old fixed-square card
+     hid the description inside a tiny internally-scrolling, masked window — a
+     scroll-trap that made the cards unreadable, especially on tablets. Now the
+     card sizes to its content, the blurb clamps to a few readable lines, and
+     tags + links pin to the bottom. Grid rows stretch cards to equal height. */
   .project-card {
     @apply rounded-xl bg-[#070a0d] bg-opacity-60 shadow overflow-hidden flex flex-col relative border border-slate-800/80;
-    aspect-ratio: 1 / 1;
   }
 
   .project-card--emphasis {
     @apply border border-accent-400/20 shadow-lg;
   }
 
-  .project-card {
-    @apply border border-slate-800/80;
-  }
-
   .featured-badge {
-    @apply absolute top-4 right-4 rounded-full bg-[#12233a] px-4 py-2 text-[11px] uppercase tracking-widest text-accent-200;
+    @apply absolute top-4 right-4 rounded-full bg-[#12233a] px-3 py-1.5 text-[11px] uppercase tracking-widest text-accent-200;
   }
 
   .project-media {
     @apply w-full;
-    height: 38%;
+    height: 12rem;
   }
 
   .project-media img {
@@ -508,51 +557,12 @@
   }
 
   .project-body {
-    @apply flex flex-col gap-3 p-5 h-full min-h-0;
+    @apply flex flex-col gap-3 p-5;
+    flex: 1 1 auto;
   }
 
   .project-text {
-    flex: 1 1 0;
-    min-height: 0;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
-    padding-right: 0.5rem;
-    /* Fade the top + bottom edges of the visible scroll area so the text
-       gracefully bleeds into the card background instead of hard-cutting.
-       Because mask-image applies to the element's visible rectangle (not
-       the scrolling content), the fades stay pinned to the edges as the
-       user scrolls inside. */
-    mask-image: linear-gradient(
-      to bottom,
-      transparent 0,
-      black 0.75rem,
-      black calc(100% - 1.25rem),
-      transparent 100%
-    );
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      transparent 0,
-      black 0.75rem,
-      black calc(100% - 1.25rem),
-      transparent 100%
-    );
-    scrollbar-width: thin;
-    scrollbar-color: rgba(148, 163, 184, 0.3) transparent;
-  }
-
-  .project-text::-webkit-scrollbar {
-    width: 6px;
-  }
-  .project-text::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .project-text::-webkit-scrollbar-thumb {
-    background: rgba(148, 163, 184, 0.25);
-    border-radius: 3px;
-  }
-  .project-text::-webkit-scrollbar-thumb:hover {
-    background: rgba(148, 163, 184, 0.5);
+    flex: 0 1 auto;
   }
 
   .project-title {
@@ -562,12 +572,18 @@
   .project-desc {
     @apply mt-2 text-sm text-gray-300;
     line-height: 1.5;
-    padding-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .project-bottom {
     @apply flex flex-col gap-3;
     flex-shrink: 0;
+    margin-top: auto;
+    padding-top: 0.25rem;
   }
 
   .project-tags {
@@ -588,5 +604,39 @@
 
   .project-link:hover {
     @apply border-[#5aa7ff]/70 text-blue-100;
+  }
+
+  /* ---------- Mobile: tighter spacing + shorter blurb ---------- */
+  @media (max-width: 767px) {
+    .projects-grid {
+      @apply gap-4;
+    }
+    .project-media {
+      height: 9.5rem;
+    }
+    .project-body {
+      @apply gap-2 p-4;
+    }
+    .project-desc {
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+    }
+    /* Collapsed preview: only the strongest few cards until "Show all". */
+    .projects-grid.is-collapsed .project-card:nth-child(n + 7) {
+      display: none;
+    }
+  }
+
+  /* "Show all N projects" — phones only; desktop already shows the full grid. */
+  .show-all {
+    @apply hidden w-full mt-5 rounded-xl border border-slate-800 bg-[#0b0f14] px-4 py-3 text-xs font-semibold uppercase tracking-widest text-gray-300 transition-colors;
+  }
+  .show-all:hover {
+    @apply border-accent-300 text-accent-200;
+  }
+  @media (max-width: 767px) {
+    .show-all {
+      @apply block;
+    }
   }
 </style>

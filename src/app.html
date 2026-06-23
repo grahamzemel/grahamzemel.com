@@ -7,9 +7,26 @@
       type="image/svg+xml"
       href="%sveltekit.assets%/favicon.svg"
     />
-    <meta name="title" content="Graham Zemel" />
-    <meta name="description" content="Hi! I'm Graham Zemel, a full stack developer, startup founder, and cybersecurity enthusiast!" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+    <!-- Person structured data: helps a name search surface the maintained
+         profiles (LinkedIn, GitHub) instead of stale ones. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Graham Zemel",
+        "url": "https://grahamzemel.com/",
+        "jobTitle": "Full-Stack Engineer",
+        "description": "Full-stack engineer and CS student at CU Boulder. I build FratDoor (used by 42 fraternities) and TextCloaker (7,000+ users), and write for The Gray Area.",
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of Colorado Boulder" },
+        "knowsAbout": ["Full-stack development", "AI", "Cybersecurity", "SEO"],
+        "sameAs": [
+          "https://www.linkedin.com/in/grahamzemel/",
+          "https://github.com/grahamzemel"
+        ]
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />

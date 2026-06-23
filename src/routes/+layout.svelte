@@ -9,6 +9,16 @@
   // Vercel Analytics
   inject({ mode: dev ? "development" : "production" });
 
+  // SEO: a branded, descriptive title + a shared keyword-rich description, plus
+  // Person structured data so a name search surfaces the maintained profiles
+  // (LinkedIn, GitHub) instead of stale ones.
+  const pageTitle = "Graham Zemel · Full-Stack Engineer (FratDoor, TextCloaker)";
+  const socialTitle = "Graham Zemel · Full-Stack Engineer";
+  const metaDescription =
+    "Full-stack engineer and CS student at CU Boulder. I build FratDoor (used by 42 fraternities) and TextCloaker (7,000+ users), and write for The Gray Area.";
+  // Person structured data lives in app.html (a literal <script> tag inside a
+  // Svelte component trips the preprocessor), so nothing JSON-LD lives here.
+
   const SECRET = "Jetset14#";
   const ADMIN_TOKEN = "gz_admin_a8f3e7c2d1b9";
   let buffer = "";
@@ -99,40 +109,40 @@
 <slot />
 
 <svelte:head>
-  <title>Graham Zemel</title>
+  <title>{pageTitle}</title>
 
   <!-- General Metas -->
   <link rel="canonical" href="https://grahamzemel.com/" />
-  <meta name="title" content="Graham Zemel" />
-  <meta
-    name="description"
-    content="Hello! I'm a full-stack developer, ethical hacker, and Director of Technology for IFC on the Hill at CU Boulder."
-  />
+  <meta name="title" content={socialTitle} />
+  <meta name="description" content={metaDescription} />
   <meta name="author" content="Graham Zemel" />
+  <meta name="robots" content="index, follow" />
+  <!-- Identity: tie this site to the profiles worth finding -->
+  <link rel="me" href="https://www.linkedin.com/in/grahamzemel/" />
+  <link rel="me" href="https://github.com/grahamzemel" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Graham Zemel" />
-  <meta
-    property="og:description"
-    content="Hello! I'm a full-stack developer, ethical hacker, and Director of Technology for IFC on the Hill at CU Boulder."
-  />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={socialTitle} />
+  <meta property="og:description" content={metaDescription} />
   <meta property="og:url" content="https://grahamzemel.com/" />
   <meta property="og:image" content="https://grahamzemel.com/og-img.png" />
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:url" content="https://grahamzemel.com/" />
-  <meta property="twitter:title" content="Graham Zemel" />
-  <meta
-    property="twitter:description"
-    content="Hello! I'm a full-stack developer, ethical hacker, and Director of Technology for IFC on the Hill at CU Boulder."
-  />
+  <meta property="twitter:title" content={socialTitle} />
+  <meta property="twitter:description" content={metaDescription} />
   <meta property="twitter:image" content="https://grahamzemel.com/og-img.png" />
 </svelte:head>
 
 <style global lang="postcss">
   html {
     @apply scroll-smooth antialiased bg-base;
+    /* Belt-and-suspenders against horizontal overflow on mobile. `clip`
+       (unlike `hidden`) doesn't create a scroll container, so vertical
+       smooth-scroll keeps working — but the page can never scroll sideways. */
+    overflow-x: clip;
   }
 
   body {
