@@ -953,9 +953,10 @@ html.lenis, html.lenis body { height: auto; }
   align-items: stretch;
 }
 .seo-page .mh-pv {
-  border-radius: 14px; padding: 1.1rem 0.9rem 1rem;
+  border-radius: 14px; padding: 0.9rem 0.7rem 0.85rem;
   text-align: center;
   display: flex; flex-direction: column; align-items: center;
+  min-width: 0;
 }
 .seo-page .mh-pv--dim {
   background: #f9fafb; border: 1px solid var(--line);
@@ -1004,6 +1005,28 @@ html.lenis, html.lenis body { height: auto; }
 .seo-page .mh-pv-note {
   font-size: 0.58rem; color: var(--muted); line-height: 1.5;
   margin-top: 0.6rem;
+}
+.seo-page .mh-pv-cons,
+.seo-page .mh-pv-pros {
+  list-style: none; padding: 0; margin: 0.6rem 0 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.28rem 0.2rem;
+  text-align: left; width: 100%;
+}
+.seo-page .mh-pv-pros { margin-bottom: 0.6rem; }
+.seo-page .mh-pv-cons li,
+.seo-page .mh-pv-pros li {
+  font-size: 0.58rem; line-height: 1.3;
+  padding-left: 0.85rem; position: relative;
+}
+.seo-page .mh-pv-cons li { color: var(--muted); }
+.seo-page .mh-pv-pros li { color: var(--accent-deep); }
+.seo-page .mh-pv-cons li::before {
+  content: '✕'; position: absolute; left: 0;
+  font-size: 0.48rem; color: #f87171; top: 0.15em;
+}
+.seo-page .mh-pv-pros li::before {
+  content: '✓'; position: absolute; left: 0;
+  font-size: 0.52rem; color: var(--accent); top: 0.1em; font-weight: 700;
 }
 .seo-page .mh-pv-guarantee {
   font-size: 0.56rem; line-height: 1.5; margin-top: 0.65rem;

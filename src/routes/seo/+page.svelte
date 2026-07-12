@@ -176,6 +176,7 @@
     // Small hysteresis band (60% down, 68% up) prevents jitter at the threshold.
     scrollHandler = () => {
       if (!cardEl) return;
+      if (window.scrollY === 0) { activePage = 4; return; }
       const rect = cardEl.getBoundingClientRect();
       const mid = rect.top + rect.height * 0.5;
       const vh = window.innerHeight;
@@ -445,12 +446,30 @@
           <div class="mh-pv-price-line"><span class="mh-pv-amt">$5,000</span><span class="mh-pv-unit">upfront</span></div>
           <div class="mh-pv-price-line"><span class="mh-pv-amt mh-pv-amt--sm">$1,000</span><span class="mh-pv-unit">/mo after</span></div>
         </div>
-        <div class="mh-pv-note">long contracts · junior staff</div>
+        <ul class="mh-pv-cons">
+          <li>12-mo contracts</li>
+          <li>junior staff</li>
+          <li>messy reports</li>
+          <li>band-aid fixes</li>
+          <li>generic strategy</li>
+          <li>you own nothing</li>
+          <li>spam emails</li>
+          <li>no guarantee</li>
+          <li>no direct contact</li>
+          <li>no transparency</li>
+        </ul>
       </div>
       <div class="mh-pv mh-pv--you">
-        <div class="mh-pv-tag">Most popular</div>
         <div class="mh-pv-label">Graham · Growth</div>
         <div class="mh-pv-price">$300<span>/mo</span></div>
+        <ul class="mh-pv-pros">
+          <li>no contracts</li>
+          <li>direct access</li>
+          <li>clear reports</li>
+          <li>root-cause fix</li>
+          <li>custom strategy</li>
+          <li>you own it</li>
+        </ul>
         <div class="mh-pv-guarantee">or you pay <strong>nothing</strong> if you're not on page 1 in 90 days</div>
       </div>
     </div>
