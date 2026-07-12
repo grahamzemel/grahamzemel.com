@@ -5,6 +5,7 @@
   import { inject } from "@vercel/analytics";
 
   import { onMount } from "svelte";
+  import Cursor from "$lib/components/cursor.svelte";
 
   // Vercel Analytics
   inject({ mode: dev ? "development" : "production" });
@@ -106,6 +107,7 @@
   });
 </script>
 
+<Cursor />
 <slot />
 
 <svelte:head>

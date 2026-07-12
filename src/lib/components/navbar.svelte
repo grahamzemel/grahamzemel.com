@@ -193,23 +193,30 @@
 <ContactModal bind:showModal={showContactModal} />
 
 <style lang="postcss">
-  /* ---------- Surface (solid, tinted, anchored) ---------- */
+  /* ---------- Surface (liquid glass) ---------- */
   .navbar-shell {
     position: fixed;
     inset: 0 0 auto 0;
     z-index: 40;
-    background: oklch(0.16 0.015 250 / 0.94);
-    border-bottom: 1px solid oklch(0.30 0.012 250);
+    background: oklch(0.16 0.015 250 / 0.52);
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    border-bottom: 1px solid oklch(0.38 0.012 250 / 0.45);
+    box-shadow:
+      inset 0 1px 0 oklch(1 0 0 / 0.07),
+      0 4px 24px oklch(0 0 0 / 0.18);
     transition:
-      background 220ms cubic-bezier(0.16, 1, 0.3, 1),
-      box-shadow 220ms cubic-bezier(0.16, 1, 0.3, 1),
-      border-color 220ms cubic-bezier(0.16, 1, 0.3, 1);
+      background 220ms var(--ease),
+      box-shadow 220ms var(--ease),
+      border-color 220ms var(--ease);
   }
 
   .navbar-shell.scrolled {
-    background: oklch(0.13 0.014 250 / 0.97);
-    border-bottom-color: oklch(0.36 0.014 250);
-    box-shadow: 0 12px 28px oklch(0 0 0 / 0.45);
+    background: oklch(0.13 0.014 250 / 0.72);
+    border-bottom-color: oklch(0.44 0.014 250 / 0.55);
+    box-shadow:
+      inset 0 1px 0 oklch(1 0 0 / 0.09),
+      0 8px 32px oklch(0 0 0 / 0.32);
   }
 
   /* Track: mirrors +page.svelte content grid *exactly* so the navbar's
@@ -254,7 +261,7 @@
     color: oklch(0.97 0.005 250);
     text-decoration: none;
     user-select: none;
-    transition: color 220ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: color 220ms var(--ease);
   }
 
   .brand:hover {
@@ -269,8 +276,9 @@
     width: 2.5rem;
     border-radius: 0.5rem;
     color: oklch(0.96 0.005 250);
-    background: oklch(0.20 0.018 250);
-    border: 1px solid oklch(0.32 0.014 250);
+    background: oklch(1 0 0 / 0.08);
+    border: 1px solid oklch(1 0 0 / 0.14);
+    box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.12);
   }
 
   .brand-logo-svg {
@@ -317,7 +325,7 @@
     font-size: 0.9375rem;
     font-weight: 500;
     line-height: 1;
-    transition: color 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: color 180ms var(--ease);
   }
 
   /* Underline grows from left on hover/active — desaturated for restraint */
@@ -331,7 +339,7 @@
     background: oklch(0.85 0.005 250);
     transform: scaleX(0);
     transform-origin: left center;
-    transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 220ms var(--ease);
   }
 
   .navbar-shell .nav-link:hover {
@@ -364,9 +372,9 @@
     border: 1px solid oklch(0.40 0.01 250);
     text-decoration: none;
     transition:
-      background 180ms cubic-bezier(0.16, 1, 0.3, 1),
-      border-color 180ms cubic-bezier(0.16, 1, 0.3, 1),
-      color 180ms cubic-bezier(0.16, 1, 0.3, 1);
+      background 180ms var(--ease),
+      border-color 180ms var(--ease),
+      color 180ms var(--ease);
   }
 
   .navbar-shell .cta:hover {
@@ -378,7 +386,7 @@
   .cta-arrow {
     height: 0.875rem;
     width: 0.875rem;
-    transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 180ms var(--ease);
   }
   .navbar-shell .cta:hover .cta-arrow {
     transform: translateX(2px);
@@ -394,13 +402,14 @@
     width: 2.5rem;
     gap: 0.3125rem;
     border-radius: 0.5rem;
-    background: oklch(0.20 0.018 250);
-    border: 1px solid oklch(0.32 0.014 250);
+    background: oklch(1 0 0 / 0.07);
+    border: 1px solid oklch(1 0 0 / 0.13);
+    box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.10);
     color: oklch(0.97 0.005 250);
     cursor: pointer;
     transition:
-      background 180ms cubic-bezier(0.16, 1, 0.3, 1),
-      border-color 180ms cubic-bezier(0.16, 1, 0.3, 1);
+      background 180ms var(--ease),
+      border-color 180ms var(--ease);
   }
 
   @media (min-width: 768px) {
@@ -408,8 +417,8 @@
   }
 
   .hamburger:hover {
-    background: oklch(0.23 0.022 250);
-    border-color: oklch(0.42 0.018 250);
+    background: oklch(1 0 0 / 0.12);
+    border-color: oklch(1 0 0 / 0.2);
   }
 
   .hamburger-bar {
@@ -419,8 +428,8 @@
     background: oklch(0.97 0.005 250);
     border-radius: 2px;
     transition:
-      transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
-      opacity 180ms cubic-bezier(0.16, 1, 0.3, 1);
+      transform 220ms var(--ease),
+      opacity 180ms var(--ease);
     transform-origin: center;
   }
 
@@ -436,9 +445,11 @@
 
   /* ---------- Mobile drawer ---------- */
   .mobile-menu-track {
-    background: oklch(0.13 0.012 250);
-    border-top: 1px solid oklch(0.26 0.012 250);
-    animation: drawer-in 220ms cubic-bezier(0.16, 1, 0.3, 1);
+    background: oklch(0.12 0.012 250 / 0.78);
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    border-top: 1px solid oklch(1 0 0 / 0.08);
+    animation: drawer-in 220ms var(--ease);
   }
 
   @media (min-width: 768px) {
@@ -469,9 +480,9 @@
     border: 1px solid transparent;
     text-decoration: none;
     transition:
-      color 180ms cubic-bezier(0.16, 1, 0.3, 1),
-      background 180ms cubic-bezier(0.16, 1, 0.3, 1),
-      border-color 180ms cubic-bezier(0.16, 1, 0.3, 1);
+      color 180ms var(--ease),
+      background 180ms var(--ease),
+      border-color 180ms var(--ease);
   }
 
   .navbar-shell .mobile-link:hover,
@@ -500,7 +511,7 @@
     background: oklch(1 0 0 / 0.04);
     border: 1px solid oklch(0.40 0.01 250);
     text-decoration: none;
-    transition: background 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: background 180ms var(--ease);
   }
 
   .navbar-shell .mobile-cta:active {

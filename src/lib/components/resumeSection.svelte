@@ -249,9 +249,9 @@
       0 1px 0 oklch(1 0 0 / 0.04) inset,
       0 24px 60px oklch(0 0 0 / 0.45);
     transition:
-      transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
-      box-shadow 320ms cubic-bezier(0.16, 1, 0.3, 1),
-      border-color 320ms cubic-bezier(0.16, 1, 0.3, 1);
+      transform 320ms var(--ease),
+      box-shadow 320ms var(--ease),
+      border-color 320ms var(--ease);
   }
 
   .resume-page img {
@@ -281,7 +281,7 @@
     pointer-events: none;
     opacity: 0;
     background: oklch(0 0 0 / 0.55);
-    transition: opacity 240ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 240ms var(--ease);
   }
 
   .resume-page:hover .resume-page-overlay {
@@ -330,7 +330,7 @@
     font-weight: 500;
     color: oklch(0.86 0.13 165);
     text-decoration: none;
-    transition: color 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: color 180ms var(--ease);
   }
 
   .resume-doc-download:hover {
@@ -349,6 +349,21 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+  }
+  @media (min-width: 640px) {
+    .resume-bottom {
+      flex-direction: row;
+      align-items: center;
+      gap: 2.5rem;
+    }
+    .resume-bottom-text {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+    .linkedin-card {
+      flex: 0 0 auto;
+      align-items: flex-start;
+    }
   }
   .resume-bottom-text {
     min-width: 0;

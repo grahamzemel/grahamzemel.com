@@ -110,11 +110,37 @@
 
 <style lang="postcss">
   .project-card {
+    position: relative;
+    overflow: hidden;
     border: 1px solid oklch(0.30 0.012 250);
-    transition: border-color 220ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition:
+      border-color 260ms var(--ease),
+      transform 300ms var(--ease),
+      box-shadow 300ms var(--ease);
+  }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      108deg,
+      transparent 30%,
+      oklch(1 0 0 / 0.05) 50%,
+      transparent 70%
+    );
+    transform: translateX(-120%);
+    transition: none;
   }
   .project-card:hover {
-    border-color: oklch(0.42 0.012 250);
+    border-color: oklch(0.48 0.014 250);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px oklch(0 0 0 / 0.4), 0 0 0 1px oklch(0.78 0.18 145 / 0.08);
+  }
+  .project-card:hover::before {
+    transform: translateX(220%);
+    transition: transform 600ms var(--ease);
   }
   .tag {
     @apply inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold;

@@ -143,7 +143,7 @@ html.lenis, html.lenis body { height: auto; }
 .seo-page .depth__chart-line { opacity: 0.3; filter: drop-shadow(0 6px 16px var(--accent-glow)); }
 .seo-page .glyph { position: absolute; font-family: var(--mono); text-transform: uppercase;
   letter-spacing: 0.1em; color: rgba(14,17,22,0.045); font-size: 0.8rem;
-  white-space: nowrap; user-select: none; }
+  white-space: nowrap; user-select: none; will-change: transform; }
 .seo-page .depth__vig { position: absolute; inset: 0;
   background: linear-gradient(180deg, rgba(255,255,255,.5), transparent 14%); }
 
@@ -329,6 +329,25 @@ html.lenis, html.lenis body { height: auto; }
   outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
 .seo-page .field.row2 { grid-template-columns: 1fr 1fr; gap: 0.9rem; display: grid; }
 @media (max-width: 560px){ .seo-page .field.row2 { grid-template-columns: 1fr; } }
+.seo-page .budget-input-wrap {
+  position: relative; display: flex; align-items: center;
+}
+.seo-page .budget-prefix {
+  position: absolute; left: 1rem;
+  font-size: 1rem; font-family: var(--serif); color: var(--muted);
+  pointer-events: none;
+}
+.seo-page .budget-suffix {
+  position: absolute; right: 1rem;
+  font-size: 0.72rem; font-family: var(--mono); letter-spacing: 0.06em;
+  color: var(--faint); pointer-events: none;
+}
+.seo-page .budget-input-wrap input {
+  padding-left: 1.75rem; padding-right: 4.5rem;
+  -moz-appearance: textfield;
+}
+.seo-page .budget-input-wrap input::-webkit-outer-spin-button,
+.seo-page .budget-input-wrap input::-webkit-inner-spin-button { -webkit-appearance: none; }
 .seo-page .contact-form .btn { justify-content: center; }
 .seo-page .form-note { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; color: var(--faint); text-align: center; text-transform: uppercase; }
 .seo-page .price-guarantee { position: relative; z-index: 3; margin: 2rem auto 0; max-width: 680px; display: flex; flex-direction: column;
@@ -537,6 +556,10 @@ html.lenis, html.lenis body { height: auto; }
 /* reveal — IntersectionObserver driven */
 .seo-page .reveal { opacity: 0; transform: translateY(26px); transition: opacity .85s ease, transform .9s cubic-bezier(.2,.75,.2,1); }
 .seo-page .reveal.in { opacity: 1; transform: none; }
+/* On mobile the .climb JS scene is hidden — bypass reveals so pricing etc. always show */
+@media (max-width: 900px) {
+  .seo-page .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
 
 /* ============================================================
    RESPONSIVE
@@ -578,4 +601,446 @@ html.lenis, html.lenis body { height: auto; }
 @media (prefers-reduced-motion: reduce) {
   .seo-page * { animation-duration: .001ms !important; animation-iteration-count: 1 !important; }
   .seo-page .reveal, .seo-page .reveal.in { opacity: 1; transform: none; transition: none; }
+}
+
+/* ══════════════════════════════════════════════
+   MOBILE HERO  — "Lost Customers" light theme
+   Visible only at ≤900px. .climb is hidden there.
+   ══════════════════════════════════════════════ */
+.seo-page .m-hero { display: none; }
+
+@media (max-width: 900px) {
+  .seo-page .climb { display: none !important; }
+  .seo-page .m-hero {
+    display: block;
+    /* Override the page-level Newsreader serif — hero uses clean sans */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+    background: var(--bg);
+    padding: 5.5rem 1.375rem 3rem;
+    color: var(--ink);
+  }
+}
+
+/* ── Eyebrow pill chip ── */
+.seo-page .mh-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--accent-soft);
+  border: 1px solid rgba(15,174,99,0.22);
+  border-radius: 999px;
+  padding: 0.35rem 0.875rem;
+  font-family: var(--mono);
+  font-size: 0.68rem; font-weight: 500;
+  color: var(--accent-deep);
+  letter-spacing: 0.01em;
+  line-height: 1.45;
+  margin-bottom: 1.5rem;
+}
+.seo-page .mh-eyebrow strong { font-weight: 800; color: var(--accent-deep); }
+.seo-page .mh-ey-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent); flex-shrink: 0;
+  animation: mh-pulse 2s ease-in-out infinite;
+}
+@keyframes mh-pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* ── Headline — 2 lines at every mobile width ── */
+.seo-page .mh-hed {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+  font-size: clamp(1.7rem, 7.2vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+.seo-page .mh-acc { color: var(--accent-deep); }
+
+/* ── Sub ── */
+.seo-page .mh-sub {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 1.75rem;
+}
+
+/* ══ Realistic Google SERP card ══ */
+.seo-page .mh-card {
+  background: #fff;
+  border: 1px solid #dadce0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(32,33,36,0.1), 0 4px 20px rgba(32,33,36,0.06);
+  margin-bottom: 1.75rem;
+  font-family: "Google Sans", "Roboto", system-ui, sans-serif;
+}
+
+/* Search bar */
+.seo-page .mh-gbar {
+  background: #fff;
+  padding: 0.55rem 0.875rem;
+  display: flex; align-items: center; gap: 0.625rem;
+  border-bottom: 1px solid #e8eaed;
+}
+.seo-page .mh-glogo { font-size: 1rem; font-weight: 900; letter-spacing: -0.01em; flex-shrink: 0; }
+.seo-page .mh-gsearch {
+  flex: 1; min-width: 0;
+  display: flex; align-items: center; gap: 0.4rem;
+  background: #f1f3f4; border-radius: 22px; padding: 0.32rem 0.75rem;
+}
+.seo-page .mh-gquery {
+  flex: 1; font-size: 0.76rem; color: #202124;
+  white-space: nowrap; overflow: hidden;
+  min-width: 0;
+}
+.seo-page .mh-cursor {
+  display: inline-block; color: #4285F4; font-weight: 300;
+  animation: mh-blink 1s step-end infinite;
+}
+@keyframes mh-blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+.seo-page .mh-gsicons {
+  display: flex; align-items: center; gap: 0.35rem; flex-shrink: 0;
+}
+.seo-page .mh-gsdiv { width: 1px; height: 13px; background: #9aa1ac; }
+
+/* Result count */
+.seo-page .mh-gcount {
+  font-size: 0.6rem; color: #70757a;
+  padding: 0.25rem 0.875rem 0;
+  border-bottom: 1px solid #f1f3f4;
+}
+
+/* Organic result */
+.seo-page .mh-result {
+  padding: 0.6rem 0.875rem 0.5rem;
+  border-bottom: 1px solid #f1f3f4;
+}
+.seo-page .mh-rtop {
+  display: flex; align-items: center; gap: 0.4rem; margin-bottom: 2px;
+}
+.seo-page .mh-rfav {
+  width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.45rem; font-weight: 900; color: #fff;
+}
+.seo-page .mh-rurl {
+  font-size: 0.62rem; color: #202124; flex: 1; min-width: 0;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.seo-page .mh-rtitle {
+  font-size: 0.82rem; color: #1a0dab; font-weight: 400;
+  line-height: 1.25; margin-bottom: 2px;
+}
+.seo-page .mh-rdesc {
+  font-size: 0.68rem; color: #4d5156; line-height: 1.45;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+/* Context bands — shared structure, themed per state */
+.seo-page .mh-after-band,
+.seo-page .mh-rank-band {
+  display: flex; align-items: center; gap: 0.35rem;
+  padding: 0.35rem 0.875rem;
+  font-family: var(--mono); font-size: 0.58rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+/* Green — "After Graham's help" (the one solid green surface) */
+.seo-page .mh-after-band {
+  background: var(--accent-soft);
+  border-top: 1px solid rgba(15,174,99,0.25);
+  border-bottom: 1px solid rgba(15,174,99,0.25);
+  color: var(--accent-deep);
+}
+/* Red — "This is where you rank right now" */
+.seo-page .mh-rank-band {
+  background: #fff5f5;
+  border-top: 1px solid rgba(239,68,68,0.2);
+  border-bottom: 1px solid rgba(239,68,68,0.2);
+  color: #dc2626;
+}
+
+/* #1 result — left border only, white bg so it doesn't blend with the bands */
+.seo-page .mh-result--you {
+  border-left: 3px solid var(--accent);
+}
+.seo-page .mh-rfav--you { background: var(--accent) !important; }
+.seo-page .mh-rurl--you { color: var(--accent-deep); }
+.seo-page .mh-rtitle--you { color: #0a6637; font-weight: 600; }
+.seo-page .mh-rank1-pill {
+  font-size: 0.55rem; font-weight: 900; letter-spacing: 0.05em;
+  color: #fff; background: var(--accent);
+  border-radius: 4px; padding: 1px 6px; flex-shrink: 0;
+}
+
+/* Competitor favicon dots — subtly duller colors set inline per entry */
+
+/* "Page X of results" band shown on all non-page-1 views */
+/* Shared page-number band */
+.seo-page .mh-pg-band {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 0.4rem 0.875rem;
+  font-family: var(--mono); font-size: 0.58rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  text-align: center;
+  /* default: red (pages 2–5) */
+  background: #fff5f5;
+  border-top: 1px solid rgba(239,68,68,0.2);
+  border-bottom: 1px solid rgba(239,68,68,0.2);
+  color: #dc2626;
+}
+.seo-page .mh-pg-band--green {
+  background: #fff;
+  border-top-color: rgba(15,174,99,0.2);
+  border-bottom-color: rgba(15,174,99,0.2);
+  color: var(--accent-deep);
+}
+.seo-page .mh-pg-band-sub {
+  font-size: 0.48rem; font-weight: 500; letter-spacing: 0.04em;
+  opacity: 0.75; margin-top: 1px;
+  text-transform: none;
+}
+
+/* Google-style pagination */
+.seo-page .mh-pagination {
+  padding: 0.7rem 0.875rem 0.65rem;
+  border-top: 1px solid #f1f3f4;
+  text-align: center;
+}
+.seo-page .mh-goo-word {
+  font-size: 1.3rem; font-weight: 900; letter-spacing: -0.01em;
+  margin-bottom: 0.45rem;
+}
+
+/* Outer container centers everything */
+.seo-page .mh-pag-grid { display: inline-flex; flex-direction: column; align-items: stretch; }
+
+/* Numbers row and hint row share identical 5-column grid, centered */
+.seo-page .mh-page-nums,
+.seo-page .mh-hint-row {
+  display: grid; grid-template-columns: repeat(5, 34px);
+  justify-content: center; justify-items: center;
+}
+
+/* Page number button — explicit width + height for a PERFECT circle */
+.seo-page .mh-pn {
+  all: unset;
+  width: 30px; height: 30px;
+  border-radius: 50%; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.72rem; color: #1a73e8; font-family: inherit;
+  transition: background 0.12s;
+  box-sizing: border-box;
+}
+.seo-page .mh-pn:hover:not(.mh-pn--active) { background: #f1f3f4; }
+.seo-page .mh-pn--active {
+  background: #1a73e8 !important; color: #fff !important; font-weight: 700;
+  width: 30px; height: 30px; /* redundant but ensures no override */
+}
+/* Page 4 draws attention with red when not active */
+.seo-page .mh-pn--4:not(.mh-pn--active) { color: #dc2626; font-weight: 600; }
+.seo-page .mh-pn--4:hover:not(.mh-pn--active) { background: #fef2f2; }
+
+/* Hint row — directly below the numbers, perfectly aligned in column 4 */
+.seo-page .mh-hint-row { margin-top: 4px; }
+.seo-page .mh-hint-col { display: flex; flex-direction: column; align-items: center; gap: 1px; }
+.seo-page .mh-hint-arr { font-size: 0.58rem; color: #dc2626; line-height: 1; }
+.seo-page .mh-hint-pill {
+  background: #fee2e2; color: #dc2626;
+  border: 1px solid #fca5a5; border-radius: 999px;
+  font-size: 0.46rem; font-weight: 800; letter-spacing: 0.04em;
+  padding: 2px 7px; white-space: nowrap;
+}
+
+/* Green variant — "Where you could be" pointing at page 1 */
+.seo-page .mh-hint-pill--green {
+  background: var(--accent-soft); color: var(--accent-deep);
+  border-color: rgba(15,174,99,0.3);
+}
+.seo-page .mh-hint-arr--green { color: var(--accent-deep); }
+
+/* "you · #31" pill inside results — explicit font + pill shape */
+.seo-page .mh-you-pill {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.62rem; font-weight: 600; letter-spacing: 0;
+  color: #b91c1c; background: #fee2e2;
+  border: 1px solid #fca5a5; border-radius: 999px;
+  padding: 2px 8px; flex-shrink: 0; white-space: nowrap;
+  text-transform: none;
+  align-self: center;
+}
+
+/* Page 4 section separator */
+.seo-page .mh-result--p4you {
+  background: #fff5f5;
+  border-left: 3px solid #ef4444;
+}
+
+.seo-page .mh-rfav--p4 { background: #fca5a5 !important; }
+.seo-page .mh-rurl--p4 { color: #9ca3af; }
+.seo-page .mh-rtitle--p4 { color: #374151; font-weight: 500; }
+.seo-page .mh-rdesc--p4 { color: #9ca3af; }
+
+/* Generic filler entries — washed-out to look uninviting */
+.seo-page .mh-result--generic { opacity: 0.88; }
+.seo-page .mh-result--generic .mh-rtitle { color: #6b7280; font-weight: 400; }
+.seo-page .mh-result--generic .mh-rdesc  { color: #9ca3af; }
+.seo-page .mh-result--generic .mh-rurl   { color: #9ca3af; }
+
+/* "Right now" strip — clean, no second card */
+.seo-page .mh-now-strip {
+  display: flex; align-items: center; gap: 1rem;
+  background: #fff5f5;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.seo-page .mh-now-left {
+  display: flex; flex-direction: column; align-items: center;
+  flex-shrink: 0; gap: 1px;
+}
+.seo-page .mh-now-pill-label {
+  font-family: var(--mono); font-size: 0.52rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: #ef4444;
+}
+.seo-page .mh-now-pos {
+  font-size: 1.6rem; font-weight: 900; color: #ef4444;
+  letter-spacing: -0.04em; line-height: 1;
+}
+.seo-page .mh-now-right { flex: 1; min-width: 0; }
+.seo-page .mh-now-biz {
+  display: block; font-size: 0.78rem; font-weight: 600; color: #374151;
+  margin-bottom: 2px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.seo-page .mh-now-sub {
+  font-size: 0.65rem; color: #ef4444;
+}
+
+/* ── Feature list ── */
+.seo-page .mh-gets-label {
+  font-family: var(--mono);
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--faint);
+  margin: 0 0 0.8rem;
+}
+.seo-page .mh-gets { list-style: none; padding: 0; margin: 0 0 1.75rem; }
+.seo-page .mh-get {
+  display: flex; align-items: flex-start; gap: 0.875rem;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.seo-page .mh-get:last-child { border-bottom: none; }
+.seo-page .mh-get-ic {
+  width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0;
+  background: var(--accent-soft);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+}
+.seo-page .mh-get > div { flex: 1; }
+.seo-page .mh-get strong {
+  display: block; font-size: 0.88rem; font-weight: 700; color: var(--ink); margin-bottom: 4px;
+}
+.seo-page .mh-get span { font-size: 0.74rem; color: var(--muted); line-height: 1.55; }
+
+/* ── Pricing comparison ── */
+.seo-page .mh-price-row {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0.75rem; margin-bottom: 1.5rem;
+  align-items: stretch;
+}
+.seo-page .mh-pv {
+  border-radius: 14px; padding: 1.1rem 0.9rem 1rem;
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center;
+}
+.seo-page .mh-pv--dim {
+  background: #f9fafb; border: 1px solid var(--line);
+  color: var(--ink);
+}
+.seo-page .mh-pv--you {
+  background: var(--accent-soft); border: 1.5px solid rgba(15,174,99,0.35);
+  position: relative;
+}
+.seo-page .mh-pv-tag {
+  font-family: var(--mono); font-size: 0.46rem; font-weight: 800;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent-deep); margin-bottom: 0.35rem;
+}
+.seo-page .mh-pv-label {
+  font-size: 0.75rem; font-weight: 700; color: var(--ink);
+  margin-bottom: 0.6rem; line-height: 1.3;
+}
+.seo-page .mh-pv--dim .mh-pv-label { color: var(--ink); }
+/* Graham card price */
+.seo-page .mh-pv-price {
+  font-size: 1.9rem; font-weight: 900; color: var(--ink);
+  letter-spacing: -0.04em; line-height: 1; margin-bottom: 0.1rem;
+}
+.seo-page .mh-pv--you .mh-pv-price { color: var(--accent-deep); }
+.seo-page .mh-pv-price span {
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0;
+  vertical-align: middle; margin-left: 1px;
+}
+/* Ad agency stacked price layout */
+.seo-page .mh-pv-price-stack {
+  display: flex; flex-direction: column; gap: 0.2rem;
+  margin: 0.25rem 0 0.1rem;
+}
+.seo-page .mh-pv-price-line {
+  display: flex; align-items: baseline; justify-content: center; gap: 0.3rem;
+}
+.seo-page .mh-pv-amt {
+  font-size: 1.6rem; font-weight: 900; letter-spacing: -0.04em; line-height: 1;
+  color: var(--ink);
+}
+.seo-page .mh-pv-amt--sm { font-size: 1.1rem; color: var(--muted); }
+.seo-page .mh-pv-unit {
+  font-size: 0.64rem; font-weight: 600; color: var(--muted);
+}
+.seo-page .mh-pv-note {
+  font-size: 0.58rem; color: var(--muted); line-height: 1.5;
+  margin-top: 0.6rem;
+}
+.seo-page .mh-pv-guarantee {
+  font-size: 0.56rem; line-height: 1.5; margin-top: 0.65rem;
+  color: var(--accent-deep);
+  background: rgba(15,174,99,0.1);
+  border: 1px solid rgba(15,174,99,0.25);
+  border-radius: 8px; padding: 0.4rem 0.55rem;
+  width: 100%;
+}
+.seo-page .mh-pv-guarantee strong {
+  font-weight: 800;
+}
+
+/* ── CTA ── */
+.seo-page .mh-btn {
+  display: block; width: 100%;
+  background: var(--accent); color: #fff;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 1rem; font-weight: 700;
+  padding: 1.05rem 1rem;
+  border-radius: 12px; text-align: center;
+  letter-spacing: -0.01em; text-decoration: none;
+  box-shadow: 0 4px 20px var(--accent-glow);
+  margin-bottom: 0.8rem;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+.seo-page .mh-btn:hover { background: var(--accent-deep); box-shadow: 0 6px 24px var(--accent-glow); }
+
+/* ── Fine print + trust strip ── */
+.seo-page .mh-fine {
+  text-align: center; font-size: 0.7rem; color: var(--faint); margin-bottom: 1rem;
+}
+.seo-page .mh-trust {
+  display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap;
+}
+.seo-page .mh-trust span {
+  font-family: var(--mono);
+  font-size: 0.58rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--faint);
 }

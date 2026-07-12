@@ -279,9 +279,9 @@
     color: oklch(0.72 0.012 250);
     cursor: pointer;
     transition:
-      background 180ms cubic-bezier(0.16, 1, 0.3, 1),
-      color 180ms cubic-bezier(0.16, 1, 0.3, 1),
-      border-color 180ms cubic-bezier(0.16, 1, 0.3, 1);
+      background 180ms var(--ease),
+      color 180ms var(--ease),
+      border-color 180ms var(--ease);
   }
   .modal-close:hover {
     background: oklch(1 0 0 / 0.06);
@@ -346,9 +346,9 @@
     line-height: 1.5;
     font-family: inherit;
     transition:
-      border-color 180ms cubic-bezier(0.16, 1, 0.3, 1),
-      background 180ms cubic-bezier(0.16, 1, 0.3, 1),
-      box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1);
+      border-color 180ms var(--ease),
+      background 180ms var(--ease),
+      box-shadow 180ms var(--ease);
   }
   .modal-field textarea { resize: vertical; min-height: 7rem; }
   .modal-field input::placeholder,
@@ -424,11 +424,11 @@
     cursor: pointer;
     border: 1px solid transparent;
     transition:
-      background 180ms cubic-bezier(0.16, 1, 0.3, 1),
-      border-color 180ms cubic-bezier(0.16, 1, 0.3, 1),
-      color 180ms cubic-bezier(0.16, 1, 0.3, 1),
-      transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
-      opacity 180ms cubic-bezier(0.16, 1, 0.3, 1);
+      background 180ms var(--ease),
+      border-color 180ms var(--ease),
+      color 180ms var(--ease),
+      transform 180ms var(--ease),
+      opacity 180ms var(--ease);
   }
   .modal-cancel {
     color: oklch(0.95 0.005 250);
@@ -464,7 +464,7 @@
   .modal-foot a {
     color: oklch(0.95 0.008 250);
     text-decoration: none;
-    transition: color 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: color 180ms var(--ease);
   }
   .modal-foot a:hover { color: oklch(0.99 0 0); }
 

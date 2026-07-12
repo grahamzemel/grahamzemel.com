@@ -219,7 +219,9 @@ function draw() {
     if (time_ > TWO_PI) {
       time_ -= TWO_PI;
     }
-    theShader.setUniform("iAngle", time_);
+    const _scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const _scrollFrac = _scrollable > 0 ? window.scrollY / _scrollable : 0;
+    theShader.setUniform("iAngle", time_ + _scrollFrac * Math.PI * 0.6);
 
     // Mobile uses a slightly tighter iPower range so the fractal pulses less
     // dramatically and reads as ambient backdrop rather than focal element.

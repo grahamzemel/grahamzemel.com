@@ -1,3 +1,89 @@
+<script>
+  import { onMount } from "svelte";
+
+  const SCRAMBLE_CHARS = "!<>-_/[]{}=+*^#ABCDabcd0123456789";
+
+  function scrambleText(el, text, duration = 1050) {
+    const chars = text.split("");
+    const totalFrames = Math.round(duration / 33);
+    let frame = 0;
+    el.style.animation = "none";
+    el.style.transform = "none";
+    // Pre-fill with scrambled chars BEFORE revealing — zero flash of real text
+    el.textContent = chars.map(ch =>
+      !/[a-zA-Z0-9]/.test(ch) ? ch : SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)]
+    ).join("");
+    el.style.opacity = "1";
+    const id = setInterval(() => {
+      const progress = ++frame / totalFrames;
+      el.textContent = chars
+        .map((ch, i) => {
+          // preserve spaces and punctuation — only scramble letters and digits
+          if (!/[a-zA-Z0-9]/.test(ch)) return ch;
+          if (progress >= (i + 1) / chars.length) return ch;
+          return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
+        })
+        .join("");
+      if (frame >= totalFrames) {
+        clearInterval(id);
+        el.textContent = text;
+      }
+    }, 33);
+  }
+
+  function cancelFadeIn(el) {
+    if (!el) return;
+    // Cancel the CSS fade-in animation so the element snaps to opacity:1 (default).
+    // Children control their own visibility via CSS opacity:0 — don't touch it here.
+    el.style.animation = "none";
+    el.style.transform = "none";
+  }
+
+  onMount(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const h1         = document.querySelector(".hero-title");
+    const eyebrowWrap = document.querySelector(".hero-eyebrow");
+    const eyebrowText = document.querySelector(".hero-eyebrow-text");
+    const metaWrap   = document.querySelector(".hero-meta");
+    const roles      = Array.from(document.querySelectorAll(".hero-meta .role"));
+
+    function runScramble() {
+      // 1. Name — immediate
+      if (h1) scrambleText(h1, "Graham Zemel", 1050);
+
+      // 2. Eyebrow badge — slight lag, short decode
+      cancelFadeIn(eyebrowWrap);
+      if (eyebrowText) {
+        setTimeout(() => scrambleText(eyebrowText, eyebrowText.textContent.trim(), 720), 120);
+      }
+
+      // 3. Role tags — cascade left-to-right across the meta row
+      cancelFadeIn(metaWrap);
+      roles.forEach((role, i) => {
+        setTimeout(() => scrambleText(role, role.textContent.trim(), 620), 300 + i * 130);
+      });
+    }
+
+    if (!document.body.dataset.loading) {
+      runScramble();
+    } else {
+      window.addEventListener("gz:loaded", runScramble, { once: true });
+      return () => window.removeEventListener("gz:loaded", runScramble);
+    }
+
+    // Fade out scroll cue the moment the user actually scrolls
+    const scrollCue = /** @type {HTMLElement|null} */ (document.querySelector(".hero-scroll"));
+    if (scrollCue) {
+      window.addEventListener("scroll", () => {
+        scrollCue.style.transition = "opacity 500ms var(--ease)";
+        scrollCue.style.opacity = "0";
+        scrollCue.style.pointerEvents = "none";
+      }, { passive: true, once: true });
+    }
+  });
+</script>
+
 <section class="hero">
   <div class="hero-eyebrow custom-fade-in anim-delay-200" aria-hidden="true">
     <span class="hero-eyebrow-dot" />
@@ -217,7 +303,7 @@
 
   /* ---------- Animations ---------- */
   .custom-fade-in {
-    animation: fade-in-animation 1000ms cubic-bezier(0.16, 1, 0.3, 1);
+    animation: fade-in-animation 1000ms var(--ease);
     animation-fill-mode: both;
   }
   .anim-delay-200 { animation-delay: 200ms; }
@@ -262,8 +348,8 @@
     color: oklch(0.86 0.008 250);
     padding: 0.7rem 0.35rem;
     text-decoration: none;
-    transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1),
-      background 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: color 200ms var(--ease),
+      background 200ms var(--ease);
   }
   /* Hairline divider between segments (1px structural rule, not an accent). */
   .ql-chip + .ql-chip {
@@ -305,9 +391,9 @@
     /* Soft shadow keeps the bare glyph legible over the busy fractal. */
     color: oklch(0.82 0.01 250);
     filter: drop-shadow(0 1px 4px oklch(0 0 0 / 0.55));
-    transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1),
-      border-color 200ms cubic-bezier(0.16, 1, 0.3, 1),
-      background 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: color 200ms var(--ease),
+      border-color 200ms var(--ease),
+      background 200ms var(--ease);
   }
   .hero-social:hover,
   .hero-social:active {
@@ -339,7 +425,7 @@
     gap: 0.5rem;
     color: oklch(0.62 0.012 250);
     text-decoration: none;
-    transition: color 220ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: color 220ms var(--ease);
   }
   @media (min-width: 768px) {
     .hero-scroll { bottom: 2.5rem; }
@@ -373,6 +459,13 @@
     50%      { box-shadow: 0 0 0 6px oklch(0.78 0.18 145 / 0); }
   }
 
+  /* Hide scramble targets from first paint — scrambleText reveals each one */
+  .hero-title,
+  .hero-eyebrow-text,
+  .hero-meta .role {
+    opacity: 0;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .custom-fade-in,
     .hero-eyebrow-dot {
@@ -381,6 +474,12 @@
     .custom-fade-in {
       opacity: 1;
       transform: none;
+    }
+    /* Reveal scramble targets immediately for reduced-motion users */
+    .hero-title,
+    .hero-eyebrow-text,
+    .hero-meta .role {
+      opacity: 1 !important;
     }
   }
 </style>

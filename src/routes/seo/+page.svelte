@@ -1,8 +1,192 @@
 <script>
   import { onMount, onDestroy } from 'svelte';
+  import { fade, fly } from 'svelte/transition';
+  import { cubicOut, cubicIn } from 'svelte/easing';
   import '$lib/seo.css';
 
+  let lostCount = 47;
+  let sceneIdx = 0;
+  let activePage = 4; // start on page 4 — visitor sees the problem first
+  let cardEl; // bound to .mh-card DOM node
+  let scrollHandler; // scroll-based bidirectional page switch
+  let geoCity = ''; // detected city from IP lookup
+  let geoState = ''; // detected state/region abbreviation
+
+  function localizeQuery(query) {
+    if (!geoCity) return query;
+    const idx = query.indexOf(' in ');
+    if (idx === -1) return query;
+    const location = geoState ? `${geoCity}, ${geoState}` : geoCity;
+    return query.slice(0, idx + 4) + location;
+  }
+
+  // Generic filler entries for pages 2, 3, 5 — realistic-looking but not scenario-specific
+  const genericPages = {
+    2: [
+      { i: 'H', c: '#6b7280', url: 'homeservicepros.com › local › service', name: 'Home Service Pros — Local Professionals', desc: 'Verified local service providers. Compare quotes and book online instantly.' },
+      { i: 'A', c: '#6b7280', url: 'allstar-local.com › your-city › reviews', name: 'All Star Local Services — 4.2 ★', desc: 'Affordable pricing, reliable service. Same-week availability. Family owned.' },
+      { i: 'F', c: '#6b7280', url: 'firstchoice-services.com › area', name: 'First Choice Local — Your Area', desc: 'Trusted local service since 1998. Free quotes. Fully licensed & insured.' },
+    ],
+    3: [
+      { i: 'T', c: '#6b7280', url: 'toprated-local.com › browse › service', name: 'Top Rated Local® — Find Providers', desc: 'Browse 40,000+ verified local businesses. Read reviews & request quotes.' },
+      { i: 'E', c: '#6b7280', url: 'expertservices.net › near-you', name: 'Expert Services Near You — Local', desc: 'Licensed professionals. Background checked. 100% satisfaction guarantee.' },
+      { i: 'C', c: '#6b7280', url: 'cityservicenetwork.com › local', name: 'City Service Network — Local Pros', desc: 'Connecting homeowners with trusted local businesses since 2011.' },
+    ],
+    5: [
+      { i: 'N', c: '#6b7280', url: 'neighborhoodservices.com › find', name: 'Neighborhood Services — Near You', desc: 'Local, licensed, insured. Your neighbors have trusted us for years.' },
+      { i: 'P', c: '#6b7280', url: 'premierlocal.net › services › area', name: 'Premier Local — Quality Guaranteed', desc: 'Premium local service at everyday prices. Book in under 2 minutes.' },
+      { i: 'R', c: '#6b7280', url: 'reliablelocal.com › your-area', name: 'Reliable Local Services — 4.8 ★', desc: 'Consistently top-rated. Same-day service often available. Call or book online.' },
+    ],
+  };
+  let displayQuery = 'plumbers in boulder, co'; // mirrors scenarios[0].query
+  let alive = true; // set false in onDestroy to stop the animation loop
+
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  async function typewriterLoop() {
+    await sleep(2800); // initial pause before first cycle
+    while (alive) {
+      // --- delete current query char by char ---
+      while (displayQuery.length > 0 && alive) {
+        displayQuery = displayQuery.slice(0, -1);
+        await sleep(28);
+      }
+      if (!alive) break;
+
+      // --- advance scene (triggers results fade) ---
+      sceneIdx = (sceneIdx + 1) % scenarios.length;
+      await sleep(180);
+
+      // --- type new query char by char (localized city if detected) ---
+      const target = localizeQuery(scenarios[sceneIdx].query);
+      for (let i = 1; i <= target.length && alive; i++) {
+        displayQuery = target.slice(0, i);
+        await sleep(48);
+      }
+
+      await sleep(10000); // pause while fully typed before next cycle
+    }
+  }
+
+  const scenarios = [
+    {
+      query: 'plumbers in boulder, co',
+      comps: [
+        { i: 'C', c: '#6366f1', url: 'citywide-plumbing.com › boulder › emergency', name: 'Citywide Plumbing — Boulder\'s Emergency Plumber', desc: 'Licensed & insured. 24/7 emergency service in Boulder, CO. Fast response guaranteed.' },
+        { i: 'Q', c: '#0ea5e9', url: 'quickdrain.net › boulder-co › plumbing', name: 'QuickDrain Rooter — Boulder, CO', desc: 'Same-day service. Free estimates. Drain cleaning, leak repair & full plumbing.' },
+      ],
+      p4: [
+        { i: 'K', c: '#6b7280', url: 'kellersplumbing.com › boulder › service', name: 'Keller\'s Plumbing — Boulder, CO', desc: 'Residential plumbing repairs. Licensed & insured. Scheduling available online.' },
+        { i: 'M', c: '#6b7280', url: 'milehighpipe.com › colorado › drain', name: 'Mile High Drain & Pipe — CO', desc: 'Serving Boulder County since 2007. Drain cleaning, water heaters & more.' },
+      ],
+      yourName: 'Your Plumbing Business — Boulder, CO',
+      afterName: 'Your Business — Boulder\'s Best Plumber',
+      afterDesc: 'Licensed & insured. Boulder\'s highest-rated plumber. Same-day service. Call now.',
+    },
+    {
+      query: 'hair salons in chicago',
+      comps: [
+        { i: 'E', c: '#ec4899', url: 'chicago-elite-salon.com › lincoln-park › hair', name: 'Chicago Elite Hair Studio — Lincoln Park', desc: 'Color, cuts & balayage specialists. Walk-ins welcome Mon–Sat. Book online now.' },
+        { i: 'M', c: '#8b5cf6', url: 'meraki-salon.com › chicago › services', name: 'Meraki Salon & Color — Chicago, IL', desc: 'Voted Chicago\'s best 2023. 500+ five-star reviews. Same-week appointments.' },
+      ],
+      p4: [
+        { i: 'W', c: '#6b7280', url: 'windycitycuts.com › chicago › salon', name: 'Windy City Cuts — Chicago, IL', desc: 'Full-service hair salon. Cuts, color & extensions. Walk-ins welcome.' },
+        { i: 'L', c: '#6b7280', url: 'lakeshorebeauty.com › chicago › hair', name: 'Lake Shore Beauty Salon — Chicago', desc: 'Affordable styling & color. Convenient North Side location. Book today.' },
+      ],
+      yourName: 'Your Hair Salon — Chicago, IL',
+      afterName: 'Your Salon — Chicago\'s Top Hair Studio',
+      afterDesc: 'Chicago\'s highest-rated. Color, cuts & styling by expert stylists. Book today.',
+    },
+    {
+      query: 'hvac repair in phoenix, az',
+      comps: [
+        { i: 'D', c: '#f97316', url: 'desert-cool-hvac.com › phoenix › repair', name: 'Desert Cool HVAC — Phoenix, AZ', desc: 'Same-day AC repair. Licensed & insured. Free estimates. 24/7 emergency service.' },
+        { i: 'P', c: '#0ea5e9', url: 'phoenix-air.com › hvac › repair', name: 'Phoenix Air Solutions — AZ', desc: 'Residential & commercial HVAC. Fast, reliable. Financing available.' },
+      ],
+      p4: [
+        { i: 'S', c: '#6b7280', url: 'southwest-ac.com › phoenix › cooling', name: 'Southwest AC Solutions — Phoenix', desc: 'AC installation, repair & maintenance. Licensed AZ contractor. Free quotes.' },
+        { i: 'A', c: '#6b7280', url: 'azclimate.com › hvac › phoenix', name: 'Arizona Climate Control — AZ', desc: 'Heating & cooling specialists. Serving Phoenix metro since 2004.' },
+      ],
+      yourName: 'Your HVAC Business — Phoenix, AZ',
+      afterName: 'Your Business — Phoenix\'s #1 HVAC Company',
+      afterDesc: 'Fast, reliable AC & heating repair. Phoenix\'s most-trusted HVAC since 2010.',
+    },
+    {
+      query: 'dog grooming in portland',
+      comps: [
+        { i: 'R', c: '#10b981', url: 'rosecity-groomers.com › portland › grooming', name: 'Rose City Groomers — Portland, OR', desc: 'Full-service grooming for all breeds. Gentle, stress-free. Online booking open.' },
+        { i: 'P', c: '#f59e0b', url: 'portlandpaws.com › grooming › services', name: 'Portland Paws Salon — OR', desc: 'Mobile & in-shop grooming. Same-week appointments. 4.9 stars · 340 reviews.' },
+      ],
+      p4: [
+        { i: 'W', c: '#6b7280', url: 'willamettevalleypets.com › grooming', name: 'Willamette Valley Pet Salon — OR', desc: 'Dog & cat grooming. All breeds welcome. Gentle, experienced groomers.' },
+        { i: 'P', c: '#6b7280', url: 'pacificpaws.com › portland › groom', name: 'Pacific Paws Grooming — Portland', desc: 'Affordable grooming packages. Drop-off & pick-up available. Call to book.' },
+      ],
+      yourName: 'Your Grooming Business — Portland, OR',
+      afterName: 'Your Salon — Portland\'s Top Dog Groomer',
+      afterDesc: 'Portland\'s most-loved groomer. Gentle care for all breeds. Book your spot today.',
+    },
+    {
+      query: 'electricians in seattle, wa',
+      comps: [
+        { i: 'P', c: '#6366f1', url: 'pacificnw-electric.com › seattle › residential', name: 'Pacific NW Electric — Seattle, WA', desc: 'Licensed electricians. Residential & commercial. Free quotes. Fast response.' },
+        { i: 'S', c: '#0ea5e9', url: 'seattlespark.com › electrical › seattle', name: 'Seattle Spark Electrical — WA', desc: 'Trusted since 2008. Same-day service. 800+ five-star reviews. Call now.' },
+      ],
+      p4: [
+        { i: 'C', c: '#6b7280', url: 'cascadeelectric.com › seattle › service', name: 'Cascade Electric — Seattle, WA', desc: 'Residential wiring, panel upgrades & repairs. Licensed & bonded. Free estimates.' },
+        { i: 'R', c: '#6b7280', url: 'rainierpower.com › wa › electric', name: 'Rainier Power Solutions — WA', desc: 'Full-service electrical contractor. Serving King County. Call for availability.' },
+      ],
+      yourName: 'Your Electrical Business — Seattle, WA',
+      afterName: 'Your Business — Seattle\'s Best Electrician',
+      afterDesc: 'Licensed & bonded. Seattle\'s top-rated electrician. Free estimates. Fast service.',
+    },
+    {
+      query: 'med spas in scottsdale, az',
+      comps: [
+        { i: 'L', c: '#ec4899', url: 'luxe-medspa.com › scottsdale › treatments', name: 'Luxe Med Spa — Scottsdale, AZ', desc: 'Botox, fillers & laser treatments. Board-certified providers. Book online.' },
+        { i: 'A', c: '#8b5cf6', url: 'azglow-spa.com › scottsdale › services', name: 'AZ Glow Aesthetics — Scottsdale', desc: 'Top-rated med spa. 600+ reviews. Exclusive member pricing available.' },
+      ],
+      p4: [
+        { i: 'D', c: '#6b7280', url: 'desertbloom.com › scottsdale › aesthetics', name: 'Desert Bloom Aesthetics — Scottsdale', desc: 'Facial rejuvenation & injectables. Certified aesthetic nurses. Book a consult.' },
+        { i: 'S', c: '#6b7280', url: 'sonoranskin.com › scottsdale › wellness', name: 'Sonoran Skin & Wellness — AZ', desc: 'Laser treatments, Botox & skincare. Scottsdale\'s trusted aesthetic clinic.' },
+      ],
+      yourName: 'Your Med Spa — Scottsdale, AZ',
+      afterName: 'Your Spa — Scottsdale\'s Top Med Spa',
+      afterDesc: 'Scottsdale\'s highest-rated. Botox, fillers & laser by certified providers.',
+    },
+  ];
+
   onMount(async () => {
+    lostCount = Math.floor(Math.random() * 71) + 30;
+
+    // Best-effort IP geolocation — silently falls back to hardcoded cities on failure
+    try {
+      const geo = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(3000) });
+      if (geo.ok) {
+        const data = await geo.json();
+        if (data.city) geoCity = data.city.toLowerCase();
+        if (data.region_code) geoState = data.region_code.toLowerCase();
+        // Backfill the static initial display value with detected location
+        displayQuery = localizeQuery(scenarios[0].query);
+      }
+    } catch { /* ignore — no key needed, just best-effort */ }
+
+    typewriterLoop();
+
+    // Bidirectional scroll switch: page 4 ↔ page 1 as user scrolls through the card.
+    // Small hysteresis band (60% down, 68% up) prevents jitter at the threshold.
+    scrollHandler = () => {
+      if (!cardEl) return;
+      const rect = cardEl.getBoundingClientRect();
+      const mid = rect.top + rect.height * 0.5;
+      const vh = window.innerHeight;
+      if (activePage !== 1 && mid < vh * 0.6) {
+        activePage = 1;
+      } else if (activePage === 1 && mid > vh * 0.68) {
+        activePage = 4;
+      }
+    };
+    window.addEventListener('scroll', scrollHandler, { passive: true, capture: true });
+
     // SEO scene runs client-side only (DOM + scroll APIs)
     const gsap = (await import('gsap')).default;
     const { ScrollTrigger } = await import('gsap/ScrollTrigger');
@@ -11,14 +195,13 @@
     window.ScrollTrigger = ScrollTrigger;
     window.Lenis = Lenis;
     gsap.registerPlugin(ScrollTrigger);
-    await import('$lib/climb.js');   // defines window.initClimb
-    await import('$lib/engine.js');  // boots Lenis + parallax + reveals + the climb
+    await import('$lib/climb.js');
+    await import('$lib/engine.js');
   });
 
   onDestroy(() => {
-    // SvelteKit client-side navigation away from /seo: tear down the global
-    // side effects engine.js / Lenis create so smooth-scroll + ScrollTrigger
-    // pins don't leak onto the rest of the (dark) site.
+    alive = false;
+    if (scrollHandler) window.removeEventListener('scroll', scrollHandler, true);
     if (typeof window === 'undefined') return;
     try { window.SEO?.lenis?.destroy?.(); } catch (e) {}
     try { window.ScrollTrigger?.getAll?.().forEach((t) => t.kill()); } catch (e) {}
@@ -76,6 +259,211 @@
 </header>
 
 <main id="top">
+
+  <!-- ============ MOBILE HERO (≤900px, replaces .climb on small screens) ============ -->
+  <section class="m-hero" aria-label="Mobile hero">
+
+    <!-- Stat eyebrow — pill chip -->
+    <div class="mh-eyebrow">
+      <span class="mh-ey-dot"></span>
+      <span><strong>{lostCount} people</strong> in your city searched for a business like yours last month</span>
+    </div>
+
+    <!-- Headline — 2 lines at every mobile viewport -->
+    <h1 class="mh-hed">Customers are calling<br><span class="mh-acc">your competitors.</span></h1>
+
+    <p class="mh-sub">Every month you're not ranking, those customers go elsewhere. I get you to the top of Google in 60–90 days at a fraction of agency cost — or you pay <strong>nothing</strong>.</p>
+
+    <!-- Google SERP card — label lives inside the card, results all uniform -->
+    <div class="mh-card" bind:this={cardEl}>
+      <div class="mh-gbar">
+        <span class="mh-glogo"><b style="color:#4285F4">G</b><b style="color:#EA4335">o</b><b style="color:#FBBC05">o</b><b style="color:#4285F4">g</b><b style="color:#34A853">l</b><b style="color:#EA4335">e</b></span>
+        <div class="mh-gsearch">
+          <span class="mh-gquery">{displayQuery}<span class="mh-cursor">|</span></span>
+          <div class="mh-gsicons">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2a4 4 0 0 1 4 4v5a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4Z" stroke="#9aa1ac" stroke-width="1.6"/><path d="M5 12a7 7 0 0 0 14 0M12 19v3" stroke="#9aa1ac" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <div class="mh-gsdiv"></div>
+            <svg width="13" height="13" viewBox="0 0 22 22" fill="none"><circle cx="9" cy="9" r="7" stroke="#4285F4" stroke-width="2"/><path d="M14 14l6 6" stroke="#4285F4" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="mh-gcount">About 1,840,000 results (0.38 seconds)</div>
+
+      <!-- Context band — page position + result label -->
+      {#if activePage === 1}
+        <div class="mh-pg-band mh-pg-band--green" in:fade={{ duration: 400 }}>
+          Page 1 of results
+          <span class="mh-pg-band-sub">Prime real estate for new customers.</span>
+        </div>
+        <div class="mh-after-band" in:fade={{ duration: 400 }}>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          After Graham's help
+        </div>
+      {:else}
+        <div class="mh-pg-band" in:fade={{ duration: 400 }}>
+          Page {activePage} of results
+          <span class="mh-pg-band-sub">Most customers never search this far.</span>
+        </div>
+      {/if}
+
+      <!-- Results — re-render on scene or page change -->
+      {#key `${sceneIdx}-${activePage}`}
+        <div in:fly={{ y: 10, duration: 500, easing: cubicOut }}>
+          {#if activePage === 1}
+            <div class="mh-result mh-result--you">
+              <div class="mh-rtop">
+                <div class="mh-rfav mh-rfav--you">Y</div>
+                <span class="mh-rurl mh-rurl--you">yourbusiness.com › your-city</span>
+                <span class="mh-rank1-pill">#1</span>
+              </div>
+              <div class="mh-rtitle mh-rtitle--you">{scenarios[sceneIdx].afterName}</div>
+              <div class="mh-rdesc">{scenarios[sceneIdx].afterDesc}</div>
+            </div>
+            {#each scenarios[sceneIdx].comps as comp, ci}
+              <div class="mh-result">
+                <div class="mh-rtop">
+                  <div class="mh-rfav" style="background:{ci === 0 ? '#6b6b28' : '#7b5b2e'}">{comp.i}</div>
+                  <span class="mh-rurl">{comp.url}</span>
+                </div>
+                <div class="mh-rtitle">{comp.name}</div>
+                <div class="mh-rdesc">{comp.desc}</div>
+              </div>
+            {/each}
+          {:else if activePage === 4}
+            <div class="mh-result mh-result--generic">
+              <div class="mh-rtop">
+                <div class="mh-rfav" style="background:#6b6b28">{scenarios[sceneIdx].p4[0].i}</div>
+                <span class="mh-rurl">{scenarios[sceneIdx].p4[0].url}</span>
+              </div>
+              <div class="mh-rtitle">{scenarios[sceneIdx].p4[0].name}</div>
+              <div class="mh-rdesc">{scenarios[sceneIdx].p4[0].desc}</div>
+            </div>
+            <div class="mh-result mh-result--generic">
+              <div class="mh-rtop">
+                <div class="mh-rfav" style="background:#7b5b2e">{scenarios[sceneIdx].p4[1].i}</div>
+                <span class="mh-rurl">{scenarios[sceneIdx].p4[1].url}</span>
+              </div>
+              <div class="mh-rtitle">{scenarios[sceneIdx].p4[1].name}</div>
+              <div class="mh-rdesc">{scenarios[sceneIdx].p4[1].desc}</div>
+            </div>
+            <div class="mh-rank-band">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              This is where you rank right now
+            </div>
+            <div class="mh-result mh-result--p4you" style="border-bottom:none">
+              <div class="mh-rtop">
+                <div class="mh-rfav mh-rfav--p4">Y</div>
+                <span class="mh-rurl mh-rurl--p4">yourbusiness.com › your-city</span>
+                <span class="mh-you-pill">#31</span>
+              </div>
+              <div class="mh-rtitle mh-rtitle--p4">{scenarios[sceneIdx].yourName}</div>
+              <div class="mh-rdesc mh-rdesc--p4">Local service in your area. Contact us for more information.</div>
+            </div>
+          {:else}
+            <!-- Pages 2, 3, 5 — generic filler results -->
+            {#each genericPages[activePage] as entry, i}
+              <div class="mh-result mh-result--generic" style={i === 2 ? 'border-bottom:none' : ''}>
+                <div class="mh-rtop">
+                  <div class="mh-rfav" style="background:{i === 1 ? '#7b5b2e' : '#6b6b28'}">{entry.i}</div>
+                  <span class="mh-rurl">{entry.url}</span>
+                </div>
+                <div class="mh-rtitle">{entry.name}</div>
+                <div class="mh-rdesc">{entry.desc}</div>
+              </div>
+            {/each}
+          {/if}
+        </div>
+      {/key}
+
+      <!-- Google pagination — pages 1–5, centered, hint below "4" -->
+      <div class="mh-pagination">
+        <div class="mh-goo-word">
+          <b style="color:#4285F4">G</b><b style="color:#EA4335">o</b><b style="color:#FBBC05">o</b><b style="color:#4285F4">o</b><b style="color:#34A853">o</b><b style="color:#EA4335">o</b><b style="color:#4285F4">o</b><b style="color:#EA4335">o</b><b style="color:#FBBC05">o</b><b style="color:#34A853">o</b><b style="color:#4285F4">g</b><b style="color:#EA4335">l</b><b style="color:#34A853">e</b>
+        </div>
+        <!-- 5-column grid so hint row aligns perfectly under "4" -->
+        <div class="mh-pag-grid">
+          <div class="mh-page-nums">
+            {#each [1,2,3,4,5] as n}
+              <button
+                class="mh-pn"
+                class:mh-pn--active={activePage === n}
+                class:mh-pn--4={n === 4}
+                on:click={() => activePage = n}
+              >{n}</button>
+            {/each}
+          </div>
+          <!-- Hint row: green under "1" when on p4, red under "4" otherwise -->
+          {#key activePage}
+            <div class="mh-hint-row" in:fade={{ duration: 350 }}>
+              {#if activePage === 4}
+                <!-- Green hint under page 1 -->
+                <div class="mh-hint-col mh-hint-col--green">
+                  <span class="mh-hint-arr mh-hint-arr--green">↑</span>
+                  <span class="mh-hint-pill mh-hint-pill--green">Where you could be</span>
+                </div>
+                <div></div><div></div><div></div><div></div>
+              {:else}
+                <!-- Red hint under page 4 -->
+                <div></div><div></div><div></div>
+                <div class="mh-hint-col">
+                  <span class="mh-hint-arr">↑</span>
+                  <span class="mh-hint-pill">Your Business</span>
+                </div>
+                <div></div>
+              {/if}
+            </div>
+          {/key}
+        </div>
+      </div>
+    </div>
+
+    <p class="mh-gets-label">What you get</p>
+    <ul class="mh-gets">
+      <li class="mh-get">
+        <span class="mh-get-ic">📞</span>
+        <div><strong>More customers calling you</strong><span>When someone Googles your service, your name shows up first. They click. They call.</span></div>
+      </li>
+      <li class="mh-get">
+        <span class="mh-get-ic">📈</span>
+        <div><strong>Results within 60–90 days</strong><span>No ad budget to burn. Just Google sending you customers organically.</span></div>
+      </li>
+      <li class="mh-get">
+        <span class="mh-get-ic">✅</span>
+        <div><strong>You can see it happening</strong><span>Google shows exactly how many more people find you now than before, and we'll send you reports to your email each month with clear metrics.</span></div>
+      </li>
+      <li class="mh-get">
+        <span class="mh-get-ic">🤝</span>
+        <div><strong>Direct line to Graham</strong><span>You talk to the person doing the work — not a call center or account manager.</span></div>
+      </li>
+    </ul>
+
+    <!-- Pricing comparison — two cards only -->
+    <div class="mh-price-row">
+      <div class="mh-pv mh-pv--dim">
+        <div class="mh-pv-label">Ad Agency</div>
+        <div class="mh-pv-price-stack">
+          <div class="mh-pv-price-line"><span class="mh-pv-amt">$5,000</span><span class="mh-pv-unit">upfront</span></div>
+          <div class="mh-pv-price-line"><span class="mh-pv-amt mh-pv-amt--sm">$1,000</span><span class="mh-pv-unit">/mo after</span></div>
+        </div>
+        <div class="mh-pv-note">long contracts · junior staff</div>
+      </div>
+      <div class="mh-pv mh-pv--you">
+        <div class="mh-pv-tag">Most popular</div>
+        <div class="mh-pv-label">Graham · Growth</div>
+        <div class="mh-pv-price">$300<span>/mo</span></div>
+        <div class="mh-pv-guarantee">or you pay <strong>nothing</strong> if you're not on page 1 in 90 days</div>
+      </div>
+    </div>
+
+    <a href="#contact" class="mh-btn">Get a free ranking audit →</a>
+    <p class="mh-fine">Graham personally reviews every business within 48 hours. No pitch, no pressure.</p>
+    <div class="mh-trust">
+      <span>✓ No contracts</span>
+      <span>✓ Month-to-month</span>
+      <span>✓ You own the work</span>
+    </div>
+
+  </section>
 
   <!-- ============ THE CLIMB (pinned interactive scene) ============ -->
   <section class="climb" id="climb" data-screen-label="The Climb">
@@ -247,14 +635,12 @@
         </div>
         <div class="field row2">
           <div class="field"><label for="f-phone">Phone <span class="opt">optional</span></label><input id="f-phone" name="phone" type="tel" placeholder="(303) 555-0123" /></div>
-          <div class="field"><label for="f-pkg">Package <span class="opt">optional</span></label>
-            <select id="f-pkg" name="package">
-              <option value="">Which package fits?</option>
-              <option>Starter — $300/mo</option>
-              <option>Growth — $750/mo</option>
-              <option>Pro — $900/mo</option>
-              <option>Other / not sure yet</option>
-            </select>
+          <div class="field field--budget"><label for="f-budget">What's your budget? <span class="opt">optional</span></label>
+            <div class="budget-input-wrap">
+              <span class="budget-prefix">$</span>
+              <input id="f-budget" name="budget" type="number" min="0" step="50" placeholder="e.g. 300" />
+              <span class="budget-suffix">USD / mo</span>
+            </div>
           </div>
         </div>
         <div class="field"><label for="f-msg">What do you want to grow? <span class="req" aria-hidden="true">*</span> <span class="opt">at least 20 words</span></label><textarea id="f-msg" name="message" rows="4" required placeholder="Tell me about your business, the services you offer, and the customers you’d like more of — the more detail you share, the sharper the plan I can put together for you."></textarea></div>

@@ -1,7 +1,7 @@
 // Web3Forms key — accepts override via WEB3FORMS_ACCESS_KEY env var.
 const ACCESS_KEY =
   (typeof process !== "undefined" && process.env?.WEB3FORMS_ACCESS_KEY) ||
-  "728319f0-7de2-4a54-a1aa-0f1083aa13b4";
+  "d7dc69dc-b646-4218-80f5-c1482e3c383b";
 
 function fail(status, message) {
   return new Response(JSON.stringify({ ok: false, error: message }), {

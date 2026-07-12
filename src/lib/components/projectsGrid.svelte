@@ -537,6 +537,34 @@
      tags + links pin to the bottom. Grid rows stretch cards to equal height. */
   .project-card {
     @apply rounded-xl bg-[#070a0d] bg-opacity-60 shadow overflow-hidden flex flex-col relative border border-slate-800/80;
+    transition:
+      border-color 260ms var(--ease),
+      transform    300ms var(--ease),
+      box-shadow   300ms var(--ease);
+  }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      108deg,
+      transparent 30%,
+      oklch(1 0 0 / 0.05) 50%,
+      transparent 70%
+    );
+    transform: translateX(-120%);
+    transition: none;
+  }
+  .project-card:hover {
+    border-color: oklch(0.48 0.014 250);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px oklch(0 0 0 / 0.4), 0 0 0 1px oklch(0.78 0.18 145 / 0.08);
+  }
+  .project-card:hover::before {
+    transform: translateX(220%);
+    transition: transform 600ms var(--ease);
   }
 
   .project-card--emphasis {

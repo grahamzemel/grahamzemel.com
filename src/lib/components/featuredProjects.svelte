@@ -1,8 +1,16 @@
 <script lang="ts">
-  import Visibility from "$lib/components/visibility.svelte";
+  import { onMount } from "svelte";
   let isVisible = false;
-  let hasChanged = false;
-  let hasObserverSupport = true;
+  let gridEl: HTMLElement | undefined;
+
+  onMount(() => {
+    if (!gridEl || !("IntersectionObserver" in window)) { isVisible = true; return; }
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { isVisible = true; io.disconnect(); }
+    }, { threshold: 0.12 });
+    io.observe(gridEl);
+    return () => io.disconnect();
+  });
 
   // Per-card expand state for the mobile "details" toggle. (Native <details>
   // can't be reliably force-opened on desktop because Chrome hides its content
@@ -195,31 +203,19 @@
   };
 </script>
 
-<div class="sm:mt-[16vh] mt-10" aria-hidden="true">
-  <Visibility
-    bind:hasObserverSupport
-    visibilityUpdate={(state) => {
-      // Only update one time (once visible)
-      if (!hasChanged && state !== false) {
-        hasChanged = true;
-        isVisible = state;
-      }
-    }}
-  />
-</div>
+<div class="sm:mt-[16vh] mt-10"></div>
 
-<section
-  class="section-band custom-transition {!hasObserverSupport || isVisible
-    ? 'opacity-100'
-    : 'opacity-0'}"
->
+<section class="section-band">
   <h1 class="font-serif font-bold sm:text-6xl text-4xl">
     Featured Projects
   </h1>
 
-  <div class="featured-grid mt-10">
+  <div class="featured-grid mt-10" bind:this={gridEl}>
     {#each projects as project, i}
-      <article class="featured-card">
+      <article
+        class="featured-card {isVisible ? 'card-in' : ''}"
+        style="--card-delay: {i * 110}ms"
+      >
         <div class="featured-media">
           <img
             src={project.image}
@@ -399,10 +395,49 @@
   .featured-card {
     @apply rounded-xl bg-[#070a0d] bg-opacity-60 shadow flex flex-col overflow-hidden;
     border: 1px solid oklch(0.30 0.012 250);
-    transition: border-color 220ms cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    transition:
+      border-color 260ms var(--ease),
+      transform 300ms var(--ease),
+      box-shadow 300ms var(--ease);
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  .featured-card.card-in {
+    animation: card-rise 650ms var(--ease) both;
+    animation-delay: var(--card-delay, 0ms);
+  }
+  @keyframes card-rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .featured-card { opacity: 1; transform: none; animation: none !important; }
+  }
+  /* Shimmer sweep on hover */
+  .featured-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      108deg,
+      transparent 30%,
+      oklch(1 0 0 / 0.045) 50%,
+      transparent 70%
+    );
+    transform: translateX(-120%);
+    transition: none;
   }
   .featured-card:hover {
-    border-color: oklch(0.42 0.012 250);
+    border-color: oklch(0.48 0.014 250);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px oklch(0 0 0 / 0.45), 0 0 0 1px oklch(0.78 0.18 145 / 0.08);
+  }
+  .featured-card:hover::before {
+    transform: translateX(220%);
+    transition: transform 600ms var(--ease);
   }
 
   .featured-body {
@@ -455,7 +490,7 @@
     height: 1.1rem;
     width: 1.1rem;
     flex: none;
-    transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 240ms var(--ease);
   }
   .card-more__summary.is-open .card-more__chev {
     transform: rotate(180deg);

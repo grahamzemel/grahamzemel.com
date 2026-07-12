@@ -1,29 +1,25 @@
 <script>
-  import Visibility from "$lib/components/visibility.svelte";
+  import { onMount } from "svelte";
   import ProjectsGrid from "./projectsGrid.svelte";
 
   let isVisible = false;
-  let hasChanged = false;
-  let hasObserverSupport = true;
+  let sectionEl;
+
+  onMount(() => {
+    if (!sectionEl || !("IntersectionObserver" in window)) { isVisible = true; return; }
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { isVisible = true; io.disconnect(); }
+    }, { threshold: 0.08 });
+    io.observe(sectionEl);
+    return () => io.disconnect();
+  });
 </script>
 
-<div class="sm:mt-[12vh] mt-10" aria-hidden="true">
-  <Visibility
-    bind:hasObserverSupport
-    visibilityUpdate={(state) => {
-      // Only update one time (once visible)
-      if (!hasChanged && state !== false) {
-        hasChanged = true;
-        isVisible = state;
-      }
-    }}
-  />
-</div>
+<div class="sm:mt-[12vh] mt-10"></div>
 
 <section
-  class="section-band custom-transition {!hasObserverSupport || isVisible
-    ? 'opacity-100'
-    : 'opacity-0'}"
+  bind:this={sectionEl}
+  class="section-band custom-transition {isVisible ? 'opacity-100' : 'opacity-0'}"
 >
   <h1 class="font-serif font-bold sm:text-6xl text-4xl">Projects</h1>
   <ProjectsGrid />

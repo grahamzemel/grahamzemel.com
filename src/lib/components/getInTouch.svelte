@@ -368,7 +368,7 @@
     font-size: 0.9375rem;
     color: oklch(0.92 0.005 250);
     text-decoration: none;
-    transition: color 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: color 180ms var(--ease);
   }
   a.pitch-meta-value:hover {
     color: oklch(0.99 0 0);
@@ -439,9 +439,9 @@
     font-size: 1rem;
     line-height: 1.5;
     font-family: inherit;
-    transition: border-color 180ms cubic-bezier(0.16, 1, 0.3, 1),
-      background 180ms cubic-bezier(0.16, 1, 0.3, 1),
-      box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: border-color 180ms var(--ease),
+      background 180ms var(--ease),
+      box-shadow 180ms var(--ease);
   }
   .field textarea { resize: vertical; min-height: 9rem; }
   .field input::placeholder,
@@ -518,10 +518,10 @@
     background: oklch(0.95 0.003 250);
     border: 1px solid oklch(0.95 0.003 250);
     cursor: pointer;
-    transition: background 180ms cubic-bezier(0.16, 1, 0.3, 1),
-      border-color 180ms cubic-bezier(0.16, 1, 0.3, 1),
-      transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
-      opacity 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: background 180ms var(--ease),
+      border-color 180ms var(--ease),
+      transform 180ms var(--ease),
+      opacity 180ms var(--ease);
   }
   .form-submit:hover:not(:disabled) {
     background: oklch(1 0 0);
@@ -534,7 +534,7 @@
   .form-submit svg {
     height: 0.95rem;
     width: 0.95rem;
-    transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 180ms var(--ease);
   }
   .form-submit:hover:not(:disabled) svg {
     transform: translateX(2px);
@@ -549,7 +549,7 @@
   .form-foot a {
     color: oklch(0.78 0.008 250);
     text-decoration: none;
-    transition: color 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: color 180ms var(--ease);
   }
   .form-foot a:hover {
     color: oklch(0.99 0 0);
