@@ -122,7 +122,7 @@
           </div>
           <h2 id="contact-modal-title" class="modal-success-title">Message sent.</h2>
           <p class="modal-success-copy">
-            Thanks for reaching out. I'll reply within a day or two at the
+            Thanks for reaching out. I'll reply within 24 hours at the
             email you provided.
           </p>
           <button class="modal-done" type="button" on:click={close}>

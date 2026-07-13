@@ -22,8 +22,8 @@
   /* ink + gray */
   --ink:       #0e1116;   /* headings / primary */
   --ink-soft:  #2c313a;
-  --muted:     #5f6671;   /* gray body */
-  --faint:     #9aa1ac;
+  --muted:     #374151;   /* body text — dark enough for grandmas */
+  --faint:     #6b7280;   /* secondary labels — readable but clearly tertiary */
 
   /* lines */
   --line:      rgba(14,17,22,0.10);
@@ -370,10 +370,30 @@ html.lenis, html.lenis body { height: auto; }
 /* ============================================================
    FOOTER
    ============================================================ */
-.seo-page .foot { border-top: 1px solid var(--line); padding: 2.6rem 0; }
-.seo-page .foot__in { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
-.seo-page .foot a:hover { color: var(--accent-deep); }
-.seo-page .foot .mono { color: var(--faint); }
+.seo-page .foot {
+  border-top: 1px solid var(--line);
+  background: var(--bg-1);
+  padding: 2.25rem 0 2rem;
+}
+.seo-page .foot__in {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1.25rem; flex-wrap: wrap;
+}
+.seo-page .foot__brand { font-size: 0.9rem; }
+.seo-page .foot__links {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.72rem;
+}
+.seo-page .foot__link {
+  color: var(--muted); text-decoration: none;
+  transition: color 0.2s;
+}
+.seo-page .foot__link:hover { color: var(--accent-deep); }
+.seo-page .foot__sep { color: var(--faint); }
+.seo-page .foot__copy {
+  font-size: 0.62rem; color: var(--faint);
+  letter-spacing: 0.04em;
+}
 
 /* ============================================================
    THE CLIMB — pinned interactive scene
@@ -581,7 +601,6 @@ html.lenis, html.lenis body { height: auto; }
   .seo-page .nav { padding: 0.65rem 0.9rem; }
   .seo-page .brand { font-size: 0.92rem; gap: 0.5rem; }
   .seo-page .brand .mark { width: 30px; height: 30px; border-radius: 8px; }
-  .seo-page .brand__suffix { display: none; }
   .seo-page .nav__right { gap: 0.55rem; }
   .seo-page .nav__cta { padding: 0.62em 0.95em; font-size: 0.64rem; letter-spacing: 0.06em; }
   .seo-page .nav__cta .arrow { display: none; }
@@ -594,7 +613,8 @@ html.lenis, html.lenis body { height: auto; }
   .seo-page .qpill { height: 40px; font-size: 0.88rem; padding: 0 1rem 0 0.9rem; }
   .seo-page .plan { padding: 1.8rem 1.4rem; }
   .seo-page .price-head { margin-bottom: 2.2rem; }
-  .seo-page .foot__in { flex-direction: column; gap: 0.6rem; text-align: center; }
+  .seo-page .foot__in { flex-direction: column; align-items: center; gap: 0.75rem; text-align: center; }
+  .seo-page .foot__links { flex-wrap: wrap; justify-content: center; }
   .seo-page .climb { padding-top: 4.75rem; }
 }
 
@@ -749,12 +769,13 @@ html.lenis, html.lenis body { height: auto; }
   font-family: var(--mono); font-size: 0.58rem; font-weight: 700;
   letter-spacing: 0.1em; text-transform: uppercase;
 }
-/* Green — "After Graham's help" (the one solid green surface) */
+/* Green — "After becoming a client" (the one solid green surface) */
 .seo-page .mh-after-band {
   background: var(--accent-soft);
   border-top: 1px solid rgba(15,174,99,0.25);
   border-bottom: 1px solid rgba(15,174,99,0.25);
   color: var(--accent-deep);
+  font-size: 0.7rem;
 }
 /* Red — "This is where you rank right now" */
 .seo-page .mh-rank-band {
@@ -800,9 +821,8 @@ html.lenis, html.lenis body { height: auto; }
   color: var(--accent-deep);
 }
 .seo-page .mh-pg-band-sub {
-  font-size: 0.48rem; font-weight: 500; letter-spacing: 0.04em;
-  opacity: 0.75; margin-top: 1px;
-  text-transform: none;
+  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.02em;
+  margin-top: 2px; text-transform: none;
 }
 .seo-page .mh-pg-num {
   font-size: 0.72rem; font-weight: 900; letter-spacing: 0.04em;
@@ -817,6 +837,9 @@ html.lenis, html.lenis body { height: auto; }
   display: grid;
   transform-style: preserve-3d;
   transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  /* The flip is pure display — kill pointer events so the hidden back face
+     can't intercept clicks that should reach the pagination below */
+  pointer-events: none;
 }
 .seo-page .mh-flip-inner.mh-flipped {
   transform: rotateY(180deg);
@@ -836,6 +859,7 @@ html.lenis, html.lenis body { height: auto; }
   background: #fff;
   z-index: 5;
   overflow: hidden;
+  pointer-events: none;
 }
 
 /* Google-style pagination */
@@ -862,25 +886,57 @@ html.lenis, html.lenis body { height: auto; }
 /* Page number button — explicit width + height for a PERFECT circle */
 .seo-page .mh-pn {
   all: unset;
+  pointer-events: auto; /* re-enable after parent flip-inner disables */
   width: 30px; height: 30px;
   border-radius: 50%; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   font-size: 0.72rem; color: #1a73e8; font-family: inherit;
   transition: background 0.12s;
   box-sizing: border-box;
+  position: relative;
 }
+/* Underline indicator per page type — hidden when active (circle takes over) */
+.seo-page .mh-pn:not(.mh-pn--active)::after {
+  content: ''; position: absolute; bottom: 1px; left: 50%;
+  transform: translateX(-50%);
+  width: 14px; height: 2px; border-radius: 1px;
+  background: #1a73e8; /* blue default */
+}
+.seo-page .mh-pn--p1:not(.mh-pn--active)::after  { background: var(--accent); }
+.seo-page .mh-pn--bad:not(.mh-pn--active)::after { background: #dc2626; }
+
 .seo-page .mh-pn:hover:not(.mh-pn--active) { background: #f1f3f4; }
 .seo-page .mh-pn--active {
   background: #1a73e8 !important; color: #fff !important; font-weight: 700;
-  width: 30px; height: 30px; /* redundant but ensures no override */
+  width: 30px; height: 30px;
 }
-/* Page 4 draws attention with red when not active */
-.seo-page .mh-pn--4:not(.mh-pn--active) { color: #dc2626; font-weight: 600; }
-.seo-page .mh-pn--4:hover:not(.mh-pn--active) { background: #fef2f2; }
+/* Bad page active: red circle */
+.seo-page .mh-pn--bad.mh-pn--active { background: #dc2626 !important; }
+/* Page 1 active: green circle */
+.seo-page .mh-pn--p1.mh-pn--active  { background: var(--accent) !important; }
+.seo-page .mh-pn--bad:not(.mh-pn--active) { color: #dc2626; font-weight: 600; }
+.seo-page .mh-pn--bad:hover:not(.mh-pn--active) { background: #fef2f2; }
+.seo-page .mh-pn--p1:not(.mh-pn--active) { color: var(--accent-deep); }
+.seo-page .mh-pn--p1:hover:not(.mh-pn--active) { background: var(--accent-soft); }
 
-/* Hint row — directly below the numbers, perfectly aligned in column 4 */
+/* Hint row — arrows only, grid-aligned */
 .seo-page .mh-hint-row { margin-top: 4px; }
 .seo-page .mh-hint-col { display: flex; flex-direction: column; align-items: center; gap: 1px; }
+/* Pills row — flex, always spaced so they never collide */
+/* Pill row: absolute-position each pill so "Your Business" is always under col 4
+   and "Where you could be" hugs the left edge without ever overlapping */
+.seo-page .mh-pill-row {
+  position: relative; height: 20px;
+  margin-top: 3px; width: 170px; /* matches 5 × 34px grid */
+}
+.seo-page .mh-pill-row .mh-hint-pill--green {
+  position: absolute; left: 17px; top: 0; transform: translateX(-50%);
+}
+.seo-page .mh-pill-row .mh-hint-pill:not(.mh-hint-pill--green) {
+  position: absolute;
+  left: 119px; /* center of col 4: (4-0.5) × 34px */
+  top: 0; transform: translateX(-50%);
+}
 .seo-page .mh-hint-arr { font-size: 0.58rem; color: #dc2626; line-height: 1; }
 .seo-page .mh-hint-pill {
   background: #fee2e2; color: #dc2626;
@@ -1054,7 +1110,7 @@ html.lenis, html.lenis body { height: auto; }
   font-size: 0.58rem; line-height: 1.3;
   padding-left: 0.85rem; position: relative;
 }
-.seo-page .mh-pv-cons li { color: var(--muted); }
+.seo-page .mh-pv-cons li { color: #374151; }
 .seo-page .mh-pv-pros li { color: var(--accent-deep); }
 .seo-page .mh-pv-cons li::before {
   content: '✕'; position: absolute; left: 0;

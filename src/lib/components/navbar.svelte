@@ -104,7 +104,7 @@
             >GZ</text>
           </svg>
         </span>
-        <span class="brand-name">Graham Zemel</span>
+        <span class="brand-name">Graham Zemel SEO</span>
       </a>
 
       <nav class="nav-links" aria-label="Primary">

@@ -5,15 +5,27 @@
 
   let lostCount = 47;
   let sceneIdx = 0;
-  let activePage = 4; // start on page 4 — visitor sees the problem first
-  let cardEl = null; // bound to .mh-card DOM node
-  let scrollHandler; // scroll-based bidirectional page switch
-  let showingPage1 = false; // drives the 3D flip direction
+  let badPage = 4;       // randomised to 3/4/5 in onMount
+  let badPosition = 2;   // 1 = your business is 2nd, 2 = 3rd (randomised in onMount)
+  let activePage = 4;
+  let cardEl = null;
+  let scrollHandler;
+  let showingPage1 = false;
 
-  // Only update the flip state for the 4 ↔ 1 transition;
-  // pages 2/3/5 leave the flip where it was (covered by overlay)
-  $: if (activePage === 1) showingPage1 = true;
-  $: if (activePage === 4) showingPage1 = false;
+  $: if (activePage === 1)       showingPage1 = true;
+  $: if (activePage === badPage) showingPage1 = false;
+
+  // The two "other" entries shown alongside your business on the bad page
+  $: badEntries = badPage === 4 ? scenarios[sceneIdx].p4
+    : badPage === 3 ? genericPages[3].slice(0, 2)
+    : genericPages[5].slice(0, 2);
+
+  // Entries for the overlay (pages 2–5 when not badPage)
+  $: overlayEntries = activePage === 2 ? genericPages[2]
+    : activePage === 3 ? genericPages[3]
+    : activePage === 4 ? genericPages[4]
+    : activePage === 5 ? genericPages[5]
+    : [];
   let geoCity = ''; // detected city from IP lookup
   let geoState = ''; // detected state/region abbreviation
 
@@ -35,11 +47,16 @@
     3: [
       { i: 'T', c: '#6b7280', url: 'toprated-local.com › browse › service', name: 'Top Rated Local® — Find Providers', desc: 'Browse 40,000+ verified local businesses. Read reviews & request quotes.' },
       { i: 'E', c: '#6b7280', url: 'expertservices.net › near-you', name: 'Expert Services Near You — Local', desc: 'Licensed professionals. Background checked. 100% satisfaction guarantee.' },
-      { i: 'C', c: '#6b7280', url: 'cityservicenetwork.com › local', name: 'City Service Network — Local Pros', desc: 'Connecting homeowners with trusted local businesses since 2011.' },
+      { i: 'C', c: '#6b7280', url: 'cityservicenetwork.com › local', name: 'City Service Network — Local Pros', desc: 'Connecting homeowners with trusted local businesses since 2011. Request a free quote.' },
+    ],
+    4: [
+      { i: 'B', c: '#6b7280', url: 'betterlocal.com › services › area', name: 'Better Local Services — Verified Pros', desc: 'Verified professionals near you. Compare quotes, read reviews & book online today.' },
+      { i: 'Q', c: '#6b7280', url: 'quickquote-local.com › your-city', name: 'QuickQuote Local — Fast Estimates', desc: 'Get three quotes in minutes from background-checked local pros. No obligation to book.' },
+      { i: 'U', c: '#6b7280', url: 'urbanservices.net › local › area', name: 'Urban Services Network — Local', desc: 'Connecting residents with top-rated local service professionals in your area since 2009.' },
     ],
     5: [
-      { i: 'N', c: '#6b7280', url: 'neighborhoodservices.com › find', name: 'Neighborhood Services — Near You', desc: 'Local, licensed, insured. Your neighbors have trusted us for years.' },
-      { i: 'P', c: '#6b7280', url: 'premierlocal.net › services › area', name: 'Premier Local — Quality Guaranteed', desc: 'Premium local service at everyday prices. Book in under 2 minutes.' },
+      { i: 'N', c: '#6b7280', url: 'neighborhoodservices.com › find', name: 'Neighborhood Services — Near You', desc: 'Local, licensed, insured. Your neighbors have trusted us for years. Free estimates available.' },
+      { i: 'P', c: '#6b7280', url: 'premierlocal.net › services › area', name: 'Premier Local — Quality Guaranteed', desc: 'Premium local service at everyday prices. Book in under 2 minutes online or call today.' },
       { i: 'R', c: '#6b7280', url: 'reliablelocal.com › your-area', name: 'Reliable Local Services — 4.8 ★', desc: 'Consistently top-rated. Same-day service often available. Call or book online.' },
     ],
   };
@@ -165,6 +182,9 @@
 
   onMount(async () => {
     lostCount = Math.floor(Math.random() * 71) + 30;
+    badPage = [3, 4, 5][Math.floor(Math.random() * 3)];
+    badPosition = Math.random() < 0.5 ? 1 : 2; // 1 = 2nd slot, 2 = 3rd slot
+    activePage = badPage;
 
     // Best-effort IP geolocation — silently falls back to hardcoded cities on failure
     try {
@@ -184,14 +204,14 @@
     // Small hysteresis band (60% down, 68% up) prevents jitter at the threshold.
     scrollHandler = () => {
       if (!alive || !cardEl) return;
-      if (window.scrollY === 0) { activePage = 4; return; }
+      if (window.scrollY === 0) { activePage = badPage; return; }
       const rect = cardEl.getBoundingClientRect();
       const mid = rect.top + rect.height * 0.5;
       const vh = window.innerHeight;
       if (activePage !== 1 && mid < vh * 0.6) {
         activePage = 1;
       } else if (activePage === 1 && mid > vh * 0.68) {
-        activePage = 4;
+        activePage = badPage;
       }
     };
     window.addEventListener('scroll', scrollHandler, { passive: true, capture: true });
@@ -255,7 +275,7 @@
 
 <!-- NAV -->
 <header class="nav" id="nav">
-  <a href="https://grahamzemel.com" class="brand"><span class="mark"><b>GZ</b></span><span class="brand__name">Graham&nbsp;Zemel<span class="brand__suffix">: Search Engine Optimization</span></span></a>
+  <a href="https://grahamzemel.com" class="brand"><span class="mark"><b>GZ</b></span><span class="brand__name">Graham Zemel SEO</span></a>
   <nav class="nav__links">
     <a href="#top">How it works</a>
     <a href="#pricing">Pricing</a>
@@ -281,7 +301,7 @@
     <!-- Headline — 2 lines at every mobile viewport -->
     <h1 class="mh-hed">Customers are calling<br><span class="mh-acc">your competitors.</span></h1>
 
-    <p class="mh-sub">Every month you're not ranking, those customers go elsewhere. I get you to the top of Google in 60–90 days at a fraction of agency cost — or you pay <strong>nothing</strong>.</p>
+    <p class="mh-sub">Every month you're not ranking, those customers go elsewhere. We get you to the top of Google in 60–90 days at a fraction of marketing agency cost — or you pay <strong>nothing</strong>.</p>
 
     <!-- Google SERP card — label lives inside the card, results all uniform -->
     <div class="mh-card" bind:this={cardEl}>
@@ -303,41 +323,63 @@
       <div class="mh-flip-wrap">
         <div class="mh-flip-inner" class:mh-flipped={showingPage1}>
 
-          <!-- FRONT: page 4 -->
+          <!-- FRONT: bad page (3, 4, or 5) with your business at position badPosition -->
           <div class="mh-flip-face mh-flip-front">
             <div class="mh-pg-band">
-              <span class="mh-pg-num">Page 4</span> of results
+              <span class="mh-pg-num">Page {badPage}</span> of results
               <span class="mh-pg-band-sub">Most customers never search this far.</span>
             </div>
             <div class="mh-rank-band">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               This is where you rank right now
             </div>
+            <!-- entry 0: always a generic -->
             <div class="mh-result mh-result--generic">
               <div class="mh-rtop">
-                <div class="mh-rfav" style="background:#6b6b28">{scenarios[sceneIdx].p4[0].i}</div>
-                <span class="mh-rurl">{scenarios[sceneIdx].p4[0].url}</span>
+                <div class="mh-rfav" style="background:#6b6b28">{badEntries[0].i}</div>
+                <span class="mh-rurl">{badEntries[0].url}</span>
               </div>
-              <div class="mh-rtitle">{scenarios[sceneIdx].p4[0].name}</div>
-              <div class="mh-rdesc">{scenarios[sceneIdx].p4[0].desc}</div>
+              <div class="mh-rtitle">{badEntries[0].name}</div>
+              <div class="mh-rdesc">{badEntries[0].desc}</div>
             </div>
-            <div class="mh-result mh-result--generic">
-              <div class="mh-rtop">
-                <div class="mh-rfav" style="background:#7b5b2e">{scenarios[sceneIdx].p4[1].i}</div>
-                <span class="mh-rurl">{scenarios[sceneIdx].p4[1].url}</span>
+            <!-- entry 1 or 2: your business at badPosition, other generic fills the other slot -->
+            {#if badPosition === 1}
+              <div class="mh-result mh-result--p4you">
+                <div class="mh-rtop">
+                  <div class="mh-rfav mh-rfav--p4">Y</div>
+                  <span class="mh-rurl mh-rurl--p4">yourbusiness.com › your-city</span>
+                  <span class="mh-you-pill">#31</span>
+                </div>
+                <div class="mh-rtitle mh-rtitle--p4">{scenarios[sceneIdx].yourName}</div>
+                <div class="mh-rdesc mh-rdesc--p4">Licensed & insured local business. Currently accepting new clients — call or book your spot online today.</div>
               </div>
-              <div class="mh-rtitle">{scenarios[sceneIdx].p4[1].name}</div>
-              <div class="mh-rdesc">{scenarios[sceneIdx].p4[1].desc}</div>
-            </div>
-            <div class="mh-result mh-result--p4you" style="border-bottom:none">
-              <div class="mh-rtop">
-                <div class="mh-rfav mh-rfav--p4">Y</div>
-                <span class="mh-rurl mh-rurl--p4">yourbusiness.com › your-city</span>
-                <span class="mh-you-pill">#31</span>
+              <div class="mh-result mh-result--generic" style="border-bottom:none">
+                <div class="mh-rtop">
+                  <div class="mh-rfav" style="background:#7b5b2e">{badEntries[1].i}</div>
+                  <span class="mh-rurl">{badEntries[1].url}</span>
+                </div>
+                <div class="mh-rtitle">{badEntries[1].name}</div>
+                <div class="mh-rdesc">{badEntries[1].desc}</div>
               </div>
-              <div class="mh-rtitle mh-rtitle--p4">{scenarios[sceneIdx].yourName}</div>
-              <div class="mh-rdesc mh-rdesc--p4">Local service in your area. Contact us for more information.</div>
-            </div>
+            {:else}
+              <div class="mh-result mh-result--generic">
+                <div class="mh-rtop">
+                  <div class="mh-rfav" style="background:#7b5b2e">{badEntries[1].i}</div>
+                  <span class="mh-rurl">{badEntries[1].url}</span>
+                </div>
+                <div class="mh-rtitle">{badEntries[1].name}</div>
+                <div class="mh-rdesc">{badEntries[1].desc}</div>
+              </div>
+              <div class="mh-result mh-result--p4you" style="border-bottom:none">
+                <div class="mh-rtop">
+                  <div class="mh-rfav mh-rfav--p4">Y</div>
+                  <span class="mh-rurl mh-rurl--p4">yourbusiness.com › your-city</span>
+                  <span class="mh-you-pill">#31</span>
+                </div>
+                <div class="mh-rtitle mh-rtitle--p4">{scenarios[sceneIdx].yourName}</div>
+                <div class="mh-rdesc mh-rdesc--p4">Licensed & insured local business. Currently accepting new clients — call or book your spot online today.</div>
+              </div>
+            {/if}
           </div>
 
           <!-- BACK: page 1 -->
@@ -348,7 +390,7 @@
             </div>
             <div class="mh-after-band">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              After Graham's help
+              After becoming a client
             </div>
             <div class="mh-result mh-result--you">
               <div class="mh-rtop">
@@ -373,14 +415,18 @@
 
         </div>
 
-        <!-- Overlay for pages 2, 3, 5 — fades over the flip -->
-        {#if activePage !== 1 && activePage !== 4}
+        <!-- Overlay only for pages the flip doesn't handle (page 2, or any page not badPage/1) -->
+        {#if activePage !== 1 && activePage !== badPage}
           <div class="mh-other-overlay" in:fade={{ duration: 250 }} out:fade={{ duration: 200 }}>
             <div class="mh-pg-band">
               <span class="mh-pg-num">Page {activePage}</span> of results
               <span class="mh-pg-band-sub">Most customers never search this far.</span>
             </div>
-            {#each genericPages[activePage] as entry, i}
+            <div class="mh-rank-band">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Your business is buried even deeper
+            </div>
+            {#each overlayEntries as entry, i}
               <div class="mh-result mh-result--generic" style={i === 2 ? 'border-bottom:none' : ''}>
                 <div class="mh-rtop">
                   <div class="mh-rfav" style="background:{i === 1 ? '#7b5b2e' : '#6b6b28'}">{entry.i}</div>
@@ -406,32 +452,24 @@
               <button
                 class="mh-pn"
                 class:mh-pn--active={activePage === n}
-                class:mh-pn--4={n === 4}
+                class:mh-pn--bad={n === badPage}
+                class:mh-pn--p1={n === 1}
                 on:click={() => activePage = n}
               >{n}</button>
             {/each}
           </div>
-          <!-- Hint row: green under "1" when on p4, red under "4" otherwise -->
-          {#key activePage}
-            <div class="mh-hint-row" in:fade={{ duration: 350 }}>
-              {#if activePage === 4}
-                <!-- Green hint under page 1 -->
-                <div class="mh-hint-col mh-hint-col--green">
-                  <span class="mh-hint-arr mh-hint-arr--green">↑</span>
-                  <span class="mh-hint-pill mh-hint-pill--green">Where you could be</span>
-                </div>
-                <div></div><div></div><div></div><div></div>
-              {:else}
-                <!-- Red hint under page 4 -->
-                <div></div><div></div><div></div>
-                <div class="mh-hint-col">
-                  <span class="mh-hint-arr">↑</span>
-                  <span class="mh-hint-pill">Your Business</span>
-                </div>
-                <div></div>
-              {/if}
-            </div>
-          {/key}
+          <!-- Arrows stay grid-aligned to their page numbers -->
+          <div class="mh-hint-row">
+            <div class="mh-hint-col mh-hint-col--green"><span class="mh-hint-arr mh-hint-arr--green">↑</span></div>
+            {#each {length: badPage - 2} as _}<div></div>{/each}
+            <div class="mh-hint-col"><span class="mh-hint-arr">↑</span></div>
+            {#each {length: 5 - badPage} as _}<div></div>{/each}
+          </div>
+          <!-- Pills in a separate flex row so they never overlap -->
+          <div class="mh-pill-row">
+            <span class="mh-hint-pill mh-hint-pill--green">Where you could be</span>
+            <span class="mh-hint-pill" style="left:{badPage === 5 ? 153 : 119}px">Your Business</span>
+          </div>
         </div>
       </div>
     </div>
@@ -448,11 +486,11 @@
       </li>
       <li class="mh-get">
         <span class="mh-get-ic">✅</span>
-        <div><strong>You can see it happening</strong><span>Google shows exactly how many more people find you now than before, and we'll send you reports to your email each month with clear metrics.</span></div>
+        <div><strong>You can see it happening</strong><span>Google tracks exactly how many new customers find you — we send a clear monthly report to your email.</span></div>
       </li>
       <li class="mh-get">
         <span class="mh-get-ic">🤝</span>
-        <div><strong>Direct line to Graham</strong><span>You talk to the person doing the work — not a call center or account manager.</span></div>
+        <div><strong>Direct line to Graham Zemel</strong><span>You talk directly to Graham — not a call center, not a project manager, not a junior hire.</span></div>
       </li>
     </ul>
 
@@ -471,14 +509,10 @@
           <li>band-aid fixes</li>
           <li>generic strategy</li>
           <li>you own nothing</li>
-          <li>spam emails</li>
-          <li>no guarantee</li>
-          <li>no direct contact</li>
-          <li>no transparency</li>
         </ul>
       </div>
       <div class="mh-pv mh-pv--you">
-        <div class="mh-pv-label">Graham · Growth</div>
+        <div class="mh-pv-label"><strong>Our Company</strong></div>
         <div class="mh-pv-price">$300<span>/mo</span></div>
         <ul class="mh-pv-pros">
           <li>no contracts</li>
@@ -493,7 +527,7 @@
     </div>
 
     <a href="#contact" class="mh-btn">Get a free ranking audit →</a>
-    <p class="mh-fine">Graham personally reviews every business within 48 hours. No pitch, no pressure.</p>
+    <p class="mh-fine">We review every business within 24 hours. No pitch, no pressure.</p>
     <div class="mh-trust">
       <span>✓ No contracts</span>
       <span>✓ Month-to-month</span>
@@ -593,13 +627,13 @@
       <div class="price-head">
         <p class="mono reveal">Packages</p>
         <h2 class="h-sect reveal">Pick your climb.</h2>
-        <p class="lead reveal">Three ways to reach the <b>top of Google</b>. Month-to-month, cancel anytime, and you own everything I build.</p>
+        <p class="lead reveal">Three ways to reach the <b>top of Google</b>. Month-to-month, cancel anytime, and you own everything we build.</p>
       </div>
 
       <div class="price-grid">
         <div class="tilt reveal"><div class="plan" data-tilt>
           <div class="plan__top">
-            <span class="plan__name">Starter</span>
+            <span class="plan__name"><strong>Starter</strong></span>
             <p class="plan__tagline">Get found in your town.</p>
           </div>
           <div class="plan__price">$300<span class="per">/mo</span></div>
@@ -611,12 +645,12 @@
             <li class="feat"><span class="feat__ic">✓</span>Monthly ranking report + strategy call</li>
             <li class="feat"><span class="feat__ic">✓</span>Email support</li>
           </ul>
-          <a href="#contact" class="btn" data-pkg="Starter — $300/mo">Choose Starter</a>
+          <a href="#contact" class="btn btn-accent" data-pkg="Starter — $300/mo">Choose Starter <span class="arrow">→</span></a>
         </div></div>
 
         <div class="tilt reveal"><span class="plan__tag">Most popular</span><div class="plan featured" data-tilt>
           <div class="plan__top">
-            <span class="plan__name">Growth</span>
+            <span class="plan__name"><strong>Growth</strong></span>
             <p class="plan__tagline">Outrank your competitors.</p>
           </div>
           <div class="plan__price">$750<span class="per">/mo</span></div>
@@ -635,7 +669,7 @@
 
         <div class="tilt reveal"><div class="plan" data-tilt>
           <div class="plan__top">
-            <span class="plan__name">Pro</span>
+            <span class="plan__name"><strong>Pro</strong></span>
             <p class="plan__tagline">Dominate your market.</p>
           </div>
           <div class="plan__price">$900<span class="per">/mo</span></div>
@@ -648,13 +682,13 @@
             <li class="feat"><span class="feat__ic">✓</span>Bi-weekly reporting + monthly strategy session</li>
             <li class="feat"><span class="feat__ic">✓</span>Same-day priority support</li>
           </ul>
-          <a href="#contact" class="btn" data-pkg="Pro — $900/mo">Go Pro</a>
+          <a href="#contact" class="btn btn-accent" data-pkg="Pro — $900/mo">Choose Pro <span class="arrow">→</span></a>
         </div></div>
       </div>
       <div class="price-guarantee reveal">
         <span class="pg__badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5l-8-3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.5 12l2.3 2.3 4.7-4.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg> Zero risk to new clients</span>
         <p class="pg__text">On page one within <b>90 days</b> — or the <b>entire thing is free.</b></p>
-        <span class="pg__meta">No contracts · cancel anytime · replies within a day</span>
+        <span class="pg__meta">No contracts · cancel anytime</span>
       </div>
     </div>
   </section>
@@ -662,9 +696,9 @@
   <!-- ============ CONTACT ============ -->
   <section class="section cta" id="contact" data-screen-label="Contact">
     <div class="wrap">
-      <span class="eyebrow reveal"><span class="dot"></span> Usually replies within a day</span>
+      <span class="eyebrow reveal"><span class="dot"></span> We respond within 24 hours</span>
       <h2 class="h-sect reveal">Ready to own <span class="accent">page one?</span></h2>
-      <p class="lead reveal" style="max-width:42ch; margin:0 auto;">Tell me about your business. I'll come back with an honest take and the package that fits.</p>
+      <p class="lead reveal" style="max-width:42ch; margin:0 auto;">Tell us about your business. We'll come back with an honest take and the package that fits.</p>
       <form class="contact-form reveal" id="leadForm" novalidate>
         <div class="field row2">
           <div class="field"><label for="f-name">Name <span class="req" aria-hidden="true">*</span></label><input id="f-name" name="name" type="text" required placeholder="Your name" /></div>
@@ -682,18 +716,23 @@
         </div>
         <div class="field"><label for="f-msg">What do you want to grow? <span class="req" aria-hidden="true">*</span> <span class="opt">at least 20 words</span></label><textarea id="f-msg" name="message" rows="4" required placeholder="Tell me about your business, the services you offer, and the customers you’d like more of — the more detail you share, the sharper the plan I can put together for you."></textarea></div>
         <input class="hp" tabindex="-1" autocomplete="off" name="website2" aria-hidden="true" />
-        <p class="form-micro">Takes 20 seconds · only name &amp; email required — I’ll reply within a day.</p>
         <button type="submit" class="btn btn-accent">Send message <span class="arrow">→</span></button>
-        <p class="form-note" id="formNote">Or email me directly · me@grahamzemel.com</p>
+        <p class="form-note" id="formNote">We'll respond within 24 hours.</p>
       </form>
     </div>
   </section>
 
   <footer class="foot">
     <div class="wrap foot__in">
-      <a href="#top" class="brand"><span class="mark"><b>GZ</b></span><span>Graham Zemel</span></a>
-      <span class="mono">SEO · grahamzemel.com/seo</span>
-      <span class="mono">© Graham Zemel 2026</span>
+      <a href="#top" class="brand foot__brand"><span class="mark"><b>GZ</b></span><span>Graham Zemel SEO</span></a>
+      <div class="foot__links">
+        <a href="https://grahamzemel.com" class="foot__link">Main site</a>
+        <span class="foot__sep">·</span>
+        <a href="#contact" class="foot__link">Get a free audit</a>
+        <span class="foot__sep">·</span>
+        <a href="#pricing" class="foot__link">Pricing</a>
+      </div>
+      <span class="mono foot__copy">© 2026 Graham Zemel LLC. All rights reserved.</span>
     </div>
   </footer>
 

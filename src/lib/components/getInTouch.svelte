@@ -108,7 +108,7 @@
       <p class="pitch-copy">
         I take on freelance and contract work for projects that look fun or
         useful. If any of these sound like what you need, send a note — I
-        usually respond within a day.
+        usually respond within 24 hours.
       </p>
 
       <ul class="pitch-services">
@@ -157,7 +157,7 @@
           </div>
           <h3 class="success-title">Message sent.</h3>
           <p class="success-copy">
-            Thanks for reaching out. I'll get back to you within a day or two
+            Thanks for reaching out. I'll get back to you within 24 hours
             at the email you provided.
           </p>
         </div>
