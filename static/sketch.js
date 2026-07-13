@@ -9,7 +9,9 @@ let time_;
 // just dialed back so it isn't the visual centerpiece on a small screen and
 // doesn't burn battery on a 24fps loop at full resolution.
 const MOBILE_OPACITY = 0.5;
-const MOBILE_RES_SCALE = 0.5;
+// Scale shader buffer with device pixel ratio so the fractal is crisp on
+// high-DPI phones without over-sampling. Cap at 1.0 (full CSS-pixel res).
+const MOBILE_RES_SCALE = Math.min(1.0, (window.devicePixelRatio || 2) / 2);
 const DESKTOP_OPACITY = 1.0;
 
 function isMobile() {

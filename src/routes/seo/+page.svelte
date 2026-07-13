@@ -7,7 +7,7 @@
   let lostCount = 47;
   let sceneIdx = 0;
   let activePage = 4; // start on page 4 — visitor sees the problem first
-  let cardEl; // bound to .mh-card DOM node
+  let cardEl = null; // bound to .mh-card DOM node
   let scrollHandler; // scroll-based bidirectional page switch
   let geoCity = ''; // detected city from IP lookup
   let geoState = ''; // detected state/region abbreviation
@@ -175,7 +175,7 @@
     // Bidirectional scroll switch: page 4 ↔ page 1 as user scrolls through the card.
     // Small hysteresis band (60% down, 68% up) prevents jitter at the threshold.
     scrollHandler = () => {
-      if (!cardEl) return;
+      if (!alive || !cardEl) return;
       if (window.scrollY === 0) { activePage = 4; return; }
       const rect = cardEl.getBoundingClientRect();
       const mid = rect.top + rect.height * 0.5;
@@ -290,22 +290,33 @@
       </div>
       <div class="mh-gcount">About 1,840,000 results (0.38 seconds)</div>
 
-      <!-- Context band — page position + result label -->
-      {#if activePage === 1}
-        <div class="mh-pg-band mh-pg-band--green" in:fade={{ duration: 400 }}>
-          Page 1 of results
-          <span class="mh-pg-band-sub">Prime real estate for new customers.</span>
-        </div>
-        <div class="mh-after-band" in:fade={{ duration: 400 }}>
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          After Graham's help
-        </div>
-      {:else}
-        <div class="mh-pg-band" in:fade={{ duration: 400 }}>
-          Page {activePage} of results
-          <span class="mh-pg-band-sub">Most customers never search this far.</span>
-        </div>
-      {/if}
+      <!-- Context bands — always two slots so the card height stays constant -->
+      {#key activePage}
+        {#if activePage === 1}
+          <div class="mh-pg-band mh-pg-band--green" in:fade={{ duration: 400 }}>
+            Page 1 of results
+            <span class="mh-pg-band-sub">Prime real estate for new customers.</span>
+          </div>
+          <div class="mh-after-band" in:fade={{ duration: 400 }}>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            After Graham's help
+          </div>
+        {:else if activePage === 4}
+          <div class="mh-pg-band" in:fade={{ duration: 400 }}>
+            Page {activePage} of results
+            <span class="mh-pg-band-sub">Most customers never search this far.</span>
+          </div>
+          <div class="mh-rank-band" in:fade={{ duration: 400 }}>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            This is where you rank right now
+          </div>
+        {:else}
+          <div class="mh-pg-band" in:fade={{ duration: 400 }}>
+            Page {activePage} of results
+            <span class="mh-pg-band-sub">Most customers never search this far.</span>
+          </div>
+        {/if}
+      {/key}
 
       <!-- Results — re-render on scene or page change -->
       {#key `${sceneIdx}-${activePage}`}
@@ -346,10 +357,6 @@
               </div>
               <div class="mh-rtitle">{scenarios[sceneIdx].p4[1].name}</div>
               <div class="mh-rdesc">{scenarios[sceneIdx].p4[1].desc}</div>
-            </div>
-            <div class="mh-rank-band">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              This is where you rank right now
             </div>
             <div class="mh-result mh-result--p4you" style="border-bottom:none">
               <div class="mh-rtop">
