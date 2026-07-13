@@ -675,6 +675,9 @@ html.lenis, html.lenis body { height: auto; }
   box-shadow: 0 1px 6px rgba(32,33,36,0.1), 0 4px 20px rgba(32,33,36,0.06);
   margin-bottom: 1.75rem;
   font-family: "Google Sans", "Roboto", system-ui, sans-serif;
+  /* Stop the browser's scroll-anchor from "helpfully" jumping the viewport
+     when band/result content swaps and the card height changes slightly */
+  overflow-anchor: none;
 }
 
 /* Search bar */
@@ -800,6 +803,39 @@ html.lenis, html.lenis body { height: auto; }
   font-size: 0.48rem; font-weight: 500; letter-spacing: 0.04em;
   opacity: 0.75; margin-top: 1px;
   text-transform: none;
+}
+.seo-page .mh-pg-num {
+  font-size: 0.72rem; font-weight: 900; letter-spacing: 0.04em;
+}
+
+/* ── 3D card flip ── */
+.seo-page .mh-flip-wrap {
+  perspective: 900px;
+  position: relative;
+}
+.seo-page .mh-flip-inner {
+  display: grid;
+  transform-style: preserve-3d;
+  transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.seo-page .mh-flip-inner.mh-flipped {
+  transform: rotateY(180deg);
+}
+.seo-page .mh-flip-face {
+  grid-area: 1 / 1;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  min-width: 0;
+}
+.seo-page .mh-flip-back {
+  transform: rotateY(180deg);
+}
+.seo-page .mh-other-overlay {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  z-index: 5;
+  overflow: hidden;
 }
 
 /* Google-style pagination */

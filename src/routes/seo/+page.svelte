@@ -1,7 +1,6 @@
 <script>
   import { onMount, onDestroy } from 'svelte';
-  import { fade, fly } from 'svelte/transition';
-  import { cubicOut, cubicIn } from 'svelte/easing';
+  import { fade } from 'svelte/transition';
   import '$lib/seo.css';
 
   let lostCount = 47;
@@ -9,6 +8,12 @@
   let activePage = 4; // start on page 4 — visitor sees the problem first
   let cardEl = null; // bound to .mh-card DOM node
   let scrollHandler; // scroll-based bidirectional page switch
+  let showingPage1 = false; // drives the 3D flip direction
+
+  // Only update the flip state for the 4 ↔ 1 transition;
+  // pages 2/3/5 leave the flip where it was (covered by overlay)
+  $: if (activePage === 1) showingPage1 = true;
+  $: if (activePage === 4) showingPage1 = false;
   let geoCity = ''; // detected city from IP lookup
   let geoState = ''; // detected state/region abbreviation
 
@@ -53,18 +58,21 @@
       }
       if (!alive) break;
 
-      // --- advance scene (triggers results fade) ---
-      sceneIdx = (sceneIdx + 1) % scenarios.length;
+      // --- calculate next scene but don't swap results yet ---
+      const nextIdx = (sceneIdx + 1) % scenarios.length;
       await sleep(180);
 
-      // --- type new query char by char (localized city if detected) ---
-      const target = localizeQuery(scenarios[sceneIdx].query);
+      // --- type new query char by char ---
+      const target = localizeQuery(scenarios[nextIdx].query);
       for (let i = 1; i <= target.length && alive; i++) {
         displayQuery = target.slice(0, i);
         await sleep(48);
       }
 
-      await sleep(10000); // pause while fully typed before next cycle
+      // --- NOW flip results — query is fully typed ---
+      sceneIdx = nextIdx;
+
+      await sleep(10000); // pause before next cycle
     }
   }
 
@@ -290,58 +298,21 @@
       </div>
       <div class="mh-gcount">About 1,840,000 results (0.38 seconds)</div>
 
-      <!-- Context bands — always two slots so the card height stays constant -->
-      {#key activePage}
-        {#if activePage === 1}
-          <div class="mh-pg-band mh-pg-band--green" in:fade={{ duration: 400 }}>
-            Page 1 of results
-            <span class="mh-pg-band-sub">Prime real estate for new customers.</span>
-          </div>
-          <div class="mh-after-band" in:fade={{ duration: 400 }}>
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            After Graham's help
-          </div>
-        {:else if activePage === 4}
-          <div class="mh-pg-band" in:fade={{ duration: 400 }}>
-            Page {activePage} of results
-            <span class="mh-pg-band-sub">Most customers never search this far.</span>
-          </div>
-          <div class="mh-rank-band" in:fade={{ duration: 400 }}>
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            This is where you rank right now
-          </div>
-        {:else}
-          <div class="mh-pg-band" in:fade={{ duration: 400 }}>
-            Page {activePage} of results
-            <span class="mh-pg-band-sub">Most customers never search this far.</span>
-          </div>
-        {/if}
-      {/key}
+      <!-- 3D flip area: front = page 4, back = page 1.
+           Pages 2/3/5 slide in as an overlay on top. -->
+      <div class="mh-flip-wrap">
+        <div class="mh-flip-inner" class:mh-flipped={showingPage1}>
 
-      <!-- Results — re-render on scene or page change -->
-      {#key `${sceneIdx}-${activePage}`}
-        <div in:fly={{ y: 10, duration: 500, easing: cubicOut }}>
-          {#if activePage === 1}
-            <div class="mh-result mh-result--you">
-              <div class="mh-rtop">
-                <div class="mh-rfav mh-rfav--you">Y</div>
-                <span class="mh-rurl mh-rurl--you">yourbusiness.com › your-city</span>
-                <span class="mh-rank1-pill">#1</span>
-              </div>
-              <div class="mh-rtitle mh-rtitle--you">{scenarios[sceneIdx].afterName}</div>
-              <div class="mh-rdesc">{scenarios[sceneIdx].afterDesc}</div>
+          <!-- FRONT: page 4 -->
+          <div class="mh-flip-face mh-flip-front">
+            <div class="mh-pg-band">
+              <span class="mh-pg-num">Page 4</span> of results
+              <span class="mh-pg-band-sub">Most customers never search this far.</span>
             </div>
-            {#each scenarios[sceneIdx].comps as comp, ci}
-              <div class="mh-result">
-                <div class="mh-rtop">
-                  <div class="mh-rfav" style="background:{ci === 0 ? '#6b6b28' : '#7b5b2e'}">{comp.i}</div>
-                  <span class="mh-rurl">{comp.url}</span>
-                </div>
-                <div class="mh-rtitle">{comp.name}</div>
-                <div class="mh-rdesc">{comp.desc}</div>
-              </div>
-            {/each}
-          {:else if activePage === 4}
+            <div class="mh-rank-band">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              This is where you rank right now
+            </div>
             <div class="mh-result mh-result--generic">
               <div class="mh-rtop">
                 <div class="mh-rfav" style="background:#6b6b28">{scenarios[sceneIdx].p4[0].i}</div>
@@ -367,8 +338,48 @@
               <div class="mh-rtitle mh-rtitle--p4">{scenarios[sceneIdx].yourName}</div>
               <div class="mh-rdesc mh-rdesc--p4">Local service in your area. Contact us for more information.</div>
             </div>
-          {:else}
-            <!-- Pages 2, 3, 5 — generic filler results -->
+          </div>
+
+          <!-- BACK: page 1 -->
+          <div class="mh-flip-face mh-flip-back">
+            <div class="mh-pg-band mh-pg-band--green">
+              <span class="mh-pg-num">Page 1</span> of results
+              <span class="mh-pg-band-sub">Prime real estate for new customers.</span>
+            </div>
+            <div class="mh-after-band">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              After Graham's help
+            </div>
+            <div class="mh-result mh-result--you">
+              <div class="mh-rtop">
+                <div class="mh-rfav mh-rfav--you">Y</div>
+                <span class="mh-rurl mh-rurl--you">yourbusiness.com › your-city</span>
+                <span class="mh-rank1-pill">#1</span>
+              </div>
+              <div class="mh-rtitle mh-rtitle--you">{scenarios[sceneIdx].afterName}</div>
+              <div class="mh-rdesc">{scenarios[sceneIdx].afterDesc}</div>
+            </div>
+            {#each scenarios[sceneIdx].comps as comp, ci}
+              <div class="mh-result" style={ci === 1 ? 'border-bottom:none' : ''}>
+                <div class="mh-rtop">
+                  <div class="mh-rfav" style="background:{ci === 0 ? '#6b6b28' : '#7b5b2e'}">{comp.i}</div>
+                  <span class="mh-rurl">{comp.url}</span>
+                </div>
+                <div class="mh-rtitle">{comp.name}</div>
+                <div class="mh-rdesc">{comp.desc}</div>
+              </div>
+            {/each}
+          </div>
+
+        </div>
+
+        <!-- Overlay for pages 2, 3, 5 — fades over the flip -->
+        {#if activePage !== 1 && activePage !== 4}
+          <div class="mh-other-overlay" in:fade={{ duration: 250 }} out:fade={{ duration: 200 }}>
+            <div class="mh-pg-band">
+              <span class="mh-pg-num">Page {activePage}</span> of results
+              <span class="mh-pg-band-sub">Most customers never search this far.</span>
+            </div>
             {#each genericPages[activePage] as entry, i}
               <div class="mh-result mh-result--generic" style={i === 2 ? 'border-bottom:none' : ''}>
                 <div class="mh-rtop">
@@ -379,9 +390,9 @@
                 <div class="mh-rdesc">{entry.desc}</div>
               </div>
             {/each}
-          {/if}
-        </div>
-      {/key}
+          </div>
+        {/if}
+      </div>
 
       <!-- Google pagination — pages 1–5, centered, hint below "4" -->
       <div class="mh-pagination">
