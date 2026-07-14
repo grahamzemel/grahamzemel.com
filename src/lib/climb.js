@@ -117,11 +117,11 @@
 
   // LEFT headline — this is the pitch. Sells the journey + outcome.
   const HEADLINES = [
-    'Your next customer is searching <span class="accent">right now.</span>',
-    'But you're invisible — stuck on <span class="accent">page five.</span>',
-    'So I fix what's quietly <span class="accent">holding you back.</span>',
-    'And you climb — past <span class="accent">every competitor.</span>',
-    'Now you're <span class="accent">#1.</span> And the calls don't stop.',
+    `Your next customer is searching <span class="accent">right now.</span>`,
+    `But you're invisible — stuck on <span class="accent">page five.</span>`,
+    `So I fix what's quietly <span class="accent">holding you back.</span>`,
+    `And you climb — past <span class="accent">every competitor.</span>`,
+    `Now you're <span class="accent">#1.</span> And the calls don't stop.`,
   ];
   function headlineState(climb) {
     if (climb < 0.20) return 0;
