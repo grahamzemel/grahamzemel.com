@@ -108,6 +108,7 @@
       tmy = e.clientY / window.innerHeight - 0.5;
     });
   }
+  let rafId = null;
   function parallaxLoop() {
     const sc = window.scrollY, p = SEO.intensity;
     mx += (tmx - mx) * 0.06; my += (tmy - my) * 0.06;
@@ -116,9 +117,12 @@
       const cx = -mx * d * 110 * p, cy = -my * d * 75 * p, ty = -sc * d * p;
       el.style.transform = `translate3d(${cx.toFixed(1)}px, ${(ty + cy).toFixed(1)}px, 0)`;
     }
-    requestAnimationFrame(parallaxLoop);
+    rafId = requestAnimationFrame(parallaxLoop);
   }
-  requestAnimationFrame(parallaxLoop);
+  function startParallax() { if (!rafId) rafId = requestAnimationFrame(parallaxLoop); }
+  function stopParallax()  { if (rafId) { cancelAnimationFrame(rafId); rafId = null; } }
+  document.addEventListener('visibilitychange', () => document.hidden ? stopParallax() : startParallax());
+  startParallax();
 
   /* ---------------- background: growth-chart draw + climb (GSAP) ---------------- */
   function initGsap() {

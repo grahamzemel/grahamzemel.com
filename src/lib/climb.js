@@ -11,17 +11,6 @@
 
   const QUERY = "plumber in boulder";
 
-  // Example searches the bar cycles through before the climb starts. These are
-  // local businesses that typically under-invest in SEO (home/trade services +
-  // beauty/wellness), paired with US cities. It locks to QUERY on scroll so the
-  // plumber result cards below stay consistent.
-  const SEARCHES = [
-    "plumbers in boulder", "waxing studios in chicago", "hvac repair in phoenix",
-    "roofers in dallas", "med spas in scottsdale", "garage door repair in denver",
-    "mobile detailing in miami", "dog grooming in portland", "lash bars in austin",
-    "pest control in houston", "electricians in seattle", "nail salons in san diego",
-  ];
-
   const COMPETITORS = [
     { name: "Citywide Plumbing", url: "citywide-plumbing.com › boulder", fav: "C", c: "#7c8896",
       title: "Boulder's Trusted Plumbers — Citywide Plumbing",
@@ -74,34 +63,6 @@
   let rankN, meterFill, phaseK, phaseT, urlQ, confettiHost, serpwin, tip, hud;
   let hlEls = [], hlState = -1, confettiFired = false;
   const easeOut = (x) => 1 - Math.pow(1 - x, 2.2);
-
-  /* ---- search bar: typewriter-cycle example searches until the climb starts ---- */
-  let typer = null, typingOn = false;
-  function cycleStart() {
-    if (typingOn || reduce || !urlQ) return;
-    typingOn = true;
-    urlQ.classList.add("typing");
-    let i = 0, idx = 0, phase = "type";
-    (function step() {
-      const target = SEARCHES[i];
-      if (phase === "type") {
-        urlQ.textContent = target.slice(0, ++idx);
-        if (idx >= target.length) { phase = "del"; typer = setTimeout(step, 1500); }
-        else typer = setTimeout(step, 55 + Math.random() * 45);
-      } else {
-        urlQ.textContent = target.slice(0, --idx);
-        if (idx <= 0) { phase = "type"; i = (i + 1) % SEARCHES.length; typer = setTimeout(step, 320); }
-        else typer = setTimeout(step, 26);
-      }
-    })();
-  }
-  function cycleStop() {
-    if (!typingOn) { if (urlQ && urlQ.textContent !== QUERY) urlQ.textContent = QUERY; return; }
-    typingOn = false;
-    if (typer) { clearTimeout(typer); typer = null; }
-    urlQ.classList.remove("typing");
-    urlQ.textContent = QUERY;
-  }
 
   function resultHTML(d, you) {
     return (
@@ -178,7 +139,6 @@
 
     if (tip) tip.classList.toggle("hide", p > 0.03);
     if (hud) hud.classList.toggle("show", p > 0.03);
-    if (p > 0.03) cycleStop(); else cycleStart();   // bar cycles at top, locks to QUERY on climb
 
     // discrete leapfrog: map climb -> integer slot for YOU (N-1 .. 0)
     const slot = Math.max(0, Math.round((N - 1) * (1 - climb)));

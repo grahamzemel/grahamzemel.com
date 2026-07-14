@@ -63,33 +63,45 @@
   let displayQuery = 'plumbers in boulder, co'; // mirrors scenarios[0].query
   let alive = true; // set false in onDestroy to stop the animation loop
 
-  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  /** @param {number} ms */
+  function sleepOrPause(ms) {
+    return new Promise((r) => {
+      if (document.hidden) {
+        const wake = () => { document.removeEventListener('visibilitychange', wake); r(undefined); };
+        document.addEventListener('visibilitychange', wake);
+      } else {
+        let id = setTimeout(() => { document.removeEventListener('visibilitychange', wake); r(undefined); }, ms);
+        const wake = () => { clearTimeout(id); document.removeEventListener('visibilitychange', wake); r(undefined); };
+        document.addEventListener('visibilitychange', wake);
+      }
+    });
+  }
 
   async function typewriterLoop() {
-    await sleep(2800); // initial pause before first cycle
+    await sleepOrPause(2800); // initial pause before first cycle
     while (alive) {
       // --- delete current query char by char ---
       while (displayQuery.length > 0 && alive) {
         displayQuery = displayQuery.slice(0, -1);
-        await sleep(28);
+        await sleepOrPause(28);
       }
       if (!alive) break;
 
       // --- calculate next scene but don't swap results yet ---
       const nextIdx = (sceneIdx + 1) % scenarios.length;
-      await sleep(180);
+      await sleepOrPause(180);
 
       // --- type new query char by char ---
       const target = localizeQuery(scenarios[nextIdx].query);
       for (let i = 1; i <= target.length && alive; i++) {
         displayQuery = target.slice(0, i);
-        await sleep(48);
+        if (i < target.length) await sleepOrPause(48); // skip last sleep so sceneIdx flips atomically
       }
 
-      // --- NOW flip results — query is fully typed ---
+      // --- flip results atomically with the final character (no 48ms mismatch gap) ---
       sceneIdx = nextIdx;
 
-      await sleep(10000); // pause before next cycle
+      await sleepOrPause(10000); // pause before next cycle
     }
   }
 
@@ -181,22 +193,14 @@
   ];
 
   onMount(async () => {
+    // Always start at the top — don't restore scroll position on reload
+    if (history.scrollRestoration) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+
     lostCount = Math.floor(Math.random() * 71) + 30;
     badPage = [3, 4, 5][Math.floor(Math.random() * 3)];
-    badPosition = Math.random() < 0.5 ? 1 : 2; // 1 = 2nd slot, 2 = 3rd slot
+    badPosition = Math.random() < 0.5 ? 1 : 2;
     activePage = badPage;
-
-    // Best-effort IP geolocation — silently falls back to hardcoded cities on failure
-    try {
-      const geo = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(3000) });
-      if (geo.ok) {
-        const data = await geo.json();
-        if (data.city) geoCity = data.city.toLowerCase();
-        if (data.region_code) geoState = data.region_code.toLowerCase();
-        // Backfill the static initial display value with detected location
-        displayQuery = localizeQuery(scenarios[0].query);
-      }
-    } catch { /* ignore — no key needed, just best-effort */ }
 
     typewriterLoop();
 
