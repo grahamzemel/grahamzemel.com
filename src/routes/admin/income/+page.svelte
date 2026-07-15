@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { get, post, put, del } from "$lib/api.js";
+  import { formatCurrency as fmtE } from "$lib/admin-utils.js";
 
   let sources = [];
   let loading = true;
@@ -73,8 +74,6 @@
     try { await put(`/api/income/${s.id}`, { hoursPerWeek: parseFloat(val) }); await loadSources(); }
     catch (e) { alert(e.message); }
   }
-
-  function fmtE(n) { return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(n || 0); }
 
   $: activeSources = sources.filter(s => s.active !== false);
   $: inactiveSources = sources.filter(s => s.active === false);

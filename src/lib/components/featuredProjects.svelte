@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { getDomain, getProjectTagClass } from "$lib/project-utils";
   let isVisible = false;
   let gridEl: HTMLElement | undefined;
 
@@ -157,50 +158,6 @@
     },
   ];
 
-  const getDomain = (url: string) => {
-    try {
-      return new URL(url).hostname.replace(/^www\\./, "");
-    } catch {
-      return url;
-    }
-  };
-
-  const getClassesForTag = (tag: string) => {
-    switch (tag) {
-      case "Quantum":
-        return "bg-red-50 text-red-600";
-      case "AI":
-        return "bg-orange-50 text-orange-600";
-      case "Web":
-        return "bg-lime-50 text-lime-600";
-      case "Game":
-        return "bg-pink-50 text-pink-600";
-      case "Extension":
-        return "bg-cyan-50 text-cyan-600";
-      case "Internet":
-        return "bg-teal-50 text-teal-600";
-      case "Python":
-        return "bg-green-50 text-green-600";
-      case "Telegram":
-        return "bg-blue-50 text-blue-600";
-      case "Shell":
-        return "bg-purple-50 text-purple-600";
-      case "Bash":
-        return "bg-red-50 text-red-600";
-      case "Library":
-        return "bg-indigo-50 text-indigo-600";
-      case "Automation":
-        return "bg-yellow-50 text-yellow-600";
-      case "Hackathon":
-        return "bg-pink-50 text-pink-600";
-      case "Crypto":
-        return "bg-blue-50 text-blue-600";
-      case "IFC":
-        return "bg-amber-50 text-amber-600";
-      default:
-        return "bg-blue-50 text-blue-600";
-    }
-  };
 </script>
 
 <div class="sm:mt-[16vh] mt-10"></div>
@@ -233,7 +190,7 @@
             </div>
             <div class="tag-row mt-4">
               {#each project.tags as tag}
-                <span class="tag {getClassesForTag(tag)}">{tag}</span>
+                <span class="tag {getProjectTagClass(tag)}">{tag}</span>
               {/each}
             </div>
             <div class="mt-4 flex justify-center">
