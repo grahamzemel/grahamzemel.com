@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { getDomain, getProjectTagClass } from "$lib/project-utils";
   const projects = [
     {
       title: "FratDoor",
@@ -213,55 +214,6 @@
   let filtersOpen = false;
   const MOBILE_PREVIEW_COUNT = 6;
 
-  const getDomain = (url: string) => {
-    try {
-      return new URL(url).hostname.replace(/^www\./, "");
-    } catch {
-      return url;
-    }
-  };
-
-  const getTagClass = (tag: string) => {
-    switch (tag) {
-      case "Quantum":
-        return "bg-red-50 text-red-600";
-      case "AI":
-        return "bg-orange-50 text-orange-600";
-      case "Web":
-        return "bg-lime-50 text-lime-600";
-      case "Game":
-        return "bg-pink-50 text-pink-600";
-      case "App":
-        return "bg-emerald-50 text-emerald-600";
-      case "Extension":
-        return "bg-cyan-50 text-cyan-600";
-      case "Website":
-        return "bg-sky-50 text-sky-600";
-      case "Internet":
-        return "bg-teal-50 text-teal-600";
-      case "Python":
-        return "bg-green-50 text-green-600";
-      case "Telegram":
-        return "bg-blue-50 text-blue-600";
-      case "Shell":
-        return "bg-purple-50 text-purple-600";
-      case "Bash":
-        return "bg-red-50 text-red-600";
-      case "Library":
-        return "bg-indigo-50 text-indigo-600";
-      case "Automation":
-        return "bg-yellow-50 text-yellow-600";
-      case "Hackathon":
-        return "bg-pink-50 text-pink-600";
-      case "Crypto":
-        return "bg-blue-50 text-blue-600";
-      case "IFC":
-        return "bg-amber-50 text-amber-600";
-      default:
-        return "bg-blue-50 text-blue-600";
-    }
-  };
-
   const tagCounts = projectsWithWebsite.reduce((acc, project) => {
     project.tags.forEach((tag: string) => {
       acc[tag] = (acc[tag] || 0) + 1;
@@ -387,7 +339,7 @@
           <div class="project-bottom">
             <div class="project-tags">
               {#each project.tags as tag}
-                <span class="tag {getTagClass(tag)}">{tag}</span>
+                <span class="tag {getProjectTagClass(tag)}">{tag}</span>
               {/each}
             </div>
             <div class="project-links">

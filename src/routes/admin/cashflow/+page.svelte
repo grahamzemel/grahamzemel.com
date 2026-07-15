@@ -1,6 +1,15 @@
 <script>
   import { onMount } from "svelte";
   import { get } from "$lib/api.js";
+  import {
+    formatCurrency as fmtE,
+    formatDateRange as fmtRange,
+    formatRelativeDate,
+    formatWeekRange as fmtW,
+    formatWholeCurrency as fmt,
+    getPaymentKindLabel as getSharedPaymentKindLabel,
+    getPaymentToneClass,
+  } from "$lib/admin-utils.js";
 
   let data = null;
   let modifiers = [];
@@ -84,27 +93,7 @@
     return { points, linePath, areaPath, maxTotal };
   })();
 
-  function fmtE(n) { return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(n || 0); }
-  function fmt(n) { return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(n || 0); }
-  function fmtD(s) {
-    const d = new Date(s + "T12:00:00");
-    const diff = Math.ceil((d - new Date()) / 86400000);
-    if (diff === 0) return "Today";
-    if (diff === 1) return "Tomorrow";
-    return d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
-  }
-  function fmtW(s) {
-    const d = new Date(s + "T12:00:00");
-    const e = new Date(d); e.setDate(d.getDate() + 6);
-    const o = { month: "short", day: "numeric" };
-    return `${d.toLocaleDateString("en-US", o)} – ${e.toLocaleDateString("en-US", o)}`;
-  }
-  function fmtRange(start, end) {
-    if (!start || !end) return "";
-    const s = new Date(start + "T12:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric" });
-    const e = new Date(end + "T12:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric" });
-    return `${s} – ${e}`;
-  }
+  const fmtD = (value) => formatRelativeDate(value, { weekday: true });
 
   // Find modifier for a payment
   function findModifier(p) {
@@ -112,45 +101,8 @@
     return modifiers.find(m => m.startDate <= p.periodEnd && m.endDate >= p.periodStart);
   }
 
-  function getPaymentToneClass(payment) {
-    switch (payment?.type) {
-      case "hourly":
-        return "text-blue-600";
-      case "salary":
-        return "text-emerald-600";
-      case "freelance":
-        return "text-orange-600";
-      case "business":
-        return "text-violet-600";
-      case "stripe_subscription_renewal":
-        return "text-emerald-600";
-      case "stripe_payout":
-        return "text-sky-600";
-      case "stripe_pending":
-        return "text-amber-600";
-      default:
-        return payment?.isEstimate ? "text-amber-600" : "text-gray-900";
-    }
-  }
-
-  function getPaymentKindLabel(payment) {
-    switch (payment?.type) {
-      case "hourly":
-      case "salary":
-      case "freelance":
-        return "job pay";
-      case "business":
-        return "business payment";
-      case "stripe_subscription_renewal":
-        return payment?.renewalCount ? `est. payout · ${payment.renewalCount} renewal${payment.renewalCount > 1 ? 's' : ''}` : "est. payout";
-      case "stripe_payout":
-        return payment?.status ? `stripe payout · ${payment.status}` : "stripe payout";
-      case "stripe_pending":
-        return "pending stripe balance";
-      default:
-        return payment?.status || (payment?.isEstimate ? "estimated" : "scheduled");
-    }
-  }
+  const getPaymentKindLabel = (payment) =>
+    getSharedPaymentKindLabel(payment, { describeEstimatedRenewals: true });
 
   const dots = { hourly: "bg-blue-500", salary: "bg-emerald-500", business: "bg-violet-500", freelance: "bg-orange-500", stripe_payout: "bg-violet-500", stripe_pending: "bg-amber-500", stripe_subscription_renewal: "bg-indigo-400", other: "bg-gray-400" };
   const dotColors = { hourly: "#3b82f6", salary: "#10b981", business: "#8b5cf6", stripe_payout: "#8b5cf6", stripe_pending: "#f59e0b", stripe_subscription_renewal: "#6366f1" };

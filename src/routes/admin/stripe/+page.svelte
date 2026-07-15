@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { get } from "$lib/api.js";
+  import { formatCurrency as fmtE } from "$lib/admin-utils.js";
 
   let tab = "fratdoor";
   let balances = {};
@@ -193,10 +194,6 @@
 
   function getHoveredPoint(chart) {
     return hover.chart === chart ? hover.point : null;
-  }
-
-  function fmtE(value) {
-    return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(value || 0);
   }
 
   function fmtPct(value) {
