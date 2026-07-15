@@ -2,9 +2,8 @@
   import { onMount } from 'svelte';
   import { browser } from '$app/environment';
 
-  const DEV = browser && window.location.hostname === 'localhost';
-  const BASE_URL = DEV ? 'http://localhost:3000' : 'https://grahamzemelcom-596da5a7c96e.herokuapp.com';
   const CONTACT_EMAIL = 'me@grahamzemel.com';
+  const VISIBILITY_API = 'https://grahamzemelcom-596da5a7c96e.herokuapp.com/api/preview-visibility';
 
   // Live source of truth — the outreach-engine Heroku backend. Every
   // business whose generate.sh run succeeded + deploy-site.sh pushed to
@@ -40,7 +39,6 @@
   let loginLoading = false;
   let savingSet = new Set();
   let activeFilter = 'All';
-  let authToken = '';
   let searchQuery = '';
   let page = 1;
   const PAGE_SIZE = 8;
@@ -69,16 +67,20 @@
   // Reset to page 1 whenever the filter or search changes
   $: activeFilter, searchQuery, (page = 1);
 
+  /** @param {number} n */
   function goToPage(n) {
     page = Math.max(1, Math.min(totalPages, n));
-    if (browser) window.scrollTo({ top: document.getElementById('work')?.offsetTop - 20 || 0, behavior: 'smooth' });
+    if (browser) {
+      const workTop = document.getElementById('work')?.offsetTop ?? 20;
+      window.scrollTo({ top: workTop - 20, behavior: 'smooth' });
+    }
   }
 
   onMount(async () => {
     if (!browser) return;
     // Fire the three network calls in parallel — none of them depend on
     // each other, and the gallery feels instant when they resolve together.
-    await Promise.all([verifyStoredToken(), loadVisibility(), loadSites()]);
+    await Promise.all([verifySession(), loadVisibility(), loadSites()]);
   });
 
   // Fetch the canonical site list from outreach-engine. Failure falls back
@@ -90,7 +92,12 @@
       if (!res.ok) throw new Error(`preview-sites ${res.status}`);
       const data = await res.json();
       if (Array.isArray(data) && data.length > 0) {
-        sites = data;
+        const validSites = [];
+        for (const value of data) {
+          const site = normalizeSite(value);
+          if (site) validSites.push(site);
+        }
+        if (validSites.length > 0) sites = validSites;
       }
     } catch (e) {
       console.error('preview-sites load failed — using offline fallback', e);
@@ -99,25 +106,16 @@
     }
   }
 
-  async function verifyStoredToken() {
-    const t = localStorage.getItem('gz_admin_token') || '';
-    if (!t) return;
+  async function verifySession() {
     try {
-      const res = await fetch(`${BASE_URL}/api/auth/verify`, {
-        headers: { Authorization: `Bearer ${t}` },
-      });
-      if (res.ok) {
-        authToken = t;
-        isAdmin = true;
-      } else {
-        localStorage.removeItem('gz_admin_token');
-      }
+      const res = await fetch('/api/admin-auth', { credentials: 'same-origin' });
+      isAdmin = res.ok;
     } catch {}
   }
 
   async function loadVisibility() {
     try {
-      const res = await fetch(`${BASE_URL}/api/preview-visibility`, { mode: 'cors' });
+      const res = await fetch(VISIBILITY_API, { mode: 'cors' });
       if (!res.ok) throw new Error(`visibility ${res.status}`);
       const data = await res.json();
       hidden = new Set(data.hidden || []);
@@ -129,8 +127,6 @@
     }
   }
 
-  // Login via SvelteKit's same-origin /api/admin-auth (no CORS).
-  // That matches how the main site logs admins in (see routes/+layout.svelte).
   async function login() {
     if (!pwInput) return;
     loginLoading = true;
@@ -141,25 +137,27 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ key: pwInput }),
       });
-      if (!res.ok) throw new Error('Incorrect password');
-      authToken = 'gz_admin_a8f3e7c2d1b9';
-      localStorage.setItem('gz_admin_token', authToken);
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || 'Incorrect password');
       isAdmin = true;
       showLogin = false;
       pwInput = '';
     } catch (e) {
-      loginError = e.message || 'Login failed';
+      loginError = e instanceof Error ? e.message : 'Login failed';
     } finally {
       loginLoading = false;
     }
   }
 
-  function logout() {
-    localStorage.removeItem('gz_admin_token');
-    authToken = '';
+  async function logout() {
+    await fetch('/api/admin-auth', {
+      method: 'DELETE',
+      credentials: 'same-origin',
+    }).catch(() => {});
     isAdmin = false;
   }
 
+  /** @param {string} slug */
   async function toggle(slug) {
     if (!isAdmin) return;
     const next = new Set(hidden);
@@ -171,14 +169,11 @@
     hidden = next;
 
     try {
-      const res = await fetch(`${BASE_URL}/api/preview-visibility`, {
+      const res = await fetch('/api/admin/api/preview-visibility', {
         method: 'POST',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${authToken}`,
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ hidden: Array.from(next) }),
+        credentials: 'same-origin',
       });
       if (!res.ok) throw new Error('save failed');
     } catch (e) {
@@ -186,17 +181,48 @@
       if (reverted.has(slug)) reverted.delete(slug);
       else reverted.add(slug);
       hidden = reverted;
-      alert('Could not save visibility change: ' + e.message);
+      alert('Could not save visibility change: ' + (e instanceof Error ? e.message : 'Unknown error'));
     } finally {
       savingSet.delete(slug);
       savingSet = savingSet;
     }
   }
 
+  /** @param {KeyboardEvent} e */
   function handleKeydown(e) {
     if (e.key === 'Escape' && showLogin) showLogin = false;
   }
 
+  /** @param {unknown} value */
+  function normalizeSite(value) {
+    if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+    const site = /** @type {Record<string, unknown>} */ (value);
+    const slug = typeof site.slug === 'string' ? site.slug.trim() : '';
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) return null;
+
+    let url;
+    try {
+      url = new URL(typeof site.url === 'string' ? site.url : '');
+    } catch {
+      return null;
+    }
+    if (
+      url.protocol !== 'https:' ||
+      !url.hostname.endsWith('.netlify.app') ||
+      url.username ||
+      url.password
+    ) {
+      return null;
+    }
+
+    return {
+      slug,
+      name: String(site.name || slug).slice(0, 100),
+      category: String(site.category || 'Website').slice(0, 80),
+      url: url.href,
+      blurb: String(site.blurb || '').slice(0, 300),
+    };
+  }
 </script>
 
 <svelte:head>
@@ -395,15 +421,14 @@
   {/if}
 
   {#if showLogin}
-    <div class="modal-backdrop" on:click={() => (showLogin = false)}>
-      <form class="modal" on:submit|preventDefault={login} on:click|stopPropagation>
+    <div class="modal-backdrop">
+      <form class="modal" on:submit|preventDefault={login}>
         <h2>Admin access</h2>
         <p class="modal-sub">Enter the password to show/hide portfolio sites.</p>
         <input
           type="password"
           bind:value={pwInput}
           placeholder="Password"
-          autofocus
           autocomplete="off"
         />
         {#if loginError}<p class="err">{loginError}</p>{/if}

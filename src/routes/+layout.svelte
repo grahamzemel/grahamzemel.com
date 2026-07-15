@@ -13,22 +13,15 @@
   // SEO: a branded, descriptive title + a shared keyword-rich description, plus
   // Person structured data so a name search surfaces the maintained profiles
   // (LinkedIn, GitHub) instead of stale ones.
-  const pageTitle = "Graham Zemel · Full-Stack Engineer (FratDoor, TextCloaker)";
+  const pageTitle =
+    "Graham Zemel · Full-Stack Engineer (FratDoor, TextCloaker)";
   const socialTitle = "Graham Zemel · Full-Stack Engineer";
   const metaDescription =
     "Full-stack engineer and CS student at CU Boulder. I build FratDoor (used by 42 fraternities) and TextCloaker (7,000+ users), and write for The Gray Area.";
   // Person structured data lives in app.html (a literal <script> tag inside a
   // Svelte component trips the preprocessor), so nothing JSON-LD lives here.
 
-  const SECRET = "Jetset14#";
-  const ADMIN_TOKEN = "gz_admin_a8f3e7c2d1b9";
-  let buffer = "";
-
-  function setAdminCookie() {
-    const secure = window.location.protocol === "https:";
-    document.cookie = `gz_admin=${ADMIN_TOKEN}; Path=/; SameSite=${secure ? "Strict" : "Lax"};${secure ? " Secure;" : ""} Max-Age=3600`;
-  }
-
+  /** @param {string} key */
   async function authenticateWithKey(key) {
     const trimmed = String(key || "").trim();
     if (!trimmed) return;
@@ -39,9 +32,6 @@
         body: JSON.stringify({ key: trimmed }),
       });
       if (res.ok) {
-        setAdminCookie();
-        // Store token for cross-origin API calls (mobile Safari blocks 3rd-party cookies)
-        localStorage.setItem("gz_admin_token", ADMIN_TOKEN);
         window.location.href = "/admin";
         return;
       }
@@ -57,23 +47,21 @@
     let lastTapAt = 0;
     const tapWindowMs = 900;
 
+    /** @param {KeyboardEvent} e */
     const handler = (e) => {
-      if (!e.key || e.key.length !== 1) return;
-      if (e.ctrlKey || e.altKey || e.metaKey) return;
-      buffer += e.key;
-      if (buffer.length > SECRET.length) {
-        buffer = buffer.slice(-SECRET.length);
-      }
-      if (buffer === SECRET) {
-        buffer = "";
-        authenticateWithKey(SECRET);
+      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "a") {
+        e.preventDefault();
+        const entered = window.prompt("Enter admin password");
+        if (entered !== null) authenticateWithKey(entered);
       }
     };
 
+    /** @param {TouchEvent} e */
     const tapHandler = (e) => {
-      const trigger = e.target instanceof Element
-        ? e.target.closest("[data-admin-mobile-trigger='name']")
-        : null;
+      const trigger =
+        e.target instanceof Element
+          ? e.target.closest("[data-admin-mobile-trigger='name']")
+          : null;
       if (!trigger) return;
 
       const isMobileLike =
