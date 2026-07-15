@@ -69,6 +69,20 @@
     },
   };
 
+  /**
+   * @param {string} path
+   * @param {string} label
+   * @param {unknown} [fallback]
+   */
+  async function getOptional(path, label, fallback = null) {
+    try {
+      return await get(path);
+    } catch (cause) {
+      console.warn(`[Settings] ${label} unavailable`, cause);
+      return fallback;
+    }
+  }
+
   function ensureNotificationSettings(raw = {}) {
     return {
       ...DEFAULT_NOTIFICATION_SETTINGS,
@@ -109,14 +123,15 @@
     try {
       const [configRes, pushRes] = await Promise.all([
         get("/api/config"),
-        get("/api/push/status").catch(() => null),
+        getOptional("/api/push/status", "Push status"),
       ]);
       config = {
         ...configRes,
         notifications: ensureNotificationSettings(configRes?.notifications),
       };
       pushStatus = pushRes;
-      emailConfigured = await get("/api/email/status").then(r => r.configured).catch(() => null);
+      const emailStatus = await getOptional("/api/email/status", "Email status");
+      emailConfigured = emailStatus?.configured ?? null;
 
       // Check push support on this device
       const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
@@ -132,7 +147,9 @@
           const reg = await navigator.serviceWorker.ready;
           const sub = await reg.pushManager.getSubscription();
           pushSubscribed = !!sub;
-        } catch {}
+        } catch (cause) {
+          console.warn("[Settings] Could not inspect the push subscription", cause);
+        }
       }
     }
     catch (e) { error = e.message; }
@@ -162,7 +179,7 @@
 
       await post('/api/push/subscribe', { subscription: sub.toJSON() });
       pushSubscribed = true;
-      pushStatus = await get('/api/push/status').catch(() => pushStatus);
+      pushStatus = await getOptional("/api/push/status", "Push status refresh", pushStatus);
 
       // Auto-send test
       if (pushStatus?.settings?.autoSendTestOnSubscribe !== false) {
@@ -210,7 +227,7 @@
         ...updated,
         notifications: ensureNotificationSettings(updated?.notifications),
       };
-      pushStatus = await get("/api/push/status").catch(() => pushStatus);
+      pushStatus = await getOptional("/api/push/status", "Push status refresh", pushStatus);
       message = "Notification settings saved";
       setTimeout(() => message = "", 2500);
     } catch (e) {
@@ -225,7 +242,7 @@
     message = "";
     try {
       const result = await post("/api/push/test", testNotification);
-      pushStatus = await get("/api/push/status").catch(() => pushStatus);
+      pushStatus = await getOptional("/api/push/status", "Push status refresh", pushStatus);
       message = `Test sent to ${result.sent || 0} subscription${result.sent === 1 ? "" : "s"}`;
       setTimeout(() => message = "", 3000);
     } catch (e) {

@@ -230,11 +230,12 @@
             honey: form.website2.value,
           }),
         });
-        const data = await res.json().catch(() => ({}));
+        const data = await res.json();
         if (!res.ok || !data.ok) throw new Error(data.error || "send failed");
         btn.innerHTML = "Sent — talk soon ✓";
         note.textContent = "Thanks " + name.split(" ")[0] + " — I'll reply within a day."; note.style.color = "var(--accent-deep)";
       } catch (err) {
+        console.error("[seo-lead-form] Submission failed", err);
         btn.innerHTML = original; btn.style.pointerEvents = "";
         note.textContent = "Couldn't send — email me directly at me@grahamzemel.com."; note.style.color = "var(--accent-deep)";
       }

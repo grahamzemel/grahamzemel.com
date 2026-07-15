@@ -19,9 +19,17 @@
   let dark = false;
 
   async function logout() {
-    await fetch("/api/admin-auth", { method: "DELETE" });
-    localStorage.removeItem("gz_admin_token");
-    window.location.href = "/";
+    try {
+      const response = await fetch("/api/admin-auth", { method: "DELETE" });
+      if (!response.ok) {
+        throw new Error(`Sign-out request failed (${response.status})`);
+      }
+      localStorage.removeItem("gz_admin_token");
+      window.location.href = "/";
+    } catch (error) {
+      console.error("[admin] Sign out failed", error);
+      alert("Could not sign out. Please try again.");
+    }
   }
 
   $: currentPath = $page.url.pathname;
@@ -46,7 +54,10 @@
           const sub = await reg.pushManager.getSubscription();
           pushSubscribed = !!sub;
         }
-        pushSettings = await get('/api/push/status').catch(() => null);
+        pushSettings = await get('/api/push/status').catch((error) => {
+          console.warn('[Push] Could not load settings', error);
+          return null;
+        });
       } catch (err) {
         console.error('[SW] Registration failed:', err);
       }
@@ -68,7 +79,10 @@
       await post('/api/push/subscribe', { subscription: sub.toJSON() });
       pushSubscribed = true;
 
-      pushSettings = await get('/api/push/status').catch(() => pushSettings);
+      pushSettings = await get('/api/push/status').catch((error) => {
+        console.warn('[Push] Could not refresh settings', error);
+        return pushSettings;
+      });
       if (pushSettings?.settings?.autoSendTestOnSubscribe !== false) {
         await post('/api/push/test');
       }

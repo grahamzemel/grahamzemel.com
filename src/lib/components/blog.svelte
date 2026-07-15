@@ -23,6 +23,7 @@
 
   let output = "";
   let postOutput = "";
+  let feedError = "";
   let metadata: Metadata = {
     title: "The Gray Area",
     description:
@@ -31,51 +32,49 @@
   };
 
   onMount(async function () {
-    // console.log(metadata);
+    try {
+      const response = await fetch(
+        "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/the-gray-area"
+      );
+      if (!response.ok) {
+        throw new Error(`RSS request failed (${response.status})`);
+      }
 
-    fetch(
-      "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/the-gray-area"
-    )
-      .then((res) => res.json())
-      .catch((error) => {
-        console.log(error);
-      })
-      .then((data) => {
-        const res = data.items as RssItem[]; //This is an array with the content. No feed, no info about author etc..
-        const posts = res
-          .filter((item: RssItem) => item.categories.length > 0)
-          .slice(0, 3); // That's the main trick* !
-        // Functions to create a short text out of whole blog's content
-        function toText(node: string) {
-          let tag = document.createElement("div");
-          tag.innerHTML = node;
-          node = tag.innerText;
-          return node;
-        }
-        function shortenText(
-          text: string,
-          startingPoint: number,
-          maxLength: number
-        ) {
-          return text.length > maxLength
-            ? text.slice(startingPoint, maxLength) + "..."
-            : text;
-        }
-        posts.forEach((item: RssItem) => {
-          let categories = item.categories;
-          categories = categories
-            .map((categories: string) => " " + categories.toUpperCase())
-            .slice(0, 3);
-          const post = {
-            title: shortenText(item.title, 0, 60),
-            link: item.link,
-            thumbnail: item.thumbnail,
-            date: item.pubDate.slice(0, 10),
-            creator: item.author,
-            tags: categories,
-          };
+      const data = await response.json();
+      if (!Array.isArray(data?.items)) {
+        throw new Error("RSS response did not include an items array");
+      }
 
-          output += `
+      const posts = (data.items as RssItem[])
+        .filter((item: RssItem) => item.categories.length > 0)
+        .slice(0, 3);
+
+      function shortenText(
+        text: string,
+        startingPoint: number,
+        maxLength: number
+      ) {
+        return text.length > maxLength
+          ? text.slice(startingPoint, maxLength) + "..."
+          : text;
+      }
+
+      output = "";
+      posts.forEach((item: RssItem) => {
+        let categories = item.categories;
+        categories = categories
+          .map((category: string) => " " + category.toUpperCase())
+          .slice(0, 3);
+        const post = {
+          title: shortenText(item.title, 0, 60),
+          link: item.link,
+          thumbnail: item.thumbnail,
+          date: item.pubDate.slice(0, 10),
+          creator: item.author,
+          tags: categories,
+        };
+
+        output += `
          <li class="blog__post" style="text-align:center;justify-content:center;">
                <div class="blog__content">
                 <div class="blog_preview">
@@ -91,12 +90,12 @@
                   </div>
                </div>
          </li>`;
-        });
-        postOutput = output;
-      })
-      .catch((error) => {
-        console.error(error);
       });
+      postOutput = output;
+    } catch (error) {
+      console.error("[blog] Failed to load Medium posts", error);
+      feedError = "Posts are temporarily unavailable. Visit The Gray Area directly.";
+    }
   });
 </script>
 
@@ -165,7 +164,9 @@
     class="blog flex justify-center items-center lg:block md:block hidden"
   >
     <ul class="blog__slider grid grid-cols-3 w-50% lg:w-33%">
-      {#if postOutput}
+      {#if feedError}
+        <p class="blog__intro" role="alert">{feedError}</p>
+      {:else if postOutput}
         {@html postOutput}
       {:else}
         <p class="blog__intro">

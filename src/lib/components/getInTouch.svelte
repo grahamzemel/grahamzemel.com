@@ -55,7 +55,7 @@
           from_name: "grahamzemel.com contact form",
         }),
       });
-      const data = await response.json().catch(() => ({}));
+      const data = await response.json();
       if (response.ok && data.success) {
         status = "success";
         name = "";
@@ -69,6 +69,7 @@
           "Something went wrong. Try emailing me directly at me@grahamzemel.com.";
       }
     } catch (err) {
+      console.error("[get-in-touch] Submission failed", err);
       status = "error";
       errorMessage =
         "Couldn't reach the server. Try emailing me directly at me@grahamzemel.com.";

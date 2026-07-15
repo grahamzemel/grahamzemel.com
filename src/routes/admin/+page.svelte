@@ -23,35 +23,43 @@
   let insightsLoading = false;
   let insightsCached = false;
 
+  /**
+   * @param {string} section
+   * @param {unknown} cause
+   */
+  function reportLoadError(section, cause) {
+    const message = cause instanceof Error ? cause.message : String(cause);
+    console.error(`[Overview] ${section} failed`, cause);
+    error = `${section}: ${message}.`;
+  }
+
   onMount(() => {
     // Load each independently — render sections as they arrive
     get("/api/dashboard/summary")
       .then(s => { summary = s; })
-      .catch(e => { error = e.message; })
+      .catch(e => { reportLoadError("Summary", e); })
       .finally(() => { summaryLoading = false; });
 
     get("/api/projections/cashflow?days=30")
       .then(c => { cashflow = c; })
-      .catch(() => {})
+      .catch(e => { reportLoadError("Cash flow", e); })
       .finally(() => { cashflowLoading = false; });
 
     get("/api/modifiers")
       .then(m => { modifiers = m.modifiers || []; })
-      .catch(() => {});
+      .catch(e => { reportLoadError("Modifiers", e); });
 
     // Auto-generate insights on login (cached daily)
     loadInsights();
   });
 
   async function refreshData() {
-    try {
-      const [s, c] = await Promise.all([
-        get("/api/dashboard/summary"),
-        get("/api/projections/cashflow?days=30"),
-      ]);
-      summary = s;
-      cashflow = c;
-    } catch {}
+    const [s, c] = await Promise.all([
+      get("/api/dashboard/summary"),
+      get("/api/projections/cashflow?days=30"),
+    ]);
+    summary = s;
+    cashflow = c;
   }
 
   async function submitModifier() {

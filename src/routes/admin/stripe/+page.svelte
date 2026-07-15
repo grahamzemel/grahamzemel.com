@@ -20,19 +20,30 @@
     pad: { top: 16, right: 18, bottom: 34, left: 52 },
   };
 
+  /**
+   * @param {string} path
+   * @param {string} label
+   * @param {unknown} fallback
+   */
+  async function getOptional(path, label, fallback) {
+    try {
+      return await get(path);
+    } catch (cause) {
+      console.warn(`[Startups] ${label} request failed`, cause);
+      return fallback;
+    }
+  }
+
   onMount(async () => {
     try {
       const [bRes, mRes, pRes, aRes, tRes, otRes, ppRes] = await Promise.all([
         get("/api/stripe/balance"),
         get("/api/stripe/mrr"),
         get("/api/stripe/payouts?limit=20"),
-        get("/api/stripe/analytics").catch(() => ({ customers: [], subscriptions: [] })),
-        get("/api/stripe/tiers").catch(() => ({ tiers: [] })),
-        get("/api/stripe/one-time?days=30").catch(() => ({ purchases: [] })),
-        get("/api/paypal/summary?days=30").catch((err) => {
-          console.error("[Startups] PayPal summary request failed", err);
-          return null;
-        }),
+        getOptional("/api/stripe/analytics", "Stripe analytics", { customers: [], subscriptions: [] }),
+        getOptional("/api/stripe/tiers", "Stripe tiers", { tiers: [] }),
+        getOptional("/api/stripe/one-time?days=30", "One-time purchases", { purchases: [] }),
+        getOptional("/api/paypal/summary?days=30", "PayPal summary", null),
       ]);
 
       for (const b of bRes.balances || []) balances[b.account] = b;

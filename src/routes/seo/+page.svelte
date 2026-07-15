@@ -236,8 +236,12 @@
     alive = false;
     if (scrollHandler) window.removeEventListener('scroll', scrollHandler, true);
     if (typeof window === 'undefined') return;
-    try { window.SEO?.lenis?.destroy?.(); } catch (e) {}
-    try { window.ScrollTrigger?.getAll?.().forEach((t) => t.kill()); } catch (e) {}
+    try { window.SEO?.lenis?.destroy?.(); } catch (error) {
+      console.warn('[seo] Lenis cleanup failed', error);
+    }
+    try { window.ScrollTrigger?.getAll?.().forEach((t) => t.kill()); } catch (error) {
+      console.warn('[seo] ScrollTrigger cleanup failed', error);
+    }
     document.documentElement.classList.remove('lenis', 'lenis-smooth', 'lenis-stopped', 'lenis-scrolling');
   });
 
