@@ -57,7 +57,7 @@ export async function POST({ request }) {
       }),
     });
 
-    const data = await upstream.json().catch(() => ({}));
+    const data = await upstream.json();
     if (!upstream.ok || !data.success) {
       return fail(
         502,
@@ -69,7 +69,8 @@ export async function POST({ request }) {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
-  } catch {
+  } catch (error) {
+    console.error("[contact] Web3Forms request failed", error);
     return fail(
       502,
       "Couldn't reach the email service. Try emailing me directly at me@grahamzemel.com."

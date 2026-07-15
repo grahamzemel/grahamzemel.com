@@ -112,7 +112,9 @@
       } else {
         localStorage.removeItem('gz_admin_token');
       }
-    } catch {}
+    } catch (error) {
+      console.warn('Stored admin token verification failed', error);
+    }
   }
 
   async function loadVisibility() {

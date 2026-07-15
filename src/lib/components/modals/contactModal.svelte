@@ -69,7 +69,7 @@
           from_name: "grahamzemel.com contact form",
         }),
       });
-      const data = await response.json().catch(() => ({}));
+      const data = await response.json();
       if (response.ok && data.success) {
         status = "success";
         name = "";
@@ -82,7 +82,8 @@
           data?.message ||
           "Something went wrong. Try emailing me directly at me@grahamzemel.com.";
       }
-    } catch {
+    } catch (error) {
+      console.error("[contact-modal] Submission failed", error);
       status = "error";
       errorMessage =
         "Couldn't reach the email service. Try emailing me directly at me@grahamzemel.com.";
