@@ -1,6 +1,6 @@
 import preprocess from "svelte-preprocess";
 import adapter from "@sveltejs/adapter-vercel";
-import { vitePreprocess } from "@sveltejs/kit/vite";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -14,14 +14,36 @@ const config = {
   ],
 
   kit: {
-    // Vercel adapter with explicit runtime to avoid build-time Node version mismatches.
-    adapter: adapter({ runtime: "edge" }),
+    adapter: adapter(),
     csp: {
       directives: {
-        "default-src": ["*", "unsafe-inline", "unsafe-eval"],
-        "img-src": ["*"],
+        "default-src": ["self"],
+        "base-uri": ["self"],
+        "connect-src": [
+          "self",
+          "https://api.rss2json.com",
+          "https://*.herokuapp.com",
+          "https://vitals.vercel-insights.com",
+        ],
+        "font-src": ["self", "data:", "https://fonts.gstatic.com"],
+        "form-action": ["self"],
+        "frame-ancestors": ["none"],
+        "frame-src": [
+          "self",
+          "https://app.cal.com",
+          "https://www.linkedin.com",
+          "https://*.netlify.app",
+        ],
+        "img-src": ["self", "data:", "blob:", "https:"],
+        "object-src": ["none"],
         "worker-src": ["self", "blob:"],
-        "script-src": ["*", "unsafe-inline", "unsafe-eval", "blob:"],
+        "script-src": [
+          "self",
+          "https://cdnjs.cloudflare.com",
+          "https://platform.linkedin.com",
+          "https://va.vercel-scripts.com",
+        ],
+        "style-src": ["self", "unsafe-inline", "https://fonts.googleapis.com"],
       },
     },
   },

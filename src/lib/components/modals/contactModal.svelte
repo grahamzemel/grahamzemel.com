@@ -4,8 +4,6 @@
 
   export let showModal = false;
 
-  const ACCESS_KEY = "728319f0-7de2-4a54-a1aa-0f1083aa13b4";
-
   let name = "";
   let email = "";
   let projectType = "";
@@ -52,25 +50,22 @@
     errorMessage = "";
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: ACCESS_KEY,
           name,
           email,
-          subject: `[grahamzemel.com] ${projectType || "Contact"} — ${name}`,
-          project_type: projectType,
+          projectType,
           message,
-          replyto: email,
-          from_name: "grahamzemel.com contact form",
+          honey,
         }),
       });
       const data = await response.json().catch(() => ({}));
-      if (response.ok && data.success) {
+      if (response.ok && data.ok) {
         status = "success";
         name = "";
         email = "";
@@ -79,7 +74,7 @@
       } else {
         status = "error";
         errorMessage =
-          data?.message ||
+          data?.error ||
           "Something went wrong. Try emailing me directly at me@grahamzemel.com.";
       }
     } catch {
@@ -98,6 +93,7 @@
     on:click={onBackdrop}
     on:keydown={onKey}
     role="dialog"
+    tabindex="0"
     aria-modal="true"
     aria-labelledby="contact-modal-title"
     transition:fade={{ duration: 180, easing: cubicOut }}
@@ -106,8 +102,21 @@
       class="modal-card"
       transition:scale={{ duration: 240, start: 0.96, easing: cubicOut }}
     >
-      <button class="modal-close" type="button" aria-label="Close" on:click={close}>
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <button
+        class="modal-close"
+        type="button"
+        aria-label="Close"
+        on:click={close}
+      >
+        <svg
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
           <line x1="6" y1="6" x2="18" y2="18" />
           <line x1="18" y1="6" x2="6" y2="18" />
         </svg>
@@ -116,14 +125,24 @@
       {#if status === "success"}
         <div class="modal-success" role="status">
           <div class="modal-success-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
               <polyline points="20 6 9 17 4 12" />
             </svg>
           </div>
-          <h2 id="contact-modal-title" class="modal-success-title">Message sent.</h2>
+          <h2 id="contact-modal-title" class="modal-success-title">
+            Message sent.
+          </h2>
           <p class="modal-success-copy">
-            Thanks for reaching out. I'll reply within 24 hours at the
-            email you provided.
+            Thanks for reaching out. I'll reply within 24 hours at the email you
+            provided.
           </p>
           <button class="modal-done" type="button" on:click={close}>
             Done
@@ -137,8 +156,8 @@
           </h2>
           <p class="modal-blurb">
             Personal sites, business platforms, full-stack SaaS, AI tools,
-            security audits, automations — if it's interesting, I'd like to
-            hear about it.
+            security audits, automations — if it's interesting, I'd like to hear
+            about it.
           </p>
         </header>
 
@@ -177,7 +196,16 @@
                   <option value={option}>{option}</option>
                 {/each}
               </select>
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
                 <polyline points="6 9 12 15 18 9" />
               </svg>
             </div>
@@ -191,12 +219,17 @@
               rows="5"
               bind:value={message}
               placeholder="What you're working on, what you need, timelines, anything else useful…"
-            />
+            ></textarea>
           </label>
 
           <label class="modal-honeypot" aria-hidden="true">
             Don't fill this out
-            <input type="text" tabindex="-1" autocomplete="off" bind:value={honey} />
+            <input
+              type="text"
+              tabindex="-1"
+              autocomplete="off"
+              bind:value={honey}
+            />
           </label>
 
           {#if status === "error"}
@@ -216,7 +249,16 @@
                 Sending…
               {:else}
                 Send message
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
                   <line x1="5" y1="12" x2="19" y2="12" />
                   <polyline points="12 5 19 12 12 19" />
                 </svg>
@@ -261,7 +303,9 @@
     box-shadow: 0 30px 80px oklch(0 0 0 / 0.55);
   }
   @media (min-width: 640px) {
-    .modal-card { padding: 2rem; }
+    .modal-card {
+      padding: 2rem;
+    }
   }
 
   .modal-close {
@@ -288,10 +332,16 @@
     border-color: oklch(0.32 0.012 250);
     color: oklch(0.99 0 0);
   }
-  .modal-close svg { height: 1.125rem; width: 1.125rem; }
+  .modal-close svg {
+    height: 1.125rem;
+    width: 1.125rem;
+  }
 
   /* Header */
-  .modal-head { margin-bottom: 1.25rem; padding-right: 2.5rem; }
+  .modal-head {
+    margin-bottom: 1.25rem;
+    padding-right: 2.5rem;
+  }
   .modal-kicker {
     margin: 0;
     font-family: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, monospace;
@@ -318,13 +368,30 @@
   }
 
   /* Form */
-  .modal-form { display: flex; flex-direction: column; gap: 1rem; }
-  .modal-field-row { display: flex; flex-direction: column; gap: 1rem; }
-  @media (min-width: 480px) {
-    .modal-field-row { flex-direction: row; gap: 0.875rem; }
-    .modal-field-row .modal-field { flex: 1; }
+  .modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
-  .modal-field { display: flex; flex-direction: column; gap: 0.4rem; }
+  .modal-field-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  @media (min-width: 480px) {
+    .modal-field-row {
+      flex-direction: row;
+      gap: 0.875rem;
+    }
+    .modal-field-row .modal-field {
+      flex: 1;
+    }
+  }
+  .modal-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
   .modal-field-label {
     font-family: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, monospace;
     font-size: 0.75rem;
@@ -350,12 +417,19 @@
       background 180ms var(--ease),
       box-shadow 180ms var(--ease);
   }
-  .modal-field textarea { resize: vertical; min-height: 7rem; }
+  .modal-field textarea {
+    resize: vertical;
+    min-height: 7rem;
+  }
   .modal-field input::placeholder,
-  .modal-field textarea::placeholder { color: oklch(0.78 0.012 250); }
+  .modal-field textarea::placeholder {
+    color: oklch(0.78 0.012 250);
+  }
   .modal-field input:hover,
   .modal-field textarea:hover,
-  .modal-field select:hover { border-color: oklch(0.72 0.012 250); }
+  .modal-field select:hover {
+    border-color: oklch(0.72 0.012 250);
+  }
   .modal-field input:focus,
   .modal-field textarea:focus,
   .modal-field select:focus {
@@ -364,7 +438,9 @@
     background: oklch(0.11 0.012 250);
     box-shadow: 0 0 0 3px oklch(0.66 0.16 165 / 0.22);
   }
-  .modal-select-wrap { position: relative; }
+  .modal-select-wrap {
+    position: relative;
+  }
   .modal-select-wrap select {
     appearance: none;
     -webkit-appearance: none;
@@ -433,7 +509,7 @@
   .modal-cancel {
     color: oklch(0.95 0.005 250);
     background: transparent;
-    border-color: oklch(0.50 0.012 250);
+    border-color: oklch(0.5 0.012 250);
   }
   .modal-cancel:hover {
     background: oklch(1 0 0 / 0.08);
@@ -451,9 +527,18 @@
     background: oklch(1 0 0);
     transform: translateY(-1px);
   }
-  .modal-submit:disabled { opacity: 0.65; cursor: not-allowed; }
-  .modal-submit svg { height: 0.95rem; width: 0.95rem; transition: transform 180ms; }
-  .modal-submit:hover:not(:disabled) svg { transform: translateX(2px); }
+  .modal-submit:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+  .modal-submit svg {
+    height: 0.95rem;
+    width: 0.95rem;
+    transition: transform 180ms;
+  }
+  .modal-submit:hover:not(:disabled) svg {
+    transform: translateX(2px);
+  }
 
   .modal-foot {
     margin: 0.5rem 0 0;
@@ -466,7 +551,9 @@
     text-decoration: none;
     transition: color 180ms var(--ease);
   }
-  .modal-foot a:hover { color: oklch(0.99 0 0); }
+  .modal-foot a:hover {
+    color: oklch(0.99 0 0);
+  }
 
   /* Success state */
   .modal-success {
@@ -486,7 +573,10 @@
     align-items: center;
     justify-content: center;
   }
-  .modal-success-icon svg { height: 1.25rem; width: 1.25rem; }
+  .modal-success-icon svg {
+    height: 1.25rem;
+    width: 1.25rem;
+  }
   .modal-success-title {
     margin: 0;
     font-family: "Source Serif Pro", serif;

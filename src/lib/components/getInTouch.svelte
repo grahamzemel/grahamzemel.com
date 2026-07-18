@@ -1,12 +1,6 @@
 <script lang="ts">
   import Visibility from "$lib/components/visibility.svelte";
 
-  // Web3Forms access key — intentionally public-safe (the key is bound to
-  // me@grahamzemel.com server-side, so it can only deliver to that inbox).
-  // Free-tier Web3Forms blocks server-side submission, so this submits direct
-  // from the browser. Override with PUBLIC_WEB3FORMS_KEY env if you rotate it.
-  const ACCESS_KEY = "728319f0-7de2-4a54-a1aa-0f1083aa13b4";
-
   let isVisible = false;
   let hasChanged = false;
   let hasObserverSupport = true;
@@ -38,25 +32,22 @@
     errorMessage = "";
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: ACCESS_KEY,
           name,
           email,
-          subject: `[grahamzemel.com] ${projectType || "Contact"} — ${name}`,
-          project_type: projectType,
+          projectType,
           message,
-          replyto: email,
-          from_name: "grahamzemel.com contact form",
+          honey,
         }),
       });
       const data = await response.json().catch(() => ({}));
-      if (response.ok && data.success) {
+      if (response.ok && data.ok) {
         status = "success";
         name = "";
         email = "";
@@ -65,7 +56,7 @@
       } else {
         status = "error";
         errorMessage =
-          data?.message ||
+          data?.error ||
           "Something went wrong. Try emailing me directly at me@grahamzemel.com.";
       }
     } catch (err) {
@@ -151,14 +142,22 @@
       {#if status === "success"}
         <div class="form-success" role="status">
           <div class="success-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
               <polyline points="20 6 9 17 4 12" />
             </svg>
           </div>
           <h3 class="success-title">Message sent.</h3>
           <p class="success-copy">
-            Thanks for reaching out. I'll get back to you within 24 hours
-            at the email you provided.
+            Thanks for reaching out. I'll get back to you within 24 hours at the
+            email you provided.
           </p>
         </div>
       {:else}
@@ -199,7 +198,17 @@
                   <option value={option}>{option}</option>
                 {/each}
               </select>
-              <svg class="select-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg
+                class="select-arrow"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
                 <polyline points="6 9 12 15 18 9" />
               </svg>
             </div>
@@ -213,7 +222,7 @@
               rows="6"
               bind:value={message}
               placeholder="What you're working on, what you need, timelines, anything else useful…"
-            />
+            ></textarea>
           </label>
 
           <!-- honeypot -->
@@ -240,7 +249,16 @@
               Sending…
             {:else}
               Send message
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
                 <line x1="5" y1="12" x2="19" y2="12" />
                 <polyline points="12 5 19 12 12 19" />
               </svg>
@@ -280,14 +298,18 @@
   /* ---------- Left pitch card ---------- */
   .pitch-card {
     border-radius: 0.875rem;
-    border: 1px solid oklch(0.30 0.012 250);
+    border: 1px solid oklch(0.3 0.012 250);
     background: oklch(0.13 0.012 250 / 0.92);
     padding: 1.75rem;
     display: flex;
     flex-direction: column;
     gap: 1.125rem;
   }
-  @media (min-width: 768px) { .pitch-card { padding: 2rem; } }
+  @media (min-width: 768px) {
+    .pitch-card {
+      padding: 2rem;
+    }
+  }
 
   .pitch-kicker {
     margin: 0;
@@ -296,7 +318,7 @@
     font-weight: 500;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: oklch(0.60 0.012 250);
+    color: oklch(0.6 0.012 250);
   }
 
   .pitch-headline {
@@ -377,11 +399,15 @@
   /* ---------- Right form card ---------- */
   .form-card {
     border-radius: 0.875rem;
-    border: 1px solid oklch(0.30 0.012 250);
+    border: 1px solid oklch(0.3 0.012 250);
     background: oklch(0.13 0.012 250 / 0.92);
     padding: 1.75rem;
   }
-  @media (min-width: 768px) { .form-card { padding: 2.25rem; } }
+  @media (min-width: 768px) {
+    .form-card {
+      padding: 2.25rem;
+    }
+  }
 
   .form {
     display: flex;
@@ -396,7 +422,7 @@
     font-weight: 500;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: oklch(0.60 0.012 250);
+    color: oklch(0.6 0.012 250);
   }
 
   .form-row {
@@ -409,7 +435,9 @@
       flex-direction: row;
       gap: 1rem;
     }
-    .form-row-split .field { flex: 1; }
+    .form-row-split .field {
+      flex: 1;
+    }
   }
 
   .field {
@@ -432,18 +460,22 @@
   .field select {
     width: 100%;
     border: 1px solid oklch(0.32 0.012 250);
-    background: oklch(0.10 0.012 250);
+    background: oklch(0.1 0.012 250);
     color: oklch(0.99 0.005 250);
     border-radius: 0.5rem;
     padding: 0.85rem 1rem;
     font-size: 1rem;
     line-height: 1.5;
     font-family: inherit;
-    transition: border-color 180ms var(--ease),
+    transition:
+      border-color 180ms var(--ease),
       background 180ms var(--ease),
       box-shadow 180ms var(--ease);
   }
-  .field textarea { resize: vertical; min-height: 9rem; }
+  .field textarea {
+    resize: vertical;
+    min-height: 9rem;
+  }
   .field input::placeholder,
   .field textarea::placeholder {
     color: oklch(0.58 0.012 250);
@@ -459,7 +491,7 @@
   .field textarea:focus,
   .field select:focus {
     outline: none;
-    border-color: oklch(0.55 0.10 165);
+    border-color: oklch(0.55 0.1 165);
     background: oklch(0.12 0.013 250);
     box-shadow: 0 0 0 3px oklch(0.55 0.14 165 / 0.18);
   }
@@ -518,7 +550,8 @@
     background: oklch(0.95 0.003 250);
     border: 1px solid oklch(0.95 0.003 250);
     cursor: pointer;
-    transition: background 180ms var(--ease),
+    transition:
+      background 180ms var(--ease),
       border-color 180ms var(--ease),
       transform 180ms var(--ease),
       opacity 180ms var(--ease);
@@ -574,7 +607,10 @@
     align-items: center;
     justify-content: center;
   }
-  .success-icon svg { height: 1.25rem; width: 1.25rem; }
+  .success-icon svg {
+    height: 1.25rem;
+    width: 1.25rem;
+  }
   .success-title {
     margin: 0;
     font-family: "Source Serif Pro", serif;

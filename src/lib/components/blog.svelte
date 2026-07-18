@@ -17,12 +17,19 @@
     images: string[];
   };
 
+  type BlogPost = {
+    title: string;
+    link: string;
+    date: string;
+    creator: string;
+    tags: string[];
+  };
+
   let isVisible = false;
   let hasChanged = false;
   let hasObserverSupport = true;
 
-  let output = "";
-  let postOutput = "";
+  let posts: BlogPost[] = [];
   let metadata: Metadata = {
     title: "The Gray Area",
     description:
@@ -34,7 +41,7 @@
     // console.log(metadata);
 
     fetch(
-      "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/the-gray-area"
+      "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/the-gray-area",
     )
       .then((res) => res.json())
       .catch((error) => {
@@ -42,62 +49,43 @@
       })
       .then((data) => {
         const res = data.items as RssItem[]; //This is an array with the content. No feed, no info about author etc..
-        const posts = res
+        posts = res
           .filter((item: RssItem) => item.categories.length > 0)
-          .slice(0, 3); // That's the main trick* !
-        // Functions to create a short text out of whole blog's content
-        function toText(node: string) {
-          let tag = document.createElement("div");
-          tag.innerHTML = node;
-          node = tag.innerText;
-          return node;
-        }
+          .slice(0, 3)
+          .map((item: RssItem) => ({
+            title: shortenText(String(item.title || ""), 0, 60),
+            link: safeHttpUrl(item.link),
+            date: String(item.pubDate || "").slice(0, 10),
+            creator: String(item.author || "").slice(0, 200),
+            tags: item.categories
+              .map((category: string) => String(category).toUpperCase())
+              .slice(0, 3),
+          }));
+
         function shortenText(
           text: string,
           startingPoint: number,
-          maxLength: number
+          maxLength: number,
         ) {
           return text.length > maxLength
             ? text.slice(startingPoint, maxLength) + "..."
             : text;
         }
-        posts.forEach((item: RssItem) => {
-          let categories = item.categories;
-          categories = categories
-            .map((categories: string) => " " + categories.toUpperCase())
-            .slice(0, 3);
-          const post = {
-            title: shortenText(item.title, 0, 60),
-            link: item.link,
-            thumbnail: item.thumbnail,
-            date: item.pubDate.slice(0, 10),
-            creator: item.author,
-            tags: categories,
-          };
-
-          output += `
-         <li class="blog__post" style="text-align:center;justify-content:center;">
-               <div class="blog__content">
-                <div class="blog_preview">
-                    <a href="${post.link}" style="color: lightblue;">
-                     <h2 class="blog__title" style="font-size: 1.5rem; font-weight:bold;">${post.title}</h2>
-                    </a>
-                    <span class="blog__author">Written by ${post.creator}</span>
-                  </div>
-                  <div class="blog__info">
-                     <br>
-                     <p class="blog__intro" style="color: slategrey;font-weight:thin;">${post.tags}</p>
-                     <span class="blog__date">Published on ${post.date}</span>
-                  </div>
-               </div>
-         </li>`;
-        });
-        postOutput = output;
       })
       .catch((error) => {
         console.error(error);
       });
   });
+
+  function safeHttpUrl(value: string) {
+    try {
+      const url = new URL(value);
+      if (url.protocol === "http:" || url.protocol === "https:") {
+        return url.href;
+      }
+    } catch {}
+    return "https://medium.com/the-gray-area";
+  }
 </script>
 
 <div class="sm:mt-[12vh] mt-10" aria-hidden="true">
@@ -126,7 +114,10 @@
     much more.
   </h2>
   <br />
-  <div class="block flex space-x-64 justify-center text-center p-4 ml-[1rem]" id="statsBig">
+  <div
+    class="block flex space-x-64 justify-center text-center p-4 ml-[1rem]"
+    id="statsBig"
+  >
     <div>
       <div class="text-5xl font-bold">30+</div>
       <div class="text-2xl text-gray-500">Writers</div>
@@ -165,15 +156,47 @@
     class="blog flex justify-center items-center lg:block md:block hidden"
   >
     <ul class="blog__slider grid grid-cols-3 w-50% lg:w-33%">
-      {#if postOutput}
-        {@html postOutput}
+      {#if posts.length}
+        {#each posts as post}
+          <li
+            class="blog__post"
+            style="text-align:center;justify-content:center;"
+          >
+            <div class="blog__content">
+              <div class="blog_preview">
+                <a
+                  href={post.link}
+                  rel="noopener noreferrer"
+                  style="color: lightblue;"
+                >
+                  <h2
+                    class="blog__title"
+                    style="font-size: 1.5rem; font-weight:bold;"
+                  >
+                    {post.title}
+                  </h2>
+                </a>
+                <span class="blog__author">Written by {post.creator}</span>
+              </div>
+              <div class="blog__info">
+                <br />
+                <p
+                  class="blog__intro"
+                  style="color: slategrey;font-weight:thin;"
+                >
+                  {post.tags.join(", ")}
+                </p>
+                <span class="blog__date">Published on {post.date}</span>
+              </div>
+            </div>
+          </li>
+        {/each}
       {:else}
         <p class="blog__intro">
           Please wait, obtaining posts from
           <a
             href="https://medium.com/the-gray-area"
-            aria-label="The Gray Area on Medium"
-            >The Gray Area</a
+            aria-label="The Gray Area on Medium">The Gray Area</a
           >
         </p>
       {/if}
@@ -207,14 +230,6 @@
     transition-duration: 1500ms;
   }
 
-  .resume-button {
-    @apply flex flex-row w-min whitespace-nowrap mt-8 text-accent-300
-        cursor-pointer select-none;
-  }
-
-  .resume-button:hover {
-    @apply transition-colors text-accent-200;
-  }
   .card {
     display: flex;
     flex-direction: column;

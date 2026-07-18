@@ -1,18 +1,23 @@
-const ADMIN_TOKEN = "gz_admin_a8f3e7c2d1b9";
+import { hasValidAdminSession } from "$lib/server/admin-session.js";
 
+/** @type {import("@sveltejs/kit").Handle} */
 export async function handle({ event, resolve }) {
-  if (event.url.pathname.startsWith("/admin")) {
-    const cookies = event.request.headers.get("cookie") || "";
-    const match = cookies.match(/gz_admin=([^;]+)/);
-    const token = match ? match[1] : null;
-
-    if (token !== ADMIN_TOKEN) {
-      return new Response(null, {
-        status: 302,
-        headers: { location: "/" },
-      });
-    }
+  if (
+    event.url.pathname.startsWith("/admin") &&
+    !(await hasValidAdminSession(event.cookies))
+  ) {
+    return new Response(null, {
+      status: 303,
+      headers: { location: "/" },
+    });
   }
 
-  return resolve(event);
+  const response = await resolve(event);
+  response.headers.set("X-Content-Type-Options", "nosniff");
+  response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  response.headers.set(
+    "Permissions-Policy",
+    "camera=(), geolocation=(), microphone=()",
+  );
+  return response;
 }
