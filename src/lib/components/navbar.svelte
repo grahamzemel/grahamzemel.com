@@ -1,8 +1,11 @@
 <script lang="ts">
   import { onMount, onDestroy } from "svelte";
+  import { page } from "$app/stores";
   import ContactModal from "./modals/contactModal.svelte";
 
   type LinkItem = { id: string; label: string; href?: string };
+
+  $: brandName = $page.url.pathname === "/seo" ? "Graham Zemel SEO" : "Graham Zemel";
 
   const links: LinkItem[] = [
     { id: "about", label: "About" },
@@ -104,7 +107,7 @@
             >GZ</text>
           </svg>
         </span>
-        <span class="brand-name">Graham Zemel SEO</span>
+        <span class="brand-name">{brandName}</span>
       </a>
 
       <nav class="nav-links" aria-label="Primary">
